@@ -142,7 +142,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps): JSX.E
           {/* Branding */}
           <div className={styles.branding}>
             <h1 className={styles.title}>
-              LIU <span className={styles.titleHighlight}>JIAXING</span>
+              LABY <span className={styles.titleHighlight}>BLOG</span>
             </h1>
             <p className={styles.subtitle}>
               <span className={styles.subtitleLine}></span>

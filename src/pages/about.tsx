@@ -39,8 +39,8 @@ export default function About(): JSX.Element {
                   </span>
                 </a>
                 <a 
-                  href="/file/刘佳兴-Vibe Coding开发.pdf" 
-                  download="刘佳兴-简历.pdf"
+                  href="/file/Liu-Jiaxing-Vibe-Coding-Dev.pdf" 
+                  download="Liu-Jiaxing-Resume.pdf"
                   className={styles.heroDownloadBtn}
                 >
                   <span className="material-symbols-outlined">download</span>

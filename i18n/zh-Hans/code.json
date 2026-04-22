@@ -355,6 +355,18 @@
   "homepage.techStack.badge": {
     "message": "99级技术栈"
   },
+  "homepage.ninePillars.badge": {
+    "message": "鬼杀队"
+  },
+  "homepage.ninePillars.titlePart1": {
+    "message": "九"
+  },
+  "homepage.ninePillars.titlePart2": {
+    "message": "柱"
+  },
+  "homepage.ninePillars.subtitle": {
+    "message": "精英战士，每位都掌握独特的呼吸法，守护人类免受鬼的侵害"
+  },
   "homepage.blog.title": {
     "message": "最新章节"
   },

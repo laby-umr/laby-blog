@@ -283,14 +283,117 @@
   position: relative;
 }
 
+.infoBoardHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.infoBoardBadge {
+  display: inline-block;
+  background-color: var(--dm-tertiary-container);
+  color: var(--dm-on-tertiary-container);
+  padding: 0.25rem 1rem;
+  font-family: var(--dm-font-headline);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  transform: rotate(-2deg);
+  margin-bottom: 1rem;
+  border: 2px solid var(--dm-on-surface);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+}
+
+.infoBoardTitle {
+  font-family: var(--dm-font-headline);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+  color: var(--dm-on-surface);
+  margin: 0;
+}
+
+.infoBoardTitleHighlight {
+  color: var(--dm-primary);
+}
+
+.infoBoardWrapper {
+  position: relative;
+}
+
+/* Double-layer card background */
+.infoBoardBackLayer {
+  position: absolute;
+  inset: -1rem;
+  border: 4px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-xl);
+  transform: rotate(-2deg);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.infoBoardWrapper:hover .infoBoardBackLayer {
+  transform: rotate(-3deg) scale(1.02);
+}
+
+/* Color variants for back layer */
+.backLayererror {
+  background-color: var(--dm-error-container);
+}
+
+.backLayerprimary {
+  background-color: var(--dm-primary-container);
+}
+
+.backLayertertiary {
+  background-color: var(--dm-tertiary-container);
+}
+
+.backLayersecondary {
+  background-color: var(--dm-secondary-container);
+}
+
+.backLayertertiary-fixed {
+  background-color: var(--dm-tertiary-fixed-dim);
+}
+
+.backLayeroutline-variant {
+  background-color: var(--dm-outline-variant);
+  opacity: 0.3;
+}
+
+.backLayersecondary-dim {
+  background-color: var(--dm-secondary-dim);
+}
+
+.backLayeron-surface-variant {
+  background-color: var(--dm-on-surface-variant);
+  opacity: 0.2;
+}
+
+.backLayerinverse-primary {
+  background-color: var(--dm-inverse-primary);
+}
+
 .infoBoardContent {
   background-color: var(--dm-surface-container);
   border: 4px solid var(--dm-on-surface);
   padding: 2rem;
   border-radius: var(--dm-radius-xl);
-  box-shadow: 12px 12px 0px 0px var(--dm-primary);
+  box-shadow: 8px 8px 0px 0px var(--dm-on-surface);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.infoBoardWrapper:hover .infoBoardContent {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px 0px var(--dm-on-surface);
 }
 
 .activeMissionBadge {

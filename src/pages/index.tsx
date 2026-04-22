@@ -29,49 +29,49 @@ const characterData: Character[] = [
     id: 1,
     name: '贝蒂',
     nameEn: 'Beatrice',
-    image: '/img/home/贝蒂.jpg',
+    image: '/img/home/beatrice.jpg',
     color: 'yellow-blue' // 明黄+粉蓝
   },
   {
     id: 2,
     name: '艾米莉亚',
     nameEn: 'Emilia',
-    image: '/img/home/艾米莉亚.jpg',
+    image: '/img/home/emilia.jpg',
     color: 'purple-pink' // 深紫+玫粉
   },
   {
     id: 3,
     name: '艾米莉亚',
     nameEn: 'Emilia',
-    image: '/img/home/艾米莉亚2.jpg',
+    image: '/img/home/emilia2.jpg',
     color: 'purple-pink' // 深紫+玫粉
   },
   {
     id: 4,
     name: '拉姆',
     nameEn: 'Ram',
-    image: '/img/home/拉姆.jpg',
+    image: '/img/home/ram.jpg',
     color: 'cyan-pink' // 浅青+玫红
   },
   {
     id: 5,
     name: '蕾姆',
     nameEn: 'Rem',
-    image: '/img/home/蕾姆-蓝.jpg',
+    image: '/img/home/rem-blue.jpg',
     color: 'pink-blue' // 亮粉+青蓝
   },
   {
     id: 6,
     name: '蕾姆',
     nameEn: 'Rem',
-    image: '/img/home/蕾姆-红.jpg',
+    image: '/img/home/rem-red.jpg',
     color: 'pink-blue' // 亮粉+青蓝
   },
   {
     id: 7,
     name: '菜月昂',
     nameEn: 'Subaru',
-    image: '/img/home/菜月昂.jpg',
+    image: '/img/home/subaru.jpg',
     color: 'gray-orange' // 灰+橙黑
   }
 ];
@@ -82,81 +82,187 @@ const hashiraData: Hashira[] = [
     name: '富冈义勇',
     title: '水柱 Water Hashira',
     breathing: 'Water Breathing (Mizu no kokyū)',
-    quote: '"Those who regretted their own actions, I would never trample over them. Because demons were once human too."',
-    image: '/img/home/水柱·富冈义勇.jpg',
-    color: 'primary' // 海蓝色/藏青色
+    quote: '"那些后悔自己行为的人，我绝不会践踏他们。因为鬼也曾经是人类。" - 富冈义勇以其冷静的判断力和强大的水之呼吸法守护着人类，他相信即使是鬼也曾有过人性。',
+    image: '/img/home/giyuu.jpg',
+    color: 'primary'
   },
   {
     id: 2,
     name: '炼狱杏寿郎',
     title: '炎柱 Flame Hashira',
     breathing: 'Flame Breathing (Honō no kokyū)',
-    quote: '"Set your heart ablaze! Go beyond your limits! I am Kyojuro Rengoku, the Flame Hashira! I will fulfill my duty! I will not allow anyone here to die!"',
-    image: '/img/home/炎柱·炼狱杏寿郎.jpg',
-    color: 'error' // 炽红色/橙红色
+    quote: '"让你的心燃烧起来！超越你的极限！我是炼狱杏寿郎，炎之柱！我会履行我的职责！我不会让这里的任何人死去！" - 炼狱以其不屈的精神和炽热的炎之呼吸法激励着所有人。',
+    image: '/img/home/rengoku.jpg',
+    color: 'error'
   },
   {
     id: 3,
     name: '悲鸣屿行冥',
     title: '岩柱 Stone Hashira',
     breathing: 'Stone Breathing (Iwa no kokyū)',
-    quote: '"Namu Amida Butsu... May Buddha guide you."',
-    image: '/img/home/岩柱·悲鸣屿行冥.jpg',
-    color: 'secondary-dim' // 深灰色/褐色
+    quote: '"南无阿弥陀佛...愿佛祖指引你。" - 悲鸣屿是最强的柱，尽管双目失明，但他温柔的内心和如岩石般坚不可摧的力量守护着所有人。',
+    image: '/img/home/gyomei.jpg',
+    color: 'secondary-dim'
   },
   {
     id: 4,
     name: '不死川实弥',
     title: '风柱 Wind Hashira',
     breathing: 'Wind Breathing (Kaze no kokyū)',
-    quote: '"I\'ll kill every last demon!"',
-    image: '/img/home/风柱·不死川实弥.jpg',
-    color: 'secondary' // 鲜绿色
+    quote: '"我要杀光所有的鬼！" - 不死川浑身伤痕，被纯粹的愤怒驱使。他的"稀血"对鬼有着致命的诱惑力，而他的风之呼吸法如同狂风般凶猛。',
+    image: '/img/home/sanemi.jpg',
+    color: 'secondary'
   },
   {
     id: 5,
     name: '时透无一郎',
     title: '霞柱 Mist Hashira',
     breathing: 'Mist Breathing (Kasumi no kokyū)',
-    quote: '"I\'ll defeat you even if it costs me my life."',
-    image: '/img/home/霞柱·时透无一郎.jpg',
-    color: 'outline-variant' // 透明白色/浅紫色
+    quote: '"即使付出生命，我也要打败你。" - 时透是一个天才少年，在拿起刀后仅两个月就成为了柱。他常常陷入沉思，但他的霞之呼吸法如同迷雾般难以捉摸。',
+    image: '/img/home/muichiro.jpg',
+    color: 'outline-variant'
   },
   {
     id: 6,
     name: '甘露寺蜜璃',
     title: '恋柱 Love Hashira',
     breathing: 'Love Breathing (Koi no kokyū)',
-    quote: '"I want to be useful to everyone! I want to help!"',
-    image: '/img/home/恋柱·甘露寺蜜璃.jpg',
-    color: 'tertiary-fixed' // 樱花粉色
+    quote: '"我想对大家有用！我想帮忙！" - 甘露寺拥有常人八倍的肌肉密度，使用鞭状的日轮刀。她的恋之呼吸法充满了优雅和力量。',
+    image: '/img/home/mitsuri.jpg',
+    color: 'tertiary-fixed'
   },
   {
     id: 7,
     name: '伊黑小芭内',
     title: '蛇柱 Serpent Hashira',
     breathing: 'Serpent Breathing (Hebi no kokyū)',
-    quote: '"I will protect what needs to be protected."',
-    image: '/img/home/蛇柱·伊黑小芭内.jpg',
-    color: 'inverse-primary' // 深绿色
+    quote: '"我会保护需要保护的东西。" - 伊黑严格而愤世嫉俗，他的蛇之呼吸法允许进行不可预测的、蜿蜒曲折的攻击，如同毒蛇般致命。',
+    image: '/img/home/obanai.jpg',
+    color: 'inverse-primary'
   },
   {
     id: 8,
     name: '宇髓天元',
     title: '音柱 Sound Hashira',
     breathing: 'Sound Breathing (Oto no kokyū)',
-    quote: '"I am the god of festivals! Tengen Uzui!"',
-    image: '/img/home/音柱·宇髓天元.jpg',
-    color: 'error' // 橘红色/暗红色
+    quote: '"我是祭典之神！宇髓天元！" - 自称"华丽之神"的前忍者，他重视华丽胜过一切。他的战斗是爆炸的交响乐，音之呼吸法震撼人心。',
+    image: '/img/home/tengen.jpg',
+    color: 'error'
   },
   {
     id: 9,
     name: '蝴蝶忍',
     title: '虫柱 Insect Hashira',
     breathing: 'Insect Breathing (Mushi no kokyū)',
-    quote: '"I may not have much strength, but I can use poison to kill demons."',
-    image: '/img/home/虫柱·蝴蝶忍.jpg',
-    color: 'tertiary' // 浅紫色/靛青色
+    quote: '"我可能没有太多力量，但我可以用毒药杀死鬼。" - 蝴蝶优雅而致命。由于缺乏体力无法斩首鬼，她用致命的紫藤花毒药来弥补，虫之呼吸法精准而优雅。',
+    image: '/img/home/shinobu.jpg',
+    color: 'tertiary'
+  }
+];
+
+interface PillarWarrior {
+  id: number;
+  name: string;
+  nameEn: string;
+  title: string;
+  breathing: string;
+  description: string;
+  image: string;
+  color: string;
+  status?: string;
+  tags?: string[];
+}
+
+const pillarWarriorsData: PillarWarrior[] = [
+  {
+    id: 1,
+    name: '炼狱杏寿郎',
+    nameEn: 'Kyojuro Rengoku',
+    title: 'Flame Pillar',
+    breathing: 'Flame Breathing',
+    description: '一个拥有巨大魅力和不屈乐观精神的男人。他的精神燃烧着激情，点燃周围人的灵魂。面对压倒性的困难，他从未动摇。',
+    image: '/img/home/rengoku.jpg',
+    color: 'error'
+  },
+  {
+    id: 2,
+    name: '宇髓天元',
+    nameEn: 'Tengen Uzui',
+    title: 'Sound Pillar',
+    breathing: 'Sound Breathing',
+    description: '自称"华丽之神"。前忍者，重视华丽胜过一切。他的战斗是爆炸的交响乐。',
+    image: '/img/home/tengen.jpg',
+    color: 'secondary'
+  },
+  {
+    id: 3,
+    name: '蝴蝶忍',
+    nameEn: 'Shinobu Kocho',
+    title: 'Insect Pillar',
+    breathing: 'Insect Breathing',
+    description: '优雅而致命。由于缺乏体力无法斩首鬼，她用致命的紫藤花毒药来弥补。',
+    image: '/img/home/shinobu.jpg',
+    color: 'tertiary'
+  },
+  {
+    id: 4,
+    name: '时透无一郎',
+    nameEn: 'Muichiro Tokito',
+    title: 'Mist Pillar',
+    breathing: 'Mist Breathing',
+    description: '一个天才少年，在拿起刀后仅两个月就成为了柱。常常陷入沉思。',
+    image: '/img/home/muichiro.jpg',
+    color: 'primary'
+  },
+  {
+    id: 5,
+    name: '甘露寺蜜璃',
+    nameEn: 'Mitsuri Kanroji',
+    title: 'Love Pillar',
+    breathing: 'Love Breathing',
+    description: '拥有常人八倍的肌肉密度，使用鞭状的日轮刀。',
+    image: '/img/home/mitsuri.jpg',
+    color: 'tertiary-fixed-dim'
+  },
+  {
+    id: 6,
+    name: '伊黑小芭内',
+    nameEn: 'Obanai Iguro',
+    title: 'Serpent Pillar',
+    breathing: 'Serpent Breathing',
+    description: '严格而愤世嫉俗，伊黑的蛇之呼吸法允许进行不可预测的、蜿蜒曲折的攻击。',
+    image: '/img/home/obanai.jpg',
+    color: 'on-background'
+  },
+  {
+    id: 7,
+    name: '不死川实弥',
+    nameEn: 'Sanemi Shinazugawa',
+    title: 'Wind Pillar',
+    breathing: 'Wind Breathing',
+    description: '浑身伤痕，被纯粹的愤怒驱使。他的"稀血"对鬼有着致命的诱惑力。',
+    image: '/img/home/sanemi.jpg',
+    color: 'outline'
+  },
+  {
+    id: 8,
+    name: '悲鸣屿行冥',
+    nameEn: 'Gyomei Himejima',
+    title: 'Stone Pillar',
+    breathing: 'Stone Breathing',
+    description: '最强的柱。尽管双目失明，性格温柔爱哭，但他的力量在战场上如同泰坦。',
+    image: '/img/home/gyomei.jpg',
+    color: 'secondary-dim'
+  },
+  {
+    id: 9,
+    name: '富冈义勇',
+    nameEn: 'Giyu Tomioka',
+    title: 'Water Pillar',
+    breathing: 'Water Breathing',
+    description: '冷静而内敛。他认为自己不配担任这个职位，但他的"凪"技术却是完美的。',
+    image: '/img/home/giyuu.jpg',
+    color: 'primary'
   }
 ];
 
@@ -167,6 +273,39 @@ export default function Home(): JSX.Element {
   const [selectedHashira, setSelectedHashira] = useState<Hashira>(hashiraData[0]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>(characterData[0]);
   const [isGlitching, setIsGlitching] = useState(false);
+  const [selectedPillar, setSelectedPillar] = useState<PillarWarrior>(pillarWarriorsData[0]);
+  const [pillarImageStates, setPillarImageStates] = useState<{[key: number]: boolean}>({});
+  const [flippingPillar, setFlippingPillar] = useState<number | null>(null);
+
+  // 切换九柱图片
+  const togglePillarImage = (pillarId: number) => {
+    if (flippingPillar !== null) return; // 防止动画期间重复点击
+    
+    setFlippingPillar(pillarId);
+    
+    // 在快速旋转的第一圈切换图片
+    setTimeout(() => {
+      setPillarImageStates(prev => ({
+        ...prev,
+        [pillarId]: !prev[pillarId]
+      }));
+    }, 150); // 快速旋转时切换
+    
+    // 动画结束后重置状态
+    setTimeout(() => {
+      setFlippingPillar(null);
+    }, 800);
+  };
+
+  // 获取九柱图片路径
+  const getPillarImage = (pillar: PillarWarrior) => {
+    const isAlternate = pillarImageStates[pillar.id];
+    if (isAlternate) {
+      // 将 .jpg 替换为 2.jpg
+      return pillar.image.replace('.jpg', '2.jpg');
+    }
+    return pillar.image;
+  };
 
   // 检查是否已经访问过（本次会话）
   useEffect(() => {
@@ -176,6 +315,38 @@ export default function Home(): JSX.Element {
       setHasVisited(true);
     }
   }, []);
+
+  // 九柱滚动动画
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // 添加轻微的延迟，让动画更自然
+          setTimeout(() => {
+            entry.target.classList.add(styles.ninePillarAnimate);
+          }, index * 50);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // 延迟一点以确保DOM已加载
+    setTimeout(() => {
+      const cards = document.querySelectorAll(`.${styles.ninePillarItem}`);
+      cards.forEach(card => {
+        observer.observe(card);
+      });
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasVisited]);
 
   const handleLoadingComplete = () => {
     sessionStorage.setItem('hasVisitedSite', 'true');
@@ -356,6 +527,93 @@ export default function Home(): JSX.Element {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Nine Pillars Section - Exact HTML Design */}
+      <section className={styles.ninePillarsSection}>
+        {/* Section Header */}
+        <div className={styles.ninePillarsHeader}>
+          <div className={styles.ninePillarsBadge}>
+            <Translate id="homepage.ninePillars.badge">DEMON SLAYER CORPS</Translate>
+          </div>
+          <h2 className={styles.ninePillarsTitle}>
+            <Translate id="homepage.ninePillars.titlePart1">The Nine</Translate>{' '}
+            <span className={styles.ninePillarsTitleHighlight}>
+              <Translate id="homepage.ninePillars.titlePart2">Hashira</Translate>
+            </span>
+          </h2>
+          <p className={styles.ninePillarsSubtitle}>
+            <Translate id="homepage.ninePillars.subtitle">
+              Elite warriors, each mastering unique Breathing Styles to protect humanity from demons
+            </Translate>
+          </p>
+        </div>
+
+        {/* Pillars List */}
+        <div className={styles.ninePillarsList}>
+          {pillarWarriorsData.map((pillar, index) => (
+            <section
+              key={pillar.id}
+              className={`${styles.ninePillarItem} ${
+                index % 2 === 0 ? '' : styles.ninePillarItemReverse
+              }`}
+            >
+              {/* Content Side */}
+              <div className={`${styles.ninePillarContent} ${index % 2 === 0 ? styles.contentOrder2 : styles.contentOrder1}`}>
+                <div 
+                  className={styles.ninePillarBadge}
+                  data-color={pillar.color}
+                >
+                  {pillar.title}
+                </div>
+                <h2 
+                  className={styles.ninePillarName}
+                  data-color={pillar.color}
+                >
+                  {pillar.name} <br />
+                  <span style={{ fontSize: '0.5em', opacity: 0.8 }}>{pillar.nameEn}</span>
+                </h2>
+                <div className={styles.ninePillarBreathingStyle}>
+                  <span className="material-symbols-outlined">swords</span>
+                  Breathing Style: {pillar.breathing}
+                </div>
+                <p 
+                  className={styles.ninePillarQuote}
+                  data-color={pillar.color}
+                >
+                  {pillar.description}
+                </p>
+              </div>
+
+              {/* Image Side - Hashira Style Card */}
+              <div className={`${styles.ninePillarVisual} ${index % 2 === 0 ? styles.contentOrder1 : styles.contentOrder2}`}>
+                <div 
+                  className={`${styles.ninePillarImageWrap} ${flippingPillar === pillar.id ? styles.ninePillarFlipping : ''}`}
+                  data-color={pillar.color}
+                  onClick={() => togglePillarImage(pillar.id)}
+                >
+                  <div className={styles.ninePillarLightSlit}></div>
+                  <div className={styles.ninePillarCardBorder}></div>
+                  <div className={`${styles.ninePillarAura} ${styles[`ninePillarAura${pillar.color}`]}`}></div>
+                  <img
+                    src={getPillarImage(pillar)}
+                    alt={pillar.name}
+                    className={styles.ninePillarImage}
+                  />
+                  <div className={styles.ninePillarCardInfo}>
+                    <div className={styles.ninePillarCardName}>{pillar.name}</div>
+                    <div className={`${styles.ninePillarCardTitle} ${styles[`ninePillarCardTitle${pillar.color}`]}`}>
+                      {pillar.title}
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.ninePillarBgText}>
+                  {pillar.title.split(' ')[0].toUpperCase()}
+                </div>
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 

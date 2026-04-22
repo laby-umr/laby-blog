@@ -1451,3 +1451,827 @@
     padding-right: 0.5rem;
   }
 }
+
+/* Nine Pillars Section - Exact HTML Design Match */
+.ninePillarsSection {
+  position: relative;
+  background-color: var(--dm-surface);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.03) 10px,
+    rgba(0, 0, 0, 0.03) 11px
+  );
+  overflow-x: hidden;
+  padding-top: 5rem;
+}
+
+/* Section Header */
+.ninePillarsHeader {
+  max-width: 80rem;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.ninePillarsBadge {
+  display: inline-block;
+  background-color: var(--dm-error-container);
+  color: var(--dm-on-error-container);
+  padding: 0.25rem 1rem;
+  font-family: var(--dm-font-headline);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  transform: rotate(-2deg);
+  margin-bottom: 1rem;
+  border: 2px solid var(--dm-on-surface);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+}
+
+.ninePillarsTitle {
+  font-family: var(--dm-font-headline);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  margin: 0 0 1rem 0;
+  color: var(--dm-on-surface);
+}
+
+.ninePillarsTitleHighlight {
+  color: var(--dm-error);
+}
+
+.ninePillarsSubtitle {
+  font-family: var(--dm-font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--dm-on-surface-variant);
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+/* Progress Bar - Hidden */
+.progressBar {
+  display: none;
+}
+
+/* Hero Section */
+.ninePillarsHero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.ninePillarsHeroTitle {
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-size: clamp(3.75rem, 12vw, 9rem);
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 1rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.ninePillarsAccent {
+  color: var(--dm-primary);
+  -webkit-text-stroke: 1px black;
+  text-stroke: 1px black;
+}
+
+.ninePillarsHeroDesc {
+  max-width: 42rem;
+  font-family: var(--dm-font-body);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--dm-on-surface-variant);
+}
+
+.ninePillarsScrollHint {
+  margin-top: 3rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.ninePillarsScrollHint .material-symbols-outlined {
+  font-size: 3rem;
+}
+
+/* Pillars List */
+.ninePillarsList {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  overflow: hidden;
+}
+
+.ninePillarItem {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  min-height: 320px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(-100px);
+  will-change: transform, opacity;
+}
+
+.ninePillarItemReverse {
+  transform: translateX(100px);
+}
+
+/* Sword Slash Animation - Smoother */
+.ninePillarAnimate {
+  animation: swordSlashIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.ninePillarItemReverse.ninePillarAnimate {
+  animation: swordSlashInRev 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes swordSlashIn {
+  0% {
+    transform: translateX(-100px) scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(10px) scale(1.02);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-5px) scale(1);
+  }
+  85% {
+    transform: translateX(2px) scale(1);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes swordSlashInRev {
+  0% {
+    transform: translateX(100px) scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-10px) scale(1.02);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(5px) scale(1);
+  }
+  85% {
+    transform: translateX(-2px) scale(1);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .ninePillarItem {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contentOrder1 {
+  order: 1;
+}
+
+.contentOrder2 {
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .contentOrder1 {
+    order: 1;
+  }
+  
+  .contentOrder2 {
+    order: 2;
+  }
+}
+
+/* Pillar Content */
+.ninePillarContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 4rem;
+}
+
+@media (max-width: 768px) {
+  .ninePillarContent {
+    padding-left: 0;
+  }
+}
+
+.ninePillarBadge {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.25rem 1rem;
+  background-color: var(--dm-error-container);
+  color: var(--dm-on-error-container);
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  transform: rotate(-1deg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Badge Colors */
+.ninePillarBadge[data-color="error"] {
+  background-color: var(--dm-error-container);
+  color: var(--dm-on-error-container);
+}
+
+.ninePillarBadge[data-color="primary"] {
+  background-color: var(--dm-primary-container);
+  color: var(--dm-on-primary-container);
+}
+
+.ninePillarBadge[data-color="tertiary"] {
+  background-color: var(--dm-tertiary-container);
+  color: var(--dm-on-tertiary-container);
+}
+
+.ninePillarBadge[data-color="secondary"] {
+  background-color: var(--dm-secondary-container);
+  color: var(--dm-on-secondary-container);
+}
+
+.ninePillarBadge[data-color="tertiary-fixed-dim"] {
+  background-color: var(--dm-tertiary-fixed);
+  color: var(--dm-on-tertiary-fixed);
+}
+
+.ninePillarBadge[data-color="on-background"] {
+  background-color: var(--dm-on-background);
+  color: var(--dm-surface);
+}
+
+.ninePillarBadge[data-color="outline"] {
+  background-color: var(--dm-outline-variant);
+  color: var(--dm-on-background);
+}
+
+.ninePillarBadge[data-color="secondary-dim"] {
+  background-color: var(--dm-secondary-dim);
+  color: white;
+}
+
+.ninePillarName {
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--dm-error);
+  border-left: 6px solid var(--dm-error);
+  padding-left: 1rem;
+  margin: 0;
+}
+
+/* Name Colors */
+.ninePillarName[data-color="error"] {
+  color: var(--dm-error);
+  border-left-color: var(--dm-error);
+}
+
+.ninePillarName[data-color="primary"] {
+  color: var(--dm-primary);
+  border-left-color: var(--dm-primary);
+}
+
+.ninePillarName[data-color="tertiary"] {
+  color: var(--dm-tertiary);
+  border-left-color: var(--dm-tertiary);
+}
+
+.ninePillarName[data-color="secondary"] {
+  color: var(--dm-secondary);
+  border-left-color: var(--dm-secondary);
+}
+
+.ninePillarName[data-color="tertiary-fixed-dim"] {
+  color: var(--dm-tertiary-dim);
+  border-left-color: var(--dm-tertiary-dim);
+}
+
+.ninePillarName[data-color="on-background"] {
+  color: var(--dm-on-background);
+  border-left-color: var(--dm-on-background);
+}
+
+.ninePillarName[data-color="outline"] {
+  color: var(--dm-on-surface);
+  border-left-color: var(--dm-on-surface);
+}
+
+.ninePillarName[data-color="secondary-dim"] {
+  color: var(--dm-secondary-dim);
+  border-left-color: var(--dm-secondary-dim);
+}
+
+.ninePillarBreathingStyle {
+  font-family: var(--dm-font-body);
+  font-weight: 700;
+  color: var(--dm-on-surface-variant);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ninePillarBreathingStyle .material-symbols-outlined {
+  color: var(--dm-error);
+  font-variation-settings: 'FILL' 1;
+}
+
+.ninePillarQuote {
+  font-family: var(--dm-font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-left: 4px solid var(--dm-primary);
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-style: italic;
+  color: var(--dm-on-surface);
+}
+
+/* Quote Border Colors */
+.ninePillarQuote[data-color="error"] {
+  border-left-color: var(--dm-error);
+}
+
+.ninePillarQuote[data-color="primary"] {
+  border-left-color: var(--dm-primary);
+}
+
+.ninePillarQuote[data-color="tertiary"] {
+  border-left-color: var(--dm-tertiary);
+}
+
+.ninePillarQuote[data-color="secondary"] {
+  border-left-color: var(--dm-secondary);
+}
+
+.ninePillarQuote[data-color="tertiary-fixed-dim"] {
+  border-left-color: var(--dm-tertiary-dim);
+}
+
+.ninePillarQuote[data-color="on-background"] {
+  border-left-color: var(--dm-on-background);
+}
+
+.ninePillarQuote[data-color="outline"] {
+  border-left-color: var(--dm-on-surface);
+}
+
+.ninePillarQuote[data-color="secondary-dim"] {
+  border-left-color: var(--dm-secondary-dim);
+}
+
+.ninePillarGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.ninePillarStatBox {
+  padding: 1rem;
+  background-color: var(--dm-surface-container);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.ninePillarStatLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--dm-on-surface-variant);
+}
+
+.ninePillarStatValue {
+  font-family: var(--dm-font-headline);
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+
+.ninePillarStatDanger {
+  color: var(--dm-error);
+}
+
+.ninePillarTagsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ninePillarTag {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--dm-surface-container-highest);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* Pillar Visual - Hashira Style Card */
+.ninePillarVisual {
+  position: relative;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.ninePillarImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: var(--dm-surface-container-lowest);
+  overflow: hidden;
+  border: 4px solid var(--dm-on-surface);
+  border-radius: 0;
+  box-shadow: 8px 8px 0px 0px var(--dm-on-surface);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, box-shadow;
+  transform: skew(-6deg);
+}
+
+.ninePillarItem:hover .ninePillarImageWrap {
+  transform: skew(-6deg) translateY(-12px) scale(1.05);
+  box-shadow: 12px 12px 0px 0px var(--dm-on-surface);
+}
+
+.ninePillarLightSlit {
+  position: absolute;
+  top: 25%;
+  left: -150%;
+  width: 300%;
+  height: 12%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8), transparent);
+  transform: rotate(-25deg) skew(6deg);
+  pointer-events: none;
+  z-index: 30;
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  filter: blur(8px);
+}
+
+.ninePillarItem:hover .ninePillarLightSlit {
+  animation: lightSweep 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes lightSweep {
+  0% {
+    left: -150%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    left: 50%;
+    opacity: 0;
+  }
+}
+
+.ninePillarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.25);
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: filter, transform;
+  transform: skew(6deg);
+  backface-visibility: hidden;
+}
+
+.ninePillarItem:hover .ninePillarImage {
+  filter: grayscale(0%) contrast(1.2);
+}
+
+.ninePillarImageWrap {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* 刀刃斩击效果：快速旋转然后减速停止，保持倾斜 */
+.ninePillarFlipping {
+  animation: slashSpin 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slashSpin {
+  0% {
+    transform: perspective(1200px) rotateY(0deg) skew(-6deg) scale(1);
+    filter: brightness(1);
+  }
+  15% {
+    transform: perspective(1200px) rotateY(360deg) skew(-6deg) scale(1.1);
+    filter: brightness(1.3);
+  }
+  30% {
+    transform: perspective(1200px) rotateY(720deg) skew(-6deg) scale(1.05);
+    filter: brightness(1.2);
+  }
+  50% {
+    transform: perspective(1200px) rotateY(900deg) skew(-6deg) scale(1.02);
+    filter: brightness(1.1);
+  }
+  70% {
+    transform: perspective(1200px) rotateY(1020deg) skew(-6deg) scale(1.01);
+    filter: brightness(1.05);
+  }
+  85% {
+    transform: perspective(1200px) rotateY(1060deg) skew(-6deg) scale(1);
+    filter: brightness(1.02);
+  }
+  100% {
+    transform: perspective(1200px) rotateY(1080deg) skew(-6deg) scale(1);
+    filter: brightness(1);
+  }
+}
+
+.ninePillarImageWrap:hover {
+  transform: skew(-6deg) translateY(-8px) scale(1.02);
+}
+
+.ninePillarImageWrap:active {
+  transform: skew(-6deg) scale(0.98);
+}
+
+/* Card Border */
+.ninePillarCardBorder {
+  position: absolute;
+  inset: 0.5rem;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  transform: skew(6deg);
+}
+
+/* Aura Effect */
+.ninePillarAura {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  pointer-events: none;
+  transform: skew(6deg);
+}
+
+.ninePillarItem:hover .ninePillarAura {
+  opacity: 1;
+  transform: skew(6deg) scale(1.1);
+}
+
+/* Aura Colors */
+.ninePillarAuraerror {
+  background: linear-gradient(to top, var(--dm-error), transparent);
+}
+
+.ninePillarAuraprimary {
+  background: linear-gradient(to top, var(--dm-primary), transparent);
+}
+
+.ninePillarAuratertiary {
+  background: linear-gradient(to top, var(--dm-tertiary), transparent);
+}
+
+.ninePillarAurasecondary {
+  background: linear-gradient(to top, var(--dm-secondary), transparent);
+}
+
+.ninePillarAuratertiary-fixed-dim {
+  background: linear-gradient(to top, var(--dm-tertiary-fixed-dim), transparent);
+}
+
+.ninePillarAuraon-background {
+  background: linear-gradient(to top, var(--dm-on-background), transparent);
+}
+
+.ninePillarAuraoutline {
+  background: linear-gradient(to top, var(--dm-outline), transparent);
+}
+
+.ninePillarAurasecondary-dim {
+  background: linear-gradient(to top, var(--dm-secondary-dim), transparent);
+}
+
+/* Card Info Overlay */
+.ninePillarCardInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  color: white;
+  transform: skew(6deg);
+}
+
+.ninePillarCardName {
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.ninePillarCardTitle {
+  font-family: var(--dm-font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.9;
+}
+
+/* Card Title Colors */
+.ninePillarCardTitleerror {
+  color: var(--dm-error-container);
+}
+
+.ninePillarCardTitleprimary {
+  color: var(--dm-primary-container);
+}
+
+.ninePillarCardTitletertiary {
+  color: var(--dm-tertiary-fixed);
+}
+
+.ninePillarCardTitlesecondary {
+  color: var(--dm-secondary-container);
+}
+
+.ninePillarCardTitletertiary-fixed-dim {
+  color: var(--dm-tertiary-fixed);
+}
+
+.ninePillarCardTitleon-background {
+  color: var(--dm-outline-variant);
+}
+
+.ninePillarCardTitleoutline {
+  color: var(--dm-outline-variant);
+}
+
+.ninePillarCardTitlesecondary-dim {
+  color: var(--dm-secondary-dim);
+}
+
+.ninePillarBgText {
+  position: absolute;
+  bottom: -1rem;
+  left: -0.5rem;
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-size: 5rem;
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* CTA Section */
+.ninePillarsCTA {
+  padding: 8rem 2rem;
+  background-color: #000;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ninePillarsCTA::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.03) 10px,
+    rgba(255, 255, 255, 0.03) 11px
+  );
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.ninePillarsCTATitle {
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-size: clamp(2rem, 8vw, 5rem);
+  letter-spacing: -0.02em;
+  font-style: italic;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ninePillarsCTAButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ninePillarsCTABtn {
+  position: relative;
+  padding: 1rem 2.5rem;
+  border: 4px solid white;
+  background: transparent;
+  color: white;
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.ninePillarsCTABtn:hover {
+  background-color: white;
+  color: black;
+}
+
+.ninePillarsCTABtnPrimary {
+  background-color: var(--dm-primary);
+  border-color: var(--dm-primary);
+  color: white;
+}
+
+.ninePillarsCTABtnPrimary:hover {
+  background-color: transparent;
+  color: var(--dm-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ninePillarsList {
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .ninePillarItem {
+    min-height: auto;
+    gap: 1rem;
+  }
+
+  .ninePillarName {
+    font-size: 1.75rem;
+  }
+
+  .ninePillarDesc {
+    font-size: 0.875rem;
+  }
+
+  .ninePillarBgText {
+    font-size: 3rem;
+  }
+
+  .ninePillarsCTA {
+    padding: 4rem 1.5rem;
+  }
+  
+  .ninePillarVisual {
+    max-width: 250px;
+  }
+}

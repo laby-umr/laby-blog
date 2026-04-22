@@ -178,28 +178,38 @@ export default function HashiraSelection(): JSX.Element {
 
         {/* Dynamic Info Board */}
         <div className={styles.infoBoard}>
-          <div className={styles.infoBoardContent}>
-            <div className={styles.activeMissionBadge}>Active Mission</div>
-            <div className={styles.infoBoardGrid}>
-              <div className={styles.infoBoardImage}>
-                <img
-                  src={selectedHashira.image}
-                  alt={selectedHashira.name}
-                  className={styles.selectedImage}
-                />
-              </div>
-              <div className={styles.infoBoardDetails}>
-                <h2 className={styles.selectedTitle}>
-                  Selected: <span className={styles.selectedName}>{selectedHashira.title}</span>
-                </h2>
-                <div className={styles.breathingStyle}>
-                  <span className="material-symbols-outlined">swords</span>
-                  Breathing Style: {selectedHashira.breathing}
+          <div className={styles.infoBoardHeader}>
+            <div className={styles.infoBoardBadge}>Mission Details</div>
+            <h2 className={styles.infoBoardTitle}>
+              Your <span className={styles.infoBoardTitleHighlight}>Selected Hashira</span>
+            </h2>
+          </div>
+          
+          <div className={styles.infoBoardWrapper}>
+            <div className={`${styles.infoBoardBackLayer} ${styles[`backLayer${selectedHashira.color}`]}`}></div>
+            <div className={styles.infoBoardContent}>
+              <div className={styles.activeMissionBadge}>Active Mission</div>
+              <div className={styles.infoBoardGrid}>
+                <div className={styles.infoBoardImage}>
+                  <img
+                    src={selectedHashira.image}
+                    alt={selectedHashira.name}
+                    className={styles.selectedImage}
+                  />
                 </div>
-                <p className={styles.quote}>{selectedHashira.quote}</p>
-                <button className={styles.confirmButton}>
-                  Confirm Selection
-                </button>
+                <div className={styles.infoBoardDetails}>
+                  <h2 className={styles.selectedTitle}>
+                    Selected: <span className={styles.selectedName}>{selectedHashira.title}</span>
+                  </h2>
+                  <div className={styles.breathingStyle}>
+                    <span className="material-symbols-outlined">swords</span>
+                    Breathing Style: {selectedHashira.breathing}
+                  </div>
+                  <p className={styles.quote}>{selectedHashira.quote}</p>
+                  <button className={styles.confirmButton}>
+                    Confirm Selection
+                  </button>
+                </div>
               </div>
             </div>
           </div>

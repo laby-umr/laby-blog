@@ -355,6 +355,18 @@
   "homepage.techStack.badge": {
     "message": "LEVEL 99 TECH STACK"
   },
+  "homepage.ninePillars.badge": {
+    "message": "DEMON SLAYER CORPS"
+  },
+  "homepage.ninePillars.titlePart1": {
+    "message": "The Nine"
+  },
+  "homepage.ninePillars.titlePart2": {
+    "message": "Hashira"
+  },
+  "homepage.ninePillars.subtitle": {
+    "message": "Elite warriors, each mastering unique Breathing Styles to protect humanity from demons"
+  },
   "homepage.blog.title": {
     "message": "LATEST CHAPTERS"
   },
