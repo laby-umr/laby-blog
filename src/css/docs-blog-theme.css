@@ -1,43 +1,95 @@
 /**
  * DevManga Theme - Docs & Blog Enhanced Styles
- * 文档和博客的简洁优雅样式，重点优化标题和副标题
+ * 文档和博客的漫画风格样式，与项目主体风格保持一致
  */
+
+/* ==================== 文档容器整体样式 ==================== */
+
+.theme-doc-markdown,
+article.markdown {
+  background-color: var(--dm-surface);
+  position: relative;
+}
+
+/* 漫画网格背景 */
+.theme-doc-markdown::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--dm-on-surface) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* ==================== 文档页面标题样式 ==================== */
 
-/* 主标题 H1 - 简洁大标题 */
+/* 主标题 H1 - 漫画风格 */
 .markdown > h1,
 article > h1,
 .theme-doc-markdown h1 {
   font-family: var(--dm-font-headline);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
+  font-style: italic;
   line-height: 1.2;
-  letter-spacing: -0.01em;
   color: var(--dm-on-surface);
   margin-top: 0;
-  margin-bottom: 2rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 3px solid var(--dm-primary);
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--dm-primary-container) 0%, var(--dm-surface-container) 100%);
+  border-left: 6px solid var(--dm-primary);
+  border-top: 3px solid var(--dm-outline);
+  border-bottom: 3px solid var(--dm-outline);
+  border-right: 3px solid var(--dm-outline);
+  border-radius: var(--dm-radius-md);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  transform: skewY(-1deg);
 }
 
-/* 二级标题 H2 - 章节标题 */
+.markdown > h1::before,
+article > h1::before,
+.theme-doc-markdown h1::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, var(--dm-primary), var(--dm-secondary));
+  border-radius: var(--dm-radius-md);
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* 二级标题 H2 - 漫画风格 */
 .markdown h2,
 article h2,
 .theme-doc-markdown h2 {
   font-family: var(--dm-font-headline);
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 700;
+  font-style: italic;
   line-height: 1.3;
-  letter-spacing: -0.01em;
   color: var(--dm-on-surface);
   margin-top: 3rem;
-  margin-bottom: 1.25rem;
-  padding-left: 1rem;
-  border-left: 4px solid var(--dm-primary);
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem 0.75rem 1.5rem;
+  background-color: var(--dm-surface-container);
+  border-left: 5px solid var(--dm-primary);
+  border-top: 2px solid var(--dm-outline-variant);
+  border-bottom: 2px solid var(--dm-outline-variant);
+  border-right: 2px solid var(--dm-outline-variant);
+  border-radius: var(--dm-radius-sm);
+  position: relative;
+  z-index: 1;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.05);
 }
 
-/* 三级标题 H3 - 小节标题 */
+/* 三级标题 H3 - 漫画风格 */
 .markdown h3,
 article h3,
 .theme-doc-markdown h3 {
@@ -48,9 +100,23 @@ article h3,
   color: var(--dm-on-surface);
   margin-top: 2rem;
   margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--dm-secondary);
+  position: relative;
 }
 
-/* 四级标题 H4 - 子小节 */
+.markdown h3::before,
+article h3::before,
+.theme-doc-markdown h3::before {
+  content: '▸';
+  position: absolute;
+  left: -0.25rem;
+  color: var(--dm-secondary);
+  font-size: 1.2em;
+  font-style: normal;
+}
+
+/* 四级标题 H4 - 漫画风格 */
 .markdown h4,
 article h4,
 .theme-doc-markdown h4 {
@@ -61,6 +127,11 @@ article h4,
   color: var(--dm-on-surface);
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background-color: var(--dm-tertiary-container);
+  border-radius: var(--dm-radius-sm);
+  border-bottom: 2px solid var(--dm-tertiary);
 }
 
 /* 五级和六级标题 */
@@ -69,7 +140,7 @@ article h5,
 .theme-doc-markdown h5 {
   font-family: var(--dm-font-headline);
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dm-on-surface);
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
@@ -80,10 +151,172 @@ article h6,
 .theme-doc-markdown h6 {
   font-family: var(--dm-font-headline);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dm-on-surface-variant);
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+}
+
+/* ==================== 段落和文本样式 ==================== */
+
+.markdown p,
+article p,
+.theme-doc-markdown p {
+  font-family: var(--dm-font-body);
+  line-height: 1.8;
+  color: var(--dm-on-surface);
+  margin-bottom: 1.25rem;
+}
+
+/* 强调文本 */
+.markdown strong,
+article strong,
+.theme-doc-markdown strong {
+  font-weight: 700;
+  color: var(--dm-primary);
+}
+
+.markdown em,
+article em,
+.theme-doc-markdown em {
+  font-style: italic;
+  color: var(--dm-secondary);
+}
+
+/* ==================== 代码块样式 ==================== */
+
+/* 代码块容器 - 简洁包裹 */
+.theme-code-block,
+[class*='codeBlockContainer'] {
+  border: 2px solid var(--dm-outline-variant);
+  border-radius: var(--dm-radius-lg);
+  margin: 1.5rem 0;
+  overflow: hidden;
+  background-color: var(--dm-surface-container);
+}
+
+.markdown pre,
+article pre,
+.theme-doc-markdown pre {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  position: relative;
+}
+
+.markdown code,
+article code,
+.theme-doc-markdown code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+/* 行内代码 */
+.markdown :not(pre) > code,
+article :not(pre) > code,
+.theme-doc-markdown :not(pre) > code {
+  background-color: var(--dm-surface-container-highest);
+  color: var(--dm-error);
+  padding: 0.2em 0.4em;
+  border-radius: var(--dm-radius-sm);
+  border: 1px solid var(--dm-outline-variant);
+  font-weight: 600;
+}
+
+/* ==================== 引用块样式 ==================== */
+
+.markdown blockquote,
+article blockquote,
+.theme-doc-markdown blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background-color: var(--dm-surface-container);
+  border-left: 6px solid var(--dm-primary);
+  border-top: 2px solid var(--dm-outline-variant);
+  border-bottom: 2px solid var(--dm-outline-variant);
+  border-right: 2px solid var(--dm-outline-variant);
+  border-radius: var(--dm-radius-md);
+  position: relative;
+  font-style: italic;
+}
+
+.markdown blockquote::before,
+article blockquote::before,
+.theme-doc-markdown blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--dm-primary);
+  opacity: 0.3;
+  font-family: var(--dm-font-headline);
+}
+
+/* ==================== 列表样式 ==================== */
+
+.markdown ul,
+article ul,
+.theme-doc-markdown ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown ul li,
+article ul li,
+.theme-doc-markdown ul li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown ul li::before,
+article ul li::before,
+.theme-doc-markdown ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0.5rem;
+  color: var(--dm-primary);
+  font-weight: 900;
+  font-size: 1.2em;
+}
+
+.markdown ol,
+article ol,
+.theme-doc-markdown ol {
+  counter-reset: list-counter;
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown ol li,
+article ol li,
+.theme-doc-markdown ol li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 0.75rem;
+  counter-increment: list-counter;
+}
+
+.markdown ol li::before,
+article ol li::before,
+.theme-doc-markdown ol li::before {
+  content: counter(list-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.875rem;
+  font-family: var(--dm-font-headline);
 }
 
 /* ==================== 博客文章标题样式 ==================== */
@@ -94,10 +327,13 @@ article h6,
   font-family: var(--dm-font-headline);
   font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 900;
+  font-style: italic;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
   color: var(--dm-on-surface);
   margin-bottom: 1.5rem;
+  text-shadow: 3px 3px 0px var(--dm-primary);
 }
 
 /* 博客文章副标题 */
@@ -105,12 +341,17 @@ article h6,
   font-family: var(--dm-font-headline);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 800;
+  font-style: italic;
   line-height: 1.2;
   color: var(--dm-on-surface);
   margin-top: 3rem;
   margin-bottom: 1.5rem;
-  padding-left: 1rem;
-  border-left: 4px solid var(--dm-primary);
+  padding: 0.75rem 1.25rem;
+  background-color: var(--dm-surface-container);
+  border-left: 6px solid var(--dm-primary);
+  border-top: 2px solid var(--dm-on-surface);
+  border-bottom: 2px solid var(--dm-on-surface);
+  border-right: 2px solid var(--dm-on-surface);
 }
 
 /* 博客文章三级标题 */
@@ -122,6 +363,37 @@ article h6,
   color: var(--dm-on-surface);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--dm-secondary);
+}
+
+/* ==================== 提示框样式 ==================== */
+
+.theme-admonition {
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+  margin: 1.5rem 0;
+}
+
+.theme-admonition-note {
+  background-color: var(--dm-primary-container);
+  border-color: var(--dm-primary);
+}
+
+.theme-admonition-tip {
+  background-color: var(--dm-tertiary-container);
+  border-color: var(--dm-tertiary);
+}
+
+.theme-admonition-warning {
+  background-color: var(--dm-secondary-container);
+  border-color: var(--dm-secondary);
+}
+
+.theme-admonition-danger {
+  background-color: var(--dm-error-container);
+  border-color: var(--dm-error);
 }
 
 /* ==================== 目录（TOC）标题样式 ==================== */
@@ -130,15 +402,17 @@ article h6,
   font-family: var(--dm-font-body);
   font-weight: 500;
   font-size: 0.875rem;
-  color: var(--dm-on-surface-variant);
+  color: var(--dm-on-surface);
   transition: all var(--dm-transition-base);
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.5rem;
   border-radius: var(--dm-radius-sm);
+  display: block;
 }
 
 .table-of-contents__link:hover {
   color: var(--dm-primary);
-  background-color: var(--dm-surface-container);
+  background-color: var(--dm-surface-container-low);
+  transform: translateX(2px);
 }
 
 .table-of-contents__link--active {
@@ -146,13 +420,13 @@ article h6,
   font-weight: 700;
   background-color: var(--dm-primary-container);
   border-left: 3px solid var(--dm-primary);
-  margin-left: -2px;
-  padding-left: calc(0.5rem - 1px);
+  margin-left: -3px;
+  padding-left: calc(0.5rem);
 }
 
 /* TOC 标题 */
 .table-of-contents__left-border {
-  border-left: 2px solid var(--dm-outline-variant);
+  border-left: 3px solid var(--dm-primary);
 }
 
 .theme-doc-toc-desktop h3,
@@ -164,14 +438,20 @@ article h6,
   letter-spacing: 0.05em;
   color: var(--dm-on-surface);
   margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  background-color: transparent;
+  border-bottom: 2px solid var(--dm-outline-variant);
 }
 
 /* ==================== 博客文章元信息 ==================== */
 
 .theme-blog-post-item header {
   margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid var(--dm-outline-variant);
+  padding: 2rem;
+  background-color: var(--dm-surface-container);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
 }
 
 .theme-blog-post-item .avatar__name {
@@ -210,20 +490,25 @@ article h6,
 .tag {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: var(--dm-primary-container);
-  color: var(--dm-on-primary-container);
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+  border: 2px solid var(--dm-on-surface);
   border-radius: var(--dm-radius-md);
-  font-family: var(--dm-font-body);
-  font-weight: 600;
+  font-family: var(--dm-font-headline);
+  font-weight: 700;
   font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   transition: all var(--dm-transition-base);
+  box-shadow: 2px 2px 0px 0px var(--dm-on-surface);
 }
 
 .theme-blog-post-item .badge:hover,
 .badge:hover,
 .tag:hover {
-  background-color: var(--dm-primary);
-  color: var(--dm-on-primary);
+  background-color: var(--dm-secondary);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
 }
 
 /* ==================== 表格样式 ==================== */
@@ -233,31 +518,35 @@ article table,
 .theme-doc-markdown table {
   width: 100%;
   min-width: 100%;
-  border-collapse: collapse;
-  border: 2px solid var(--dm-outline-variant);
-  border-radius: var(--dm-radius-md);
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
   overflow: hidden;
   margin: 1.5rem 0;
   display: table;
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
 }
 
 .markdown thead,
 article thead,
 .theme-doc-markdown thead {
-  background-color: var(--dm-surface-container);
+  background: linear-gradient(135deg, var(--dm-primary-container) 0%, var(--dm-secondary-container) 100%);
 }
 
 .markdown th,
 article th,
 .theme-doc-markdown th {
   font-family: var(--dm-font-headline);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.875rem;
   text-align: left;
   padding: 0.75rem 1rem;
   color: var(--dm-on-surface);
-  border-bottom: 2px solid var(--dm-outline-variant);
-  border-right: 1px solid var(--dm-outline-variant);
+  border-bottom: 3px solid var(--dm-on-surface);
+  border-right: 2px solid var(--dm-outline-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .markdown th:last-child,
@@ -273,6 +562,7 @@ article td,
   border-bottom: 1px solid var(--dm-outline-variant);
   border-right: 1px solid var(--dm-outline-variant);
   color: var(--dm-on-surface);
+  background-color: var(--dm-surface);
 }
 
 .markdown td:last-child,
@@ -293,6 +583,12 @@ article tbody tr:hover,
   background-color: var(--dm-surface-container-low);
 }
 
+.markdown tbody tr:nth-child(even),
+article tbody tr:nth-child(even),
+.theme-doc-markdown tbody tr:nth-child(even) {
+  background-color: var(--dm-surface-container-lowest);
+}
+
 /* 表格容器 - 响应式滚动 */
 .markdown .table-wrapper,
 article .table-wrapper,
@@ -300,6 +596,32 @@ article .table-wrapper,
   width: 100%;
   overflow-x: auto;
   margin: 1.5rem 0;
+}
+
+/* ==================== 分隔线样式 ==================== */
+
+.markdown hr,
+article hr,
+.theme-doc-markdown hr {
+  border: none;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--dm-primary), transparent);
+  margin: 3rem 0;
+  position: relative;
+}
+
+.markdown hr::after,
+article hr::after,
+.theme-doc-markdown hr::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--dm-surface);
+  padding: 0 1rem;
+  color: var(--dm-primary);
+  font-size: 1.5rem;
 }
 
 /* ==================== 响应式设计 ==================== */
@@ -310,6 +632,7 @@ article .table-wrapper,
   .theme-doc-markdown h1 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
   }
 
   .markdown h2,
@@ -317,6 +640,7 @@ article .table-wrapper,
   .theme-doc-markdown h2 {
     font-size: 1.5rem;
     margin-top: 2rem;
+    padding: 0.5rem 1rem;
   }
 
   .markdown h3,
@@ -341,6 +665,7 @@ article .table-wrapper,
   article > h1,
   .theme-doc-markdown h1 {
     font-size: 1.75rem;
+    transform: rotate(0deg);
   }
 
   .markdown h2,
@@ -362,5 +687,9 @@ article .table-wrapper,
 
   .theme-blog-post-item h2 {
     font-size: 1.25rem;
+  }
+  
+  .theme-blog-post-item header {
+    padding: 1rem;
   }
 }

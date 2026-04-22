@@ -6,6 +6,17 @@
   box-shadow: var(--dm-shadow-md);
 }
 
+.caption {
+  padding: 0.75rem 1rem;
+  background-color: var(--dm-surface-container);
+  border-bottom: 2px solid var(--dm-outline-variant);
+  font-family: var(--dm-font-headline);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--dm-on-surface);
+  text-align: center;
+}
+
 .comparisonTable {
   width: 100%;
   border-collapse: collapse;
