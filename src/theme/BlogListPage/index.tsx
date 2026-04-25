@@ -32,13 +32,15 @@ function BlogListPageContent(props: Props): JSX.Element {
     <BlogLayout>
       <div className={styles.blogListContainer}>
         <header className={styles.blogHeader}>
-          <div className={styles.headerBadge}>
+          <div className={styles.blogHeroBadge}>
             <Translate id="blogList.header.badge">Phase 04: Transmission</Translate>
           </div>
-          <h1 className={styles.blogTitle}>
+          
+          <h1 className={styles.blogHeroTitle}>
             <Translate id="blogList.header.title">Latest Chapters</Translate>
           </h1>
-          <p className={styles.blogDescription}>
+          
+          <p className={styles.blogHeroDescription}>
             <Translate id="blogList.header.description">
               Dive into the technical chronicles of a dev who watches too much shonen.
             </Translate>

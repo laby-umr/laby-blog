@@ -31,9 +31,6 @@ export default function Sidebar({ tags = [] }: SidebarProps): JSX.Element {
               key={tag.permalink}
               to={tag.permalink}
               className={styles.tag}
-              style={{
-                transform: `rotate(${(index % 3 - 1) * 2}deg)`,
-              }}
             >
               {tag.label}
             </Link>

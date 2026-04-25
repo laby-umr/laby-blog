@@ -26,51 +26,55 @@ export default function BlogCard({
 }: BlogCardProps): JSX.Element {
   return (
     <article className={styles.blogCard}>
-      <Link to={permalink} className={styles.cardLink}>
-        <div className={styles.thumbnailContainer}>
-          {image && (
-            <img
-              src={image}
-              alt={title}
-              className={styles.thumbnail}
-              loading="lazy"
-            />
-          )}
-          <div className={styles.chapterBadge}>{chapter}</div>
-          {readingTime && (
-            <div className={styles.readTimeBadge}>{readingTime}</div>
-          )}
-        </div>
-        
-        <div className={styles.cardContent}>
-          <h2 className={styles.cardTitle}>{title}</h2>
-          <p className={styles.cardDescription}>{description}</p>
+      <div className={styles.cardShadow}></div>
+      <div className={styles.cardWrapper}>
+        <Link to={permalink} className={styles.cardLink}>
+          <div className={styles.thumbnailContainer}>
+            {image && (
+              <img
+                src={image}
+                alt={title}
+                className={styles.thumbnail}
+                loading="lazy"
+              />
+            )}
+            <div className={styles.chapterBadge}>{chapter}</div>
+            {readingTime && (
+              <div className={styles.readTimeBadge}>{readingTime}</div>
+            )}
+          </div>
           
-          <div className={styles.cardFooter}>
-            <span className={styles.cardDate}>{date}</span>
-            <div className={styles.readMore}>
-              <span>
-                <Translate id="blogCard.readMore">READ MORE</Translate>
-              </span>
-              <span className="material-symbols-outlined">arrow_forward</span>
+          <div className={styles.cardContent}>
+            <h2 className={styles.cardTitle}>{title}</h2>
+            <p className={styles.cardDescription}>{description}</p>
+            
+            {tags.length > 0 && (
+              <div className={styles.cardTags}>
+                {tags.slice(0, 3).map((tag) => (
+                  <Link
+                    key={tag.permalink}
+                    to={tag.permalink}
+                    className={styles.tag}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {tag.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+            
+            <div className={styles.cardFooter}>
+              <span className={styles.cardDate}>{date}</span>
+              <div className={styles.readMore}>
+                <span>
+                  <Translate id="blogCard.readMore">阅读更多</Translate>
+                </span>
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </div>
             </div>
           </div>
-        </div>
-      </Link>
-      
-      {tags.length > 0 && (
-        <div className={styles.cardTags}>
-          {tags.slice(0, 3).map((tag) => (
-            <Link
-              key={tag.permalink}
-              to={tag.permalink}
-              className={styles.tag}
-            >
-              {tag.label}
-            </Link>
-          ))}
-        </div>
-      )}
+        </Link>
+      </div>
     </article>
   );
 }
