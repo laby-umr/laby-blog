@@ -1,0 +1,105 @@
+/* DevManga Theme - Back to Top Button */
+
+.backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 64px;
+  height: 64px;
+  padding: 8px;
+  background: var(--dm-primary);
+  color: var(--dm-on-primary);
+  border: 4px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 10px;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 999;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8) rotate(-10deg);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.05) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.backToTop span.material-symbols-outlined {
+  font-size: 28px;
+  line-height: 1;
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+}
+
+.text {
+  line-height: 1;
+  margin-top: -2px;
+}
+
+.backToTop:hover {
+  transform: translateY(-4px) rotate(-5deg);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  background: var(--dm-secondary);
+  color: var(--dm-on-secondary);
+}
+
+.backToTop:active {
+  transform: translateY(-1px) rotate(0deg);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .backToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .backToTop span.material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  .text {
+    font-size: 9px;
+  }
+
+  .backToTop:hover {
+    transform: translateY(-2px) rotate(-3deg);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .backToTop {
+  border-color: var(--dm-outline);
+  box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .backToTop:hover {
+  box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .backToTop:active {
+  box-shadow: 3px 3px 0px 0px rgba(255, 255, 255, 0.1);
+}

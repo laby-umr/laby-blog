@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
 import styles from './music.module.css';
-import { getPlaylistSongs, MY_PLAYLIST_ID, PLAYLIST_LIMIT, getCurrentApiEndpoint, switchApi } from '@site/src/utils/neteaseApi';
+import { getPlaylistSongs, MY_PLAYLIST_ID, PLAYLIST_LIMIT } from '@site/src/utils/neteaseApi';
 import type { Song } from '@site/src/utils/neteaseApi';
 
 export default function Music(): JSX.Element {
@@ -28,13 +28,59 @@ export default function Music(): JSX.Element {
     loadPlaylist();
   }, []);
 
+  // 滚动入场动画
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animate);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    setTimeout(() => {
+      // Top section animation
+      const topSection = document.querySelector(`.${styles.topSection}`);
+      if (topSection) observer.observe(topSection);
+
+      // Player section animation
+      const playerSection = document.querySelector(`.${styles.playerSection}`);
+      if (playerSection) observer.observe(playerSection);
+
+      // Playlist section animation
+      const playlistSection = document.querySelector(`.${styles.playlistSection}`);
+      if (playlistSection) observer.observe(playlistSection);
+
+      // Cassette player
+      const cassettePlayer = document.querySelector(`.${styles.cassettePlayer}`);
+      if (cassettePlayer) observer.observe(cassettePlayer);
+
+      // Now playing card
+      const nowPlayingCard = document.querySelector(`.${styles.nowPlayingCard}`);
+      if (nowPlayingCard) observer.observe(nowPlayingCard);
+
+      // Lyrics card
+      const lyricsCard = document.querySelector(`.${styles.lyricsCard}`);
+      if (lyricsCard) observer.observe(lyricsCard);
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const loadPlaylist = async (customId: string | null = null) => {
     try {
       setLoading(true);
       setUrlError('');
       const playlistId = customId || MY_PLAYLIST_ID;
       console.log('Loading playlist:', playlistId); // 调试日志
-      console.log('Using API:', getCurrentApiEndpoint()); // 显示当前API
       
       const songs = await getPlaylistSongs(playlistId, PLAYLIST_LIMIT);
       console.log('Loaded songs:', songs); // 调试日志
@@ -45,8 +91,15 @@ export default function Music(): JSX.Element {
       }
       setPlaylist(songs);
       if (songs.length > 0) {
-        setCurrentTrack(songs[0]);
-        setCurrentIndex(0);
+        // 查找 "Butter-Fly~tri.Version~" 这首歌
+        const butterflyIndex = songs.findIndex(song => 
+          song.name.includes('Butter-Fly') && song.name.includes('tri.Version')
+        );
+        
+        // 如果找到了就设置为默认，否则使用第一首
+        const defaultIndex = butterflyIndex >= 0 ? butterflyIndex : 0;
+        setCurrentTrack(songs[defaultIndex]);
+        setCurrentIndex(defaultIndex);
         // 不要自动播放，让用户手动点击播放
         setIsPlaying(false);
       }
@@ -58,10 +111,9 @@ export default function Music(): JSX.Element {
     }
   };
 
-  // 切换API并重新加载
+  // 重新加载歌单
   const handleSwitchApi = () => {
-    const newApi = switchApi();
-    console.log('Switched to API:', newApi);
+    console.log('重新加载歌单...');
     loadPlaylist();
   };
 
@@ -169,7 +221,31 @@ export default function Music(): JSX.Element {
     };
 
     const handleError = (e: Event) => {
-      console.error('Audio error:', e);
+      const audioElement = e.target as HTMLAudioElement;
+      const error = audioElement.error;
+      
+      if (error) {
+        // 静默处理错误，只在控制台输出警告
+        let errorMessage = '播放失败';
+        switch (error.code) {
+          case MediaError.MEDIA_ERR_ABORTED:
+            errorMessage = '播放被中止';
+            break;
+          case MediaError.MEDIA_ERR_NETWORK:
+            errorMessage = '网络错误';
+            break;
+          case MediaError.MEDIA_ERR_DECODE:
+            errorMessage = '音频解码失败';
+            break;
+          case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            errorMessage = '该歌曲暂时无法播放（版权限制）';
+            break;
+        }
+        
+        console.warn(`🎵 ${errorMessage}: ${currentTrack?.name || '未知歌曲'}`);
+        console.warn('提示：部分歌曲因版权限制无法播放，请尝试其他歌曲');
+      }
+      
       setIsPlaying(false);
       // 不要自动跳到下一首，让用户手动选择
     };
@@ -311,7 +387,7 @@ export default function Music(): JSX.Element {
                   style={{ marginLeft: '10px' }}
                 >
                   <span className="material-symbols-outlined">sync</span>
-                  <Translate id="music.switchApi">切换API</Translate>
+                  <Translate id="music.switchApi">重新加载</Translate>
                 </button>
               </div>
             )}

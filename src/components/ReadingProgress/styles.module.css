@@ -1,0 +1,55 @@
+/* DevManga Theme - Reading Progress Bar */
+
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--dm-surface-container);
+  z-index: 9999;
+  border-bottom: 2px solid var(--dm-on-surface);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dm-primary) 0%, var(--dm-secondary) 50%, var(--dm-tertiary) 100%);
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px rgba(49, 79, 244, 0.5);
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5));
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .progressBar {
+  background: var(--dm-surface);
+  border-bottom-color: var(--dm-outline);
+}
+
+[data-theme='dark'] .progressFill {
+  box-shadow: 0 0 10px rgba(137, 153, 255, 0.5);
+}

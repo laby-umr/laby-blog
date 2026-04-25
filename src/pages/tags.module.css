@@ -1,0 +1,155 @@
+/* DevManga Theme - Tags Cloud Page */
+
+.tagsPage {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 3rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--dm-on-surface);
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 0px var(--dm-primary);
+}
+
+.subtitle {
+  font-family: var(--ifm-font-family-base);
+  font-size: 1.25rem;
+  color: var(--dm-on-surface-variant);
+  font-weight: 500;
+}
+
+.tagsCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: var(--dm-surface-container-lowest);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-2xl);
+  box-shadow: var(--dm-shadow-lg);
+}
+
+.tagItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--dm-secondary-container);
+  color: var(--dm-on-secondary-container);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.tagItem:hover {
+  background: var(--dm-primary-container);
+  color: var(--dm-on-primary-container);
+  transform: translateY(-4px) rotate(-3deg) scale(1.05);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.tagItem:active {
+  transform: translateY(-1px) rotate(0deg) scale(1);
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.tagIcon {
+  font-size: 1.5rem;
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+}
+
+.tagName {
+  font-size: 1rem;
+}
+
+.tagCount {
+  padding: 0.25rem 0.5rem;
+  background: var(--dm-on-surface);
+  color: var(--dm-surface);
+  border-radius: var(--dm-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 900;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* 标签大小变化 - 根据文章数量 */
+.tagItem[data-size="small"] {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+
+.tagItem[data-size="medium"] {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.tagItem[data-size="large"] {
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .tagsPage {
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .tagsCloud {
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .tagItem {
+    padding: 0.5rem 1rem;
+  }
+
+  .tagItem[data-size="large"] {
+    font-size: 1.125rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .tagsCloud {
+  border-color: var(--dm-outline);
+}
+
+[data-theme='dark'] .tagItem {
+  border-color: var(--dm-outline);
+  box-shadow: 3px 3px 0px 0px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .tagItem:hover {
+  box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .tagItem:active {
+  box-shadow: 2px 2px 0px 0px rgba(255, 255, 255, 0.05);
+}

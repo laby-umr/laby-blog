@@ -10,11 +10,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps): JSX.E
   const [isFrenzyMode, setIsFrenzyMode] = useState(false);
   const [combo, setCombo] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
-  const [slashes, setSlashes] = useState<Array<{ id: number; angle: number; offset: number }>>([]);
   const [isShattering, setIsShattering] = useState(false);
   const [comboHit, setComboHit] = useState(false);
   
-  const slashIdCounter = useRef(0);
   const autoLoading = useRef(true);
 
   // Phase 1: 快速自动加载到97%
@@ -70,24 +68,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps): JSX.E
     setComboHit(true);
     setTimeout(() => setComboHit(false), 300);
 
-    // 触发斜线特效
-    triggerSlash();
-
     // 到达100%触发shatter
     if (newProgress >= 100) {
       triggerShatter();
-    }
-  };
-
-  const triggerSlash = () => {
-    for (let i = 0; i < 3; i++) {
-      const slashId = slashIdCounter.current++;
-      const angle = Math.random() * 360;
-      const offset = (Math.random() - 0.5) * 500;
-      setSlashes(prev => [...prev, { id: slashId, angle, offset }]);
-      setTimeout(() => {
-        setSlashes(prev => prev.filter(s => s.id !== slashId));
-      }, 250);
     }
   };
 
@@ -100,20 +83,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps): JSX.E
 
   return (
     <div className={`${styles.loadingScreen} ${isShattering ? styles.shattering : ''}`}>
-      {/* Slash Layer */}
-      <div className={styles.slashLayer}>
-        {slashes.map(slash => (
-          <div
-            key={slash.id}
-            className={styles.slash}
-            style={{
-              '--angle': `${slash.angle}deg`,
-              '--offset': `${slash.offset}px`,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
-
       {/* Background Layer */}
       <div className={styles.background}>
         <div className={styles.japanesePattern}></div>
@@ -218,7 +187,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps): JSX.E
                 {isFrenzyMode ? (
                   <>
                     BURST REALM
-                    <span className="material-symbols-outlined">bolt</span>
                   </>
                 ) : (
                   <>

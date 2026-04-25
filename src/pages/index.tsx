@@ -268,8 +268,23 @@ const pillarWarriorsData: PillarWarrior[] = [
 
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
-  const [showLoading, setShowLoading] = useState(true);
-  const [hasVisited, setHasVisited] = useState(false);
+  const [showLoading, setShowLoading] = useState(() => {
+    // 初始化时立即检查 sessionStorage
+    if (typeof window !== 'undefined') {
+      const visited = sessionStorage.getItem('hasVisitedSite');
+      console.log('初始化检查 sessionStorage:', visited);
+      return visited !== 'true';
+    }
+    return true;
+  });
+  const [hasVisited, setHasVisited] = useState(() => {
+    // 初始化时立即检查 sessionStorage
+    if (typeof window !== 'undefined') {
+      const visited = sessionStorage.getItem('hasVisitedSite');
+      return visited === 'true';
+    }
+    return false;
+  });
   const [selectedHashira, setSelectedHashira] = useState<Hashira>(hashiraData[0]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>(characterData[0]);
   const [isGlitching, setIsGlitching] = useState(false);
@@ -307,15 +322,6 @@ export default function Home(): JSX.Element {
     return pillar.image;
   };
 
-  // 检查是否已经访问过（本次会话）
-  useEffect(() => {
-    const visited = sessionStorage.getItem('hasVisitedSite');
-    if (visited) {
-      setShowLoading(false);
-      setHasVisited(true);
-    }
-  }, []);
-
   // 九柱滚动动画
   useEffect(() => {
     const observerOptions = {
@@ -348,7 +354,71 @@ export default function Home(): JSX.Element {
     };
   }, [hasVisited]);
 
+  // 通用滚动入场动画
+  useEffect(() => {
+    if (!hasVisited) return;
+
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animate);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    setTimeout(() => {
+      // Hero section animations
+      const heroContent = document.querySelector(`.${styles.heroContent}`);
+      const heroVisual = document.querySelector(`.${styles.heroVisual}`);
+      if (heroContent) observer.observe(heroContent);
+      if (heroVisual) observer.observe(heroVisual);
+
+      // Tech Stack cards
+      const techCards = document.querySelectorAll(`.${styles.techCard}`);
+      techCards.forEach((card, index) => {
+        setTimeout(() => {
+          if (card) observer.observe(card);
+        }, index * 50);
+      });
+
+      // Hashira cards
+      const hashiraCards = document.querySelectorAll(`.${styles.hashiraCard}`);
+      hashiraCards.forEach((card, index) => {
+        setTimeout(() => {
+          if (card) observer.observe(card);
+        }, index * 50);
+      });
+
+      // Comic panels
+      const comicPanels = document.querySelectorAll(`.${styles.comicPanelLarge}, .${styles.comicPanelSmall1}, .${styles.comicPanelSmall2}`);
+      comicPanels.forEach((panel, index) => {
+        setTimeout(() => {
+          if (panel) observer.observe(panel);
+        }, index * 100);
+      });
+
+      // Comic strip cards
+      const stripCards = document.querySelectorAll(`.${styles.comicStripCard}`);
+      stripCards.forEach((card, index) => {
+        setTimeout(() => {
+          if (card) observer.observe(card);
+        }, index * 100);
+      });
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasVisited]);
+
   const handleLoadingComplete = () => {
+    console.log('Loading 完成，设置 sessionStorage');
     sessionStorage.setItem('hasVisitedSite', 'true');
     setShowLoading(false);
     setHasVisited(true);
@@ -410,11 +480,11 @@ export default function Home(): JSX.Element {
             </p>
             
             <div className={styles.heroActions}>
-              <Link to="/blog" className={styles.heroPrimaryButton}>
-                <span><Translate id="homepage.hero.button.blog">UNSHEATHE BLOG</Translate></span>
+              <Link to="/about" className={styles.heroPrimaryButton}>
+                <span><Translate id="homepage.hero.button.about">关于我</Translate></span>
               </Link>
-              <Link to="/projects" className={styles.heroSecondaryButton}>
-                <span><Translate id="homepage.hero.button.projects">ARMORY</Translate></span>
+              <Link to="/docs/intro" className={styles.heroSecondaryButton}>
+                <span><Translate id="homepage.hero.button.docs">使用手册</Translate></span>
               </Link>
             </div>
           </div>
@@ -800,24 +870,18 @@ export default function Home(): JSX.Element {
           <div className={styles.comicStrip}>
             {[
               { 
-                titleId: 'homepage.blog.strip1.title',
-                title: 'Zero to Pillar: Rust Basics', 
-                timeId: 'homepage.blog.strip1.time',
-                time: '5 MIN READ', 
+                title: 'Rust入门指南', 
+                time: '5分钟阅读', 
                 img: '/img/blog/blog-2.jpg' 
               },
               { 
-                titleId: 'homepage.blog.strip2.title',
-                title: 'Recovery Training: Coffee Guide', 
-                timeId: 'homepage.blog.strip2.time',
-                time: '8 MIN READ', 
+                title: '开发者的咖啡文化', 
+                time: '8分钟阅读', 
                 img: '/img/blog/blog-3.jpg' 
               },
               { 
-                titleId: 'homepage.blog.strip3.title',
-                title: 'Visualizing Blood Demon Arts with D3', 
-                timeId: 'homepage.blog.strip3.time',
-                time: '12 MIN READ', 
+                title: 'D3.js数据可视化实战', 
+                time: '12分钟阅读', 
                 img: '/img/blog/blog-4.jpg' 
               },
             ].map((item, index) => (
@@ -826,10 +890,10 @@ export default function Home(): JSX.Element {
                   <img src={item.img} alt={item.title} className={styles.stripImageReal} />
                 </div>
                 <h4 className={styles.stripTitle}>
-                  <Translate id={item.titleId}>{item.title}</Translate>
+                  {item.title}
                 </h4>
                 <span className={styles.stripTime}>
-                  <Translate id={item.timeId}>{item.time}</Translate>
+                  {item.time}
                 </span>
               </Link>
             ))}
@@ -837,12 +901,12 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
-      {/* FAB for Newsletter */}
-      <Link to="/contact" className={styles.fab}>
+      {/* FAB for Newsletter - Hidden to avoid overlap with back-to-top button */}
+      {/* <Link to="/contact" className={styles.fab}>
         <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
           mail
         </span>
-      </Link>
+      </Link> */}
     </Layout>
   );
 }

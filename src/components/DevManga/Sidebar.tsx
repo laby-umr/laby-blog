@@ -9,12 +9,12 @@ interface SidebarProps {
 
 export default function Sidebar({ tags = [] }: SidebarProps): JSX.Element {
   const defaultTags = [
-    { label: 'Development', permalink: '/blog/tags/development', color: 'primary' },
-    { label: 'Design', permalink: '/blog/tags/design', color: 'secondary' },
-    { label: 'Tutorials', permalink: '/blog/tags/tutorials', color: 'tertiary' },
-    { label: 'Updates', permalink: '/blog/tags/updates', color: 'surface' },
-    { label: 'Frontend', permalink: '/blog/tags/frontend', color: 'primary' },
-    { label: 'Backend', permalink: '/blog/tags/backend', color: 'secondary' },
+    { label: '数字孪生', permalink: '/blog/tags/digital-twin', color: 'primary' },
+    { label: 'AI大模型', permalink: '/blog/tags/ai-large-model', color: 'secondary' },
+    { label: '可视化大屏', permalink: '/blog/tags/visualization', color: 'tertiary' },
+    { label: '技术架构', permalink: '/blog/tags/tech-architecture', color: 'surface' },
+    { label: '案例分析', permalink: '/blog/tags/case-study', color: 'primary' },
+    { label: '企业落地', permalink: '/blog/tags/enterprise-implementation', color: 'secondary' },
   ];
 
   const displayTags = tags.length > 0 ? tags : defaultTags;

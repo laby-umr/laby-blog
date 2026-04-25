@@ -55,10 +55,6 @@
     "message": "Breadcrumbs",
     "description": "The ARIA label for the breadcrumbs"
   },
-  "theme.docs.DocCard.categoryDescription": {
-    "message": "{count} items",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
-  },
   "theme.docs.paginator.navAriaLabel": {
     "message": "Docs pages",
     "description": "The ARIA label for the docs pagination"
@@ -249,33 +245,13 @@
     "message": "Search the documentation",
     "description": "The search page title for empty query"
   },
-  "theme.SearchPage.inputPlaceholder": {
-    "message": "Type your search here",
-    "description": "The placeholder for search page input"
-  },
-  "theme.SearchPage.inputLabel": {
-    "message": "Search",
-    "description": "The ARIA label for search page input"
-  },
-  "theme.SearchPage.algoliaLabel": {
-    "message": "Search by Algolia",
-    "description": "The ARIA label for Algolia mention"
-  },
   "theme.SearchPage.noResultsText": {
     "message": "No results were found",
     "description": "The paragraph for empty search result"
   },
-  "theme.SearchPage.fetchingNewResults": {
-    "message": "Fetching new results...",
-    "description": "The paragraph for fetching new search results"
-  },
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "On this page",
     "description": "The label used by the button on the collapsible TOC component"
-  },
-  "theme.blog.post.readMore.title": {
-    "message": "Read more about {title}",
-    "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.colorToggle.ariaLabel": {
     "message": "Switch between dark and light mode (currently {mode})",
@@ -318,39 +294,39 @@
     "description": "The title of the tag list page"
   },
   "homepage.title": {
-    "message": "DevManga - Code Breathing Techniques",
+    "message": "DevManga - Full Stack Developer Blog",
     "description": "The homepage title"
   },
   "homepage.description": {
-    "message": "Slicing through bugs with First Form: Water-Cooled Logic",
+    "message": "Sharing full-stack development experience and technical insights",
     "description": "The homepage description"
   },
   "homepage.hero.badge": {
-    "message": "HASHIRA OF CODE"
+    "message": "Welcome to Laby Blog"
   },
   "homepage.hero.title.part1": {
-    "message": "Mastering the"
+    "message": "Mastering"
   },
   "homepage.hero.title.part2": {
-    "message": "Dev-Breathing"
+    "message": "Full Stack Development"
   },
   "homepage.hero.description": {
-    "message": "Slicing through bugs with First Form: Water-Cooled Logic. Merging ancient full-stack techniques with Neo-Tokyo speed."
+    "message": "Focused on front-end and back-end technology stacks, pursuing code quality and performance optimization. Sharing practical experience and exploring technical boundaries."
   },
-  "homepage.hero.button.blog": {
-    "message": "UNSHEATHE BLOG"
+  "homepage.hero.button.about": {
+    "message": "About Me"
   },
-  "homepage.hero.button.projects": {
-    "message": "ARMORY"
+  "homepage.hero.button.docs": {
+    "message": "User Manual"
   },
   "homepage.hero.sticker": {
-    "message": "TOTAL CONCENTRATION*"
+    "message": "CONTINUOUS LEARNING*"
   },
   "homepage.techStack.title": {
-    "message": "CURRENT ARSENAL"
+    "message": "TECH STACK"
   },
   "homepage.techStack.subtitle": {
-    "message": "Breathing forms for high performance"
+    "message": "High-performance technical solutions"
   },
   "homepage.techStack.badge": {
     "message": "LEVEL 99 TECH STACK"
@@ -368,16 +344,16 @@
     "message": "Elite warriors, each mastering unique Breathing Styles to protect humanity from demons"
   },
   "homepage.blog.title": {
-    "message": "LATEST CHAPTERS"
+    "message": "LATEST ARTICLES"
   },
   "homepage.blog.featured.badge": {
     "message": "TUTORIAL"
   },
   "homepage.blog.featured.title": {
-    "message": "Thunder Breathing: Seventh Form - Honoikazuchi no Kami (The API God)"
+    "message": "High-Performance API Design and Optimization Practices"
   },
   "homepage.blog.featured.description": {
-    "message": "Learn how to execute lightning-fast queries that would make Zenitsu proud. We explore async optimization and reactive patterns for the modern web demon hunter..."
+    "message": "Deep dive into how to design and optimize high-performance APIs, including asynchronous processing, caching strategies, reactive programming, and other modern web development best practices..."
   },
   "homepage.blog.readMore": {
     "message": "READ MORE"
@@ -386,52 +362,28 @@
     "message": "Opinion"
   },
   "homepage.blog.post1.title": {
-    "message": "Why CSS Grid is basically Constant Concentration"
+    "message": "Complete Guide to CSS Grid Layout"
   },
   "homepage.blog.post1.description": {
-    "message": "Maintaining layout state is like maintaining your breathing while sleeping..."
+    "message": "Master the CSS Grid layout system to build responsive pages..."
   },
   "homepage.blog.post2.badge": {
     "message": "Review"
   },
   "homepage.blog.post2.title": {
-    "message": "Nichirin Keyboards: Mechanical Switch Quest"
+    "message": "Mechanical Keyboard Buying Guide for Programmers"
   },
   "homepage.blog.post2.description": {
-    "message": "Forging the perfect typing experience with color-changing LEDs..."
+    "message": "Creating the perfect typing experience with color-changing LEDs..."
   },
   "homepage.blog.readEpisode": {
-    "message": "Read Episode"
-  },
-  "homepage.blog.strip1.title": {
-    "message": "Zero to Pillar: Rust Basics",
-    "description": "Blog strip 1 title"
-  },
-  "homepage.blog.strip1.time": {
-    "message": "5 MIN READ",
-    "description": "Blog strip 1 time"
-  },
-  "homepage.blog.strip2.title": {
-    "message": "Recovery Training: Coffee Guide",
-    "description": "Blog strip 2 title"
-  },
-  "homepage.blog.strip2.time": {
-    "message": "8 MIN READ",
-    "description": "Blog strip 2 time"
-  },
-  "homepage.blog.strip3.title": {
-    "message": "Visualizing Blood Demon Arts with D3",
-    "description": "Blog strip 3 title"
-  },
-  "homepage.blog.strip3.time": {
-    "message": "12 MIN READ",
-    "description": "Blog strip 3 time"
+    "message": "Read Article"
   },
   "music.title": {
     "message": "Music"
   },
   "music.description": {
-    "message": "Breath of Audio - Total Concentration Training"
+    "message": "Music Player - Enjoy Music"
   },
   "music.loading": {
     "message": "Loading playlist..."
@@ -452,13 +404,13 @@
     "message": "Example: https://music.163.com/#/playlist?id=123456789"
   },
   "music.breathingMode": {
-    "message": "WATER BREATHING MODE"
+    "message": "MUSIC MODE"
   },
   "music.albumDesc": {
     "message": "Curated playlist from NetEase Cloud Music, enjoy the wonderful time of music."
   },
   "music.lyricsTitle": {
-    "message": "Breathing Scroll"
+    "message": "LYRICS"
   },
   "music.lyricsSynced": {
     "message": "SYNCHRONIZED"
@@ -467,42 +419,34 @@
     "message": "No lyrics available for this track"
   },
   "music.noLyricsHint": {
-    "message": "Enjoy the pure sound of breathing techniques"
+    "message": "Enjoy the pure sound of music"
   },
   "music.queueTitle": {
-    "message": "Queue: Final Selection"
+    "message": "PLAYLIST"
   },
   "music.queueSubtitle": {
-    "message": "Mastering the breathing of beats."
+    "message": "Enjoy the rhythm of music"
   },
   "projects.title": {
     "message": "Projects"
   },
   "projects.description": {
-    "message": "My Arsenal - Code Blades"
+    "message": "My Project Showcase"
   },
   "projects.header.badge": {
-    "message": "ARMORY"
+    "message": "PROJECT SHOWCASE"
   },
   "projects.header.title": {
-    "message": "My Arsenal"
+    "message": "My Projects"
   },
   "projects.header.subtitle": {
-    "message": "Each project is a forged Nichirin Blade"
-  },
-  "projects.viewProject": {
-    "message": "View Project",
-    "description": "View project button"
-  },
-  "projects.viewCode": {
-    "message": "View Code",
-    "description": "View code button"
+    "message": "Each project is a carefully crafted work"
   },
   "contact.title": {
     "message": "Contact"
   },
   "contact.description": {
-    "message": "Send a Crow Messenger - Contact Info"
+    "message": "Contact Information"
   },
   "contact.header.badge": {
     "message": "Phase 04: Transmission"
@@ -510,121 +454,17 @@
   "contact.header.title": {
     "message": "Contact"
   },
-  "contact.header.subtitle": {
-    "message": "Got a mission? Let's slay demons together",
-    "description": "Contact header subtitle"
-  },
-  "contact.form.name": {
-    "message": "Your Name",
-    "description": "Name field label"
-  },
-  "contact.form.namePlaceholder": {
-    "message": "Tanjiro",
-    "description": "Name field placeholder"
-  },
-  "contact.form.email": {
-    "message": "Email",
-    "description": "Email field label"
-  },
-  "contact.form.emailPlaceholder": {
-    "message": "tanjiro@demon-slayer.jp",
-    "description": "Email field placeholder"
-  },
-  "contact.form.subject": {
-    "message": "Mission Type",
-    "description": "Subject field label"
-  },
-  "contact.form.subjectPlaceholder": {
-    "message": "Select mission type...",
-    "description": "Subject field placeholder"
-  },
-  "contact.form.message": {
-    "message": "Mission Details",
-    "description": "Message field label"
-  },
-  "contact.form.messagePlaceholder": {
-    "message": "Describe your project or question...",
-    "description": "Message field placeholder"
-  },
   "contact.form.submit": {
-    "message": "Release Messenger"
-  },
-  "contact.info.title": {
-    "message": "Other Contact Methods",
-    "description": "Contact info title"
-  },
-  "contact.info.description": {
-    "message": "You can also find me through these channels",
-    "description": "Contact info description"
+    "message": "SEND MESSAGE"
   },
   "about.title": {
     "message": "About"
   },
   "about.description": {
-    "message": "Demon Slayer Profile - My Story"
-  },
-  "about.header.badge": {
-    "message": "DEMON SLAYER PROFILE",
-    "description": "About header badge"
-  },
-  "about.header.title": {
-    "message": "About This Demon Slayer",
-    "description": "About header title"
-  },
-  "about.header.subtitle": {
-    "message": "Origin story of the Code Hashira",
-    "description": "About header subtitle"
-  },
-  "about.story.title": {
-    "message": "My Story",
-    "description": "Story section title"
+    "message": "Personal Profile"
   },
   "about.skills.title": {
     "message": "Tech Stack"
-  },
-  "about.experience.title": {
-    "message": "Battle Experience",
-    "description": "Experience section title"
-  },
-  "about.interests.title": {
-    "message": "Interests",
-    "description": "Interests section title"
-  },
-  "projects.project1.title": {
-    "message": "Smart City Security Monitoring System"
-  },
-  "projects.project1.description": {
-    "message": "City security monitoring system based on microservice architecture, implementing video surveillance, alarm handling, and AI recognition analysis."
-  },
-  "projects.project2.title": {
-    "message": "Smart Warehouse Dashboard"
-  },
-  "projects.project2.description": {
-    "message": "Real-time warehouse status monitoring data visualization system, including personnel scheduling, vehicle management, and task allocation."
-  },
-  "projects.project3.title": {
-    "message": "Fiber Optic Security Warning Platform"
-  },
-  "projects.project3.description": {
-    "message": "Real-time monitoring and warning for fiber optic lines, supporting regional management and rapid response to abnormal situations."
-  },
-  "projects.project4.title": {
-    "message": "Smart Camp Management System"
-  },
-  "projects.project4.description": {
-    "message": "Intelligent management platform for camp personnel, equipment and resources, providing real-time status monitoring and data statistics."
-  },
-  "projects.project5.title": {
-    "message": "WMS Warehouse Management System"
-  },
-  "projects.project5.description": {
-    "message": "Warehouse management system based on RuoYi-Pro framework, integrating core business functions such as warehouse management, location management, material management, and supplier management."
-  },
-  "projects.project6.title": {
-    "message": "Attendance Management System"
-  },
-  "projects.project6.description": {
-    "message": "Enterprise-level attendance management system, supporting multiple check-in methods, shift management, leave approval, and attendance statistics."
   },
   "projects.viewDetails": {
     "message": "View Details"
@@ -645,67 +485,67 @@
     "message": "Initiate direct communication. Selecting a mission category will prioritize your packet in the neural queue."
   },
   "contact.form.header": {
-    "message": "Scroll Selection"
+    "message": "Contact Form"
   },
   "contact.form.nameLabel": {
-    "message": "Slayer Name"
+    "message": "Your Name"
   },
   "contact.form.namePlaceholder2": {
-    "message": "EX: TANJIRO_K"
+    "message": "e.g., John Doe"
   },
   "contact.form.emailLabel": {
-    "message": "Return Pigeon"
+    "message": "Email Address"
   },
   "contact.form.emailPlaceholder2": {
-    "message": "USER@NEBULA.NET"
+    "message": "user@example.com"
   },
   "contact.form.objectiveLabel": {
-    "message": "Mission Objective"
+    "message": "Contact Purpose"
   },
   "contact.form.objective.help": {
-    "message": "REQUEST_HELP"
+    "message": "TECHNICAL_CONSULTATION"
   },
   "contact.form.objective.bug": {
-    "message": "DEMON_BUG"
+    "message": "ISSUE_FEEDBACK"
   },
   "contact.form.objective.chat": {
-    "message": "KASUGAI_CHAT"
+    "message": "COLLABORATION"
   },
   "contact.form.messageLabel": {
-    "message": "Scroll Payload"
+    "message": "Message Content"
   },
   "contact.form.messagePlaceholder2": {
-    "message": "UNROLL YOUR MESSAGE HERE..."
+    "message": "Please enter your message..."
   },
   "contact.success.title": {
-    "message": "Mission Accomplished"
+    "message": "Sent Successfully"
   },
   "contact.success.text": {
-    "message": "The Crow has Departed"
+    "message": "Message Sent"
   },
   "contact.status.title": {
-    "message": "Breathing Status"
+    "message": "Work Status"
   },
   "contact.status.badge": {
-    "message": "TOTAL CONCENTRATION"
+    "message": "ONLINE"
   },
   "contact.status.responseTime": {
     "message": "Avg. Response Time"
   },
   "contact.status.responseValue": {
-    "message": "1-2 SUNSETS"
+    "message": "1-2 BUSINESS DAYS"
   },
   "contact.status.timezone": {
-    "message": "Primary Grid"
+    "message": "Primary Timezone"
   },
   "contact.status.timezoneValue": {
     "message": "TOKYO/UTC+9"
   },
   "contact.email.title": {
-    "message": "Direct Signal"
+    "message": "Email Contact"
   },
   "contact.email.address": {
-    "message": "CROW_SIGNAL@DEVMANG.A"
+    "message": "1521170425@qq.com"
   },
   "contact.social.twitter": {
     "message": "Twitter"
@@ -714,13 +554,10 @@
     "message": "GitHub"
   },
   "contact.visual.text": {
-    "message": "Base of Operations"
+    "message": "Work Environment"
   },
   "about.hero.badge": {
     "message": "Full Stack Engineer"
-  },
-  "about.hero.name": {
-    "message": "Liu Jiaxing"
   },
   "about.hero.intro": {
     "message": "9 years of full-stack development experience, proficient in front-end and back-end technology stacks. Expert in building system architecture from 0 to 1, skilled in Spring Cloud microservices, Vue3/React frameworks, with rich experience in big data platforms, CRM systems, and smart warehousing projects."
@@ -731,35 +568,20 @@
   "about.hero.contactBadge": {
     "message": "Remote Available"
   },
-  "about.hero.projectsBtn": {
-    "message": "View Projects"
-  },
   "about.hero.sticker": {
     "message": "9 Years Experience · Full Stack"
   },
   "about.hero.downloadBtn": {
     "message": "Download Resume"
   },
-  "about.stats.experience": {
-    "message": "9+"
-  },
   "about.stats.experienceLabel": {
     "message": "Years Experience"
-  },
-  "about.stats.projects": {
-    "message": "10+"
   },
   "about.stats.projectsLabel": {
     "message": "Core Projects"
   },
-  "about.stats.skills": {
-    "message": "20+"
-  },
   "about.stats.skillsLabel": {
     "message": "Tech Stack"
-  },
-  "about.stats.companies": {
-    "message": "5"
   },
   "about.stats.companiesLabel": {
     "message": "Companies"
@@ -767,44 +589,14 @@
   "about.contact.phone": {
     "message": "Phone"
   },
-  "about.contact.phoneValue": {
-    "message": "13261915710"
-  },
   "about.contact.email": {
     "message": "Email"
-  },
-  "about.contact.emailValue": {
-    "message": "1521170425@qq.com"
   },
   "about.contact.location": {
     "message": "Location"
   },
-  "about.contact.locationValue": {
-    "message": "Beijing · 32 years old"
-  },
   "about.contact.salary": {
     "message": "Expected Salary"
-  },
-  "about.contact.salaryValue": {
-    "message": "20-25K"
-  },
-  "about.skills.backend": {
-    "message": "Backend"
-  },
-  "about.skills.frontend": {
-    "message": "Frontend"
-  },
-  "about.skills.database": {
-    "message": "Database"
-  },
-  "about.skills.ai": {
-    "message": "AI Programming"
-  },
-  "about.skills.devops": {
-    "message": "DevOps"
-  },
-  "about.skills.framework": {
-    "message": "Open Source"
   },
   "about.tabs.work": {
     "message": "Work Experience"
@@ -834,10 +626,10 @@
     "message": "Phase 04: Transmission"
   },
   "blogList.header.title": {
-    "message": "Latest Chapters"
+    "message": "Latest Articles"
   },
   "blogList.header.description": {
-    "message": "Dive into the technical chronicles of a dev who watches too much shonen."
+    "message": "Explore the technical chronicles of a passionate developer."
   },
   "blogList.minRead": {
     "message": "MIN READ"
@@ -849,10 +641,10 @@
     "message": "Tags"
   },
   "sidebar.newsletter.title": {
-    "message": "Manga Newsletter"
+    "message": "Tech Newsletter"
   },
   "sidebar.newsletter.description": {
-    "message": "Get the latest chapters of code delivered to your mailbox."
+    "message": "Get the latest technical articles delivered to your mailbox."
   },
   "sidebar.newsletter.placeholder": {
     "message": "email@devmanga.com"
@@ -861,91 +653,91 @@
     "message": "Subscribe"
   },
   "blog.badge": {
-    "message": "技术博客"
+    "message": "Tech Blog"
   },
   "blog.tag.all": {
-    "message": "全部"
+    "message": "All"
   },
   "blog.readingTime.minutes": {
-    "message": "分钟"
+    "message": "minutes"
   },
   "blog.readArticle": {
-    "message": "阅读文章"
+    "message": "Read Article"
   },
   "blog.readFullArticle": {
-    "message": "阅读全文"
+    "message": "Read Full Article"
   },
   "blog.searchPlaceholder": {
-    "message": "搜索文章..."
+    "message": "Search articles..."
   },
   "blog.filterResults": {
-    "message": "找到"
+    "message": "Found"
   },
   "blog.articles": {
-    "message": "篇文章"
+    "message": "articles"
   },
   "blog.clearFilter": {
-    "message": "清除筛选"
+    "message": "Clear Filter"
   },
   "blog.noResults": {
-    "message": "没有找到匹配的文章"
+    "message": "No matching articles found"
   },
   "blog.tryDifferent": {
-    "message": "试试其他搜索词或标签"
+    "message": "Try different search terms or tags"
   },
   "blog.loadMore": {
-    "message": "加载更多文章"
+    "message": "Load More Articles"
   },
   "blog.aboutAuthor": {
-    "message": "关于作者"
+    "message": "About Author"
   },
   "blog.authorBio": {
-    "message": "全栈开发工程师"
+    "message": "Full Stack Engineer"
   },
   "blog.categories": {
-    "message": "分类"
+    "message": "Categories"
   },
   "blog.allCategories": {
-    "message": "全部"
+    "message": "All"
   },
   "blog.popularTags": {
-    "message": "热门标签"
+    "message": "Popular Tags"
   },
   "footer.navigation.title": {
-    "message": "快速导航"
+    "message": "Quick Navigation"
   },
   "footer.navigation.docs": {
-    "message": "文档"
+    "message": "Docs"
   },
   "footer.navigation.blog": {
-    "message": "博客"
+    "message": "Blog"
   },
   "footer.navigation.projects": {
-    "message": "项目"
+    "message": "Projects"
   },
   "footer.navigation.music": {
-    "message": "音乐"
+    "message": "Music"
   },
   "footer.navigation.about": {
-    "message": "关于我"
+    "message": "About"
   },
   "footer.navigation.contact": {
-    "message": "联系我"
+    "message": "Contact"
   },
   "footer.contact.title": {
-    "message": "联系方式"
+    "message": "Contact Info"
   },
   "footer.contact.location": {
-    "message": "中国"
+    "message": "China"
   },
   "footer.qrcode.title": {
-    "message": "关注我"
+    "message": "Follow Me"
   },
   "footer.qrcode.wechat": {
-    "message": "微信"
+    "message": "WeChat"
   },
   "footer.badge.madeWithLove": {
-    "message": "用心制作"
+    "message": "Made with Love"
   },
   "footer.badge.poweredBy": {
     "message": "Powered by Docusaurus"

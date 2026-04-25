@@ -52,6 +52,32 @@ html {
 body {
   font-family: var(--ifm-font-family-base);
   background-color: var(--dm-background);
+  position: relative;
+}
+
+/* 全局漫画网格背景 - Image 2 (9).html 样式 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(#81817a 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme='dark'] body::before {
+  background-image: radial-gradient(#9e9d96 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.3;
+}
+
+/* 确保页面内容在网格背景之上 */
+.main-wrapper,
+main {
+  position: relative;
+  z-index: 2;
 }
 
 /* Headings */
@@ -97,6 +123,17 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__logo {
   border: 2px solid var(--dm-on-surface);
   border-radius: 50%;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.navbar__logo img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 /* Navbar Dark Mode */
@@ -143,24 +180,113 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Docs Sidebar */
 .theme-doc-sidebar-container {
-  border-right: 2px solid var(--dm-outline-variant);
+  border-right: 4px solid var(--dm-outline-variant);
+  background-color: transparent;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  border-right-color: var(--dm-outline);
 }
 
 .menu__link {
   font-weight: 500;
-  border-radius: var(--dm-radius-md);
+  font-family: var(--dm-font-body);
+  border-radius: 0;
   transition: all 200ms;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid transparent;
+  color: var(--dm-on-surface);
 }
 
 .menu__link:hover {
   background-color: var(--dm-surface-container);
+  color: var(--dm-primary);
+  border-left-color: var(--dm-primary);
+  transform: translateX(2px);
 }
 
 .menu__link--active {
   background-color: var(--dm-primary-container);
-  color: var(--dm-on-primary-container);
+  color: var(--dm-primary);
   font-weight: 700;
+  border-left-color: var(--dm-primary);
+  border-left-width: 4px;
 }
+
+[data-theme='dark'] .menu__link--active {
+  background-color: rgba(137, 153, 255, 0.15);
+  color: #8999ff;
+}
+
+.menu__list-item-collapsible {
+  border-radius: 0;
+}
+
+.menu__caret::before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+  filter: var(--dm-primary);
+}
+
+/* TOC (右侧目录) */
+.table-of-contents {
+  border-left: 4px solid var(--dm-outline-variant);
+  padding-left: 0;
+}
+
+[data-theme='dark'] .table-of-contents {
+  border-left-color: var(--dm-outline);
+}
+
+.table-of-contents__link {
+  font-weight: 500;
+  font-family: var(--dm-font-body);
+  color: var(--dm-on-surface-variant);
+  padding: 0.35rem 0.75rem;
+  border-radius: 0;
+  display: block;
+  border-left: 3px solid transparent;
+  margin-left: -4px;
+  transition: all 200ms;
+}
+
+.table-of-contents__link:hover {
+  color: var(--dm-primary);
+  background-color: var(--dm-surface-container);
+  border-left-color: var(--dm-primary);
+  transform: translateX(2px);
+}
+
+.table-of-contents__link--active {
+  color: var(--dm-primary);
+  font-weight: 700;
+  background-color: var(--dm-primary-container);
+  border-left-color: var(--dm-primary);
+  border-left-width: 4px;
+}
+
+[data-theme='dark'] .table-of-contents__link--active {
+  background-color: rgba(137, 153, 255, 0.15);
+  color: #8999ff;
+}
+
+.table-of-contents__link code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* 隐藏 Docusaurus 内置的返回顶部按钮 */
+button[class*='backToTopButton'],
+button[class*='BackToTop'],
+.theme-back-to-top-button,
+button[aria-label*="Scroll back to top"],
+button[title*="Scroll back to top"],
+button[title*="回到顶部"],
+button[aria-label*="回到顶部"] {
+  display: none !important;
+}
+
+/* 只显示我们自定义的 BackToTop 组件 */
 
 /* Markdown 基础内容样式 */
 .markdown {
@@ -217,7 +343,28 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--dm-radius-md);
 }
 
-/* Code Blocks - 保持默认高亮，不添加额外样式 */
+/* Code Blocks - 只移除内部边框，保留外层容器边框 */
+.markdown pre,
+.markdown pre code,
+div[class*='codeBlockContent'],
+code[class*='language-'] {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* 确保外层容器保留边框和半透明背景 */
+div[class*='codeBlockContainer'] {
+  border: 4px solid #000000 !important;
+  border-radius: 12px !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-theme='dark'] div[class*='codeBlockContainer'] {
+  border-color: #ffffff !important;
+  background-color: rgba(26, 26, 26, 0.95) !important;
+}
 
 /* 重置所有 Prism token 样式，移除任何额外装饰 */
 .token.tag,
@@ -336,7 +483,15 @@ td {
 .blog-post-title {
   font-family: var(--ifm-heading-font-family);
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2.5rem;
+}
+
+/* Markdown H1 标题 */
+.markdown h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 /* Material Icons */
@@ -385,37 +540,6 @@ td {
   border: none;
   border-top: 2px solid var(--dm-outline-variant);
   margin: 2rem 0;
-}
-
-/* 增强的提示框样式 */
-.theme-admonition {
-  border: 2px solid var(--dm-on-surface);
-  box-shadow: var(--dm-shadow-sm);
-}
-
-.theme-admonition-note {
-  background-color: var(--dm-primary-container);
-  border-left: 4px solid var(--dm-primary);
-}
-
-.theme-admonition-tip {
-  background-color: var(--dm-secondary-container);
-  border-left: 4px solid var(--dm-secondary);
-}
-
-.theme-admonition-info {
-  background-color: var(--dm-tertiary-container);
-  border-left: 4px solid var(--dm-tertiary);
-}
-
-.theme-admonition-warning {
-  background-color: #fff3cd;
-  border-left: 4px solid #ffc107;
-}
-
-.theme-admonition-danger {
-  background-color: var(--dm-error-container);
-  border-left: 4px solid var(--dm-error);
 }
 
 /* 博客文章标签 */
@@ -475,7 +599,7 @@ td {
 /* 响应式 */
 @media (max-width: 768px) {
   .markdown h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .markdown h2 {
@@ -487,6 +611,6 @@ td {
   }
   
   .blog-post-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }

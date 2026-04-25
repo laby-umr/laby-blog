@@ -1,0 +1,165 @@
+.musicPlayer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 0.5rem;
+}
+
+/* 控制按钮（上一曲/下一曲） */
+.controlButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0.25rem;
+  color: var(--dm-on-surface);
+  border-radius: 50%;
+}
+
+.controlButton:hover {
+  color: var(--dm-primary);
+  transform: scale(1.2);
+}
+
+.controlButton .material-symbols-outlined {
+  font-size: 1.5rem;
+  font-variation-settings: 'FILL' 1, 'wght' 700;
+}
+
+/* 圆形海报按钮 */
+.coverButton {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--dm-on-surface);
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.coverButton:hover {
+  transform: scale(1.1);
+  border-color: var(--dm-primary);
+  box-shadow: 0 0 0 2px var(--dm-primary-container);
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover.rotating {
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.playingIndicator {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(49, 79, 244, 0.2) 100%);
+  pointer-events: none;
+}
+
+/* 播放/暂停按钮叠加层 */
+.playOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 200ms;
+  pointer-events: none;
+}
+
+.coverButton:hover .playOverlay {
+  opacity: 1;
+}
+
+.playOverlay .material-symbols-outlined {
+  font-size: 1.5rem;
+  color: white;
+  font-variation-settings: 'FILL' 1, 'wght' 700;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* 歌词显示 */
+.lyricsDisplay {
+  width: 18rem;
+  overflow: hidden;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.lyricText {
+  font-family: var(--dm-font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--dm-primary);
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollLeft 15s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 响应式 */
+@media (max-width: 996px) {
+  .musicPlayer {
+    gap: 0.25rem;
+    margin: 0 0.25rem;
+  }
+  
+  .coverButton {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .controlButton .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+  
+  .lyricsDisplay {
+    width: 12rem;
+    padding: 0 0.5rem;
+  }
+  
+  .lyricText {
+    font-size: 0.75rem;
+  }
+}

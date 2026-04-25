@@ -9,23 +9,23 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Laby的博客',
+  title: 'Laby Blog',
   tagline: '探索现代Web开发的全部领域',
   favicon: 'img/logo.jpg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
-    experimental_faster: true, // Build acceleration
+    faster: true, // Build acceleration
   },
 
   // Set the production url of your site here
-  url: 'https://laby-umr.github.io',
+  // 生产环境使用域名（不带端口），开发环境使用 localhost
+  url: process.env.DOCUSAURUS_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'http://120.48.86.168'),
   baseUrl: '/',
 
   // 性能优化：预连接和 DNS 预解析
   headTags: [
-    // DNS 预解析
     {
       tagName: 'link',
       attributes: {
@@ -33,7 +33,6 @@ const config = {
         href: 'http://120.48.86.168:48080',
       },
     },
-    // 预连接 API
     {
       tagName: 'link',
       attributes: {
@@ -52,23 +51,20 @@ const config = {
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang.
-  // i18n 配置 - 应用 3.9.2 优化
+  // i18n 配置
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'zh-Hans',
     locales: ['zh-Hans', 'en'],
     localeConfigs: {
       'zh-Hans': {
         label: '简体中文',
         direction: 'ltr',
         htmlLang: 'zh-Hans',
-        // 新特性：translate 标志（3.9+）
-        translate: true, // 启用翻译
       },
       'en': {
         label: 'English',
         direction: 'ltr',
         htmlLang: 'en',
-        translate: true,
       },
     },
   },
@@ -126,7 +122,7 @@ const config = {
         },
       },
     ],
-    // 本地搜索插件（所有环境启用）
+    // 本地搜索插件
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
@@ -147,7 +143,7 @@ const config = {
     // 图片放大查看插件
     'plugin-image-zoom',
 
-    // Blog API 配置插件（保留用于留言和订阅功能）
+    // Blog API 配置插件
     function blogApiConfigPlugin(context, options) {
       return {
         name: 'blog-api-config-plugin',
@@ -157,8 +153,6 @@ const config = {
               {
                 tagName: 'script',
                 innerHTML: `
-                  // 访客统计已迁移到 Google Analytics 4
-                  // 保留此配置仅用于留言和订阅功能
                   window.blogApiConfig = {
                     apiBaseUrl: '${process.env.NODE_ENV === 'production' 
                       ? 'http://120.48.86.168:48080' 
@@ -173,23 +167,14 @@ const config = {
     },
   ],
 
-  // Markdown 配置 - 应用 3.9.2 新特性
+  // Markdown 配置
   markdown: {
     mermaid: true,
-    // 新特性：emoji 配置（3.9+）
-    emoji: true, // 启用 emoji 自动转换
-    // 新特性：Markdown 钩子函数（3.9+）
-    hooks: {
-      // 处理损坏的 Markdown 链接
-      onBrokenMarkdownLinks: (link) => {
-        console.warn(`Broken markdown link detected: ${link}`);
-        return undefined; // 返回 undefined 使用默认行为，或返回备用 URL
-      },
-      // 处理损坏的 Markdown 图片
-      onBrokenMarkdownImages: (image) => {
-        console.warn(`Broken markdown image detected: ${image}`);
-        return '/img/placeholder.png'; // 返回占位图片
-      },
+    format: 'mdx',
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
     },
   },
 
@@ -200,34 +185,28 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/MasterLiu93/blog-web/tree/main/',
           routeBasePath: 'docs',
           path: 'docs',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-          // 使用默认日期格式
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           editUrl:
             'https://github.com/MasterLiu93/blog-web/tree/main/',
-          // 优化：增加每页文章数到 10 篇，减少分页请求
           postsPerPage: 10,
           blogSidebarCount: 'ALL',
           blogSidebarTitle: '全部博客文章',
           blogDescription: '关注前后端开发、DevOps和系统架构设计的技术博客',
-          // 优化：添加摘要截断标记
           truncateMarker: /<!--\s*truncate\s*-->/,
-          // 忽略未截断的博客文章警告
           onUntruncatedBlogPosts: 'ignore',
           feedOptions: {
             type: 'all',
-            title: 'Laby的博客',
+            title: 'Laby Blog',
             description: '关注前后端开发、DevOps和系统架构设计的技术博客',
-            copyright: `Copyright © ${new Date().getFullYear()} Laby的博客`,
+            copyright: `Copyright © ${new Date().getFullYear()} Laby Blog`,
             language: 'zh-CN',
           },
         },
@@ -240,7 +219,7 @@ const config = {
         // Google Analytics 4 配置
         gtag: {
           trackingID: 'G-03NXQZ7S0Z',
-          anonymizeIP: true, // 匿名化用户 IP，保护隐私
+          anonymizeIP: true,
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -255,14 +234,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // 设置图片亮暗模式
-      colorMode: {
-        defaultMode: 'light',
-        disableSwitch: false,
-        respectPrefersColorScheme: false,
-      },
+    // 设置图片亮暗模式
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
       // Algolia DocSearch 配置（已禁用，改用本地搜索）
-      // 如需启用 Algolia，取消下面的注释
       /*
       algolia: {
         // Algolia 提供的 Application ID
@@ -324,12 +302,11 @@ const config = {
         textColor: '#ffffff',
         isCloseable: true,
       },
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Laby的博客',
+        title: 'Laby Blog',
         logo: {
-          alt: 'Laby的博客Logo',
+          alt: 'Laby Blog Logo',
           src: 'img/logo.jpg',
         },
         items: [
@@ -344,7 +321,10 @@ const config = {
           {to: '/music', label: '音乐', position: 'left'},
           {to: '/contact', label: '联系我', position: 'left'},
           {to: '/about', label: '关于我', position: 'left'},
-          // 添加语言切换菜单
+          {
+            type: 'custom-musicPlayer',
+            position: 'right',
+          },
           {
             type: 'localeDropdown',
             position: 'right',
@@ -356,10 +336,10 @@ const config = {
           },
         ],
       },
-      // Footer配置 - 使用自定义Footer组件
+      // Footer配置
       footer: {
         style: 'light',
-        copyright: `Copyright © ${new Date().getFullYear()} Laby的博客. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Laby Blog. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
@@ -370,7 +350,6 @@ const config = {
           'powershell', 'sql', 'typescript', 'jsx', 'tsx',
           'yaml', 'json', 'css', 'markdown', 'diff'
         ],
-        // 启用代码行高亮功能
         magicComments: [
           {
             className: 'theme-code-block-highlighted-line',
@@ -380,12 +359,12 @@ const config = {
         ],
         defaultLanguage: 'javascript',
       },
-      // 添加元数据，有助于SEO
+      // 添加元数据
       metadata: [
         {name: 'keywords', content: 'blog, javascript, typescript, react, vue, java, spring, 前端, 后端, 全栈开发'},
         {name: 'twitter:card', content: 'summary_large_image'},
         {property: 'og:type', content: 'website'},
-        {property: 'og:title', content: 'Laby的博客 - 探索现代Web开发的全部领域'},
+        {property: 'og:title', content: 'Laby Blog - 探索现代Web开发的全部领域'},
         {property: 'og:description', content: '关注前后端开发、DevOps和系统架构设计的技术博客'},
       ],
     }),

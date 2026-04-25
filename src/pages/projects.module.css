@@ -1,5 +1,5 @@
 .projectsMain {
-  background-color: var(--dm-background);
+  background-color: transparent;
   min-height: 100vh;
 }
 
@@ -284,33 +284,80 @@
   transform: scale(0.95);
 }
 
-/* Quote Section */
+/* Quote Section - Matching About Page CTA Style */
 .quoteSection {
   position: relative;
-  padding: 6rem 2rem;
+  padding: 4.5rem 2.5rem;
   background-color: var(--dm-primary);
-  border-top: 4px solid var(--dm-on-surface);
-  border-bottom: 4px solid var(--dm-on-surface);
+  color: var(--dm-on-primary);
+  border: 4px solid var(--dm-on-surface);
+  border-radius: 2.25rem;
+  text-align: center;
   overflow: hidden;
-  margin-top: 4rem;
+  box-shadow: 10px 10px 0px 0px rgba(56, 56, 51, 1);
+  margin: 3rem auto;
+  max-width: 950px;
+}
+
+/* Breathing Sparks Background */
+.quoteSection::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fae500;
+  border-radius: 50%;
+  pointer-events: none;
+  top: 25%;
+  left: 25%;
+  animation: spark-float 3s infinite ease-in-out;
+  animation-delay: 0s;
+}
+
+.quoteSection::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fae500;
+  border-radius: 50%;
+  pointer-events: none;
+  top: 50%;
+  left: 33%;
+  animation: spark-float 3s infinite ease-in-out;
+  animation-delay: 0.5s;
+}
+
+@keyframes spark-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
+  }
 }
 
 .quoteBackground {
   position: absolute;
-  top: -10rem;
-  right: -10rem;
-  width: 40rem;
-  height: 40rem;
-  background-color: var(--dm-secondary-container);
-  border: 4px solid var(--dm-on-surface);
-  border-radius: 50%;
-  opacity: 0.5;
-  filter: blur(60px);
-  transition: transform 1s;
+  top: 2.5rem;
+  right: 2.5rem;
+  font-size: 110px;
+  opacity: 0.2;
+  pointer-events: none;
+  transform: rotate(12deg);
+  transition: all 0.7s;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  filter: none;
+  background-color: transparent;
 }
 
 .quoteSection:hover .quoteBackground {
-  transform: scale(1.5);
+  transform: scale(1.5) rotate(45deg);
 }
 
 .quoteContent {
@@ -326,48 +373,93 @@
 }
 
 .quoteText {
+  position: relative;
+  z-index: 1;
   font-family: var(--dm-font-headline);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
   font-weight: 900;
-  font-style: italic;
-  line-height: 1.2;
+  font-style: normal;
+  line-height: 1.1;
   margin: 0 0 2rem 0;
+  padding: 0;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
+  border-left: none;
 }
 
 .quoteTags {
+  position: relative;
+  z-index: 1;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .quoteTag {
-  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
   font-family: var(--dm-font-headline);
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border: 2px solid var(--dm-on-primary);
-  border-radius: var(--dm-radius-full);
-  transition: all var(--dm-transition-bounce);
+  border: 4px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-xl);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: default;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
 }
 
 .quoteTag:first-child {
-  background-color: var(--dm-on-surface);
-  color: var(--dm-surface);
+  background-color: var(--dm-secondary-container);
+  color: var(--dm-on-surface);
 }
 
 .quoteTag:last-child {
-  background-color: var(--dm-surface);
+  background-color: var(--dm-surface-container-lowest);
   color: var(--dm-on-surface);
 }
 
 .quoteTag:hover {
-  transform: rotate(-3deg) scale(1.1);
+  transform: scale(1.25) rotate(3deg);
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
 }
 
 .quoteTag:last-child:hover {
-  transform: rotate(3deg) scale(1.1);
+  transform: scale(1.25) rotate(-3deg);
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.quoteTag:active {
+  transform: scale(0.95);
+}
+
+/* Additional breathing sparks */
+.quoteTags::before,
+.quoteTags::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fae500;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spark-float 3s infinite ease-in-out;
+}
+
+.quoteTags::before {
+  top: -50px;
+  left: 30%;
+  animation-delay: 1s;
+}
+
+.quoteTags::after {
+  top: -30px;
+  right: 25%;
+  animation-delay: 1.5s;
 }
 
 /* Responsive */
@@ -394,4 +486,44 @@
     width: 100%;
     max-width: 300px;
   }
+}
+
+/* ========================================
+   SCROLL ENTRANCE ANIMATIONS
+   ======================================== */
+
+/* Hero Section Animation */
+.hero {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Project Cards Animation */
+.projectCard {
+  opacity: 0;
+  transform: scale(0.8) translateY(50px);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.projectCard.animate {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Quote Section Animation */
+.quoteSection {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quoteSection.animate {
+  opacity: 1;
+  transform: scale(1);
 }

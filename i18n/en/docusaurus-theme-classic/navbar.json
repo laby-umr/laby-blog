@@ -28,7 +28,7 @@
     "description": "Navbar item with label 关于我"
   },
   "logo.alt": {
-    "message": "Laby的博客Logo",
+    "message": "Laby Blog Logo",
     "description": "The alt text of navbar logo"
   },
   "item.label.GitHub": {

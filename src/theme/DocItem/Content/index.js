@@ -5,6 +5,7 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
 import Heading from '@theme/Heading';
 import MDXContent from '@theme/MDXContent';
 import Comments from '@site/src/components/Comments';
+import ReadingTime from '@site/src/components/ReadingTime';
 import styles from './styles.module.css';
 
 /**
@@ -29,15 +30,20 @@ function useSyntheticTitle() {
 
 export default function DocItemContent({children}) {
   const syntheticTitle = useSyntheticTitle();
+  const {metadata} = useDoc();
 
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
       {syntheticTitle && (
         <header>
           <Heading as="h1">{syntheticTitle}</Heading>
+          <ReadingTime />
         </header>
       )}
       <MDXContent>{children}</MDXContent>
+
+      {/* 相关文章推荐 - 暂时注释掉，需要配置数据源 */}
+      {/* <RelatedPosts currentDocId={metadata.id} /> */}
 
       {/* 在文档内容后添加评论功能 */}
       <div className={styles.docFooter}>

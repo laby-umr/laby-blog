@@ -3,124 +3,108 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.前端开发": {
-    "message": "前端开发",
-    "description": "The label for category '前端开发' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.backend": {
+    "message": "backend",
+    "description": "The label for category 'backend' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.前端开发.link.generated-index.description": {
-    "message": "前端开发相关的技术文档、框架使用和最佳实践",
-    "description": "The generated-index page description for category '前端开发' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.大数据技术文档": {
+    "message": "大数据技术文档",
+    "description": "The label for category '大数据技术文档' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.HTML和CSS": {
-    "message": "HTML和CSS",
-    "description": "The label for category 'HTML和CSS' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.concurrency": {
+    "message": "concurrency",
+    "description": "The label for category 'concurrency' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.JavaScript": {
-    "message": "JavaScript",
-    "description": "The label for category 'JavaScript' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.database-orm": {
+    "message": "database-orm",
+    "description": "The label for category 'database-orm' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.TypeScript": {
-    "message": "TypeScript",
-    "description": "The label for category 'TypeScript' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.design-patterns": {
+    "message": "design-patterns",
+    "description": "The label for category 'design-patterns' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.React": {
-    "message": "React",
-    "description": "The label for category 'React' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.distributed-systems": {
+    "message": "distributed-systems",
+    "description": "The label for category 'distributed-systems' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Vue": {
-    "message": "Vue",
-    "description": "The label for category 'Vue' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.java-basics": {
+    "message": "java-basics",
+    "description": "The label for category 'java-basics' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Angular": {
-    "message": "Angular",
-    "description": "The label for category 'Angular' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.java-collections": {
+    "message": "java-collections",
+    "description": "The label for category 'java-collections' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.性能优化": {
-    "message": "性能优化",
-    "description": "The label for category '性能优化' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.jvm": {
+    "message": "jvm",
+    "description": "The label for category 'jvm' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.测试": {
-    "message": "测试",
-    "description": "The label for category '测试' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.message-queues": {
+    "message": "message-queues",
+    "description": "The label for category 'message-queues' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.开发工具": {
-    "message": "开发工具",
-    "description": "The label for category '开发工具' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.microservices": {
+    "message": "microservices",
+    "description": "The label for category 'microservices' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.移动应用开发": {
-    "message": "移动应用开发",
-    "description": "The label for category '移动应用开发' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.network-programming": {
+    "message": "network-programming",
+    "description": "The label for category 'network-programming' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.后端开发": {
-    "message": "后端开发",
-    "description": "The label for category '后端开发' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.spring": {
+    "message": "spring",
+    "description": "The label for category 'spring' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.后端开发.link.generated-index.description": {
-    "message": "Java 后端开发完全指南，包括Java基础、集合框架、并发编程、JVM、Spring框架等",
-    "description": "The generated-index page description for category '后端开发' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.system-design": {
+    "message": "system-design",
+    "description": "The label for category 'system-design' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Java基础": {
-    "message": "Java基础",
-    "description": "The label for category 'Java基础' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.document-template": {
+    "message": "document-template",
+    "description": "The label for category 'document-template' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Java集合框架": {
-    "message": "Java集合框架",
-    "description": "The label for category 'Java集合框架' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.frontend": {
+    "message": "frontend",
+    "description": "The label for category 'frontend' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.并发编程": {
-    "message": "并发编程",
-    "description": "The label for category '并发编程' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.angular": {
+    "message": "angular",
+    "description": "The label for category 'angular' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.JVM": {
-    "message": "JVM",
-    "description": "The label for category 'JVM' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.html-css": {
+    "message": "html-css",
+    "description": "The label for category 'html-css' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Spring框架": {
-    "message": "Spring框架",
-    "description": "The label for category 'Spring框架' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.javascript": {
+    "message": "javascript",
+    "description": "The label for category 'javascript' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.数据库与ORM": {
-    "message": "数据库与ORM",
-    "description": "The label for category '数据库与ORM' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.mobile-dev": {
+    "message": "mobile-dev",
+    "description": "The label for category 'mobile-dev' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.微服务": {
-    "message": "微服务",
-    "description": "The label for category '微服务' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.performance": {
+    "message": "performance",
+    "description": "The label for category 'performance' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.分布式系统": {
-    "message": "分布式系统",
-    "description": "The label for category '分布式系统' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.react": {
+    "message": "react",
+    "description": "The label for category 'react' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.消息队列": {
-    "message": "消息队列",
-    "description": "The label for category '消息队列' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.testing": {
+    "message": "testing",
+    "description": "The label for category 'testing' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.网络编程": {
-    "message": "网络编程",
-    "description": "The label for category '网络编程' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.tools": {
+    "message": "tools",
+    "description": "The label for category 'tools' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.设计模式": {
-    "message": "设计模式",
-    "description": "The label for category '设计模式' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.typescript": {
+    "message": "typescript",
+    "description": "The label for category 'typescript' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.大数据技术": {
-    "message": "大数据技术",
-    "description": "The label for category '大数据技术' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.系统设计": {
-    "message": "系统设计",
-    "description": "The label for category '系统设计' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.数字孪生": {
-    "message": "数字孪生",
-    "description": "The label for category '数字孪生' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.项目设计": {
-    "message": "项目设计",
-    "description": "The label for category '项目设计' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.文档模板": {
-    "message": "文档模板",
-    "description": "The label for category '文档模板' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.vue": {
+    "message": "vue",
+    "description": "The label for category 'vue' in sidebar 'tutorialSidebar'"
   }
 }

@@ -249,33 +249,13 @@
     "message": "在文档中搜索",
     "description": "The search page title for empty query"
   },
-  "theme.SearchPage.inputPlaceholder": {
-    "message": "在此输入搜索字词",
-    "description": "The placeholder for search page input"
-  },
-  "theme.SearchPage.inputLabel": {
-    "message": "搜索",
-    "description": "The ARIA label for search page input"
-  },
-  "theme.SearchPage.algoliaLabel": {
-    "message": "通过 Algolia 搜索",
-    "description": "The ARIA label for Algolia mention"
-  },
   "theme.SearchPage.noResultsText": {
     "message": "未找到任何结果",
     "description": "The paragraph for empty search result"
   },
-  "theme.SearchPage.fetchingNewResults": {
-    "message": "正在获取新的搜索结果...",
-    "description": "The paragraph for fetching new search results"
-  },
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "本页总览",
     "description": "The label used by the button on the collapsible TOC component"
-  },
-  "theme.blog.post.readMore.title": {
-    "message": "阅读 {title} 的全文",
-    "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.colorToggle.ariaLabel": {
     "message": "切换浅色/暗黑模式（当前为{mode}）",
@@ -318,39 +298,39 @@
     "description": "The title of the tag list page"
   },
   "homepage.title": {
-    "message": "DevManga - 代码的呼吸法",
+    "message": "DevManga - 全栈开发者的技术博客",
     "description": "The homepage title"
   },
   "homepage.description": {
-    "message": "用第一型：水冷逻辑斩断Bug",
+    "message": "分享全栈开发经验与技术洞察",
     "description": "The homepage description"
   },
   "homepage.hero.badge": {
-    "message": "代码柱"
+    "message": "欢迎来到 Laby Blog"
   },
   "homepage.hero.title.part1": {
     "message": "掌握"
   },
   "homepage.hero.title.part2": {
-    "message": "开发呼吸法"
+    "message": "全栈开发"
   },
   "homepage.hero.description": {
-    "message": "用第一型：水冷逻辑斩断Bug。融合古老的全栈技术与新东京速度。"
+    "message": "专注于前后端技术栈，追求代码质量与性能优化。分享实战经验，探索技术边界。"
   },
-  "homepage.hero.button.blog": {
-    "message": "拔刀博客"
+  "homepage.hero.button.about": {
+    "message": "关于我"
   },
-  "homepage.hero.button.projects": {
-    "message": "武器库"
+  "homepage.hero.button.docs": {
+    "message": "使用手册"
   },
   "homepage.hero.sticker": {
-    "message": "全集中*"
+    "message": "持续学习*"
   },
   "homepage.techStack.title": {
-    "message": "当前武器库"
+    "message": "技术栈"
   },
   "homepage.techStack.subtitle": {
-    "message": "高性能呼吸法"
+    "message": "高性能技术方案"
   },
   "homepage.techStack.badge": {
     "message": "99级技术栈"
@@ -374,10 +354,10 @@
     "message": "教程"
   },
   "homepage.blog.featured.title": {
-    "message": "雷之呼吸·柒之型 - 火雷神（API之神）"
+    "message": "高性能API设计与优化实践"
   },
   "homepage.blog.featured.description": {
-    "message": "学习如何执行让善逸骄傲的闪电般快速查询。我们探索现代Web猎鬼人的异步优化和响应式模式..."
+    "message": "深入探讨如何设计和优化高性能API，包括异步处理、缓存策略、响应式编程等现代Web开发最佳实践..."
   },
   "homepage.blog.readMore": {
     "message": "阅读更多"
@@ -386,46 +366,22 @@
     "message": "观点"
   },
   "homepage.blog.post1.title": {
-    "message": "为什么CSS Grid基本上就是全集中·常中"
+    "message": "CSS Grid布局完全指南"
   },
   "homepage.blog.post1.description": {
-    "message": "维护布局状态就像在睡觉时维持呼吸..."
+    "message": "掌握CSS Grid布局系统，构建响应式页面..."
   },
   "homepage.blog.post2.badge": {
     "message": "评测"
   },
   "homepage.blog.post2.title": {
-    "message": "日轮键盘：机械轴探索"
+    "message": "程序员的机械键盘选购指南"
   },
   "homepage.blog.post2.description": {
     "message": "用变色LED打造完美的打字体验..."
   },
   "homepage.blog.readEpisode": {
     "message": "阅读章节"
-  },
-  "homepage.blog.strip1.title": {
-    "message": "从零到柱：Rust基础",
-    "description": "Blog strip 1 title"
-  },
-  "homepage.blog.strip1.time": {
-    "message": "5分钟阅读",
-    "description": "Blog strip 1 time"
-  },
-  "homepage.blog.strip2.title": {
-    "message": "恢复训练：咖啡指南",
-    "description": "Blog strip 2 title"
-  },
-  "homepage.blog.strip2.time": {
-    "message": "8分钟阅读",
-    "description": "Blog strip 2 time"
-  },
-  "homepage.blog.strip3.title": {
-    "message": "用D3可视化血鬼术",
-    "description": "Blog strip 3 title"
-  },
-  "homepage.blog.strip3.time": {
-    "message": "12分钟阅读",
-    "description": "Blog strip 3 time"
   },
   "blog.badge": {
     "message": "技术博客"
@@ -589,7 +545,7 @@
     "message": "音乐"
   },
   "music.description": {
-    "message": "音之呼吸 - 全集中训练"
+    "message": "音乐播放器 - 享受音乐"
   },
   "music.loading": {
     "message": "加载歌单中..."
@@ -610,13 +566,13 @@
     "message": "示例: https://music.163.com/#/playlist?id=123456789"
   },
   "music.breathingMode": {
-    "message": "水之呼吸模式"
+    "message": "音乐模式"
   },
   "music.albumDesc": {
     "message": "来自网易云音乐的精选歌单，享受音乐的美好时光。"
   },
   "music.lyricsTitle": {
-    "message": "呼吸卷轴"
+    "message": "歌词"
   },
   "music.lyricsSynced": {
     "message": "已同步"
@@ -625,42 +581,34 @@
     "message": "此曲目无歌词"
   },
   "music.noLyricsHint": {
-    "message": "享受纯粹的呼吸技巧之声"
+    "message": "享受纯音乐的美好"
   },
   "music.queueTitle": {
-    "message": "队列：最终选拔"
+    "message": "播放列表"
   },
   "music.queueSubtitle": {
-    "message": "掌握节拍的呼吸。"
+    "message": "享受音乐的节奏"
   },
   "projects.title": {
     "message": "项目"
   },
   "projects.description": {
-    "message": "我的武器库 - 代码之刃"
+    "message": "我的项目展示"
   },
   "projects.header.badge": {
-    "message": "武器库"
+    "message": "项目展示"
   },
   "projects.header.title": {
-    "message": "我的武器库"
+    "message": "我的项目"
   },
   "projects.header.subtitle": {
-    "message": "每个项目都是一把锻造的日轮刀"
-  },
-  "projects.viewProject": {
-    "message": "查看项目",
-    "description": "View project button"
-  },
-  "projects.viewCode": {
-    "message": "查看代码",
-    "description": "View code button"
+    "message": "每个项目都是精心打磨的作品"
   },
   "contact.title": {
     "message": "联系我"
   },
   "contact.description": {
-    "message": "发送乌鸦信使 - 联系方式"
+    "message": "联系方式"
   },
   "contact.header.badge": {
     "message": "第四阶段：传输"
@@ -668,121 +616,17 @@
   "contact.header.title": {
     "message": "联系"
   },
-  "contact.header.subtitle": {
-    "message": "有任务委托？让我们一起斩妖除魔",
-    "description": "Contact header subtitle"
-  },
-  "contact.form.name": {
-    "message": "你的名字",
-    "description": "Name field label"
-  },
-  "contact.form.namePlaceholder": {
-    "message": "炭治郎",
-    "description": "Name field placeholder"
-  },
-  "contact.form.email": {
-    "message": "电子邮件",
-    "description": "Email field label"
-  },
-  "contact.form.emailPlaceholder": {
-    "message": "tanjiro@demon-slayer.jp",
-    "description": "Email field placeholder"
-  },
-  "contact.form.subject": {
-    "message": "任务类型",
-    "description": "Subject field label"
-  },
-  "contact.form.subjectPlaceholder": {
-    "message": "选择任务类型...",
-    "description": "Subject field placeholder"
-  },
-  "contact.form.message": {
-    "message": "任务详情",
-    "description": "Message field label"
-  },
-  "contact.form.messagePlaceholder": {
-    "message": "描述你的项目或问题...",
-    "description": "Message field placeholder"
-  },
   "contact.form.submit": {
-    "message": "释放信使"
-  },
-  "contact.info.title": {
-    "message": "其他联系方式",
-    "description": "Contact info title"
-  },
-  "contact.info.description": {
-    "message": "通过这些渠道也能找到我",
-    "description": "Contact info description"
+    "message": "发送消息"
   },
   "about.title": {
     "message": "关于我"
   },
   "about.description": {
-    "message": "猎鬼人档案 - 我的故事"
-  },
-  "about.header.badge": {
-    "message": "猎鬼人档案",
-    "description": "About header badge"
-  },
-  "about.header.title": {
-    "message": "关于这位猎鬼人",
-    "description": "About header title"
-  },
-  "about.header.subtitle": {
-    "message": "代码柱的起源故事",
-    "description": "About header subtitle"
-  },
-  "about.story.title": {
-    "message": "我的故事",
-    "description": "Story section title"
+    "message": "个人简介"
   },
   "about.skills.title": {
     "message": "技术栈"
-  },
-  "about.experience.title": {
-    "message": "战斗经历",
-    "description": "Experience section title"
-  },
-  "about.interests.title": {
-    "message": "兴趣爱好",
-    "description": "Interests section title"
-  },
-  "projects.project1.title": {
-    "message": "智慧城市安全监控系统"
-  },
-  "projects.project1.description": {
-    "message": "基于微服务架构的城市安全监控系统，实现了视频监控、报警处理和AI识别分析等功能。"
-  },
-  "projects.project2.title": {
-    "message": "智慧仓储大屏"
-  },
-  "projects.project2.description": {
-    "message": "实时监控仓储状态的数据可视化系统，包含人员调度、车辆管理和任务分配功能。"
-  },
-  "projects.project3.title": {
-    "message": "光纤线路安防预警监测平台"
-  },
-  "projects.project3.description": {
-    "message": "对光纤线路进行实时监测和预警，支持区域管理和异常情况快速响应。"
-  },
-  "projects.project4.title": {
-    "message": "智慧营地管理系统"
-  },
-  "projects.project4.description": {
-    "message": "营地人员、设备和资源的智能管理平台，提供实时状态监控和数据统计。"
-  },
-  "projects.project5.title": {
-    "message": "WMS仓储管理系统"
-  },
-  "projects.project5.description": {
-    "message": "基于RuoYi-Pro框架的仓储管理系统，集成仓库管理、库位管理、物料管理、供应商管理等核心业务功能。"
-  },
-  "projects.project6.title": {
-    "message": "考勤打卡管理系统"
-  },
-  "projects.project6.description": {
-    "message": "企业级考勤打卡管理系统，支持多种打卡方式、排班管理、请假审批、考勤统计等功能。"
   },
   "projects.viewDetails": {
     "message": "查看详情"
@@ -803,55 +647,55 @@
     "message": "启动直接通信。选择任务类别将优先处理您的数据包。"
   },
   "contact.form.header": {
-    "message": "卷轴选择"
+    "message": "联系表单"
   },
   "contact.form.nameLabel": {
-    "message": "猎鬼人姓名"
+    "message": "您的姓名"
   },
   "contact.form.namePlaceholder2": {
-    "message": "例如：炭治郎_K"
+    "message": "例如：张三"
   },
   "contact.form.emailLabel": {
-    "message": "回信鸽"
+    "message": "电子邮箱"
   },
   "contact.form.emailPlaceholder2": {
     "message": "用户@星云.网络"
   },
   "contact.form.objectiveLabel": {
-    "message": "任务目标"
+    "message": "联系目的"
   },
   "contact.form.objective.help": {
-    "message": "请求帮助"
+    "message": "技术咨询"
   },
   "contact.form.objective.bug": {
-    "message": "恶魔BUG"
+    "message": "问题反馈"
   },
   "contact.form.objective.chat": {
-    "message": "鎹鸦聊天"
+    "message": "交流合作"
   },
   "contact.form.messageLabel": {
-    "message": "卷轴内容"
+    "message": "留言内容"
   },
   "contact.form.messagePlaceholder2": {
-    "message": "在此展开您的消息..."
+    "message": "请输入您的留言..."
   },
   "contact.success.title": {
-    "message": "任务完成"
+    "message": "发送成功"
   },
   "contact.success.text": {
-    "message": "乌鸦已出发"
+    "message": "消息已发送"
   },
   "contact.status.title": {
-    "message": "呼吸状态"
+    "message": "工作状态"
   },
   "contact.status.badge": {
-    "message": "全集中"
+    "message": "在线"
   },
   "contact.status.responseTime": {
     "message": "平均响应时间"
   },
   "contact.status.responseValue": {
-    "message": "1-2个日落"
+    "message": "1-2个工作日"
   },
   "contact.status.timezone": {
     "message": "主要时区"
@@ -860,10 +704,10 @@
     "message": "东京/UTC+9"
   },
   "contact.email.title": {
-    "message": "直接信号"
+    "message": "邮箱联系"
   },
   "contact.email.address": {
-    "message": "乌鸦信号@开发漫画.A"
+    "message": "1521170425@qq.com"
   },
   "contact.social.twitter": {
     "message": "推特"
@@ -872,13 +716,10 @@
     "message": "GitHub"
   },
   "contact.visual.text": {
-    "message": "作战基地"
+    "message": "工作环境"
   },
   "about.hero.badge": {
     "message": "全栈工程师"
-  },
-  "about.hero.name": {
-    "message": "刘佳兴"
   },
   "about.hero.intro": {
     "message": "9年全栈开发经验，精通前后端技术栈。擅长从0到1搭建系统架构，熟练使用Spring Cloud微服务、Vue3/React前端框架，有丰富的大数据平台、CRM系统、智慧仓储等项目经验。"
@@ -898,26 +739,14 @@
   "about.hero.downloadBtn": {
     "message": "下载简历"
   },
-  "about.stats.experience": {
-    "message": "9年+"
-  },
   "about.stats.experienceLabel": {
     "message": "工作经验"
-  },
-  "about.stats.projects": {
-    "message": "10+"
   },
   "about.stats.projectsLabel": {
     "message": "核心项目"
   },
-  "about.stats.skills": {
-    "message": "20+"
-  },
   "about.stats.skillsLabel": {
     "message": "技术栈"
-  },
-  "about.stats.companies": {
-    "message": "5家"
   },
   "about.stats.companiesLabel": {
     "message": "知名企业"
@@ -925,44 +754,14 @@
   "about.contact.phone": {
     "message": "电话"
   },
-  "about.contact.phoneValue": {
-    "message": "13261915710"
-  },
   "about.contact.email": {
     "message": "邮箱"
-  },
-  "about.contact.emailValue": {
-    "message": "1521170425@qq.com"
   },
   "about.contact.location": {
     "message": "位置"
   },
-  "about.contact.locationValue": {
-    "message": "北京 · 32岁"
-  },
   "about.contact.salary": {
     "message": "期望薪资"
-  },
-  "about.contact.salaryValue": {
-    "message": "20-25K"
-  },
-  "about.skills.backend": {
-    "message": "后端技术"
-  },
-  "about.skills.frontend": {
-    "message": "前端技术"
-  },
-  "about.skills.database": {
-    "message": "数据存储"
-  },
-  "about.skills.ai": {
-    "message": "AI编程"
-  },
-  "about.skills.devops": {
-    "message": "DevOps"
-  },
-  "about.skills.framework": {
-    "message": "开源框架"
   },
   "about.tabs.work": {
     "message": "工作经历"

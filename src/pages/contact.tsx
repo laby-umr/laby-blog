@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
 import styles from './contact.module.css';
@@ -11,6 +11,57 @@ export default function Contact() {
     setFormSubmitted(true);
     setTimeout(() => setFormSubmitted(false), 3000);
   };
+
+  // 滚动入场动画
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animate);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    setTimeout(() => {
+      // Header animation
+      const header = document.querySelector(`.${styles.header}`);
+      if (header) observer.observe(header);
+
+      // Form section animation
+      const formSection = document.querySelector(`.${styles.formSection}`);
+      if (formSection) observer.observe(formSection);
+
+      // Sidebar animations
+      const sidebar = document.querySelector(`.${styles.sidebar}`);
+      if (sidebar) observer.observe(sidebar);
+
+      // Status card
+      const statusCard = document.querySelector(`.${styles.statusCard}`);
+      if (statusCard) observer.observe(statusCard);
+
+      // Contact grid cards
+      const contactCards = document.querySelectorAll(`.${styles.emailCard}, .${styles.socialCard}`);
+      contactCards.forEach((card, index) => {
+        setTimeout(() => {
+          if (card) observer.observe(card);
+        }, index * 100);
+      });
+
+      // Visual card
+      const visualCard = document.querySelector(`.${styles.visualCard}`);
+      if (visualCard) observer.observe(visualCard);
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <Layout
@@ -212,7 +263,7 @@ export default function Contact() {
             
             {/* Visual Card */}
             <div className={styles.visualCard}>
-              <img src="/img/head.jpg" alt="Studio Space" className={styles.visualImage} />
+              <img src="/img/contact/work.jpg" alt="Studio Space" className={styles.visualImage} />
               <div className={styles.visualOverlay}>
                 <p className={styles.visualText}>
                   <Translate id="contact.visual.text">作战基地</Translate>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
 import styles from './projects.module.css';
@@ -6,42 +6,81 @@ import styles from './projects.module.css';
 export default function Projects() {
   const projects = [
     {
-      titleKey: 'projects.project1.title',
-      descriptionKey: 'projects.project1.description',
+      title: '智慧城市安全监控系统',
+      description: '基于微服务架构的城市安全监控系统，实现了视频监控、报警处理和AI识别分析等功能。',
       image: '/img/projects/project.png',
       mode: 'PRODUCTION',
     },
     {
-      titleKey: 'projects.project2.title',
-      descriptionKey: 'projects.project2.description',
+      title: '智慧仓储大屏',
+      description: '实时监控仓储状态的数据可视化系统，包含人员调度、车辆管理和任务分配功能。',
       image: '/img/projects/project2.png',
       mode: 'LIVE',
     },
     {
-      titleKey: 'projects.project3.title',
-      descriptionKey: 'projects.project3.description',
+      title: '光纤线路安防预警监测平台',
+      description: '对光纤线路进行实时监测和预警，支持区域管理和异常情况快速响应。',
       image: '/img/projects/project3.png',
       mode: 'BETA',
     },
     {
-      titleKey: 'projects.project4.title',
-      descriptionKey: 'projects.project4.description',
+      title: '智慧营地管理系统',
+      description: '营地人员、设备和资源的智能管理平台，提供实时状态监控和数据统计。',
       image: '/img/projects/project4.png',
       mode: 'PRODUCTION',
     },
     {
-      titleKey: 'projects.project5.title',
-      descriptionKey: 'projects.project5.description',
+      title: 'WMS仓储管理系统',
+      description: '基于RuoYi-Pro框架的仓储管理系统，集成仓库管理、库位管理、物料管理、供应商管理等核心业务功能。',
       image: '/img/projects/project5.png',
       mode: 'PRODUCTION',
     },
     {
-      titleKey: 'projects.project6.title',
-      descriptionKey: 'projects.project6.description',
+      title: '考勤打卡管理系统',
+      description: '企业级考勤打卡管理系统，支持多种打卡方式、排班管理、请假审批、考勤统计等功能。',
       image: '/img/projects/project6.png',
       mode: 'LIVE',
     },
   ];
+
+  // 滚动入场动画
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animate);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    setTimeout(() => {
+      // Hero section animation
+      const hero = document.querySelector(`.${styles.hero}`);
+      if (hero) observer.observe(hero);
+
+      // Project cards
+      const projectCards = document.querySelectorAll(`.${styles.projectCard}`);
+      projectCards.forEach((card, index) => {
+        setTimeout(() => {
+          if (card) observer.observe(card);
+        }, index * 100);
+      });
+
+      // Quote section
+      const quoteSection = document.querySelector(`.${styles.quoteSection}`);
+      if (quoteSection) observer.observe(quoteSection);
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <Layout
@@ -93,10 +132,10 @@ export default function Projects() {
                 {/* Card Content */}
                 <div className={styles.cardContent}>
                   <h3 className={styles.cardTitle}>
-                    <Translate id={project.titleKey}>{project.titleKey}</Translate>
+                    {project.title}
                   </h3>
                   <p className={styles.cardDescription}>
-                    <Translate id={project.descriptionKey}>{project.descriptionKey}</Translate>
+                    {project.description}
                   </p>
                   <button className={styles.cardButton}>
                     <span><Translate id="projects.viewDetails">查看详情</Translate></span>
@@ -110,7 +149,7 @@ export default function Projects() {
 
         {/* Quote Section */}
         <section className={styles.quoteSection}>
-          <div className={styles.quoteBackground}></div>
+          <span className={`material-symbols-outlined ${styles.quoteBackground}`}>flare</span>
           <div className={styles.quoteContent}>
             <blockquote className={styles.quoteText}>
               <Translate id="projects.quote">代码不仅是工具，更是创造价值的艺术</Translate>

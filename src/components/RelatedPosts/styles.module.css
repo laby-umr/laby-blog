@@ -1,0 +1,197 @@
+/* DevManga Theme - Related Posts Component */
+
+.relatedPosts {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--dm-surface-container-lowest);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-2xl);
+  box-shadow: var(--dm-shadow-md);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--dm-outline-variant);
+}
+
+.header span.material-symbols-outlined {
+  font-size: 2rem;
+  color: var(--dm-primary);
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 40;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--dm-on-surface);
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.postCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--dm-surface-container);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
+  text-decoration: none;
+  color: var(--dm-on-surface);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.postCard:hover {
+  transform: translateX(8px) translateY(-4px);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.2);
+  background: var(--dm-primary-container);
+  border-color: var(--dm-primary);
+}
+
+.postNumber {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dm-primary);
+  color: var(--dm-on-primary);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: 50%;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-style: italic;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.postContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.postTitle {
+  margin: 0 0 0.5rem 0;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--dm-on-surface);
+  line-height: 1.4;
+}
+
+.postDescription {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  color: var(--dm-on-surface-variant);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.postTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.25rem 0.5rem;
+  background: var(--dm-secondary-container);
+  color: var(--dm-on-secondary-container);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-sm);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.arrow {
+  flex-shrink: 0;
+  font-size: 2rem;
+  color: var(--dm-primary);
+  transition: transform 0.3s;
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 40;
+}
+
+.postCard:hover .arrow {
+  transform: translateX(8px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .relatedPosts {
+    padding: 1.5rem;
+  }
+
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .postCard {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .postNumber {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .postTitle {
+    font-size: 1rem;
+  }
+
+  .postDescription {
+    font-size: 0.8125rem;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .relatedPosts {
+  border-color: var(--dm-outline);
+}
+
+[data-theme='dark'] .postCard {
+  border-color: var(--dm-outline);
+  box-shadow: 3px 3px 0px 0px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .postCard:hover {
+  box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .postNumber {
+  border-color: var(--dm-outline);
+  box-shadow: 2px 2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .tag {
+  border-color: var(--dm-outline);
+}

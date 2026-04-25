@@ -1,0 +1,30 @@
+/* DevManga Theme - Reading Time Component */
+
+.readingTime {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--dm-tertiary-container);
+  color: var(--dm-on-tertiary-container);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem 0;
+}
+
+.readingTime span.material-symbols-outlined {
+  font-size: 18px;
+  font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 20;
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .readingTime {
+  border-color: var(--dm-outline);
+  box-shadow: 2px 2px 0px 0px rgba(255, 255, 255, 0.1);
+}
