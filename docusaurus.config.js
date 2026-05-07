@@ -192,7 +192,7 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl:
-            'https://github.com/MasterLiu93/blog-web/tree/main/',
+            'https://github.com/laby-umr/laby-umr.github.io/tree/main/',
           routeBasePath: 'docs',
           path: 'docs',
           showLastUpdateAuthor: true,
@@ -201,7 +201,7 @@ const config = {
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/MasterLiu93/blog-web/tree/main/',
+            'https://github.com/laby-umr/laby-umr.github.io/tree/main/',
           postsPerPage: 10,
           blogSidebarCount: 'ALL',
           blogSidebarTitle: '全部博客文章',
@@ -337,7 +337,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/MasterLiu93',
+            href: 'https://github.com/laby-umr',
             label: 'GitHub',
             position: 'right',
           },

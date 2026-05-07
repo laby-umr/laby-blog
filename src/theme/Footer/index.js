@@ -61,7 +61,7 @@ export default function FooterWrapper() {
               <span>13261915710</span>
             </li>
             <li className={styles.contactItem}>
-              <a href="https://github.com/MasterLiu93" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <a href="https://github.com/laby-umr" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                 <span className="material-symbols-outlined">code</span>
                 <span>GitHub</span>
               </a>
