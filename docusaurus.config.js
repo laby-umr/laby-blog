@@ -20,8 +20,7 @@ const config = {
   },
 
   // Set the production url of your site here
-  // 生产环境使用域名（不带端口），开发环境使用 localhost
-  url: process.env.DOCUSAURUS_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'http://120.48.86.168'),
+  url: 'https://laby-umr.github.io',
   baseUrl: '/',
 
   // 性能优化：预连接和 DNS 预解析
@@ -51,8 +50,8 @@ const config = {
   ],
 
   // GitHub pages deployment config.
-  organizationName: 'laby-umr', // GitHub org/user name.
-  projectName: 'laby-blog-private', // repo name.
+  organizationName: 'laby-umr', // GitHub username
+  projectName: 'laby-umr.github.io', // 用户级 GitHub Pages 仓库名
 
   onBrokenLinks: 'warn',
 
