@@ -1,0 +1,4604 @@
+---
+sidebar_position: 10
+title: Vue 面试题库
+description: Vue.js 框架常见面试题及详细解答
+tags: [Vue, 面试, 前端框架]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Vue 面试题库
+
+## 一、Vue 基础
+
+### 1.1 什么是 Vue.js？它的核心特性是什么？
+
+**面试回答思路：**
+
+Vue.js 是一个渐进式 JavaScript 框架，主要用于构建用户界面。我可以从以下几个方面来介绍它的核心特性：
+
+**1. 响应式数据绑定**
+- Vue 会自动追踪数据的依赖关系，当数据发生变化时，视图会自动更新
+- 开发者不需要手动操作 DOM，只需要关注数据的变化
+- 这大大简化了开发流程，提高了开发效率
+
+**2. 组件化开发**
+- Vue 采用组件化的开发模式，每个组件都是独立的、可复用的
+- 组件之间通过 props 和事件进行通信
+- 这种模式让代码更易维护，也便于团队协作
+
+**3. 虚拟 DOM**
+- Vue 使用虚拟 DOM 来提高渲染性能
+- 通过 diff 算法，只更新真正需要变化的部分
+- 减少了直接操作 DOM 的次数，提升了应用性能
+
+**4. 指令系统**
+- Vue 提供了丰富的指令，如 v-if、v-for、v-model 等
+- 这些指令让模板更加简洁和易读
+- 也可以自定义指令来扩展功能
+
+**5. 渐进式框架**
+- Vue 的核心库只关注视图层，可以逐步集成到现有项目中
+- 不需要一次性重写整个应用
+- 可以根据项目需求选择性地使用 Vue Router、Vuex 等配套工具
+
+**补充说明：**
+在实际项目中，我使用 Vue 开发过多个项目，它的学习曲线相对平缓，文档也很完善，对新手比较友好。同时 Vue 3 引入了 Composition API，让代码组织更加灵活，TypeScript 支持也更好了。
+
+```javascript
+// Vue 3 基本示例
+import { createApp, ref } from 'vue'
+
+const app = createApp({
+  setup() {
+    const message = ref('Hello Vue!')
+    
+    const updateMessage = () => {
+      message.value = 'Hello World!'
+    }
+    
+    return {
+      message,
+      updateMessage
+    }
+  }
+})
+
+app.mount('#app')
+```
+
+---
+
+### 1.2 Vue 2 和 Vue 3 的主要区别是什么？
+
+**面试回答思路：**
+
+Vue 3 相比 Vue 2 有很多重要的改进，我主要从以下几个方面来说明：
+
+**1. 性能提升**
+- Vue 3 的渲染速度比 Vue 2 快了约 1.3-2 倍
+- 这主要得益于重写了虚拟 DOM 的实现
+- 内存占用也减少了约 54%
+- 打包体积更小，支持 Tree-shaking，可以按需引入
+
+**2. Composition API**
+- Vue 3 引入了 Composition API，这是一种新的代码组织方式
+- 相比 Options API，它能更好地组织和复用逻辑
+- 特别适合大型项目和复杂组件
+- 但 Options API 仍然可以使用，向后兼容
+
+**3. 响应式系统升级**
+- Vue 2 使用 Object.defineProperty 实现响应式
+- Vue 3 改用 Proxy，性能更好
+- 可以监听动态添加的属性，不需要 Vue.set
+- 可以监听数组索引和 length 的变化
+
+**4. TypeScript 支持**
+- Vue 3 使用 TypeScript 重写，类型推导更准确
+- 开发体验大幅提升
+- IDE 的代码提示和类型检查更完善
+
+**5. 新特性**
+- 支持多个根节点（Fragment）
+- Teleport 组件，可以将内容渲染到 DOM 的其他位置
+- Suspense 组件，更好地处理异步组件
+- 更好的自定义渲染器 API
+
+**实际应用建议：**
+如果是新项目，我会推荐使用 Vue 3，因为它性能更好，功能也更强大。但如果是维护老项目，Vue 2 也完全够用，而且生态更成熟。Vue 3 的迁移成本需要评估，不是所有项目都需要立即升级。
+
+
+**主要区别：**
+
+| 特性 | Vue 2 | Vue 3 |
+|------|-------|-------|
+| API 风格 | Options API | Composition API（可选） |
+| 响应式系统 | Object.defineProperty | Proxy |
+| 性能 | 较好 | 更快（约 1.3-2 倍） |
+| TypeScript 支持 | 有限 | 完整支持 |
+| 包体积 | 较大 | 更小（Tree-shaking） |
+| 生命周期 | beforeCreate, created 等 | setup, onMounted 等 |
+| 多根节点 | 不支持 | 支持（Fragment） |
+| Teleport | 不支持 | 支持 |
+| Suspense | 不支持 | 支持 |
+
+<Tabs>
+<TabItem value="vue2" label="Vue 2">
+
+```javascript
+export default {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+  mounted() {
+    console.log('Component mounted')
+  }
+}
+```
+
+</TabItem>
+<TabItem value="vue3" label="Vue 3">
+
+```javascript
+import { ref, onMounted } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+    
+    const increment = () => {
+      count.value++
+    }
+    
+    onMounted(() => {
+      console.log('Component mounted')
+    })
+    
+    return {
+      count,
+      increment
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### 1.3 解释 Vue 的响应式原理
+
+**面试回答思路：**
+
+Vue 的响应式原理是面试中的高频考点，我会分别介绍 Vue 2 和 Vue 3 的实现方式：
+
+**Vue 2 的响应式原理（基于 Object.defineProperty）：**
+
+当我们创建一个 Vue 实例时，Vue 会遍历 data 对象的所有属性，使用 Object.defineProperty 将这些属性转换为 getter 和 setter。
+
+**工作流程：**
+1. **初始化阶段**：Vue 会递归遍历 data 对象，为每个属性添加 getter 和 setter
+2. **依赖收集**：当组件渲染时，会访问数据的 getter，此时会收集当前组件作为依赖（Watcher）
+3. **派发更新**：当数据被修改时，会触发 setter，setter 会通知所有依赖的 Watcher 进行更新
+4. **异步更新队列**：Vue 会将所有的更新放入一个队列中，在下一个事件循环中统一执行，避免重复渲染
+
+**Vue 2 的局限性：**
+- 无法检测对象属性的添加或删除，需要使用 Vue.set
+- 无法检测数组索引和 length 的变化
+- 需要递归遍历所有属性，初始化性能开销大
+
+**Vue 3 的响应式原理（基于 Proxy）：**
+
+Vue 3 使用 ES6 的 Proxy 来实现响应式，这是一个更强大的方案。
+
+**Proxy 的优势：**
+1. **可以监听整个对象**：不需要遍历每个属性
+2. **可以监听动态添加的属性**：新增属性自动具有响应式
+3. **可以监听数组的变化**：包括索引和 length
+4. **性能更好**：懒代理，只有访问到的属性才会被代理
+5. **支持 Map、Set 等数据结构**
+
+**实现细节：**
+- 使用 Proxy 的 get 拦截器进行依赖收集（track）
+- 使用 Proxy 的 set 拦截器触发更新（trigger）
+- 使用 Reflect 确保正确的 this 指向
+
+**总结：**
+Vue 的响应式系统是其核心特性，理解它的原理对于调试问题和性能优化都很有帮助。Vue 3 的 Proxy 方案解决了 Vue 2 的很多痛点，是一个重要的升级。
+
+
+```javascript
+// Vue 2 响应式简化实现
+function defineReactive(obj, key, val) {
+  const dep = new Dep() // 依赖收集器
+  
+  Object.defineProperty(obj, key, {
+    get() {
+      if (Dep.target) {
+        dep.depend() // 收集依赖
+      }
+      return val
+    },
+    set(newVal) {
+      if (newVal !== val) {
+        val = newVal
+        dep.notify() // 通知更新
+      }
+    }
+  })
+}
+```
+
+**Vue 3 响应式原理（Proxy）：**
+
+1. 使用 Proxy 代理整个对象
+2. 可以监听动态添加的属性
+3. 可以监听数组索引和 length 变化
+4. 性能更好
+
+```javascript
+// Vue 3 响应式简化实现
+function reactive(target) {
+  return new Proxy(target, {
+    get(target, key, receiver) {
+      track(target, key) // 收集依赖
+      return Reflect.get(target, key, receiver)
+    },
+    set(target, key, value, receiver) {
+      const result = Reflect.set(target, key, value, receiver)
+      trigger(target, key) // 触发更新
+      return result
+    }
+  })
+}
+```
+
+---
+
+## 二、组件通信
+
+### 2.1 Vue 组件间通信的方式有哪些？
+
+**面试回答思路：**
+
+Vue 组件间通信是开发中经常遇到的问题，根据组件关系的不同，有多种通信方式可以选择：
+
+**1. Props 和 $emit（父子组件通信）**
+
+这是最基本也是最常用的通信方式：
+- **Props**：父组件向子组件传递数据，是单向数据流
+- **$emit**：子组件通过事件向父组件传递数据
+- 优点：简单直观，符合单向数据流的设计理念
+- 适用场景：父子组件之间的直接通信
+
+**2. Provide 和 Inject（跨层级通信）**
+
+用于祖先组件向后代组件传递数据：
+- 祖先组件通过 provide 提供数据
+- 后代组件通过 inject 注入数据
+- 优点：可以跨越多层组件传递数据，不需要逐层传递
+- 缺点：数据来源不够明确，不是响应式的（Vue 2）
+- 适用场景：主题、语言等全局配置
+
+**3. EventBus（兄弟组件通信 - Vue 2）**
+
+通过一个空的 Vue 实例作为事件总线：
+- 任何组件都可以触发和监听事件
+- 优点：简单灵活
+- 缺点：事件管理混乱，难以维护，Vue 3 已移除
+- 适用场景：小型项目的兄弟组件通信
+
+**4. Vuex 或 Pinia（全局状态管理）**
+
+用于管理应用的全局状态：
+- 集中式存储和管理应用的所有组件状态
+- 优点：状态可预测，易于调试，支持时间旅行
+- 缺点：增加了代码复杂度
+- 适用场景：中大型项目，多个组件共享状态
+
+**5. $refs（父组件访问子组件）**
+
+父组件可以直接访问子组件的实例：
+- 可以调用子组件的方法或访问数据
+- 优点：直接方便
+- 缺点：破坏了组件的封装性，不推荐过度使用
+- 适用场景：需要直接操作子组件的特殊情况
+
+**6. $parent 和 $children（不推荐）**
+
+可以访问父组件或子组件实例：
+- 耦合度太高，不利于维护
+- Vue 3 已移除 $children
+- 不推荐使用
+
+**选择建议：**
+- 父子组件：优先使用 Props/$emit
+- 跨层级：使用 Provide/Inject
+- 全局状态：使用 Pinia（Vue 3）或 Vuex
+- 避免使用 EventBus 和 $parent/$children
+
+在实际项目中，我会根据组件关系和数据流向选择合适的通信方式，保持代码的清晰和可维护性。
+
+**1. Props / $emit（父子组件）**
+
+```vue
+<!-- 父组件 -->
+<template>
+  <ChildComponent :message="parentMsg" @update="handleUpdate" />
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      parentMsg: 'Hello from parent'
+    }
+  },
+  methods: {
+    handleUpdate(data) {
+      console.log('Received from child:', data)
+    }
+  }
+}
+</script>
+
+<!-- 子组件 -->
+<template>
+  <div>
+    <p>{{ message }}</p>
+    <button @click="sendToParent">Send to Parent</button>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['message'],
+  methods: {
+    sendToParent() {
+      this.$emit('update', 'Data from child')
+    }
+  }
+}
+</script>
+```
+
+
+**2. Provide / Inject（跨层级）**
+
+```javascript
+// 祖先组件
+export default {
+  provide() {
+    return {
+      theme: 'dark',
+      user: this.currentUser
+    }
+  }
+}
+
+// 后代组件
+export default {
+  inject: ['theme', 'user'],
+  mounted() {
+    console.log(this.theme) // 'dark'
+  }
+}
+```
+
+**3. EventBus（兄弟组件 - Vue 2）**
+
+```javascript
+// eventBus.js
+import Vue from 'vue'
+export const EventBus = new Vue()
+
+// 组件 A
+EventBus.$emit('custom-event', data)
+
+// 组件 B
+EventBus.$on('custom-event', (data) => {
+  console.log(data)
+})
+```
+
+**4. Vuex / Pinia（全局状态管理）**
+
+```javascript
+// Pinia Store
+import { defineStore } from 'pinia'
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    name: 'John',
+    age: 30
+  }),
+  actions: {
+    updateName(newName) {
+      this.name = newName
+    }
+  }
+})
+
+// 组件中使用
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
+console.log(userStore.name)
+userStore.updateName('Jane')
+```
+
+**5. $refs（父访问子）**
+
+```vue
+<template>
+  <ChildComponent ref="childRef" />
+  <button @click="callChildMethod">Call Child</button>
+</template>
+
+<script>
+export default {
+  methods: {
+    callChildMethod() {
+      this.$refs.childRef.someMethod()
+    }
+  }
+}
+</script>
+```
+
+**6. $parent / $children（不推荐）**
+
+```javascript
+// 子组件访问父组件
+this.$parent.someMethod()
+
+// 父组件访问子组件
+this.$children[0].someMethod()
+```
+
+---
+
+### 2.2 v-model 的原理是什么？
+
+**面试回答思路：**
+
+v-model 是 Vue 中实现双向数据绑定的语法糖，理解它的原理对于自定义组件很有帮助。
+
+**本质原理：**
+
+v-model 实际上是两个操作的组合：
+1. **数据绑定**：将数据绑定到表单元素的 value 属性
+2. **事件监听**：监听表单元素的 input 事件，更新数据
+
+简单来说，`v-model="message"` 等价于 `:value="message"` 加上 `@input="message = $event.target.value"`
+
+**在原生表单元素上：**
+- 对于 input、textarea：监听 input 事件，绑定 value 属性
+- 对于 checkbox、radio：监听 change 事件，绑定 checked 属性
+- 对于 select：监听 change 事件，绑定 value 属性
+
+**在自定义组件上：**
+
+Vue 2 和 Vue 3 的实现略有不同：
+
+**Vue 2：**
+- 默认使用 value 作为 prop
+- 默认监听 input 事件
+- 可以通过 model 选项自定义 prop 和事件名
+
+**Vue 3：**
+- 默认使用 modelValue 作为 prop
+- 默认监听 update:modelValue 事件
+- 支持多个 v-model，如 v-model:name、v-model:email
+
+**修饰符：**
+
+v-model 还支持几个常用的修饰符：
+- `.lazy`：将 input 事件改为 change 事件，失去焦点时才更新
+- `.number`：自动将输入值转换为数字类型
+- `.trim`：自动去除首尾空格
+
+**实际应用：**
+
+在开发自定义表单组件时，我经常需要实现 v-model 支持。理解它的原理后，就能轻松实现组件的双向绑定，让组件的使用更加简洁。Vue 3 的多 v-model 特性让复杂表单组件的开发更加灵活。
+
+
+<Tabs>
+<TabItem value="vue2" label="Vue 2">
+
+```vue
+<!-- 使用 v-model -->
+<input v-model="message" />
+
+<!-- 等价于 -->
+<input 
+  :value="message" 
+  @input="message = $event.target.value"
+/>
+
+<!-- 自定义组件 -->
+<CustomInput v-model="value" />
+
+<!-- 等价于 -->
+<CustomInput 
+  :value="value" 
+  @input="value = $event"
+/>
+
+<!-- CustomInput 组件实现 -->
+<template>
+  <input 
+    :value="value" 
+    @input="$emit('input', $event.target.value)"
+  />
+</template>
+
+<script>
+export default {
+  props: ['value']
+}
+</script>
+```
+
+</TabItem>
+<TabItem value="vue3" label="Vue 3">
+
+```vue
+<!-- 使用 v-model -->
+<input v-model="message" />
+
+<!-- 等价于 -->
+<input 
+  :modelValue="message" 
+  @update:modelValue="message = $event"
+/>
+
+<!-- 自定义组件 -->
+<CustomInput v-model="value" />
+
+<!-- 等价于 -->
+<CustomInput 
+  :modelValue="value" 
+  @update:modelValue="value = $event"
+/>
+
+<!-- CustomInput 组件实现 -->
+<template>
+  <input 
+    :value="modelValue" 
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template>
+
+<script>
+export default {
+  props: ['modelValue'],
+  emits: ['update:modelValue']
+}
+</script>
+
+<!-- Vue 3 支持多个 v-model -->
+<UserForm 
+  v-model:name="userName" 
+  v-model:email="userEmail"
+/>
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+## 三、生命周期
+
+### 3.1 Vue 的生命周期钩子有哪些？
+
+**面试回答思路：**
+
+Vue 的生命周期是指组件从创建到销毁的整个过程，Vue 在不同阶段提供了钩子函数，让我们可以在特定时机执行代码。
+
+**Vue 2 的生命周期钩子：**
+
+我按照执行顺序来介绍：
+
+**1. 创建阶段：**
+- **beforeCreate**：实例初始化之后，数据观测和事件配置之前调用。此时无法访问 data、computed、methods 等。很少使用。
+- **created**：实例创建完成后调用。此时可以访问 data、computed、methods，但 DOM 还未生成。常用于数据初始化、API 调用。
+
+**2. 挂载阶段：**
+- **beforeMount**：在挂载开始之前调用，相关的 render 函数首次被调用。很少使用。
+- **mounted**：实例被挂载后调用，此时可以访问 DOM。常用于 DOM 操作、第三方库初始化、图表渲染等。
+
+**3. 更新阶段：**
+- **beforeUpdate**：数据更新时调用，发生在虚拟 DOM 重新渲染之前。可以访问更新前的 DOM。
+- **updated**：数据更新导致的虚拟 DOM 重新渲染后调用。可以访问更新后的 DOM，但要避免在这里修改数据，可能导致无限循环。
+
+**4. 销毁阶段：**
+- **beforeDestroy**：实例销毁之前调用。常用于清理定时器、取消事件监听、取消网络请求等。
+- **destroyed**：实例销毁后调用。此时所有的事件监听器已被移除，子实例也被销毁。
+
+**5. 特殊钩子（keep-alive）：**
+- **activated**：被 keep-alive 缓存的组件激活时调用
+- **deactivated**：被 keep-alive 缓存的组件停用时调用
+
+**Vue 3 的变化：**
+
+Vue 3 在 Composition API 中对生命周期钩子进行了重命名：
+- beforeCreate 和 created 被 setup() 替代
+- beforeDestroy 改名为 beforeUnmount
+- destroyed 改名为 unmounted
+- 其他钩子在前面加上 "on"，如 onMounted、onUpdated
+
+**使用建议：**
+
+1. **数据初始化、API 调用**：放在 created 或 setup 中
+2. **DOM 操作**：放在 mounted 中
+3. **清理工作**：放在 beforeUnmount 中
+4. **避免在 updated 中修改数据**：容易造成死循环
+
+**实际经验：**
+
+在项目中，我最常用的是 created/setup（数据初始化）、mounted（DOM 操作）和 beforeUnmount（清理）。理解生命周期对于调试组件问题、优化性能都很重要。
+
+
+**Vue 2 生命周期：**
+
+| 钩子 | 说明 | 使用场景 |
+|------|------|----------|
+| beforeCreate | 实例初始化后，数据观测前 | 很少使用 |
+| created | 实例创建完成，数据观测完成 | 数据初始化、API 调用 |
+| beforeMount | 挂载开始前 | 很少使用 |
+| mounted | 挂载完成，DOM 可访问 | DOM 操作、第三方库初始化 |
+| beforeUpdate | 数据更新前 | 访问更新前的 DOM |
+| updated | 数据更新后 | 访问更新后的 DOM |
+| beforeDestroy | 实例销毁前 | 清理定时器、事件监听 |
+| destroyed | 实例销毁后 | 清理工作 |
+| activated | keep-alive 组件激活 | 缓存组件恢复 |
+| deactivated | keep-alive 组件停用 | 缓存组件暂停 |
+
+**Vue 3 生命周期：**
+
+| Vue 2 | Vue 3 (Composition API) | 说明 |
+|-------|-------------------------|------|
+| beforeCreate | setup() | 组件创建前 |
+| created | setup() | 组件创建后 |
+| beforeMount | onBeforeMount | 挂载前 |
+| mounted | onMounted | 挂载后 |
+| beforeUpdate | onBeforeUpdate | 更新前 |
+| updated | onUpdated | 更新后 |
+| beforeUnmount | onBeforeUnmount | 卸载前 |
+| unmounted | onUnmounted | 卸载后 |
+| activated | onActivated | 激活 |
+| deactivated | onDeactivated | 停用 |
+
+```javascript
+// Vue 3 Composition API 示例
+import { ref, onMounted, onUpdated, onUnmounted } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+    
+    onMounted(() => {
+      console.log('Component mounted')
+      // DOM 操作、API 调用
+    })
+    
+    onUpdated(() => {
+      console.log('Component updated')
+    })
+    
+    onUnmounted(() => {
+      console.log('Component unmounted')
+      // 清理工作
+    })
+    
+    return { count }
+  }
+}
+```
+
+---
+
+### 3.2 父子组件生命周期执行顺序
+
+**面试回答思路：**
+
+父子组件的生命周期执行顺序是一个经典的面试题，理解这个顺序对于调试组件问题很有帮助。
+
+**核心原则：**
+
+Vue 的组件渲染是一个递归的过程，遵循"深度优先"的原则。简单来说就是：
+- **创建过程**：从外到内（父 → 子）
+- **挂载过程**：从内到外（子 → 父）
+
+**详细执行顺序：**
+
+**1. 挂载阶段（初始化）：**
+```
+父 beforeCreate 
+→ 父 created 
+→ 父 beforeMount 
+→ 子 beforeCreate 
+→ 子 created 
+→ 子 beforeMount 
+→ 子 mounted 
+→ 父 mounted
+```
+
+**为什么是这个顺序？**
+- 父组件先开始创建和初始化
+- 当父组件开始挂载时，遇到子组件标签
+- 子组件开始创建、初始化、挂载
+- 子组件挂载完成后，父组件才算挂载完成
+
+**2. 更新阶段：**
+```
+父 beforeUpdate 
+→ 子 beforeUpdate 
+→ 子 updated 
+→ 父 updated
+```
+
+**说明：**
+- 父组件的数据变化可能影响子组件
+- 子组件先完成更新
+- 父组件最后完成更新
+
+**3. 销毁阶段：**
+```
+父 beforeDestroy 
+→ 子 beforeDestroy 
+→ 子 destroyed 
+→ 父 destroyed
+```
+
+**说明：**
+- 父组件先开始销毁
+- 子组件完全销毁后
+- 父组件才完成销毁
+
+**实际应用场景：**
+
+1. **数据初始化时机**：如果子组件依赖父组件的数据，要确保在父组件 created 之后传递
+2. **DOM 操作时机**：如果需要操作子组件的 DOM，要在父组件 mounted 之后
+3. **清理资源**：父组件销毁时，子组件会自动销毁，不需要手动处理
+
+**记忆技巧：**
+
+可以把组件想象成俄罗斯套娃：
+- 组装时：先组装外层，再组装内层，最后内层装好了，外层才算装好
+- 拆卸时：先拆外层，再拆内层，最后内层拆完了，外层才算拆完
+
+这个顺序在调试问题时特别有用，比如子组件的 mounted 钩子中可以确保父组件的 DOM 已经存在。
+
+---
+
+## 四、指令与过滤器
+
+### 4.1 常用的 Vue 指令有哪些？
+
+**面试回答思路：**
+
+Vue 的指令系统是其模板语法的核心，我会介绍最常用的几个指令及其使用场景：
+
+**1. v-if / v-else-if / v-else（条件渲染）**
+
+这是真正的条件渲染，元素会根据条件被创建或销毁：
+- 适用于条件不经常改变的场景
+- 有更高的切换开销
+- 可以配合 template 标签使用，不会渲染额外的 DOM 元素
+- 惰性渲染：初始条件为 false 时，不会渲染
+
+**2. v-show（条件显示）**
+
+通过 CSS 的 display 属性控制显示隐藏：
+- 适用于频繁切换的场景
+- 有更高的初始渲染开销
+- 元素始终会被渲染，只是切换 display 属性
+- 不支持 template 标签
+
+**选择建议：**
+- 频繁切换用 v-show
+- 运行时条件很少改变用 v-if
+- 涉及权限控制用 v-if（不渲染 DOM 更安全）
+
+**3. v-for（列表渲染）**
+
+用于渲染列表数据：
+- 必须使用 key 属性，且 key 要唯一
+- 可以遍历数组、对象、数字
+- 可以配合 template 使用
+- 不要和 v-if 一起使用（优先级问题）
+
+**4. v-bind（属性绑定，简写 :）**
+
+动态绑定 HTML 属性：
+- 可以绑定任何 HTML 属性
+- 支持对象和数组语法（class 和 style）
+- 可以绑定 props
+
+**5. v-on（事件监听，简写 @）**
+
+绑定事件监听器：
+- 支持所有原生事件
+- 支持事件修饰符：.stop、.prevent、.capture、.self、.once、.passive
+- 支持按键修饰符：.enter、.tab、.delete、.esc、.space 等
+- 可以传递参数和 $event 对象
+
+**6. v-model（双向绑定）**
+
+表单输入和应用状态的双向绑定：
+- 支持修饰符：.lazy、.number、.trim
+- 本质是 :value 和 @input 的语法糖
+- 可用于自定义组件
+
+**7. v-slot（插槽，简写 #）**
+
+用于分发内容：
+- 默认插槽、具名插槽、作用域插槽
+- 让组件更加灵活和可复用
+
+**8. v-pre（跳过编译）**
+
+跳过这个元素和它的子元素的编译过程：
+- 可以用来显示原始 Mustache 标签
+- 加快编译速度
+
+**9. v-once（只渲染一次）**
+
+只渲染元素和组件一次，后续不再更新：
+- 用于优化性能
+- 适用于静态内容
+
+**10. v-cloak（隐藏未编译的模板）**
+
+保持在元素上直到关联实例结束编译：
+- 配合 CSS 规则使用
+- 解决页面闪烁问题
+
+**实际应用经验：**
+
+在项目中，我最常用的是 v-if、v-for、v-bind、v-on 和 v-model。理解每个指令的特点和适用场景，可以写出更高效、更易维护的代码。特别是 v-if 和 v-show 的选择，以及 v-for 必须使用 key，这些都是实际开发中的重点。
+
+
+**1. v-if / v-else-if / v-else**：条件渲染
+
+```vue
+<template>
+  <div v-if="type === 'A'">A</div>
+  <div v-else-if="type === 'B'">B</div>
+  <div v-else>C</div>
+</template>
+```
+
+**2. v-show**：条件显示（CSS display）
+
+```vue
+<div v-show="isVisible">Content</div>
+```
+
+**3. v-for**：列表渲染
+
+```vue
+<ul>
+  <li v-for="(item, index) in items" :key="item.id">
+    {{ index }}: {{ item.name }}
+  </li>
+</ul>
+```
+
+**4. v-bind（:）**：属性绑定
+
+```vue
+<img :src="imageSrc" :alt="imageAlt" />
+<div :class="{ active: isActive }" :style="{ color: textColor }"></div>
+```
+
+**5. v-on（@）**：事件监听
+
+```vue
+<button @click="handleClick">Click</button>
+<input @input="handleInput" @keyup.enter="handleEnter" />
+```
+
+**6. v-model**：双向绑定
+
+```vue
+<input v-model="message" />
+<input v-model.trim="username" />
+<input v-model.number="age" />
+```
+
+**7. v-slot（#）**：插槽
+
+```vue
+<template #header>
+  <h1>Header Content</h1>
+</template>
+```
+
+**8. v-pre**：跳过编译
+
+```vue
+<span v-pre>{{ this will not be compiled }}</span>
+```
+
+**9. v-once**：只渲染一次
+
+```vue
+<span v-once>{{ message }}</span>
+```
+
+**10. v-cloak**：隐藏未编译的模板
+
+```vue
+<style>
+[v-cloak] { display: none; }
+</style>
+
+<div v-cloak>{{ message }}</div>
+```
+
+---
+
+### 4.2 如何自定义指令？
+
+**答案：**
+
+
+<Tabs>
+<TabItem value="vue2" label="Vue 2">
+
+```javascript
+// 全局注册
+Vue.directive('focus', {
+  inserted(el) {
+    el.focus()
+  }
+})
+
+// 局部注册
+export default {
+  directives: {
+    focus: {
+      inserted(el) {
+        el.focus()
+      }
+    }
+  }
+}
+
+// 完整钩子函数
+Vue.directive('example', {
+  bind(el, binding, vnode) {
+    // 只调用一次，指令第一次绑定到元素时
+  },
+  inserted(el, binding, vnode) {
+    // 被绑定元素插入父节点时
+  },
+  update(el, binding, vnode, oldVnode) {
+    // 所在组件的 VNode 更新时
+  },
+  componentUpdated(el, binding, vnode, oldVnode) {
+    // 所在组件的 VNode 及其子 VNode 全部更新后
+  },
+  unbind(el, binding, vnode) {
+    // 只调用一次，指令与元素解绑时
+  }
+})
+```
+
+</TabItem>
+<TabItem value="vue3" label="Vue 3">
+
+```javascript
+// 全局注册
+app.directive('focus', {
+  mounted(el) {
+    el.focus()
+  }
+})
+
+// 局部注册
+export default {
+  directives: {
+    focus: {
+      mounted(el) {
+        el.focus()
+      }
+    }
+  }
+}
+
+// 完整钩子函数
+app.directive('example', {
+  created(el, binding, vnode, prevVnode) {},
+  beforeMount(el, binding, vnode, prevVnode) {},
+  mounted(el, binding, vnode, prevVnode) {},
+  beforeUpdate(el, binding, vnode, prevVnode) {},
+  updated(el, binding, vnode, prevVnode) {},
+  beforeUnmount(el, binding, vnode, prevVnode) {},
+  unmounted(el, binding, vnode, prevVnode) {}
+})
+```
+
+</TabItem>
+</Tabs>
+
+**实用自定义指令示例：**
+
+```javascript
+// 1. 权限指令
+app.directive('permission', {
+  mounted(el, binding) {
+    const { value } = binding
+    const permissions = store.state.user.permissions
+    
+    if (!permissions.includes(value)) {
+      el.parentNode?.removeChild(el)
+    }
+  }
+})
+
+// 使用
+<button v-permission="'admin'">Delete</button>
+
+// 2. 防抖指令
+app.directive('debounce', {
+  mounted(el, binding) {
+    let timer
+    el.addEventListener('click', () => {
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(() => {
+        binding.value()
+      }, 500)
+    })
+  }
+})
+
+// 使用
+<button v-debounce="handleClick">Submit</button>
+
+// 3. 图片懒加载指令
+app.directive('lazy', {
+  mounted(el, binding) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.src = binding.value
+        observer.unobserve(el)
+      }
+    })
+    observer.observe(el)
+  }
+})
+
+// 使用
+<img v-lazy="imageUrl" />
+```
+
+---
+
+## 五、Computed 与 Watch
+
+### 5.1 computed 和 watch 的区别
+
+**答案：**
+
+
+| 特性 | computed | watch |
+|------|----------|-------|
+| 用途 | 计算派生数据 | 监听数据变化执行操作 |
+| 缓存 | 有缓存，依赖不变不重新计算 | 无缓存 |
+| 返回值 | 必须有返回值 | 无返回值 |
+| 异步 | 不支持异步 | 支持异步 |
+| 使用场景 | 数据转换、过滤、计算 | API 调用、复杂逻辑 |
+
+```javascript
+export default {
+  data() {
+    return {
+      firstName: 'John',
+      lastName: 'Doe',
+      searchQuery: ''
+    }
+  },
+  
+  // computed：计算属性
+  computed: {
+    // 简单计算
+    fullName() {
+      return `${this.firstName} ${this.lastName}`
+    },
+    
+    // getter 和 setter
+    fullNameWithSetter: {
+      get() {
+        return `${this.firstName} ${this.lastName}`
+      },
+      set(value) {
+        const names = value.split(' ')
+        this.firstName = names[0]
+        this.lastName = names[1]
+      }
+    }
+  },
+  
+  // watch：侦听器
+  watch: {
+    // 简单侦听
+    searchQuery(newVal, oldVal) {
+      console.log(`Search changed from ${oldVal} to ${newVal}`)
+      this.fetchResults(newVal)
+    },
+    
+    // 深度侦听
+    user: {
+      handler(newVal, oldVal) {
+        console.log('User changed')
+      },
+      deep: true,
+      immediate: true
+    },
+    
+    // 侦听对象属性
+    'user.name'(newVal) {
+      console.log('User name changed:', newVal)
+    }
+  },
+  
+  methods: {
+    async fetchResults(query) {
+      // 异步操作
+      const results = await api.search(query)
+      this.results = results
+    }
+  }
+}
+```
+
+**Vue 3 Composition API：**
+
+```javascript
+import { ref, computed, watch, watchEffect } from 'vue'
+
+export default {
+  setup() {
+    const firstName = ref('John')
+    const lastName = ref('Doe')
+    const searchQuery = ref('')
+    
+    // computed
+    const fullName = computed(() => {
+      return `${firstName.value} ${lastName.value}`
+    })
+    
+    // computed with setter
+    const fullNameWithSetter = computed({
+      get: () => `${firstName.value} ${lastName.value}`,
+      set: (value) => {
+        const names = value.split(' ')
+        firstName.value = names[0]
+        lastName.value = names[1]
+      }
+    })
+    
+    // watch
+    watch(searchQuery, (newVal, oldVal) => {
+      console.log(`Search changed from ${oldVal} to ${newVal}`)
+    })
+    
+    // watch 多个源
+    watch([firstName, lastName], ([newFirst, newLast]) => {
+      console.log(`Name: ${newFirst} ${newLast}`)
+    })
+    
+    // watchEffect：自动追踪依赖
+    watchEffect(() => {
+      console.log(`Full name: ${firstName.value} ${lastName.value}`)
+    })
+    
+    return {
+      firstName,
+      lastName,
+      fullName,
+      searchQuery
+    }
+  }
+}
+```
+
+---
+
+## 六、虚拟 DOM 与 Diff 算法
+
+### 6.1 什么是虚拟 DOM？为什么需要虚拟 DOM？
+
+**答案：**
+
+**虚拟 DOM（Virtual DOM）** 是用 JavaScript 对象描述真实 DOM 的一种数据结构。
+
+
+**为什么需要虚拟 DOM：**
+
+1. **性能优化**：减少直接操作 DOM，批量更新
+2. **跨平台**：可以渲染到不同平台（Web、Native、SSR）
+3. **开发体验**：声明式编程，不需要手动操作 DOM
+
+```javascript
+// 虚拟 DOM 示例
+const vnode = {
+  tag: 'div',
+  props: {
+    class: 'container',
+    id: 'app'
+  },
+  children: [
+    {
+      tag: 'h1',
+      props: {},
+      children: 'Hello World'
+    },
+    {
+      tag: 'p',
+      props: { class: 'text' },
+      children: 'This is a paragraph'
+    }
+  ]
+}
+
+// 对应的真实 DOM
+<div class="container" id="app">
+  <h1>Hello World</h1>
+  <p class="text">This is a paragraph</p>
+</div>
+```
+
+---
+
+### 6.2 Vue 的 Diff 算法原理
+
+**答案：**
+
+Vue 使用 **同层比较** 的 Diff 算法，时间复杂度为 O(n)。
+
+**核心策略：**
+
+1. **同层比较**：只比较同一层级的节点
+2. **类型判断**：不同类型直接替换
+3. **key 优化**：使用 key 提高复用率
+4. **双端比较**：从两端向中间比较
+
+**Diff 流程：**
+
+```javascript
+// 简化的 Diff 算法
+function patch(oldVNode, newVNode) {
+  // 1. 节点类型不同，直接替换
+  if (oldVNode.tag !== newVNode.tag) {
+    return replaceNode(oldVNode, newVNode)
+  }
+  
+  // 2. 文本节点
+  if (isTextNode(newVNode)) {
+    if (oldVNode.text !== newVNode.text) {
+      return updateText(oldVNode, newVNode)
+    }
+    return
+  }
+  
+  // 3. 更新属性
+  updateProps(oldVNode, newVNode)
+  
+  // 4. 更新子节点
+  updateChildren(oldVNode.children, newVNode.children)
+}
+
+// 双端比较算法
+function updateChildren(oldChildren, newChildren) {
+  let oldStartIdx = 0
+  let oldEndIdx = oldChildren.length - 1
+  let newStartIdx = 0
+  let newEndIdx = newChildren.length - 1
+  
+  while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+    // 1. 旧开始 vs 新开始
+    if (sameVNode(oldChildren[oldStartIdx], newChildren[newStartIdx])) {
+      patch(oldChildren[oldStartIdx], newChildren[newStartIdx])
+      oldStartIdx++
+      newStartIdx++
+    }
+    // 2. 旧结束 vs 新结束
+    else if (sameVNode(oldChildren[oldEndIdx], newChildren[newEndIdx])) {
+      patch(oldChildren[oldEndIdx], newChildren[newEndIdx])
+      oldEndIdx--
+      newEndIdx--
+    }
+    // 3. 旧开始 vs 新结束
+    else if (sameVNode(oldChildren[oldStartIdx], newChildren[newEndIdx])) {
+      patch(oldChildren[oldStartIdx], newChildren[newEndIdx])
+      // 移动节点
+      oldStartIdx++
+      newEndIdx--
+    }
+    // 4. 旧结束 vs 新开始
+    else if (sameVNode(oldChildren[oldEndIdx], newChildren[newStartIdx])) {
+      patch(oldChildren[oldEndIdx], newChildren[newStartIdx])
+      // 移动节点
+      oldEndIdx--
+      newStartIdx++
+    }
+    // 5. 使用 key 查找
+    else {
+      // 在旧节点中查找相同 key 的节点
+      const idxInOld = findIdxInOld(newChildren[newStartIdx], oldChildren)
+      if (idxInOld) {
+        patch(oldChildren[idxInOld], newChildren[newStartIdx])
+        // 移动节点
+      } else {
+        // 创建新节点
+        createNode(newChildren[newStartIdx])
+      }
+      newStartIdx++
+    }
+  }
+  
+  // 处理剩余节点
+  if (oldStartIdx > oldEndIdx) {
+    // 添加新节点
+    addNodes(newChildren, newStartIdx, newEndIdx)
+  } else {
+    // 删除旧节点
+    removeNodes(oldChildren, oldStartIdx, oldEndIdx)
+  }
+}
+```
+
+**为什么需要 key：**
+
+```vue
+<!-- 不使用 key -->
+<div v-for="item in items">{{ item.name }}</div>
+
+<!-- 使用 key -->
+<div v-for="item in items" :key="item.id">{{ item.name }}</div>
+```
+
+使用 key 的好处：
+1. 提高 Diff 效率
+2. 避免就地复用导致的问题
+3. 保持组件状态
+
+---
+
+## 七、Vue Router
+
+### 7.1 Vue Router 的路由模式有哪些？
+
+**答案：**
+
+
+**1. Hash 模式（默认）**
+
+- URL 格式：`http://example.com/#/user/123`
+- 原理：监听 `hashchange` 事件
+- 优点：兼容性好，不需要服务器配置
+- 缺点：URL 不美观，SEO 不友好
+
+```javascript
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: [...]
+})
+```
+
+**2. History 模式**
+
+- URL 格式：`http://example.com/user/123`
+- 原理：使用 HTML5 History API（pushState、replaceState）
+- 优点：URL 美观，SEO 友好
+- 缺点：需要服务器配置，刷新会 404
+
+```javascript
+import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [...]
+})
+```
+
+**服务器配置（Nginx）：**
+
+```nginx
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+**3. Memory 模式（SSR）**
+
+```javascript
+import { createRouter, createMemoryHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes: [...]
+})
+```
+
+---
+
+### 7.2 路由守卫有哪些？如何使用？
+
+**答案：**
+
+**全局守卫：**
+
+```javascript
+// 全局前置守卫
+router.beforeEach((to, from, next) => {
+  // 权限验证
+  if (to.meta.requiresAuth && !isAuthenticated()) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+// 全局解析守卫
+router.beforeResolve((to, from, next) => {
+  // 在导航被确认之前，所有组件内守卫和异步路由组件被解析之后调用
+  next()
+})
+
+// 全局后置钩子
+router.afterEach((to, from) => {
+  // 不接受 next 函数
+  // 修改页面标题
+  document.title = to.meta.title || 'Default Title'
+})
+```
+
+**路由独享守卫：**
+
+```javascript
+const routes = [
+  {
+    path: '/admin',
+    component: Admin,
+    beforeEnter: (to, from, next) => {
+      if (hasAdminPermission()) {
+        next()
+      } else {
+        next('/403')
+      }
+    }
+  }
+]
+```
+
+**组件内守卫：**
+
+```javascript
+export default {
+  // 进入组件前
+  beforeRouteEnter(to, from, next) {
+    // 不能访问 this，因为组件实例还未创建
+    next(vm => {
+      // 通过 vm 访问组件实例
+    })
+  },
+  
+  // 路由更新时
+  beforeRouteUpdate(to, from, next) {
+    // 可以访问 this
+    // 例如：/user/1 -> /user/2
+    this.fetchData(to.params.id)
+    next()
+  },
+  
+  // 离开组件时
+  beforeRouteLeave(to, from, next) {
+    // 可以访问 this
+    const answer = window.confirm('确定要离开吗？未保存的更改将丢失。')
+    if (answer) {
+      next()
+    } else {
+      next(false)
+    }
+  }
+}
+```
+
+**完整的导航解析流程：**
+
+1. 导航被触发
+2. 在失活的组件里调用 `beforeRouteLeave`
+3. 调用全局的 `beforeEach`
+4. 在重用的组件里调用 `beforeRouteUpdate`
+5. 在路由配置里调用 `beforeEnter`
+6. 解析异步路由组件
+7. 在被激活的组件里调用 `beforeRouteEnter`
+8. 调用全局的 `beforeResolve`
+9. 导航被确认
+10. 调用全局的 `afterEach`
+11. 触发 DOM 更新
+12. 调用 `beforeRouteEnter` 中传给 `next` 的回调函数
+
+---
+
+## 八、Vuex / Pinia
+
+### 8.1 Vuex 的核心概念
+
+**答案：**
+
+
+**Vuex 核心概念：**
+
+1. **State**：单一状态树
+2. **Getters**：计算属性
+3. **Mutations**：同步修改状态
+4. **Actions**：异步操作
+5. **Modules**：模块化
+
+```javascript
+// store/index.js
+import { createStore } from 'vuex'
+
+const store = createStore({
+  // 1. State
+  state: {
+    count: 0,
+    user: null,
+    todos: []
+  },
+  
+  // 2. Getters
+  getters: {
+    doubleCount: state => state.count * 2,
+    completedTodos: state => {
+      return state.todos.filter(todo => todo.completed)
+    },
+    getTodoById: state => id => {
+      return state.todos.find(todo => todo.id === id)
+    }
+  },
+  
+  // 3. Mutations（同步）
+  mutations: {
+    INCREMENT(state) {
+      state.count++
+    },
+    SET_USER(state, user) {
+      state.user = user
+    },
+    ADD_TODO(state, todo) {
+      state.todos.push(todo)
+    }
+  },
+  
+  // 4. Actions（异步）
+  actions: {
+    async fetchUser({ commit }, userId) {
+      const user = await api.getUser(userId)
+      commit('SET_USER', user)
+    },
+    async addTodo({ commit }, todo) {
+      const newTodo = await api.createTodo(todo)
+      commit('ADD_TODO', newTodo)
+    }
+  },
+  
+  // 5. Modules
+  modules: {
+    user: {
+      namespaced: true,
+      state: () => ({ ... }),
+      mutations: { ... },
+      actions: { ... }
+    }
+  }
+})
+
+export default store
+```
+
+**在组件中使用：**
+
+```vue
+<template>
+  <div>
+    <p>Count: {{ count }}</p>
+    <p>Double: {{ doubleCount }}</p>
+    <button @click="increment">Increment</button>
+    <button @click="fetchUser">Fetch User</button>
+  </div>
+</template>
+
+<script>
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
+export default {
+  computed: {
+    // 方式1：直接访问
+    count() {
+      return this.$store.state.count
+    },
+    
+    // 方式2：使用辅助函数
+    ...mapState(['count', 'user']),
+    ...mapGetters(['doubleCount', 'completedTodos'])
+  },
+  
+  methods: {
+    // 方式1：直接调用
+    increment() {
+      this.$store.commit('INCREMENT')
+    },
+    fetchUser() {
+      this.$store.dispatch('fetchUser', 123)
+    },
+    
+    // 方式2：使用辅助函数
+    ...mapMutations(['INCREMENT', 'SET_USER']),
+    ...mapActions(['fetchUser', 'addTodo'])
+  }
+}
+</script>
+```
+
+---
+
+### 8.2 Pinia 相比 Vuex 的优势
+
+**答案：**
+
+**Pinia 优势：**
+
+1. 更简单的 API，去除了 mutations
+2. 完整的 TypeScript 支持
+3. 更好的代码分割
+4. 没有嵌套的模块结构
+5. 支持 Vue 2 和 Vue 3
+
+```javascript
+// stores/user.js
+import { defineStore } from 'pinia'
+
+export const useUserStore = defineStore('user', {
+  // State
+  state: () => ({
+    name: 'John',
+    age: 30,
+    todos: []
+  }),
+  
+  // Getters
+  getters: {
+    doubleAge: (state) => state.age * 2,
+    completedTodos: (state) => {
+      return state.todos.filter(todo => todo.completed)
+    }
+  },
+  
+  // Actions（同步和异步）
+  actions: {
+    updateName(newName) {
+      this.name = newName
+    },
+    
+    async fetchTodos() {
+      this.todos = await api.getTodos()
+    },
+    
+    async addTodo(todo) {
+      const newTodo = await api.createTodo(todo)
+      this.todos.push(newTodo)
+    }
+  }
+})
+```
+
+**在组件中使用：**
+
+```vue
+<template>
+  <div>
+    <p>Name: {{ userStore.name }}</p>
+    <p>Age: {{ userStore.doubleAge }}</p>
+    <button @click="userStore.updateName('Jane')">Update Name</button>
+  </div>
+</template>
+
+<script setup>
+import { useUserStore } from '@/stores/user'
+import { storeToRefs } from 'pinia'
+
+const userStore = useUserStore()
+
+// 解构保持响应式
+const { name, age } = storeToRefs(userStore)
+const { updateName, fetchTodos } = userStore
+</script>
+```
+
+---
+
+## 九、性能优化
+
+### 9.1 Vue 性能优化的方法有哪些？
+
+**答案：**
+
+
+**1. 代码层面优化：**
+
+```javascript
+// ① v-if vs v-show
+// v-if：条件渲染，切换开销大
+// v-show：CSS 显示隐藏，初始渲染开销大
+<div v-if="isShow">Conditional</div>  // 频繁切换用 v-show
+<div v-show="isShow">Toggle</div>     // 初始不显示用 v-if
+
+// ② 使用 key
+<div v-for="item in items" :key="item.id">{{ item.name }}</div>
+
+// ③ 路由懒加载
+const Home = () => import('./views/Home.vue')
+const About = () => import('./views/About.vue')
+
+// ④ 组件懒加载
+components: {
+  AsyncComponent: () => import('./AsyncComponent.vue')
+}
+
+// ⑤ keep-alive 缓存组件
+<keep-alive :include="['Home', 'About']">
+  <router-view />
+</keep-alive>
+
+// ⑥ 长列表优化 - 虚拟滚动
+import VirtualList from 'vue-virtual-scroll-list'
+
+// ⑦ 事件销毁
+beforeUnmount() {
+  window.removeEventListener('resize', this.handleResize)
+  clearInterval(this.timer)
+}
+
+// ⑧ 图片懒加载
+<img v-lazy="imageUrl" />
+
+// ⑨ 第三方插件按需引入
+import { Button, Select } from 'element-plus'
+
+// ⑩ 使用函数式组件（无状态组件）
+export default {
+  functional: true,
+  render(h, context) {
+    return h('div', context.props.text)
+  }
+}
+```
+
+**2. 打包优化：**
+
+```javascript
+// vite.config.js
+export default {
+  build: {
+    // 代码分割
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vue-vendor': ['vue', 'vue-router', 'pinia'],
+          'ui-vendor': ['element-plus']
+        }
+      }
+    },
+    // 压缩
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
+  }
+}
+```
+
+**3. 使用 computed 缓存：**
+
+```javascript
+// ❌ 不好的做法
+<div>{{ getFullName() }}</div>
+
+methods: {
+  getFullName() {
+    return this.firstName + ' ' + this.lastName
+  }
+}
+
+// ✅ 好的做法
+<div>{{ fullName }}</div>
+
+computed: {
+  fullName() {
+    return this.firstName + ' ' + this.lastName
+  }
+}
+```
+
+**4. 使用 Object.freeze 冻结数据：**
+
+```javascript
+export default {
+  data() {
+    return {
+      // 大量不需要响应式的数据
+      largeList: Object.freeze([...])
+    }
+  }
+}
+```
+
+**5. 使用 v-once 和 v-memo：**
+
+```vue
+<!-- 只渲染一次 -->
+<div v-once>{{ staticContent }}</div>
+
+<!-- Vue 3: 条件缓存 -->
+<div v-memo="[item.id, item.name]">
+  {{ item.name }}
+</div>
+```
+
+---
+
+## 十、常见问题
+
+### 10.1 Vue 中的 $nextTick 是什么？
+
+**答案：**
+
+`$nextTick` 在下次 DOM 更新循环结束之后执行延迟回调。
+
+**使用场景：**
+- 在数据变化后立即操作更新后的 DOM
+- 在 created 钩子中操作 DOM
+
+```javascript
+export default {
+  data() {
+    return {
+      message: 'Hello'
+    }
+  },
+  methods: {
+    updateMessage() {
+      this.message = 'Updated'
+      
+      // 此时 DOM 还未更新
+      console.log(this.$refs.msg.textContent) // 'Hello'
+      
+      // 等待 DOM 更新后执行
+      this.$nextTick(() => {
+        console.log(this.$refs.msg.textContent) // 'Updated'
+      })
+      
+      // Vue 3 也可以使用 Promise
+      this.$nextTick().then(() => {
+        console.log(this.$refs.msg.textContent) // 'Updated'
+      })
+    }
+  }
+}
+```
+
+**原理：**
+
+Vue 使用异步队列来批量更新 DOM，优先使用微任务（Promise、MutationObserver），降级使用宏任务（setTimeout）。
+
+---
+
+### 10.2 Vue 中如何实现组件的递归？
+
+**答案：**
+
+
+组件可以在自己的模板中递归调用自己，需要设置 `name` 选项。
+
+```vue
+<!-- TreeNode.vue -->
+<template>
+  <div class="tree-node">
+    <div class="node-content">
+      <span @click="toggle">{{ node.name }}</span>
+    </div>
+    
+    <div v-if="isExpanded && node.children" class="children">
+      <!-- 递归调用自己 -->
+      <TreeNode
+        v-for="child in node.children"
+        :key="child.id"
+        :node="child"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'TreeNode', // 必须设置 name
+  props: {
+    node: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      isExpanded: false
+    }
+  },
+  methods: {
+    toggle() {
+      this.isExpanded = !this.isExpanded
+    }
+  }
+}
+</script>
+
+<!-- 使用 -->
+<template>
+  <TreeNode :node="treeData" />
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      treeData: {
+        id: 1,
+        name: 'Root',
+        children: [
+          {
+            id: 2,
+            name: 'Child 1',
+            children: [
+              { id: 3, name: 'Grandchild 1' },
+              { id: 4, name: 'Grandchild 2' }
+            ]
+          },
+          {
+            id: 5,
+            name: 'Child 2'
+          }
+        ]
+      }
+    }
+  }
+}
+</script>
+```
+
+---
+
+### 10.3 Vue 中的 slot 插槽如何使用？
+
+**答案：**
+
+**1. 默认插槽：**
+
+```vue
+<!-- 子组件 Card.vue -->
+<template>
+  <div class="card">
+    <slot>默认内容</slot>
+  </div>
+</template>
+
+<!-- 父组件使用 -->
+<Card>
+  <p>自定义内容</p>
+</Card>
+```
+
+**2. 具名插槽：**
+
+```vue
+<!-- 子组件 Layout.vue -->
+<template>
+  <div class="layout">
+    <header>
+      <slot name="header"></slot>
+    </header>
+    <main>
+      <slot></slot>
+    </main>
+    <footer>
+      <slot name="footer"></slot>
+    </footer>
+  </div>
+</template>
+
+<!-- 父组件使用 -->
+<Layout>
+  <template #header>
+    <h1>页面标题</h1>
+  </template>
+  
+  <p>主要内容</p>
+  
+  <template #footer>
+    <p>页脚信息</p>
+  </template>
+</Layout>
+```
+
+**3. 作用域插槽：**
+
+```vue
+<!-- 子组件 List.vue -->
+<template>
+  <ul>
+    <li v-for="item in items" :key="item.id">
+      <slot :item="item" :index="index">
+        {{ item.name }}
+      </slot>
+    </li>
+  </ul>
+</template>
+
+<!-- 父组件使用 -->
+<List :items="users">
+  <template #default="{ item, index }">
+    <span>{{ index + 1 }}. {{ item.name }} - {{ item.email }}</span>
+  </template>
+</List>
+```
+
+---
+
+### 10.4 Vue 中如何实现权限控制？
+
+**答案：**
+
+**1. 路由级别权限控制：**
+
+```javascript
+// router/index.js
+const routes = [
+  {
+    path: '/admin',
+    component: Admin,
+    meta: { requiresAuth: true, roles: ['admin'] }
+  }
+]
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const user = store.state.user
+  
+  if (to.meta.requiresAuth) {
+    if (!user) {
+      next('/login')
+    } else if (to.meta.roles && !to.meta.roles.includes(user.role)) {
+      next('/403')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+```
+
+**2. 按钮级别权限控制：**
+
+```javascript
+// directives/permission.js
+export default {
+  mounted(el, binding) {
+    const { value } = binding
+    const permissions = store.state.user.permissions
+    
+    if (value && !permissions.includes(value)) {
+      el.parentNode?.removeChild(el)
+    }
+  }
+}
+
+// 使用
+<button v-permission="'user:delete'">删除</button>
+```
+
+**3. 组件级别权限控制：**
+
+```vue
+<!-- Permission.vue -->
+<template>
+  <div v-if="hasPermission">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['permission'],
+  computed: {
+    hasPermission() {
+      const permissions = this.$store.state.user.permissions
+      return permissions.includes(this.permission)
+    }
+  }
+}
+</script>
+
+<!-- 使用 -->
+<Permission permission="user:edit">
+  <button>编辑</button>
+</Permission>
+```
+
+---
+
+## 十一、前后台交互
+
+### 11.1 Vue 中的异步请求方式
+
+**面试回答思路：**
+
+Vue 本身不提供 HTTP 请求功能，需要使用第三方库或原生 API。主要有三种方式：fetch、axios 和 async/await。
+
+**1. Fetch API（原生）**
+
+Fetch 是浏览器原生提供的 API，基于 Promise。
+
+**基本使用：**
+
+```javascript
+// GET 请求
+fetch('https://api.example.com/users')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    return response.json()
+  })
+  .then(data => {
+    console.log(data)
+  })
+  .catch(error => {
+    console.error('Error:', error)
+  })
+
+// POST 请求
+fetch('https://api.example.com/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: 'John',
+    email: 'john@example.com'
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error))
+```
+
+**在 Vue 组件中使用：**
+
+```vue
+<template>
+  <div>
+    <ul v-if="users.length">
+      <li v-for="user in users" :key="user.id">
+        {{ user.name }}
+      </li>
+    </ul>
+    <p v-else-if="loading">Loading...</p>
+    <p v-else-if="error">{{ error }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [],
+      loading: false,
+      error: null
+    }
+  },
+  
+  mounted() {
+    this.fetchUsers()
+  },
+  
+  methods: {
+    fetchUsers() {
+      this.loading = true
+      this.error = null
+      
+      fetch('https://api.example.com/users')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+          }
+          return response.json()
+        })
+        .then(data => {
+          this.users = data
+          this.loading = false
+        })
+        .catch(error => {
+          this.error = error.message
+          this.loading = false
+        })
+    }
+  }
+}
+</script>
+```
+
+**Fetch 的优缺点：**
+
+**优点：**
+- 原生 API，不需要额外安装
+- 基于 Promise，支持 async/await
+- 更现代的 API 设计
+
+**缺点：**
+- 不支持请求取消（需要 AbortController）
+- 不支持请求超时
+- 不支持上传进度
+- 默认不携带 cookie（需要设置 credentials）
+- 错误处理不够友好（404、500 不会 reject）
+- 不支持拦截器
+
+---
+
+### 11.2 Axios 的使用和封装
+
+**面试回答思路：**
+
+Axios 是目前 Vue 项目中最常用的 HTTP 库，功能强大且易用。
+
+**为什么选择 Axios：**
+
+1. **功能丰富**：支持请求/响应拦截、取消请求、超时设置等
+2. **自动转换**：自动转换 JSON 数据
+3. **错误处理**：更好的错误处理机制
+4. **浏览器兼容**：支持老版本浏览器
+5. **防御 XSRF**：内置 CSRF 防护
+6. **进度监控**：支持上传/下载进度
+
+**基本使用：**
+
+```javascript
+import axios from 'axios'
+
+// GET 请求
+axios.get('https://api.example.com/users')
+  .then(response => {
+    console.log(response.data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
+
+// POST 请求
+axios.post('https://api.example.com/users', {
+  name: 'John',
+  email: 'john@example.com'
+})
+  .then(response => {
+    console.log(response.data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
+
+// 并发请求
+axios.all([
+  axios.get('https://api.example.com/users'),
+  axios.get('https://api.example.com/posts')
+])
+  .then(axios.spread((users, posts) => {
+    console.log(users.data, posts.data)
+  }))
+```
+
+**在 Vue 中封装 Axios：**
+
+```javascript
+// api/request.js
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
+import router from '@/router'
+
+// 创建 axios 实例
+const service = axios.create({
+  baseURL: process.env.VUE_APP_BASE_API, // API 基础路径
+  timeout: 10000, // 请求超时时间
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8'
+  }
+})
+
+// 请求拦截器
+service.interceptors.request.use(
+  config => {
+    // 在发送请求之前做些什么
+    
+    // 1. 添加 token
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+    
+    // 2. 显示 loading
+    // showLoading()
+    
+    // 3. 请求参数处理
+    if (config.method === 'get') {
+      // GET 请求参数序列化
+      config.params = {
+        ...config.params,
+        _t: Date.now() // 防止缓存
+      }
+    }
+    
+    return config
+  },
+  error => {
+    // 请求错误处理
+    console.error('Request error:', error)
+    return Promise.reject(error)
+  }
+)
+
+// 响应拦截器
+service.interceptors.response.use(
+  response => {
+    // hideLoading()
+    
+    const res = response.data
+    
+    // 根据后端约定的状态码判断
+    if (res.code !== 200) {
+      ElMessage.error(res.message || 'Error')
+      
+      // 特殊状态码处理
+      if (res.code === 401) {
+        // token 过期，跳转登录
+        ElMessage.error('登录已过期，请重新登录')
+        localStorage.removeItem('token')
+        router.push('/login')
+      }
+      
+      return Promise.reject(new Error(res.message || 'Error'))
+    }
+    
+    return res.data
+  },
+  error => {
+    // hideLoading()
+    
+    console.error('Response error:', error)
+    
+    // 处理不同的错误状态
+    if (error.response) {
+      switch (error.response.status) {
+        case 400:
+          ElMessage.error('请求参数错误')
+          break
+        case 401:
+          ElMessage.error('未授权，请重新登录')
+          localStorage.removeItem('token')
+          router.push('/login')
+          break
+        case 403:
+          ElMessage.error('拒绝访问')
+          break
+        case 404:
+          ElMessage.error('请求地址不存在')
+          break
+        case 500:
+          ElMessage.error('服务器错误')
+          break
+        default:
+          ElMessage.error(error.response.data.message || '请求失败')
+      }
+    } else if (error.request) {
+      ElMessage.error('网络错误，请检查网络连接')
+    } else {
+      ElMessage.error('请求配置错误')
+    }
+    
+    return Promise.reject(error)
+  }
+)
+
+export default service
+```
+
+**封装 API 接口：**
+
+```javascript
+// api/user.js
+import request from './request'
+
+// 用户相关 API
+export const userApi = {
+  // 获取用户列表
+  getUsers(params) {
+    return request({
+      url: '/users',
+      method: 'get',
+      params
+    })
+  },
+  
+  // 获取用户详情
+  getUserById(id) {
+    return request({
+      url: `/users/${id}`,
+      method: 'get'
+    })
+  },
+  
+  // 创建用户
+  createUser(data) {
+    return request({
+      url: '/users',
+      method: 'post',
+      data
+    })
+  },
+  
+  // 更新用户
+  updateUser(id, data) {
+    return request({
+      url: `/users/${id}`,
+      method: 'put',
+      data
+    })
+  },
+  
+  // 删除用户
+  deleteUser(id) {
+    return request({
+      url: `/users/${id}`,
+      method: 'delete'
+    })
+  },
+  
+  // 上传文件
+  uploadFile(file, onProgress) {
+    const formData = new FormData()
+    formData.append('file', file)
+    
+    return request({
+      url: '/upload',
+      method: 'post',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      onUploadProgress: progressEvent => {
+        if (onProgress) {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          )
+          onProgress(percentCompleted)
+        }
+      }
+    })
+  }
+}
+```
+
+**在组件中使用：**
+
+```vue
+<template>
+  <div>
+    <ul v-if="users.length">
+      <li v-for="user in users" :key="user.id">
+        {{ user.name }}
+      </li>
+    </ul>
+    <button @click="loadMore">加载更多</button>
+  </div>
+</template>
+
+<script>
+import { userApi } from '@/api/user'
+
+export default {
+  data() {
+    return {
+      users: [],
+      loading: false,
+      page: 1,
+      pageSize: 10
+    }
+  },
+  
+  mounted() {
+    this.fetchUsers()
+  },
+  
+  methods: {
+    async fetchUsers() {
+      try {
+        this.loading = true
+        const data = await userApi.getUsers({
+          page: this.page,
+          pageSize: this.pageSize
+        })
+        this.users = data.list
+      } catch (error) {
+        console.error('获取用户列表失败:', error)
+      } finally {
+        this.loading = false
+      }
+    },
+    
+    async loadMore() {
+      this.page++
+      try {
+        const data = await userApi.getUsers({
+          page: this.page,
+          pageSize: this.pageSize
+        })
+        this.users.push(...data.list)
+      } catch (error) {
+        this.page--
+      }
+    }
+  }
+}
+</script>
+```
+
+---
+
+### 11.3 async/await 的使用
+
+**面试回答思路：**
+
+async/await 是 ES2017 引入的异步编程语法糖，让异步代码看起来像同步代码。
+
+**基本概念：**
+
+**async 函数：**
+- 返回一个 Promise
+- 可以使用 await 关键字
+- 自动将返回值包装成 Promise
+
+**await 关键字：**
+- 只能在 async 函数中使用
+- 等待 Promise 完成
+- 返回 Promise 的结果
+
+**基本使用：**
+
+```javascript
+// 传统 Promise 写法
+function fetchUser() {
+  return fetch('/api/user')
+    .then(response => response.json())
+    .then(user => {
+      return fetch(`/api/posts?userId=${user.id}`)
+    })
+    .then(response => response.json())
+    .then(posts => {
+      console.log(posts)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+}
+
+// async/await 写法
+async function fetchUser() {
+  try {
+    const response = await fetch('/api/user')
+    const user = await response.json()
+    
+    const postsResponse = await fetch(`/api/posts?userId=${user.id}`)
+    const posts = await postsResponse.json()
+    
+    console.log(posts)
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+**在 Vue 中使用：**
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      user: null,
+      posts: [],
+      loading: false,
+      error: null
+    }
+  },
+  
+  async mounted() {
+    await this.fetchData()
+  },
+  
+  methods: {
+    // 方法 1：async 方法
+    async fetchData() {
+      this.loading = true
+      this.error = null
+      
+      try {
+        // 串行请求
+        const user = await userApi.getUserById(1)
+        this.user = user
+        
+        const posts = await postApi.getPostsByUserId(user.id)
+        this.posts = posts
+      } catch (error) {
+        this.error = error.message
+        console.error('获取数据失败:', error)
+      } finally {
+        this.loading = false
+      }
+    },
+    
+    // 方法 2：并行请求
+    async fetchDataParallel() {
+      this.loading = true
+      
+      try {
+        // 使用 Promise.all 并行请求
+        const [user, posts] = await Promise.all([
+          userApi.getUserById(1),
+          postApi.getPosts()
+        ])
+        
+        this.user = user
+        this.posts = posts
+      } catch (error) {
+        this.error = error.message
+      } finally {
+        this.loading = false
+      }
+    },
+    
+    // 方法 3：错误处理
+    async createUser(userData) {
+      try {
+        const user = await userApi.createUser(userData)
+        this.$message.success('创建成功')
+        return user
+      } catch (error) {
+        if (error.response?.status === 400) {
+          this.$message.error('参数错误')
+        } else if (error.response?.status === 409) {
+          this.$message.error('用户已存在')
+        } else {
+          this.$message.error('创建失败')
+        }
+        throw error
+      }
+    },
+    
+    // 方法 4：循环中使用
+    async processUsers(userIds) {
+      const results = []
+      
+      // 串行处理
+      for (const id of userIds) {
+        const user = await userApi.getUserById(id)
+        results.push(user)
+      }
+      
+      // 并行处理（推荐）
+      const users = await Promise.all(
+        userIds.map(id => userApi.getUserById(id))
+      )
+      
+      return users
+    }
+  }
+}
+</script>
+```
+
+**Vue 3 Composition API 中使用：**
+
+```vue
+<script setup>
+import { ref, onMounted } from 'vue'
+import { userApi } from '@/api/user'
+
+const users = ref([])
+const loading = ref(false)
+const error = ref(null)
+
+// 方式 1：在 onMounted 中使用
+onMounted(async () => {
+  await fetchUsers()
+})
+
+// 方式 2：定义 async 函数
+const fetchUsers = async () => {
+  loading.value = true
+  error.value = null
+  
+  try {
+    const data = await userApi.getUsers()
+    users.value = data
+  } catch (err) {
+    error.value = err.message
+  } finally {
+    loading.value = false
+  }
+}
+
+// 方式 3：使用 VueUse 的 useAsyncState
+import { useAsyncState } from '@vueuse/core'
+
+const { state, isLoading, error, execute } = useAsyncState(
+  () => userApi.getUsers(),
+  [],
+  { immediate: true }
+)
+</script>
+```
+
+**最佳实践：**
+
+**1. 错误处理**
+```javascript
+// ✅ 好的做法：使用 try-catch
+async function fetchData() {
+  try {
+    const data = await api.getData()
+    return data
+  } catch (error) {
+    console.error('Error:', error)
+    throw error // 或者返回默认值
+  }
+}
+
+// ❌ 不好的做法：不处理错误
+async function fetchData() {
+  const data = await api.getData() // 如果失败会导致未捕获的错误
+  return data
+}
+```
+
+**2. 并行 vs 串行**
+```javascript
+// ❌ 串行（慢）
+async function fetchAll() {
+  const users = await userApi.getUsers()
+  const posts = await postApi.getPosts()
+  return { users, posts }
+}
+
+// ✅ 并行（快）
+async function fetchAll() {
+  const [users, posts] = await Promise.all([
+    userApi.getUsers(),
+    postApi.getPosts()
+  ])
+  return { users, posts }
+}
+```
+
+**3. 避免在循环中使用 await**
+```javascript
+// ❌ 不好：串行执行
+async function processUsers(ids) {
+  const results = []
+  for (const id of ids) {
+    const user = await userApi.getUserById(id)
+    results.push(user)
+  }
+  return results
+}
+
+// ✅ 好：并行执行
+async function processUsers(ids) {
+  return await Promise.all(
+    ids.map(id => userApi.getUserById(id))
+  )
+}
+```
+
+**4. 超时处理**
+```javascript
+function timeout(ms) {
+  return new Promise((_, reject) => {
+    setTimeout(() => reject(new Error('Timeout')), ms)
+  })
+}
+
+async function fetchWithTimeout(url, ms = 5000) {
+  try {
+    const data = await Promise.race([
+      fetch(url),
+      timeout(ms)
+    ])
+    return data
+  } catch (error) {
+    console.error('请求超时或失败:', error)
+    throw error
+  }
+}
+```
+
+**5. 取消请求**
+```javascript
+// 使用 AbortController
+const controller = new AbortController()
+
+async function fetchData() {
+  try {
+    const response = await fetch('/api/data', {
+      signal: controller.signal
+    })
+    return await response.json()
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      console.log('请求已取消')
+    } else {
+      console.error('请求失败:', error)
+    }
+  }
+}
+
+// 取消请求
+controller.abort()
+```
+
+---
+
+### 11.4 三种方式的对比和选择
+
+**面试回答思路：**
+
+| 特性 | Fetch | Axios | async/await |
+|------|-------|-------|-------------|
+| 类型 | 原生 API | 第三方库 | 语法糖 |
+| 浏览器支持 | 现代浏览器 | 所有浏览器 | ES2017+ |
+| 包大小 | 0（原生） | ~13KB | 0（语法） |
+| 自动转换 JSON | ❌ 需手动 | ✅ 自动 | 取决于使用的库 |
+| 拦截器 | ❌ | ✅ | 取决于使用的库 |
+| 取消请求 | ✅ AbortController | ✅ CancelToken | 取决于使用的库 |
+| 上传进度 | ❌ | ✅ | 取决于使用的库 |
+| 超时设置 | ❌ | ✅ | 需手动实现 |
+| 错误处理 | 较复杂 | 简单 | 简单 |
+| CSRF 防护 | ❌ | ✅ | 取决于使用的库 |
+
+**选择建议：**
+
+1. **小型项目或简单需求**：使用 Fetch + async/await
+2. **中大型项目**：使用 Axios + async/await（推荐）
+3. **需要兼容老浏览器**：使用 Axios
+4. **需要拦截器、进度监控等高级功能**：使用 Axios
+
+**实际项目中的最佳实践：**
+
+```javascript
+// 推荐组合：Axios + async/await + 统一封装
+
+// 1. 封装 axios 实例
+// 2. 配置拦截器
+// 3. 封装 API 接口
+// 4. 在组件中使用 async/await 调用
+
+// 这样可以获得：
+// - Axios 的强大功能
+// - async/await 的简洁语法
+// - 统一的错误处理
+// - 良好的代码组织
+```
+
+---
+
+## 十二、常见面试题补充
+
+### 12.1 v-if 和 v-show 的区别
+
+**面试回答思路：**
+
+v-if 和 v-show 都可以控制元素的显示和隐藏，但它们的实现原理和使用场景完全不同。这是 Vue 面试中的高频考点，需要从原理、性能、使用场景等多个角度来回答。
+
+:::tip 核心区别
+**v-if vs v-show = 条件渲染 vs CSS 切换**
+- 🎯 **v-if**：真正的条件渲染，DOM 元素的创建和销毁
+- 🎨 **v-show**：CSS display 属性切换，元素始终存在
+- ⚡ **性能**：v-if 切换开销大，v-show 初始渲染开销大
+- 🔄 **生命周期**：v-if 触发生命周期，v-show 不触发
+:::
+
+**实现原理对比：**
+
+<Tabs>
+<TabItem value="v-if" label="v-if 原理">
+
+**v-if 是真正的条件渲染：**
+
+1. **条件为 false**：元素不会被渲染到 DOM 中
+2. **条件为 true**：创建元素并渲染到 DOM
+3. **切换时**：销毁和重建元素及其内部的组件
+4. **生命周期**：触发 mounted、unmounted 等钩子
+5. **惰性渲染**：初始条件为 false 时，什么都不做
+
+```vue
+<template>
+  <!-- 条件为 false 时，DOM 中不存在这个元素 -->
+  <div v-if="isShow">
+    <h1>使用 v-if</h1>
+    <ExpensiveComponent />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isShow: false // DOM 中不会渲染这个 div
+    }
+  }
+}
+</script>
+```
+
+**编译后的渲染函数（简化）：**
+
+```javascript
+function render() {
+  return isShow 
+    ? h('div', [h('h1', '使用 v-if'), h(ExpensiveComponent)])
+    : null // 不渲染任何内容
+}
+```
+
+</TabItem>
+<TabItem value="v-show" label="v-show 原理">
+
+**v-show 是 CSS 切换：**
+
+1. **无论条件**：元素都会被渲染到 DOM 中
+2. **切换时**：只修改 CSS 的 display 属性
+3. **元素状态**：始终存在，只是视觉上的显示隐藏
+4. **生命周期**：不触发生命周期钩子
+5. **初始渲染**：总是会渲染，初始成本高
+
+```vue
+<template>
+  <!-- 元素始终存在于 DOM 中，只是 display: none -->
+  <div v-show="isVisible">
+    <h1>使用 v-show</h1>
+    <SimpleComponent />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isVisible: false // DOM 中存在，但 display: none
+    }
+  }
+}
+</script>
+```
+
+**编译后的渲染函数（简化）：**
+
+```javascript
+function render() {
+  return h('div', {
+    style: { display: isVisible ? '' : 'none' }
+  }, [h('h1', '使用 v-show'), h(SimpleComponent)])
+}
+```
+
+</TabItem>
+</Tabs>
+
+**性能对比分析：**
+
+| 特性 | v-if | v-show |
+|------|------|--------|
+| **渲染方式** | 条件渲染（创建/销毁） | CSS 切换（display） |
+| **初始渲染开销** | 低（惰性渲染） | 高（总是渲染） |
+| **切换开销** | 高（重建 DOM） | 低（只改 CSS） |
+| **生命周期** | ✅ 触发 | ❌ 不触发 |
+| **v-else 支持** | ✅ 支持 | ❌ 不支持 |
+| **template 支持** | ✅ 支持 | ❌ 不支持 |
+| **适用场景** | 条件很少改变 | 频繁切换 |
+| **内存占用** | 低（不渲染时释放） | 高（始终占用） |
+
+:::warning 性能陷阱
+**频繁切换时使用 v-if 会导致性能问题！**
+
+假设一个标签页组件每秒切换 10 次：
+- 使用 v-if：每次切换都要销毁和重建组件，触发生命周期，性能开销巨大
+- 使用 v-show：只是修改 CSS，性能开销极小
+
+**测试数据**：1000 次切换
+- v-if：约 500ms
+- v-show：约 50ms（快 10 倍）
+:::
+
+**语法支持对比：**
+
+<Tabs>
+<TabItem value="v-if-syntax" label="v-if 语法">
+
+```vue
+<template>
+  <div>
+    <!-- 1. 基本用法 -->
+    <div v-if="isShow">显示内容</div>
+    
+    <!-- 2. v-else-if 和 v-else -->
+    <div v-if="type === 'A'">A</div>
+    <div v-else-if="type === 'B'">B</div>
+    <div v-else>C</div>
+    
+    <!-- 3. 配合 template（不产生额外 DOM） -->
+    <template v-if="showGroup">
+      <h1>标题</h1>
+      <p>内容</p>
+      <button>按钮</button>
+    </template>
+    
+    <!-- 4. 在组件上使用 -->
+    <MyComponent v-if="isShow" />
+    
+    <!-- 5. 多条件判断 -->
+    <div v-if="isLoggedIn && hasPermission">
+      管理员面板
+    </div>
+  </div>
+</template>
+```
+
+</TabItem>
+<TabItem value="v-show-syntax" label="v-show 语法">
+
+```vue
+<template>
+  <div>
+    <!-- 1. 基本用法 -->
+    <div v-show="isVisible">显示内容</div>
+    
+    <!-- 2. ❌ 不支持 v-else -->
+    <!-- <div v-show="isVisible">A</div> -->
+    <!-- <div v-else>B</div> -->  <!-- 错误！ -->
+    
+    <!-- 3. ❌ 不支持 template -->
+    <!-- <template v-show="showGroup"> -->  <!-- 错误！ -->
+    <!--   <h1>标题</h1> -->
+    <!-- </template> -->
+    
+    <!-- 4. 在组件上使用（可以，但不推荐） -->
+    <MyComponent v-show="isVisible" />
+    
+    <!-- 5. 多条件判断 -->
+    <div v-show="isLoggedIn && hasPermission">
+      管理员面板
+    </div>
+    
+    <!-- 6. 正确的替代方案 -->
+    <div v-show="isVisible">A</div>
+    <div v-show="!isVisible">B</div>
+  </div>
+</template>
+```
+
+</TabItem>
+</Tabs>
+
+**使用场景指南：**
+
+:::tip 选择原则
+**一句话总结：频繁切换用 v-show，条件很少改变用 v-if**
+
+**使用 v-if 的场景：**
+- ✅ 权限控制（不渲染 DOM 更安全）
+- ✅ 条件很少改变的情况
+- ✅ 需要配合 v-else 使用
+- ✅ 初始条件为 false，且可能永远不会变为 true
+- ✅ 包含大量子组件或复杂逻辑的元素
+- ✅ 需要触发生命周期钩子
+
+**使用 v-show 的场景：**
+- ✅ 标签页切换
+- ✅ 模态框/对话框显示隐藏
+- ✅ 下拉菜单展开收起
+- ✅ 手风琴组件
+- ✅ 需要频繁切换显示状态
+- ✅ 元素结构简单，渲染成本低
+:::
+
+**实际案例对比：**
+
+<Tabs>
+<TabItem value="case-permission" label="权限控制">
+
+```vue
+<template>
+  <div>
+    <!-- ✅ 推荐：使用 v-if -->
+    <!-- 原因：不渲染 DOM 更安全，用户无法通过开发者工具看到隐藏的按钮 -->
+    <button v-if="hasDeletePermission" @click="deleteItem">
+      删除
+    </button>
+    
+    <button v-if="hasEditPermission" @click="editItem">
+      编辑
+    </button>
+    
+    <!-- ❌ 不推荐：使用 v-show -->
+    <!-- 问题：按钮仍在 DOM 中，只是隐藏，用户可以通过开发者工具修改 CSS 看到 -->
+    <button v-show="hasDeletePermission" @click="deleteItem">
+      删除
+    </button>
+  </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    hasDeletePermission() {
+      return this.$store.state.user.permissions.includes('delete')
+    },
+    hasEditPermission() {
+      return this.$store.state.user.permissions.includes('edit')
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+<TabItem value="case-tabs" label="标签页切换">
+
+```vue
+<template>
+  <div class="tabs">
+    <!-- 标签页导航 -->
+    <div class="tab-nav">
+      <button 
+        v-for="tab in tabs" 
+        :key="tab.id"
+        :class="{ active: activeTab === tab.id }"
+        @click="activeTab = tab.id"
+      >
+        {{ tab.label }}
+      </button>
+    </div>
+    
+    <!-- ✅ 推荐：使用 v-show -->
+    <!-- 原因：标签页会频繁切换，使用 v-show 性能更好 -->
+    <div class="tab-content">
+      <div v-show="activeTab === 'home'" class="tab-pane">
+        <h2>首页内容</h2>
+        <p>这是首页的内容...</p>
+      </div>
+      
+      <div v-show="activeTab === 'profile'" class="tab-pane">
+        <h2>个人资料</h2>
+        <UserProfile />
+      </div>
+      
+      <div v-show="activeTab === 'settings'" class="tab-pane">
+        <h2>设置</h2>
+        <Settings />
+      </div>
+    </div>
+    
+    <!-- ❌ 不推荐：使用 v-if -->
+    <!-- 问题：每次切换都会销毁和重建组件，性能差 -->
+    <div class="tab-content">
+      <div v-if="activeTab === 'home'">...</div>
+      <div v-if="activeTab === 'profile'">...</div>
+      <div v-if="activeTab === 'settings'">...</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      activeTab: 'home',
+      tabs: [
+        { id: 'home', label: '首页' },
+        { id: 'profile', label: '个人资料' },
+        { id: 'settings', label: '设置' }
+      ]
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+<TabItem value="case-modal" label="模态框">
+
+```vue
+<template>
+  <div>
+    <button @click="showModal = true">打开模态框</button>
+    
+    <!-- ✅ 推荐：使用 v-show -->
+    <!-- 原因：模态框会频繁打开关闭，使用 v-show 避免重复渲染 -->
+    <div class="modal-overlay" v-show="showModal" @click="showModal = false">
+      <div class="modal-content" @click.stop>
+        <h2>模态框标题</h2>
+        <p>模态框内容...</p>
+        <button @click="showModal = false">关闭</button>
+      </div>
+    </div>
+    
+    <!-- 💡 特殊情况：如果模态框内容很复杂，可以使用 v-if -->
+    <!-- 优点：关闭时释放内存，适合大型表单或复杂组件 -->
+    <div class="modal-overlay" v-if="showComplexModal">
+      <div class="modal-content">
+        <ComplexForm />  <!-- 复杂的表单组件 -->
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      showModal: false,
+      showComplexModal: false
+    }
+  }
+}
+</script>
+
+<style scoped>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+</style>
+```
+
+</TabItem>
+<TabItem value="case-conditional" label="条件渲染">
+
+```vue
+<template>
+  <div>
+    <!-- ✅ 推荐：使用 v-if -->
+    <!-- 原因：根据用户角色渲染不同组件，条件很少改变 -->
+    <AdminPanel v-if="userRole === 'admin'" />
+    <UserPanel v-else-if="userRole === 'user'" />
+    <GuestPanel v-else />
+    
+    <!-- ✅ 推荐：使用 v-if -->
+    <!-- 原因：登录状态改变不频繁 -->
+    <div v-if="isLoggedIn">
+      <h1>欢迎回来，{{ username }}</h1>
+      <button @click="logout">退出登录</button>
+    </div>
+    <div v-else>
+      <h1>请登录</h1>
+      <LoginForm />
+    </div>
+    
+    <!-- ✅ 推荐：使用 v-if -->
+    <!-- 原因：初始加载时不需要渲染，节省资源 -->
+    <HeavyComponent v-if="shouldLoadHeavyComponent" />
+  </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    userRole() {
+      return this.$store.state.user.role
+    },
+    isLoggedIn() {
+      return this.$store.state.user.isLoggedIn
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+</Tabs>
+
+:::danger 常见错误
+**错误 1：在频繁切换的场景使用 v-if**
+```vue
+<!-- ❌ 错误：标签页使用 v-if -->
+<div v-if="activeTab === 'home'">首页</div>
+<div v-if="activeTab === 'profile'">个人资料</div>
+<!-- 问题：每次切换都重建组件，性能差 -->
+
+<!-- ✅ 正确：使用 v-show -->
+<div v-show="activeTab === 'home'">首页</div>
+<div v-show="activeTab === 'profile'">个人资料</div>
+```
+
+**错误 2：在权限控制中使用 v-show**
+```vue
+<!-- ❌ 错误：权限控制使用 v-show -->
+<button v-show="hasPermission">删除</button>
+<!-- 问题：按钮仍在 DOM 中，不安全 -->
+
+<!-- ✅ 正确：使用 v-if -->
+<button v-if="hasPermission">删除</button>
+```
+
+**错误 3：v-show 使用 v-else**
+```vue
+<!-- ❌ 错误：v-show 不支持 v-else -->
+<div v-show="isShow">A</div>
+<div v-else>B</div>  <!-- 不会生效！ -->
+
+<!-- ✅ 正确：使用相反条件 -->
+<div v-show="isShow">A</div>
+<div v-show="!isShow">B</div>
+```
+:::
+
+**总结：**
+
+记住这个决策树：
+
+```
+需要条件渲染？
+  ├─ 是否频繁切换？
+  │   ├─ 是 → 使用 v-show
+  │   └─ 否 → 继续判断
+  │
+  ├─ 是否涉及权限/安全？
+  │   ├─ 是 → 使用 v-if
+  │   └─ 否 → 继续判断
+  │
+  ├─ 是否需要 v-else？
+  │   ├─ 是 → 使用 v-if
+  │   └─ 否 → 继续判断
+  │
+  ├─ 初始条件是否为 false？
+  │   ├─ 是 → 使用 v-if（惰性渲染）
+  │   └─ 否 → 使用 v-show
+  │
+  └─ 默认 → 使用 v-if（更安全）
+```
+
+在实际项目中，我会根据具体场景选择合适的指令，既要考虑性能，也要考虑代码的可读性和维护性。
+
+---
+
+### 12.2 v-for 为什么要加 key
+
+**面试回答思路：**
+
+key 是 Vue 中用于优化列表渲染的重要属性，理解它的作用对于写出高性能的 Vue 应用很重要。这个问题考察的是对 Vue 虚拟 DOM 和 Diff 算法的理解。
+
+:::tip 核心作用
+**key = 节点身份标识 + Diff 优化 + 状态保持**
+- 🎯 **身份标识**：帮助 Vue 识别哪些元素是相同的
+- ⚡ **性能优化**：提高 Diff 算法效率，减少 DOM 操作
+- 🔄 **状态保持**：确保组件状态在列表重排时正确保持
+- 🎨 **过渡动画**：正确触发列表的过渡效果
+:::
+
+**为什么需要 key？**
+
+<Tabs>
+<TabItem value="without-key" label="没有 key 的问题">
+
+**Vue 的默认行为：就地更新策略**
+
+当没有 key 时，Vue 使用"就地更新"策略。数据项顺序改变时，Vue 不会移动 DOM 元素，而是就地更新每个元素的内容。
+
+**问题演示：**
+
+```vue
+<template>
+  <div>
+    <h3>没有使用 key</h3>
+    <div v-for="item in items">
+      <input type="checkbox" />
+      <span>{{ item.name }}</span>
+    </div>
+    <button @click="reverse">反转列表</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        { id: 1, name: 'A' },
+        { id: 2, name: 'B' },
+        { id: 3, name: 'C' }
+      ]
+    }
+  },
+  methods: {
+    reverse() {
+      this.items.reverse()
+    }
+  }
+}
+</script>
+```
+
+**操作步骤：**
+1. 勾选第一个 checkbox（A）
+2. 点击"反转列表"按钮
+3. 结果：checkbox 的选中状态没有跟随数据移动！
+
+**原因分析：**
+
+```
+初始状态：
+DOM:  [✓ A] [ B] [ C]
+Data: [ A ] [ B] [ C]
+
+反转后（没有 key）：
+DOM:  [✓ A] [ B] [ C]  ← DOM 元素没有移动
+Data: [ C ] [ B] [ A]  ← 只更新了文本内容
+
+期望结果：
+DOM:  [ C] [ B] [✓ A]  ← checkbox 应该跟随 A 移动
+```
+
+Vue 只更新了 `<span>` 的文本内容，但 checkbox 的状态没有更新，因为 Vue 认为这些是同一个 DOM 元素。
+
+</TabItem>
+<TabItem value="with-key" label="使用 key 解决">
+
+**添加唯一的 key：**
+
+```vue
+<template>
+  <div>
+    <h3>使用了 key</h3>
+    <div v-for="item in items" :key="item.id">
+      <input type="checkbox" />
+      <span>{{ item.name }}</span>
+    </div>
+    <button @click="reverse">反转列表</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        { id: 1, name: 'A' },
+        { id: 2, name: 'B' },
+        { id: 3, name: 'C' }
+      ]
+    }
+  },
+  methods: {
+    reverse() {
+      this.items.reverse()
+    }
+  }
+}
+</script>
+```
+
+**操作步骤：**
+1. 勾选第一个 checkbox（A）
+2. 点击"反转列表"按钮
+3. 结果：checkbox 的选中状态正确跟随 A 移动到最后！
+
+**原因分析：**
+
+```
+初始状态：
+DOM:  [✓ A (key=1)] [ B (key=2)] [ C (key=3)]
+Data: [ A (id=1)  ] [ B (id=2) ] [ C (id=3) ]
+
+反转后（有 key）：
+DOM:  [ C (key=3)] [ B (key=2)] [✓ A (key=1)]  ← DOM 元素移动了
+Data: [ C (id=3) ] [ B (id=2) ] [ A (id=1)  ]
+
+Vue 通过 key 识别出：
+- key=1 的元素从位置 0 移动到位置 2
+- key=2 的元素保持在位置 1
+- key=3 的元素从位置 2 移动到位置 0
+```
+
+Vue 通过 key 识别出这是同一个元素，直接移动 DOM 节点，保持了 checkbox 的状态。
+
+</TabItem>
+</Tabs>
+
+**key 的工作原理：**
+
+:::info Diff 算法中的 key
+Vue 的 Diff 算法使用 key 来建立新旧节点的映射关系：
+
+```javascript
+// 简化的 Diff 算法
+function updateChildren(oldChildren, newChildren) {
+  // 1. 使用 key 建立旧节点的映射表
+  const oldKeyToIdx = {}
+  oldChildren.forEach((child, idx) => {
+    if (child.key) {
+      oldKeyToIdx[child.key] = idx
+    }
+  })
+  
+  // 2. 遍历新节点列表
+  newChildren.forEach(newChild => {
+    if (newChild.key && oldKeyToIdx[newChild.key] !== undefined) {
+      // 找到相同 key 的旧节点，复用并更新
+      const oldIdx = oldKeyToIdx[newChild.key]
+      const oldChild = oldChildren[oldIdx]
+      patch(oldChild, newChild)  // 复用 DOM，只更新差异
+    } else {
+      // 没找到，创建新节点
+      createNode(newChild)
+    }
+  })
+  
+  // 3. 删除不再需要的旧节点
+  // ...
+}
+```
+
+**有 key 的优势：**
+- ⚡ O(1) 时间复杂度查找对应节点
+- 🎯 精确复用 DOM 元素
+- 🔄 正确保持组件状态
+:::
+
+**key 的选择原则：**
+
+<Tabs>
+<TabItem value="good-key" label="✅ 推荐的 key">
+
+**1. 使用唯一 ID（最佳）**
+
+```vue
+<template>
+  <!-- ✅ 使用数据的唯一标识 -->
+  <div v-for="item in items" :key="item.id">
+    {{ item.name }}
+  </div>
+  
+  <!-- ✅ 使用唯一字符串 -->
+  <div v-for="user in users" :key="user.email">
+    {{ user.name }}
+  </div>
+  
+  <!-- ✅ 使用 UUID -->
+  <div v-for="item in items" :key="item.uuid">
+    {{ item.title }}
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' }
+      ],
+      users: [
+        { email: 'alice@example.com', name: 'Alice' },
+        { email: 'bob@example.com', name: 'Bob' }
+      ]
+    }
+  }
+}
+</script>
+```
+
+**2. 组合多个字段（确保唯一）**
+
+```vue
+<template>
+  <!-- ✅ 组合字段确保唯一性 -->
+  <div v-for="item in items" :key="`${item.type}-${item.id}`">
+    {{ item.name }}
+  </div>
+  
+  <!-- ✅ 使用对象的多个属性 -->
+  <div v-for="order in orders" :key="`order-${order.userId}-${order.orderId}`">
+    {{ order.productName }}
+  </div>
+</template>
+```
+
+**3. 静态列表可以使用索引**
+
+```vue
+<template>
+  <!-- ✅ 静态列表（不会重排、增删）可以使用索引 -->
+  <div v-for="(color, index) in staticColors" :key="index">
+    {{ color }}
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      // 这个列表永远不会改变顺序或增删
+      staticColors: ['red', 'green', 'blue']
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+<TabItem value="bad-key" label="❌ 不推荐的 key">
+
+**1. 不要使用索引作为 key（动态列表）**
+
+```vue
+<template>
+  <!-- ❌ 错误：动态列表使用索引 -->
+  <div v-for="(item, index) in items" :key="index">
+    <input type="checkbox" v-model="item.checked" />
+    {{ item.name }}
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        { id: 1, name: 'A', checked: false },
+        { id: 2, name: 'B', checked: false },
+        { id: 3, name: 'C', checked: false }
+      ]
+    }
+  },
+  methods: {
+    deleteFirst() {
+      this.items.shift()  // 删除第一项
+    }
+  }
+}
+</script>
+```
+
+**问题分析：**
+
+```javascript
+// 初始数据
+items = [
+  { id: 1, name: 'A' },  // index: 0, key: 0
+  { id: 2, name: 'B' },  // index: 1, key: 1
+  { id: 3, name: 'C' }   // index: 2, key: 2
+]
+
+// 删除第一项后
+items = [
+  { id: 2, name: 'B' },  // index: 0, key: 0 (之前是 key: 1)
+  { id: 3, name: 'C' }   // index: 1, key: 1 (之前是 key: 2)
+]
+
+// 问题：
+// - Vue 认为 key=0 的元素还是原来的元素（实际上是 B）
+// - Vue 认为 key=1 的元素还是原来的元素（实际上是 C）
+// - Vue 认为 key=2 的元素被删除了
+// 结果：Vue 会错误地复用 DOM，导致状态混乱
+```
+
+**2. 不要使用随机数**
+
+```vue
+<template>
+  <!-- ❌ 错误：使用随机数 -->
+  <div v-for="item in items" :key="Math.random()">
+    {{ item.name }}
+  </div>
+</template>
+```
+
+**问题：**
+- 每次渲染都会生成新的 key
+- Vue 无法识别哪些元素是相同的
+- 导致所有元素都被重新创建，性能极差
+
+**3. 不要使用非原始类型**
+
+```vue
+<template>
+  <!-- ❌ 错误：使用对象作为 key -->
+  <div v-for="item in items" :key="item">
+    {{ item.name }}
+  </div>
+</template>
+```
+
+**问题：**
+- 对象的引用每次都不同
+- Vue 无法正确比较 key
+- 导致无法复用 DOM
+
+</TabItem>
+</Tabs>
+
+**性能对比：**
+
+:::tip 性能测试
+**测试场景：1000 个元素的列表反转**
+
+| 方式 | 操作 | 耗时 | 说明 |
+|------|------|------|------|
+| **无 key** | 反转列表 | ~200ms | 更新所有元素的内容 |
+| **有 key (ID)** | 反转列表 | ~50ms | 只移动 DOM 节点位置 |
+| **错误 key (index)** | 删除第一项 | ~150ms | 错误复用，更新大量元素 |
+| **错误 key (random)** | 任何操作 | ~500ms | 重新创建所有元素 |
+
+**结论：**
+- 使用正确的 key 可以提升 4 倍性能
+- 使用错误的 key 比不用 key 更差
+:::
+
+**实际案例：**
+
+<Tabs>
+<TabItem value="case-todo" label="待办事项列表">
+
+```vue
+<template>
+  <div class="todo-list">
+    <h2>待办事项</h2>
+    
+    <!-- ✅ 使用唯一 ID 作为 key -->
+    <div 
+      v-for="todo in todos" 
+      :key="todo.id"
+      class="todo-item"
+    >
+      <input 
+        type="checkbox" 
+        v-model="todo.completed"
+        :id="`todo-${todo.id}`"
+      />
+      <label :for="`todo-${todo.id}`">
+        {{ todo.text }}
+      </label>
+      <button @click="deleteTodo(todo.id)">删除</button>
+      <button @click="moveTodoUp(todo.id)">上移</button>
+    </div>
+    
+    <button @click="addTodo">添加待办</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      todos: [
+        { id: 1, text: '学习 Vue', completed: false },
+        { id: 2, text: '写代码', completed: true },
+        { id: 3, text: '看文档', completed: false }
+      ],
+      nextId: 4
+    }
+  },
+  methods: {
+    addTodo() {
+      this.todos.push({
+        id: this.nextId++,
+        text: `新待办 ${this.nextId}`,
+        completed: false
+      })
+    },
+    deleteTodo(id) {
+      const index = this.todos.findIndex(t => t.id === id)
+      this.todos.splice(index, 1)
+    },
+    moveTodoUp(id) {
+      const index = this.todos.findIndex(t => t.id === id)
+      if (index > 0) {
+        const todo = this.todos.splice(index, 1)[0]
+        this.todos.splice(index - 1, 0, todo)
+      }
+    }
+  }
+}
+</script>
+```
+
+**为什么需要 key：**
+- ✅ 删除待办时，其他待办的 checkbox 状态不会错乱
+- ✅ 上移待办时，checkbox 状态正确跟随
+- ✅ 添加新待办时，不会影响现有待办的状态
+
+</TabItem>
+<TabItem value="case-draggable" label="可拖拽列表">
+
+```vue
+<template>
+  <div class="draggable-list">
+    <h2>可拖拽排序列表</h2>
+    
+    <!-- ✅ 拖拽列表必须使用 key -->
+    <draggable 
+      v-model="items" 
+      @start="drag=true" 
+      @end="drag=false"
+    >
+      <transition-group type="transition" name="flip-list">
+        <div 
+          v-for="item in items" 
+          :key="item.id"
+          class="list-item"
+        >
+          <span class="handle">☰</span>
+          <span>{{ item.name }}</span>
+          <input v-model="item.value" placeholder="输入值" />
+        </div>
+      </transition-group>
+    </draggable>
+  </div>
+</template>
+
+<script>
+import draggable from 'vuedraggable'
+
+export default {
+  components: {
+    draggable
+  },
+  data() {
+    return {
+      drag: false,
+      items: [
+        { id: 1, name: '项目 1', value: '' },
+        { id: 2, name: '项目 2', value: '' },
+        { id: 3, name: '项目 3', value: '' }
+      ]
+    }
+  }
+}
+</script>
+
+<style scoped>
+.flip-list-move {
+  transition: transform 0.5s;
+}
+</style>
+```
+
+**为什么需要 key：**
+- ✅ 拖拽时，input 的输入值正确跟随元素移动
+- ✅ 过渡动画正确触发
+- ✅ 组件状态不会混乱
+
+</TabItem>
+<TabItem value="case-form" label="动态表单">
+
+```vue
+<template>
+  <div class="dynamic-form">
+    <h2>动态表单</h2>
+    
+    <!-- ✅ 动态表单字段必须使用 key -->
+    <div 
+      v-for="field in formFields" 
+      :key="field.id"
+      class="form-field"
+    >
+      <label>{{ field.label }}</label>
+      <input 
+        :type="field.type"
+        v-model="field.value"
+        :placeholder="field.placeholder"
+      />
+      <button @click="removeField(field.id)">删除</button>
+    </div>
+    
+    <button @click="addField">添加字段</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      formFields: [
+        { 
+          id: 1, 
+          type: 'text', 
+          label: '姓名', 
+          value: '',
+          placeholder: '请输入姓名'
+        },
+        { 
+          id: 2, 
+          type: 'email', 
+          label: '邮箱', 
+          value: '',
+          placeholder: '请输入邮箱'
+        }
+      ],
+      nextId: 3
+    }
+  },
+  methods: {
+    addField() {
+      this.formFields.push({
+        id: this.nextId++,
+        type: 'text',
+        label: `字段 ${this.nextId}`,
+        value: '',
+        placeholder: '请输入内容'
+      })
+    },
+    removeField(id) {
+      const index = this.formFields.findIndex(f => f.id === id)
+      this.formFields.splice(index, 1)
+    }
+  }
+}
+</script>
+```
+
+**为什么需要 key：**
+- ✅ 删除字段时，其他字段的输入值不会错乱
+- ✅ 添加字段时，不会影响现有字段的状态
+- ✅ 字段顺序改变时，输入值正确保持
+
+</TabItem>
+</Tabs>
+
+:::danger 常见错误
+**错误 1：在动态列表中使用索引**
+```vue
+<!-- ❌ 错误 -->
+<div v-for="(item, index) in items" :key="index">
+  <input v-model="item.value" />
+</div>
+<!-- 问题：删除、插入、排序时会导致状态混乱 -->
+
+<!-- ✅ 正确 -->
+<div v-for="item in items" :key="item.id">
+  <input v-model="item.value" />
+</div>
+```
+
+**错误 2：不使用 key**
+```vue
+<!-- ❌ 错误 -->
+<div v-for="item in items">
+  {{ item.name }}
+</div>
+<!-- 问题：Vue 会警告，且可能导致状态问题 -->
+
+<!-- ✅ 正确 -->
+<div v-for="item in items" :key="item.id">
+  {{ item.name }}
+</div>
+```
+
+**错误 3：key 不唯一**
+```vue
+<!-- ❌ 错误 -->
+<div v-for="item in items" :key="item.type">
+  {{ item.name }}
+</div>
+<!-- 问题：多个元素可能有相同的 type，导致 key 重复 -->
+
+<!-- ✅ 正确 -->
+<div v-for="item in items" :key="item.id">
+  {{ item.name }}
+</div>
+```
+:::
+
+**总结：**
+
+**key 的作用：**
+1. 🎯 帮助 Vue 识别节点的身份
+2. ⚡ 提高 Diff 算法的效率
+3. 🔄 避免就地复用导致的问题
+4. 🎨 保持组件状态的正确性
+5. 🎭 正确触发过渡动画
+
+**使用原则：**
+1. ✅ 必须使用唯一且稳定的值
+2. ✅ 优先使用数据的唯一标识（如 ID）
+3. ❌ 不要使用索引（除非列表是静态的）
+4. ❌ 不要使用随机数
+5. ❌ 不要使用非原始类型
+
+**记忆口诀：**
+"v-for 必加 key，唯一稳定是关键，索引随机要避免，ID 最佳保平安"
+
+在实际项目中，我总是为 v-for 添加 key，这是一个良好的编程习惯，可以避免很多潜在的问题。
+
+---
+
+### 12.3 v-for 和 v-if 能一起使用吗
+
+**面试回答思路：**
+
+这是一个非常常见的面试题，也是实际开发中容易犯的错误。需要理解 Vue 2 和 Vue 3 的优先级差异，以及正确的解决方案。
+
+:::danger 重要警告
+**不推荐在同一个元素上同时使用 v-for 和 v-if！**
+
+- ⚠️ **Vue 2**：v-for 优先级高，会遍历所有元素再判断，性能浪费
+- ⚠️ **Vue 3**：v-if 优先级高，可能访问不到 v-for 的变量，导致报错
+- ✅ **推荐**：使用计算属性过滤数据，或使用 template 标签分离
+:::
+
+**Vue 2 vs Vue 3 优先级对比：**
+
+<Tabs>
+<TabItem value="vue2-problem" label="Vue 2 的问题">
+
+**Vue 2：v-for 优先级高于 v-if**
+
+```vue
+<template>
+  <ul>
+    <!-- ❌ 不推荐：Vue 2 -->
+    <li v-for="user in users" v-if="user.isActive" :key="user.id">
+      {{ user.name }}
+    </li>
+  </ul>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [
+        { id: 1, name: 'Alice', isActive: true },
+        { id: 2, name: 'Bob', isActive: false },
+        { id: 3, name: 'Charlie', isActive: true },
+        // ... 假设有 1000 个用户
+      ]
+    }
+  }
+}
+</script>
+```
+
+**问题分析：**
+
+```javascript
+// Vue 2 的执行顺序
+for (let user of users) {  // 1. 先执行 v-for，遍历所有 1000 个用户
+  if (user.isActive) {     // 2. 再执行 v-if，判断每个用户
+    render(user)           // 3. 渲染符合条件的用户
+  }
+}
+
+// 性能问题：
+// - 即使只有 100 个活跃用户，也要遍历所有 1000 个用户
+// - 每次渲染都要执行 1000 次判断
+// - 浪费了 900 次无效的判断
+```
+
+**性能影响：**
+
+| 场景 | 总用户数 | 活跃用户数 | 遍历次数 | 判断次数 | 渲染次数 |
+|------|---------|-----------|---------|---------|---------|
+| 小型应用 | 100 | 50 | 100 | 100 | 50 |
+| 中型应用 | 1000 | 100 | 1000 | 1000 | 100 |
+| 大型应用 | 10000 | 500 | 10000 | 10000 | 500 |
+
+每次组件更新都要执行这么多次操作，性能开销巨大！
+
+</TabItem>
+<TabItem value="vue3-problem" label="Vue 3 的问题">
+
+**Vue 3：v-if 优先级高于 v-for**
+
+```vue
+<template>
+  <ul>
+    <!-- ❌ 错误：Vue 3 -->
+    <li v-if="user.isActive" v-for="user in users" :key="user.id">
+      {{ user.name }}
+    </li>
+  </ul>
+</template>
+```
+
+**问题分析：**
+
+```javascript
+// Vue 3 的执行顺序
+if (user.isActive) {       // 1. 先执行 v-if
+  for (let user of users) { // 2. 再执行 v-for
+    render(user)
+  }
+}
+
+// 错误原因：
+// - v-if 先执行，但此时 user 变量还不存在
+// - 会报错：ReferenceError: user is not defined
+```
+
+**控制台错误：**
+
+```
+[Vue warn]: Property "user" was accessed during render but is not defined on instance.
+ReferenceError: user is not defined
+```
+
+</TabItem>
+</Tabs>
+
+**正确的解决方案：**
+
+<Tabs>
+<TabItem value="solution-computed" label="方案 1：计算属性（推荐）">
+
+**使用计算属性过滤数据（最佳实践）**
+
+```vue
+<template>
+  <ul>
+    <!-- ✅ 推荐：使用计算属性 -->
+    <li v-for="user in activeUsers" :key="user.id">
+      {{ user.name }}
+    </li>
+  </ul>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [
+        { id: 1, name: 'Alice', isActive: true },
+        { id: 2, name: 'Bob', isActive: false },
+        { id: 3, name: 'Charlie', isActive: true },
+        { id: 4, name: 'David', isActive: false },
+        { id: 5, name: 'Eve', isActive: true }
+      ]
+    }
+  },
+  computed: {
+    activeUsers() {
+      // 只过滤一次，返回活跃用户
+      return this.users.filter(user => user.isActive)
+    }
+  }
+}
+</script>
+```
+
+**优点：**
+- ✅ 只遍历需要显示的元素（100 次而不是 1000 次）
+- ✅ 有缓存，依赖不变时不重新计算
+- ✅ 代码清晰易读，逻辑分离
+- ✅ 性能最好
+
+**性能对比：**
+
+```javascript
+// ❌ 同时使用 v-for 和 v-if
+// 每次渲染：1000 次遍历 + 1000 次判断 = 2000 次操作
+
+// ✅ 使用计算属性
+// 首次渲染：1000 次过滤 + 100 次遍历 = 1100 次操作
+// 后续渲染：100 次遍历（有缓存）
+// 性能提升：约 10 倍
+```
+
+</TabItem>
+<TabItem value="solution-template" label="方案 2：template 标签">
+
+**使用 template 标签分离 v-if 和 v-for**
+
+```vue
+<template>
+  <ul>
+    <!-- ✅ 可以：使用 template 标签 -->
+    <template v-for="user in users" :key="user.id">
+      <li v-if="user.isActive">
+        {{ user.name }}
+      </li>
+    </template>
+  </ul>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [
+        { id: 1, name: 'Alice', isActive: true },
+        { id: 2, name: 'Bob', isActive: false },
+        { id: 3, name: 'Charlie', isActive: true }
+      ]
+    }
+  }
+}
+</script>
+```
+
+**优点：**
+- ✅ 不会产生额外的 DOM 元素
+- ✅ 逻辑清晰，v-if 和 v-for 分离
+- ✅ 兼容 Vue 2 和 Vue 3
+
+**缺点：**
+- ❌ 仍然会遍历所有元素（1000 次）
+- ❌ 性能不如计算属性
+- ❌ 代码稍显冗余
+
+**适用场景：**
+- 过滤逻辑复杂，不适合放在计算属性中
+- 需要在循环中使用多个条件判断
+
+</TabItem>
+<TabItem value="solution-outer" label="方案 3：外层 v-if">
+
+**在外层使用 v-if 控制整个列表**
+
+```vue
+<template>
+  <div>
+    <!-- ✅ 可以：控制整个列表的显示 -->
+    <ul v-if="users.length > 0">
+      <li v-for="user in users" :key="user.id">
+        {{ user.name }}
+      </li>
+    </ul>
+    <p v-else>暂无用户</p>
+    
+    <!-- ✅ 可以：根据条件显示不同列表 -->
+    <div v-if="showActiveUsers">
+      <h3>活跃用户</h3>
+      <ul>
+        <li v-for="user in activeUsers" :key="user.id">
+          {{ user.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [],
+      showActiveUsers: true
+    }
+  },
+  computed: {
+    activeUsers() {
+      return this.users.filter(user => user.isActive)
+    }
+  }
+}
+</script>
+```
+
+**适用场景：**
+- 控制整个列表的显示隐藏
+- 根据条件渲染不同的列表
+- 不是过滤列表项，而是控制列表本身
+
+</TabItem>
+</Tabs>
+
+**实际案例对比：**
+
+<Tabs>
+<TabItem value="case-products" label="商品列表过滤">
+
+```vue
+<template>
+  <div class="product-list">
+    <h2>商品列表</h2>
+    
+    <!-- ❌ 错误做法 -->
+    <div class="bad-example">
+      <h3>❌ 不推荐（同时使用）</h3>
+      <div 
+        v-for="product in products" 
+        v-if="product.inStock" 
+        :key="product.id"
+        class="product-card"
+      >
+        {{ product.name }} - ¥{{ product.price }}
+      </div>
+    </div>
+    
+    <!-- ✅ 正确做法 -->
+    <div class="good-example">
+      <h3>✅ 推荐（计算属性）</h3>
+      <div 
+        v-for="product in inStockProducts" 
+        :key="product.id"
+        class="product-card"
+      >
+        {{ product.name }} - ¥{{ product.price }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      products: [
+        { id: 1, name: '商品1', price: 99, inStock: true },
+        { id: 2, name: '商品2', price: 199, inStock: false },
+        { id: 3, name: '商品3', price: 299, inStock: true },
+        { id: 4, name: '商品4', price: 399, inStock: false },
+        { id: 5, name: '商品5', price: 499, inStock: true }
+      ]
+    }
+  },
+  computed: {
+    inStockProducts() {
+      return this.products.filter(p => p.inStock)
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+<TabItem value="case-nested" label="嵌套列表">
+
+```vue
+<template>
+  <div class="category-list">
+    <h2>商品分类</h2>
+    
+    <!-- ✅ 正确：外层 v-for，内层 v-if -->
+    <div v-for="category in categories" :key="category.id" class="category">
+      <h3>{{ category.name }}</h3>
+      
+      <!-- 方式 1：使用计算属性 -->
+      <ul v-if="getCategoryProducts(category.id).length > 0">
+        <li v-for="product in getCategoryProducts(category.id)" :key="product.id">
+          {{ product.name }}
+        </li>
+      </ul>
+      <p v-else>该分类暂无商品</p>
+      
+      <!-- 方式 2：使用 template -->
+      <ul>
+        <template v-for="product in category.products" :key="product.id">
+          <li v-if="product.visible">
+            {{ product.name }}
+          </li>
+        </template>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      categories: [
+        {
+          id: 1,
+          name: '电子产品',
+          products: [
+            { id: 1, name: '手机', visible: true },
+            { id: 2, name: '电脑', visible: false },
+            { id: 3, name: '平板', visible: true }
+          ]
+        },
+        {
+          id: 2,
+          name: '图书',
+          products: [
+            { id: 4, name: '小说', visible: true },
+            { id: 5, name: '教材', visible: true }
+          ]
+        }
+      ]
+    }
+  },
+  methods: {
+    getCategoryProducts(categoryId) {
+      const category = this.categories.find(c => c.id === categoryId)
+      return category ? category.products.filter(p => p.visible) : []
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+<TabItem value="case-conditional" label="条件渲染列表">
+
+```vue
+<template>
+  <div class="user-dashboard">
+    <h2>用户面板</h2>
+    
+    <!-- ✅ 正确：外层 v-if 控制整个列表 -->
+    <div v-if="isLoggedIn">
+      <h3>我的订单</h3>
+      <ul v-if="orders.length > 0">
+        <li v-for="order in orders" :key="order.id">
+          订单号：{{ order.id }} - 状态：{{ order.status }}
+        </li>
+      </ul>
+      <p v-else>暂无订单</p>
+    </div>
+    <div v-else>
+      <p>请先登录</p>
+    </div>
+    
+    <!-- ✅ 正确：使用计算属性过滤 -->
+    <div>
+      <h3>待处理订单</h3>
+      <ul>
+        <li v-for="order in pendingOrders" :key="order.id">
+          {{ order.id }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isLoggedIn: true,
+      orders: [
+        { id: 1, status: 'pending' },
+        { id: 2, status: 'completed' },
+        { id: 3, status: 'pending' }
+      ]
+    }
+  },
+  computed: {
+    pendingOrders() {
+      return this.orders.filter(order => order.status === 'pending')
+    }
+  }
+}
+</script>
+```
+
+</TabItem>
+</Tabs>
+
+**ESLint 规则：**
+
+:::info 代码规范
+Vue 官方的 ESLint 插件会检测这个问题：
+
+```javascript
+// .eslintrc.js
+module.exports = {
+  extends: [
+    'plugin:vue/vue3-recommended'
+  ],
+  rules: {
+    // 禁止 v-if 和 v-for 在同一元素上使用
+    'vue/no-use-v-if-with-v-for': 'error'
+  }
+}
+```
+
+**错误提示：**
+```
+error: The 'v-if' directive should not be used on the same element as 'v-for' (vue/no-use-v-if-with-v-for)
+```
+:::
+
+**性能对比总结：**
+
+| 方案 | 遍历次数 | 判断次数 | 缓存 | 性能评分 | 推荐度 |
+|------|---------|---------|------|---------|--------|
+| **同时使用（Vue 2）** | 1000 | 1000 | ❌ | ⭐ | ❌ |
+| **同时使用（Vue 3）** | - | - | ❌ | - | ❌ 报错 |
+| **计算属性** | 100 | 1000（一次） | ✅ | ⭐⭐⭐⭐⭐ | ✅✅✅ |
+| **template 标签** | 1000 | 1000 | ❌ | ⭐⭐⭐ | ✅ |
+| **外层 v-if** | 取决于条件 | 1 | ❌ | ⭐⭐⭐⭐ | ✅✅ |
+
+:::tip 最佳实践总结
+**记忆口诀：**
+"v-for 和 v-if 不同居，计算属性来过滤"
+
+**选择指南：**
+1. **优先使用计算属性**：性能最好，代码最清晰
+2. **template 标签**：逻辑复杂时使用
+3. **外层 v-if**：控制整个列表显示时使用
+4. **绝不同时使用**：无论 Vue 2 还是 Vue 3
+
+**核心原则：**
+- 🎯 数据过滤在 JavaScript 中完成（计算属性）
+- 🎨 模板只负责渲染，不负责过滤
+- ⚡ 减少不必要的遍历和判断
+- 📝 保持代码清晰易维护
+:::
+
+在实际项目中，我总是使用计算属性来过滤列表数据，这样不仅性能好，代码也更清晰易维护。这是 Vue 开发中的重要最佳实践。
+
+---
+
+## 十三、总结
+
+这份 Vue 面试题库涵盖了：
+
+1. ✅ Vue 基础概念和核心特性
+2. ✅ 组件通信的多种方式
+3. ✅ 生命周期钩子详解
+4. ✅ 指令系统和自定义指令
+5. ✅ Computed 和 Watch 的使用
+6. ✅ 虚拟 DOM 和 Diff 算法
+7. ✅ Vue Router 路由管理
+8. ✅ Vuex/Pinia 状态管理
+9. ✅ 性能优化技巧
+10. ✅ 常见问题和最佳实践
+11. ✅ 前后台交互（Fetch、Axios、async/await）
+12. ✅ 常见面试题补充（v-if vs v-show、v-for key、v-for 与 v-if）
+
+建议结合实际项目经验，深入理解每个知识点的应用场景。

@@ -1,0 +1,70 @@
+/* Stats Card - 统计卡片 */
+.statCard {
+  background-color: var(--dm-surface-container-lowest);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-xl);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  transform: skewX(-4deg);
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 6px 6px 0px 0px var(--dm-on-surface);
+}
+
+.statCard:hover {
+  transform: skewX(-4deg) translateY(-4px);
+  box-shadow: 8px 8px 0px 0px var(--dm-on-surface);
+}
+
+.statNumber {
+  font-family: var(--dm-font-headline);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--dm-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1;
+  transform: skewX(4deg);
+}
+
+/* Variants */
+.primary .statNumber {
+  color: var(--dm-primary);
+}
+
+.secondary .statNumber {
+  color: var(--dm-secondary);
+}
+
+.tertiary .statNumber {
+  color: var(--dm-tertiary);
+}
+
+.default .statNumber {
+  color: var(--dm-primary);
+}
+
+.statLabel {
+  font-family: var(--dm-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dm-on-surface-variant);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: skewX(4deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .statCard {
+    padding: 1.5rem 1rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .statLabel {
+    font-size: 0.875rem;
+  }
+}

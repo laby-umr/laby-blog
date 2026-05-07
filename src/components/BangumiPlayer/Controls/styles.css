@@ -1,0 +1,656 @@
+/**
+ * Controls - 播放器控制栏样式
+ * DevManga 漫画风格
+ */
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 50px 14px 12px;
+  z-index: 50;
+}
+
+/* 进度条 */
+.progress-wrap {
+  height: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  transition: height 0.15s;
+}
+
+.progress-wrap:hover .progress-bar {
+  height: 5px;
+}
+
+.progress-buffered {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+
+.progress-played {
+  position: absolute;
+  height: 100%;
+  background: #ff7a5e;
+  border-radius: 2px;
+}
+
+.progress-handle {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #ff7a5e;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.15s;
+}
+
+.progress-wrap:hover .progress-handle {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* 控制行 */
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls-left,
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 按钮 */
+.ctrl-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.ctrl-btn .material-symbols-outlined {
+  font-size: 26px;
+}
+
+.ctrl-btn:hover {
+  color: #ff7a5e;
+}
+
+.time-text {
+  color: #fff;
+  font-size: 13px;
+  font-family: Consolas, Monaco, monospace;
+}
+
+.ctrl-item {
+  position: relative;
+}
+
+.ctrl-text-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  padding: 4px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ctrl-text-btn:hover {
+  color: #ff7a5e;
+}
+
+.ctrl-icon-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ctrl-icon-btn .material-symbols-outlined {
+  font-size: 26px;
+}
+
+.ctrl-icon-btn:hover {
+  color: #ff7a5e;
+}
+
+/* ========== 统一面板样式 ========== */
+.panel-wrapper {
+  position: absolute;
+  bottom: calc(100% - 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 20px;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+
+.panel-wrapper::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  right: -20px;
+  height: 25px;
+  background: transparent;
+}
+
+.has-panel:hover > .panel-wrapper {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  background: rgba(28, 28, 28, 0.95);
+  border-radius: 0;
+  color: #fff;
+  font-size: 13px;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Tooltip */
+.has-tooltip .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(28, 28, 28, 0.95);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 0;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  margin-bottom: 10px;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.has-tooltip:hover .tooltip {
+  opacity: 1;
+}
+
+/* ========== 选集面板 ========== */
+.episode-panel {
+  min-width: 160px;
+  max-width: 220px;
+  padding: 10px;
+}
+
+.panel-title {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.episode-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.episode-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.episode-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.episode-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.episode-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 0;
+}
+
+.episode-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.episode-item.active {
+  background: rgba(255, 122, 94, 0.2);
+  color: #ff7a5e;
+}
+
+/* ========== 倍速面板 ========== */
+.speed-panel {
+  padding: 6px 0;
+}
+
+.speed-item {
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.speed-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.speed-item.active {
+  color: #ff7a5e;
+}
+
+/* ========== 音量滑块 ========== */
+.volume-panel-wrapper {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.volume-panel {
+  background: rgba(28, 28, 28, 0.95);
+  padding: 10px 0;
+  width: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.volume-value {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.volume-slider-vertical {
+  position: relative;
+  height: 75px;
+  width: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.volume-track {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 1px;
+}
+
+.volume-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ff7a5e;
+  border-radius: 1px;
+}
+
+.volume-slider-vertical .volume-slider {
+  position: absolute;
+  width: 75px;
+  height: 14px;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
+  margin: 0;
+  left: 50%;
+  top: 50%;
+  margin-left: -37.5px;
+  margin-top: -7px;
+}
+
+.volume-slider-vertical .volume-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  background: transparent;
+}
+
+.volume-slider-vertical .volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ff7a5e;
+  margin-top: -6px;
+}
+
+.volume-slider-vertical .volume-slider::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  background: transparent;
+}
+
+.volume-slider-vertical .volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ff7a5e;
+  border: none;
+}
+
+/* ========== 设置面板 ========== */
+.settings-panel {
+  width: 260px;
+  padding: 12px;
+}
+
+.setting-item {
+  margin-bottom: 10px;
+}
+
+.setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.setting-label {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 12px;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
+}
+
+.settings-panel select {
+  width: 100%;
+  padding: 5px 22px 5px 8px;
+  background: rgba(255, 255, 255, 0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23ffffff' opacity='0.9' d='M5 6L0 0h10z'/%3E%3C/svg%3E") no-repeat right 8px center;
+  background-size: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.settings-panel select:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.settings-panel select option {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 6px 8px;
+}
+
+.setting-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  user-select: none;
+}
+
+.setting-checkbox input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+
+/* ========== 字幕面板 ========== */
+.subtitle-panel {
+  width: 200px;
+  padding: 10px;
+}
+
+.subtitle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.info-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* CC字幕面板 */
+.cc-subtitle-panel,
+.ass-subtitle-panel {
+  width: 280px;
+  padding: 12px;
+}
+
+.subtitle-section {
+  margin-bottom: 12px;
+}
+
+.subtitle-section:last-child {
+  margin-bottom: 0;
+}
+
+.subtitle-label {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 12px;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 500;
+}
+
+.subtitle-select {
+  width: 100%;
+  padding: 5px 22px 5px 8px;
+  background: rgba(255, 255, 255, 0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23ffffff' opacity='0.9' d='M5 6L0 0h10z'/%3E%3C/svg%3E") no-repeat right 8px center;
+  background-size: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.subtitle-select:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.subtitle-select:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  outline: none;
+  box-shadow: none;
+}
+
+.subtitle-select option {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 6px 8px;
+}
+
+.subtitle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.subtitle-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitle-input {
+  width: 100%;
+  padding: 5px 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.subtitle-input:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.subtitle-input:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  outline: none;
+  box-shadow: none;
+}
+
+.subtitle-slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+.subtitle-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff7a5e;
+}
+
+.subtitle-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff7a5e;
+  border: none;
+}
+
+.subtitle-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  margin-bottom: 6px;
+  user-select: none;
+}
+
+.subtitle-checkbox:last-child {
+  margin-bottom: 0;
+}
+
+.subtitle-checkbox input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.subtitle-checkbox input[type="checkbox"]:checked {
+  background: #ff7a5e;
+  border-color: #ff7a5e;
+}
+
+.subtitle-checkbox input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.subtitle-reset-btn {
+  width: 100%;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.subtitle-reset-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}

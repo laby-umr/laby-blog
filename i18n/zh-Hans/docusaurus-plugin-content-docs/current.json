@@ -106,5 +106,29 @@
   "sidebar.tutorialSidebar.category.vue": {
     "message": "vue",
     "description": "The label for category 'vue' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.文档模板": {
+    "message": "文档模板",
+    "description": "The label for category '文档模板' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.文档模板.link.generated-index.description": {
+    "message": "各类文档模板，包括日报、周报等",
+    "description": "The generated-index page description for category '文档模板' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.前端开发": {
+    "message": "前端开发",
+    "description": "The label for category '前端开发' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.后端开发": {
+    "message": "后端开发",
+    "description": "The label for category '后端开发' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.面试题": {
+    "message": "面试题",
+    "description": "The label for category '面试题' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.面试题.link.generated-index.description": {
+    "message": "涵盖 Java、Spring、前端、数据库等技术栈的面试题集合",
+    "description": "The generated-index page description for category '面试题' in sidebar 'tutorialSidebar'"
   }
 }

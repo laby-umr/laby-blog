@@ -816,5 +816,122 @@
   },
   "sidebar.newsletter.subscribe": {
     "message": "订阅"
+  },
+  "videos.title": {
+    "message": "视频教程"
+  },
+  "videos.description": {
+    "message": "DevManga 视频教程 - 技术学习"
+  },
+  "videos.hero.badge": {
+    "message": "技术教程"
+  },
+  "videos.hero.title.part1": {
+    "message": "掌握"
+  },
+  "videos.hero.title.part2": {
+    "message": "前沿技术"
+  },
+  "videos.hero.description": {
+    "message": "从基础到高级的完整视频教程系列，助你成为技术专家"
+  },
+  "videos.hero.stats.videos": {
+    "message": "视频教程"
+  },
+  "videos.hero.stats.views": {
+    "message": "总观看量"
+  },
+  "videos.hero.stats.stacks": {
+    "message": "技术栈"
+  },
+  "videos.filter.title": {
+    "message": "选择技术分类"
+  },
+  "videos.category.all": {
+    "message": "全部"
+  },
+  "videos.category.frontend": {
+    "message": "前端"
+  },
+  "videos.category.backend": {
+    "message": "后端"
+  },
+  "videos.category.devops": {
+    "message": "运维"
+  },
+  "videos.pagination.perPage": {
+    "message": "每页显示"
+  },
+  "videos.pagination.items": {
+    "message": "条"
+  },
+  "videos.cta.title": {
+    "message": "准备好开始学习了吗？"
+  },
+  "videos.cta.description": {
+    "message": "订阅频道，获取最新的技术教程和编程分享"
+  },
+  "videos.cta.button": {
+    "message": "订阅更新"
+  },
+  "videos.loading": {
+    "message": "加载中..."
+  },
+  "videos.loadingData": {
+    "message": "正在加载视频数据"
+  },
+  "video.title": {
+    "message": "视频播放"
+  },
+  "video.description": {
+    "message": "观看视频教程"
+  },
+  "video.loading": {
+    "message": "加载中..."
+  },
+  "video.loadingData": {
+    "message": "正在加载视频数据"
+  },
+  "video.notFound": {
+    "message": "视频不存在"
+  },
+  "video.notFoundDesc": {
+    "message": "未找到该视频"
+  },
+  "video.backToList": {
+    "message": "返回视频列表"
+  },
+  "video.danmaku.title": {
+    "message": "弹幕库"
+  },
+  "video.danmaku.empty": {
+    "message": "暂无弹幕"
+  },
+  "video.danmaku.mode.scroll": {
+    "message": "滚动"
+  },
+  "video.danmaku.mode.top": {
+    "message": "顶部"
+  },
+  "video.danmaku.mode.bottom": {
+    "message": "底部"
+  },
+  "video.danmaku.gradient": {
+    "message": "渐变"
+  },
+  "video.playlist.title": {
+    "message": "播放列表"
+  },
+  "video.author.label": {
+    "message": "UP主"
+  },
+  "components.title": {
+    "message": "组件库"
+  },
+  "components.description": {
+    "message": "DevManga 漫画风格组件库"
+  },
+  "projects.readMore": {
+    "message": "查看详情"
   }
 }

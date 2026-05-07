@@ -1,0 +1,8 @@
+{
+  "label": "前端开发",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "frontend/frontend-intro"
+  }
+}

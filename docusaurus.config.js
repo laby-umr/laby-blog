@@ -41,6 +41,13 @@ const config = {
         crossorigin: 'anonymous',
       },
     },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap',
+      },
+    },
   ],
 
   // GitHub pages deployment config.
@@ -318,6 +325,7 @@ const config = {
           },
           {to: '/blog', label: '博客', position: 'left'},
           {to: '/projects', label: '项目', position: 'left'},
+          {to: '/videos', label: '视频', position: 'left'},
           {to: '/music', label: '音乐', position: 'left'},
           {to: '/contact', label: '联系我', position: 'left'},
           {to: '/about', label: '关于我', position: 'left'},

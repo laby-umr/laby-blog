@@ -1,0 +1,8 @@
+{
+  "label": "面试题",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "涵盖 Java、Spring、前端、数据库等技术栈的面试题集合"
+  }
+}

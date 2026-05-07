@@ -1,0 +1,118 @@
+/* Toast Notification - 漫画风格提示框，多种变体 */
+.toast {
+  position: fixed;
+  z-index: 9999;
+  animation: toastSlideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background-color: var(--dm-secondary-container);
+  color: var(--dm-on-surface);
+  padding: 1rem 2rem;
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-xl);
+  box-shadow: 6px 6px 0px 0px var(--dm-on-surface);
+  font-family: var(--dm-font-headline);
+  font-size: 1.125rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Positions */
+.top-center {
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-right {
+  top: 6rem;
+  right: 2rem;
+}
+
+.bottom-center {
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-right {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+/* Variants */
+.default {
+  background-color: var(--dm-secondary-container);
+}
+
+.success {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.error {
+  background-color: var(--dm-error-container);
+  border-color: var(--dm-error);
+  color: var(--dm-on-error-container);
+}
+
+.warning {
+  background-color: var(--dm-secondary-container);
+  border-color: var(--dm-secondary);
+}
+
+.info {
+  background-color: var(--dm-primary-container);
+  border-color: var(--dm-primary);
+}
+
+@keyframes toastSlideDown {
+  from {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toast {
+    left: 1rem !important;
+    right: 1rem !important;
+    transform: none !important;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    white-space: normal;
+    text-align: center;
+  }
+  
+  .top-center,
+  .top-right {
+    left: 1rem;
+    right: 1rem;
+  }
+  
+  .bottom-center,
+  .bottom-right {
+    left: 1rem;
+    right: 1rem;
+  }
+  
+  @keyframes toastSlideDown {
+    from {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
+import { 
+  StatsCard, 
+  ContactCard, 
+  Tag, 
+  CTASection, 
+  Avatar,
+  Button,
+  Badge,
+  Divider
+} from '@site/src/components/Common';
 import styles from './about.module.css';
 import { skillsData } from '../data/skills';
 import { Project, WorkExperience, Education } from '../types/about';
@@ -288,74 +298,48 @@ export default function About(): JSX.Element {
         {/* Stats Grid */}
         <section className={styles.statsSection}>
           <div className={styles.statsGrid}>
-            <div className={styles.statCard}>
-              <h3 className={styles.statNumber}>{aboutData?.personalInfo?.stats?.experience || '9年+'}</h3>
-              <p className={styles.statLabel}>
-                <Translate id="about.stats.experienceLabel">工作经验</Translate>
-              </p>
-            </div>
-            <div className={styles.statCard}>
-              <h3 className={styles.statNumber}>{aboutData?.personalInfo?.stats?.projects || '10+'}</h3>
-              <p className={styles.statLabel}>
-                <Translate id="about.stats.projectsLabel">核心项目</Translate>
-              </p>
-            </div>
-            <div className={styles.statCard}>
-              <h3 className={styles.statNumber}>{aboutData?.personalInfo?.stats?.skills || '20+'}</h3>
-              <p className={styles.statLabel}>
-                <Translate id="about.stats.skillsLabel">技术栈</Translate>
-              </p>
-            </div>
-            <div className={styles.statCard}>
-              <h3 className={styles.statNumber}>{aboutData?.personalInfo?.stats?.companies || '6家'}</h3>
-              <p className={styles.statLabel}>
-                <Translate id="about.stats.companiesLabel">知名企业</Translate>
-              </p>
-            </div>
+            <StatsCard
+              number={aboutData?.personalInfo?.stats?.experience || '9年+'}
+              label={translate({id: 'about.stats.experienceLabel', message: '工作经验'})}
+            />
+            <StatsCard
+              number={aboutData?.personalInfo?.stats?.projects || '10+'}
+              label={translate({id: 'about.stats.projectsLabel', message: '核心项目'})}
+            />
+            <StatsCard
+              number={aboutData?.personalInfo?.stats?.skills || '20+'}
+              label={translate({id: 'about.stats.skillsLabel', message: '技术栈'})}
+            />
+            <StatsCard
+              number={aboutData?.personalInfo?.stats?.companies || '6家'}
+              label={translate({id: 'about.stats.companiesLabel', message: '知名企业'})}
+            />
           </div>
         </section>
 
         {/* Contact Info */}
         <section className={styles.contactSection}>
           <div className={styles.contactGrid}>
-            <div className={styles.contactCard}>
-              <span className="material-symbols-outlined">phone</span>
-              <div>
-                <p className={styles.contactLabel}>
-                  <Translate id="about.contact.phone">电话</Translate>
-                </p>
-                <p className={styles.contactValue}>{aboutData?.personalInfo?.contact?.phone || '13261915710'}</p>
-              </div>
-            </div>
-            <div className={styles.contactCard}>
-              <span className="material-symbols-outlined">email</span>
-              <div>
-                <p className={styles.contactLabel}>
-                  <Translate id="about.contact.email">邮箱</Translate>
-                </p>
-                <p className={styles.contactValue}>{aboutData?.personalInfo?.contact?.email || '1521170425@qq.com'}</p>
-              </div>
-            </div>
-            <div className={styles.contactCard}>
-              <span className="material-symbols-outlined">location_on</span>
-              <div>
-                <p className={styles.contactLabel}>
-                  <Translate id="about.contact.location">位置</Translate>
-                </p>
-                <p className={styles.contactValue}>
-                  {aboutData?.personalInfo?.contact?.location || '北京'} · {aboutData?.personalInfo?.contact?.age || '32岁'}
-                </p>
-              </div>
-            </div>
-            <div className={styles.contactCard}>
-              <span className="material-symbols-outlined">payments</span>
-              <div>
-                <p className={styles.contactLabel}>
-                  <Translate id="about.contact.salary">期望薪资</Translate>
-                </p>
-                <p className={styles.contactValue}>{aboutData?.personalInfo?.contact?.salary || '20-25K'}</p>
-              </div>
-            </div>
+            <ContactCard
+              icon="phone"
+              label={translate({id: 'about.contact.phone', message: '电话'})}
+              value={aboutData?.personalInfo?.contact?.phone || '13261915710'}
+            />
+            <ContactCard
+              icon="email"
+              label={translate({id: 'about.contact.email', message: '邮箱'})}
+              value={aboutData?.personalInfo?.contact?.email || '1521170425@qq.com'}
+            />
+            <ContactCard
+              icon="location_on"
+              label={translate({id: 'about.contact.location', message: '位置'})}
+              value={`${aboutData?.personalInfo?.contact?.location || '北京'} · ${aboutData?.personalInfo?.contact?.age || '32岁'}`}
+            />
+            <ContactCard
+              icon="payments"
+              label={translate({id: 'about.contact.salary', message: '期望薪资'})}
+              value={aboutData?.personalInfo?.contact?.salary || '20-25K'}
+            />
           </div>
         </section>
 
@@ -626,14 +610,19 @@ export default function About(): JSX.Element {
           <h2><Translate id="about.cta.title">准备好下一个挑战了吗？</Translate></h2>
           <p><Translate id="about.cta.description">我已准备好为您的下一个高风险任务拔刀相助。无论是战斗还是构建，我都已做好准备。</Translate></p>
           <div className={styles.ctaButtons}>
-            <a href="/contact" className={styles.ctaButton}>
-              <span className="material-symbols-outlined">send</span>
+            <Button 
+              href="/contact"
+              icon="send"
+            >
               <Translate id="about.cta.contact">发送消息</Translate>
-            </a>
-            <a href="/projects" className={styles.ctaButtonSecondary}>
-              <span className="material-symbols-outlined">menu_book</span>
+            </Button>
+            <Button 
+              href="/projects"
+              variant="secondary"
+              icon="menu_book"
+            >
               <Translate id="about.cta.projects">查看数据日志</Translate>
-            </a>
+            </Button>
           </div>
         </section>
       </main>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
+import { Card, Toast, Badge, Tag, Hero, Button } from '@site/src/components/Common';
 import styles from './projects.module.css';
 
 export default function Projects() {
@@ -105,68 +106,42 @@ export default function Projects() {
       description={translate({id: 'projects.description', message: '我的武器库 - 代码之刃'})}>
       <main className={styles.projectsMain}>
         {/* Toast Notification */}
-        {showToast && (
-          <div className={styles.toast}>
-            项目代码开源中...
-          </div>
-        )}
+        <Toast
+          message="项目代码开源中..."
+          visible={showToast}
+          onClose={() => setShowToast(false)}
+          variant="default"
+          position="top-center"
+        />
 
         {/* Hero Section */}
-        <section className={styles.hero}>
-          <div className={styles.heroBadge}>
-            <Translate id="projects.header.badge">武器库</Translate>
-          </div>
-          <h1 className={styles.heroTitle}>
-            <Translate id="projects.header.title">我的武器库</Translate>
-          </h1>
-          <p className={styles.heroDescription}>
-            <Translate id="projects.header.subtitle">每个项目都是一把锻造的日轮刀</Translate>
-          </p>
-        </section>
+        <Hero
+          badge={translate({id: 'projects.header.badge', message: '武器库'})}
+          title={translate({id: 'projects.header.title', message: '我的武器库'})}
+          description={translate({id: 'projects.header.subtitle', message: '每个项目都是一把锻造的日轮刀'})}
+          align="center"
+        />
 
         {/* Projects Grid */}
         <section className={styles.projectsSection}>
           <div className={styles.projectsGrid}>
             {projects.map((project, index) => (
-              <article key={index} className={styles.projectCard}>
-                <div className={styles.cardShadow}></div>
-                <div className={styles.cardContent}>
-                  {/* Card Image */}
-                  <div className={styles.cardImage}>
-                    <img src={project.image} alt={project.title} />
-                  </div>
-
-                  {/* Card Info */}
-                  <div className={styles.cardInfo}>
-                    <h3 className={styles.cardTitle}>{project.title}</h3>
-                    <p className={styles.cardDescription}>{project.description}</p>
-                    
-                    {/* Tags */}
-                    <div className={styles.cardTags}>
-                      {project.tags.map((tag, tagIndex) => (
-                        <span key={tagIndex} className={styles.tag}>{tag}</span>
-                      ))}
-                    </div>
-                    
-                    {/* Footer */}
-                    <div className={styles.cardFooter}>
-                      <span className={styles.cardDate}>
-                        {new Date(project.date).toLocaleDateString('zh-CN', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                        })}
-                      </span>
-                      <div className={styles.readMore} onClick={handleViewDetails} style={{ cursor: 'pointer' }}>
-                        <span>
-                          <Translate id="projects.readMore">查看详情</Translate>
-                        </span>
-                        <span className="material-symbols-outlined">arrow_forward</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+              <Card
+                key={index}
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                date={new Date(project.date).toLocaleDateString('zh-CN', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric'
+                })}
+                tags={project.tags.map(tag => ({ label: tag }))}
+                readMore={translate({id: 'projects.readMore', message: '查看详情'})}
+                onClick={handleViewDetails}
+                variant="default"
+                size="md"
+              />
             ))}
           </div>
         </section>
@@ -179,12 +154,8 @@ export default function Projects() {
               <Translate id="projects.quote">代码不仅是工具，更是创造价值的艺术</Translate>
             </blockquote>
             <div className={styles.quoteTags}>
-              <span className={styles.quoteTag}>
-                <Translate id="projects.tag.innovation">创新</Translate>
-              </span>
-              <span className={styles.quoteTag}>
-                <Translate id="projects.tag.quality">品质</Translate>
-              </span>
+              <Tag label={translate({id: 'projects.tag.innovation', message: '创新'})} />
+              <Tag label={translate({id: 'projects.tag.quality', message: '品质'})} />
             </div>
           </div>
         </section>

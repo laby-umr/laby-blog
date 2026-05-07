@@ -3889,6 +3889,14 @@ address@^1.0.1:
   resolved "https://registry.npmjs.org/address/-/address-1.2.2.tgz"
   integrity sha512-4B/qKCfeE/ODUaAUpSwfzazo5x29WD4r3vXiWsB7I2mSDAihwEqKO+g8GELZUQSSAo5e1XTYh3ZVfLyxBc12nA==
 
+ag-psd@^28.4.0:
+  version "28.4.0"
+  resolved "https://registry.npmmirror.com/ag-psd/-/ag-psd-28.4.0.tgz"
+  integrity sha512-ow6NQ+AzkSBq1qgdLFH1DCWyS//xyDqk9423d5Q2BtRQD7RInv9VpcYpKx8PzOOHI1ir502mMEbVbZYO8qX5Eg==
+  dependencies:
+    base64-js "1.5.1"
+    pako "2.1.0"
+
 aggregate-error@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/aggregate-error/-/aggregate-error-3.1.0.tgz"
@@ -4136,6 +4144,23 @@ arraybuffer.prototype.slice@^1.0.4:
     get-intrinsic "^1.2.6"
     is-array-buffer "^3.0.4"
 
+artplayer-plugin-danmuku@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.npmmirror.com/artplayer-plugin-danmuku/-/artplayer-plugin-danmuku-5.3.0.tgz"
+  integrity sha512-a76bU1cWEZr53hD1X8IHfOzS4QawGHn8dQ3fIYyJ5TsyhTSnznhi2WzkS8M7LL3H02ekXRZTUFan9+9EERk12g==
+
+artplayer@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.npmmirror.com/artplayer/-/artplayer-5.4.0.tgz"
+  integrity sha512-2B+plbx8N2yNsjK4nJU3+EOG8TULm1LRZk/QPkWRAMEX2Ee/MSnZG/WJYz8kcoZxZuLKcQ3uXifqLuPxZOH29A==
+  dependencies:
+    option-validator "^2.0.6"
+
+assjs@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.npmmirror.com/assjs/-/assjs-0.1.6.tgz"
+  integrity sha512-sHdLRIsZsXEdURGKlyJf+AbgoHhhOELh8Wl6K6TL/au9p4b4EQed62OPKayWFeFIj8W7I9OzvYtHV/+/MwDvkg==
+
 astring@^1.8.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/astring/-/astring-1.9.0.tgz"
@@ -4228,7 +4253,7 @@ balloon-css@^0.5.0:
   resolved "https://registry.npmjs.org/balloon-css/-/balloon-css-0.5.2.tgz"
   integrity sha512-zheJpzwyNrG4t39vusA67v3BYg1HTVXOF8cErPEHzWK88PEOFwgo6Ea9VHOgOWNMgeuOtFVtB73NE2NWl9uDyQ==
 
-base64-js@^1.3.1, base64-js@^1.5.1:
+base64-js@^1.3.1, base64-js@^1.5.1, base64-js@1.5.1:
   version "1.5.1"
   resolved "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
@@ -7702,7 +7727,7 @@ khroma@^2.1.0:
   resolved "https://registry.npmjs.org/khroma/-/khroma-2.1.0.tgz"
   integrity sha512-Ls993zuzfayK269Svk9hzpeGUKob/sIgZzyHYdjQoAdQetRKpOLj+k/QQQ/6Qi0Yz65mlROrfd+Ev+1+7dz9Kw==
 
-kind-of@^6.0.0, kind-of@^6.0.2:
+kind-of@^6.0.0, kind-of@^6.0.2, kind-of@^6.0.3:
   version "6.0.3"
   resolved "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
@@ -9066,6 +9091,13 @@ opener@^1.5.2:
   resolved "https://registry.npmjs.org/opener/-/opener-1.5.2.tgz"
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
+option-validator@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.npmmirror.com/option-validator/-/option-validator-2.0.6.tgz"
+  integrity sha512-tmZDan2LRIRQyhUGvkff68/O0R8UmF+Btmiiz0SmSw2ng3CfPZB9wJlIjHpe/MKUZqyIZkVIXCrwr1tIN+0Dzg==
+  dependencies:
+    kind-of "^6.0.3"
+
 os-homedir@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/os-homedir/-/os-homedir-1.0.2.tgz"
@@ -9154,6 +9186,11 @@ package-manager-detector@^1.3.0:
   version "1.5.0"
   resolved "https://registry.npmjs.org/package-manager-detector/-/package-manager-detector-1.5.0.tgz"
   integrity sha512-uBj69dVlYe/+wxj8JOpr97XfsxH/eumMt6HqjNTmJDf/6NO9s+0uxeOneIz3AsPt2m6y9PqzDzd3ATcU17MNfw==
+
+pako@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmmirror.com/pako/-/pako-2.1.0.tgz"
+  integrity sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==
 
 param-case@^3.0.4:
   version "3.0.4"
@@ -9349,6 +9386,11 @@ plugin-image-zoom@^1.2.0:
   integrity sha512-uVCjp4bXuli39gmBs+JQvXMtpfLL+5yWfRIKZyM41d3D9oxGBEHmRzDu9EgusIwmBrKJvF9QuOZENw/9s6G+Jw==
   dependencies:
     medium-zoom "^1.0.4"
+
+pngjs@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmmirror.com/pngjs/-/pngjs-7.0.0.tgz"
+  integrity sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==
 
 points-on-curve@^0.2.0, points-on-curve@0.2.0:
   version "0.2.0"

@@ -809,5 +809,113 @@
   "theme.ErrorPageContent.tryAgain": {
     "message": "Try again",
     "description": "The label of the button to try again rendering when the React error boundary captures an error"
+  },
+  "videos.title": {
+    "message": "Video Tutorials"
+  },
+  "videos.description": {
+    "message": "DevManga Video Tutorials - Tech Learning"
+  },
+  "videos.hero.badge": {
+    "message": "TECH TUTORIALS"
+  },
+  "videos.hero.title.part1": {
+    "message": "Master"
+  },
+  "videos.hero.title.part2": {
+    "message": "Cutting-Edge Tech"
+  },
+  "videos.hero.description": {
+    "message": "Complete video tutorial series from basics to advanced, helping you become a tech expert"
+  },
+  "videos.hero.stats.videos": {
+    "message": "Video Tutorials"
+  },
+  "videos.hero.stats.views": {
+    "message": "Total Views"
+  },
+  "videos.hero.stats.stacks": {
+    "message": "Tech Stacks"
+  },
+  "videos.filter.title": {
+    "message": "Select Tech Category"
+  },
+  "videos.category.all": {
+    "message": "All"
+  },
+  "videos.category.frontend": {
+    "message": "Frontend"
+  },
+  "videos.category.backend": {
+    "message": "Backend"
+  },
+  "videos.category.devops": {
+    "message": "DevOps"
+  },
+  "videos.pagination.perPage": {
+    "message": "Per Page"
+  },
+  "videos.pagination.items": {
+    "message": "items"
+  },
+  "videos.cta.title": {
+    "message": "Ready to Start Learning?"
+  },
+  "videos.cta.description": {
+    "message": "Subscribe to get the latest tech tutorials and programming insights"
+  },
+  "videos.cta.button": {
+    "message": "Subscribe"
+  },
+  "videos.loading": {
+    "message": "Loading..."
+  },
+  "videos.loadingData": {
+    "message": "Loading video data"
+  },
+  "video.title": {
+    "message": "Video Player"
+  },
+  "video.description": {
+    "message": "Watch Video Tutorial"
+  },
+  "video.loading": {
+    "message": "Loading..."
+  },
+  "video.loadingData": {
+    "message": "Loading video data"
+  },
+  "video.notFound": {
+    "message": "Video Not Found"
+  },
+  "video.notFoundDesc": {
+    "message": "The video could not be found"
+  },
+  "video.backToList": {
+    "message": "Back to Video List"
+  },
+  "video.danmaku.title": {
+    "message": "Danmaku"
+  },
+  "video.danmaku.empty": {
+    "message": "No danmaku yet"
+  },
+  "video.danmaku.mode.scroll": {
+    "message": "Scroll"
+  },
+  "video.danmaku.mode.top": {
+    "message": "Top"
+  },
+  "video.danmaku.mode.bottom": {
+    "message": "Bottom"
+  },
+  "video.danmaku.gradient": {
+    "message": "Gradient"
+  },
+  "video.playlist.title": {
+    "message": "Playlist"
+  },
+  "video.author.label": {
+    "message": "Uploader"
   }
 }

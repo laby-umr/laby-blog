@@ -1,0 +1,582 @@
+---
+sidebar_position: 9
+title: JavaScript 面试题库
+description: JavaScript 核心概念和常见面试题详解
+tags: [JavaScript, 面试, 前端基础]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# JavaScript 面试题库
+
+## 一、变量声明
+
+### 1.1 let、const、var 的区别
+
+**面试回答思路：**
+
+这是 JavaScript 面试中的高频题，需要从多个维度来对比这三个关键字。
+
+**核心区别：**
+
+| 特性 | var | let | const |
+|------|-----|-----|-------|
+| 作用域 | 函数作用域 | 块级作用域 | 块级作用域 |
+| 变量提升 | 会提升 | 会提升但有暂时性死区 | 会提升但有暂时性死区 |
+| 重复声明 | 允许 | 不允许 | 不允许 |
+| 重新赋值 | 允许 | 允许 | 不允许 |
+| 初始化 | 可选 | 可选 | 必须初始化 |
+| 全局对象属性 | 是 | 否 | 否 |
+
+**1. 作用域（Scope）**
+
+**var：函数作用域**
+```javascript
+function testVar() {
+  if (true) {
+    var x = 10
+  }
+  console.log(x) // 10，可以访问
+}
+
+// 全局作用域
+var globalVar = 'global'
+console.log(window.globalVar) // 'global'（浏览器环境）
+```
+
+**let 和 const：块级作用域**
+```javascript
+function testLet() {
+  if (true) {
+    let x = 10
+    const y = 20
+  }
+  console.log(x) // ReferenceError: x is not defined
+  console.log(y) // ReferenceError: y is not defined
+}
+
+// 块级作用域示例
+{
+  let blockScoped = 'inside'
+  const alsoBlockScoped = 'inside'
+}
+console.log(blockScoped) // ReferenceError
+```
+
+**为什么块级作用域重要：**
+- 避免变量污染
+- 更好的代码组织
+- 减少意外的变量覆盖
+
+**2. 变量提升（Hoisting）**
+
+**var：会提升并初始化为 undefined**
+```javascript
+console.log(x) // undefined（不会报错）
+var x = 10
+console.log(x) // 10
+
+// 等价于：
+var x
+console.log(x) // undefined
+x = 10
+console.log(x) // 10
+```
+
+**let 和 const：会提升但不初始化（暂时性死区）**
+```javascript
+console.log(x) // ReferenceError: Cannot access 'x' before initialization
+let x = 10
+
+console.log(y) // ReferenceError: Cannot access 'y' before initialization
+const y = 20
+
+// 暂时性死区（Temporal Dead Zone, TDZ）
+{
+  // TDZ 开始
+  console.log(x) // ReferenceError
+  let x = 10 // TDZ 结束
+  console.log(x) // 10
+}
+```
+
+**3. 重复声明**
+
+**var：允许重复声明**
+```javascript
+var x = 10
+var x = 20 // 不会报错
+console.log(x) // 20
+```
+
+**let 和 const：不允许重复声明**
+```javascript
+let x = 10
+let x = 20 // SyntaxError: Identifier 'x' has already been declared
+
+const y = 10
+const y = 20 // SyntaxError: Identifier 'y' has already been declared
+```
+
+**4. 重新赋值**
+
+**var 和 let：允许重新赋值**
+```javascript
+var x = 10
+x = 20 // ✅ 可以
+
+let y = 10
+y = 20 // ✅ 可以
+```
+
+**const：不允许重新赋值**
+```javascript
+const z = 10
+z = 20 // ❌ TypeError: Assignment to constant variable
+
+// 但是对象和数组的内容可以修改
+const obj = { name: 'John' }
+obj.name = 'Jane' // ✅ 可以修改属性
+obj.age = 30 // ✅ 可以添加属性
+obj = {} // ❌ 不能重新赋值
+
+const arr = [1, 2, 3]
+arr.push(4) // ✅ 可以修改数组
+arr = [] // ❌ 不能重新赋值
+```
+
+**5. 循环中的表现**
+
+**var 的问题：**
+```javascript
+// ❌ 经典问题：循环中的 var
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i) // 输出 3, 3, 3
+  }, 100)
+}
+// 原因：var 是函数作用域，所有回调共享同一个 i
+
+// 解决方案 1：使用 IIFE
+for (var i = 0; i < 3; i++) {
+  (function(j) {
+    setTimeout(() => {
+      console.log(j) // 输出 0, 1, 2
+    }, 100)
+  })(i)
+}
+```
+
+**let 的优势：**
+```javascript
+// ✅ 使用 let 自动解决
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i) // 输出 0, 1, 2
+  }, 100)
+}
+// 原因：每次迭代都会创建新的块级作用域
+```
+
+**实际应用场景：**
+
+**使用 var 的场景（几乎没有）：**
+- 兼容老代码
+- 需要函数作用域的特殊情况（极少）
+
+**使用 let 的场景：**
+```javascript
+// 1. 需要重新赋值的变量
+let count = 0
+count++
+
+// 2. 循环计数器
+for (let i = 0; i < 10; i++) {
+  // ...
+}
+
+// 3. 条件赋值
+let message
+if (condition) {
+  message = 'Yes'
+} else {
+  message = 'No'
+}
+```
+
+**使用 const 的场景（推荐优先使用）：**
+```javascript
+// 1. 常量
+const PI = 3.14159
+const API_URL = 'https://api.example.com'
+
+// 2. 不会重新赋值的变量
+const user = { name: 'John', age: 30 }
+const numbers = [1, 2, 3, 4, 5]
+
+// 3. 函数声明
+const add = (a, b) => a + b
+
+// 4. 导入的模块
+const React = require('react')
+import { useState } from 'react'
+```
+
+**最佳实践：**
+
+1. **优先使用 const**
+   - 默认使用 const
+   - 让代码意图更明确
+   - 防止意外修改
+
+2. **需要重新赋值时使用 let**
+   - 循环计数器
+   - 需要更新的变量
+
+3. **避免使用 var**
+   - 现代 JavaScript 中几乎不需要 var
+   - 使用 let 和 const 可以避免很多问题
+
+**常见面试追问：**
+
+**Q: const 声明的对象为什么可以修改属性？**
+
+A: const 保证的是变量指向的内存地址不变，而不是值不变。对于对象和数组，变量存储的是引用（内存地址），修改属性不会改变引用。
+
+```javascript
+const obj = { name: 'John' }
+// obj 指向的内存地址：0x001
+
+obj.name = 'Jane'
+// obj 仍然指向：0x001（地址没变，只是内容变了）
+
+obj = { name: 'Bob' }
+// ❌ 试图让 obj 指向新地址：0x002（不允许）
+```
+
+**Q: 如何让对象完全不可修改？**
+
+A: 使用 Object.freeze()
+
+```javascript
+const obj = Object.freeze({ name: 'John' })
+obj.name = 'Jane' // 严格模式下报错，非严格模式下静默失败
+console.log(obj.name) // 'John'
+
+// 深度冻结需要递归
+function deepFreeze(obj) {
+  Object.freeze(obj)
+  Object.values(obj).forEach(value => {
+    if (typeof value === 'object' && value !== null) {
+      deepFreeze(value)
+    }
+  })
+  return obj
+}
+```
+
+**记忆技巧：**
+
+- **var**：老旧（Vintage）、可变（Variable）、危险（Vulnerable）
+- **let**：让它改变（Let it change）
+- **const**：常量（Constant）、不变（Consistent）
+
+---
+
+## 二、数据类型
+
+### 2.1 JavaScript 的数据类型有哪些？
+
+**面试回答思路：**
+
+JavaScript 有 8 种数据类型，分为基本类型和引用类型。
+
+**基本类型（Primitive Types）- 7 种：**
+
+1. **Number（数字）**
+```javascript
+const num1 = 42
+const num2 = 3.14
+const num3 = NaN // Not a Number
+const num4 = Infinity
+const num5 = -Infinity
+```
+
+2. **String（字符串）**
+```javascript
+const str1 = 'Hello'
+const str2 = "World"
+const str3 = `Template ${str1}` // 模板字符串
+```
+
+3. **Boolean（布尔值）**
+```javascript
+const bool1 = true
+const bool2 = false
+```
+
+4. **Undefined（未定义）**
+```javascript
+let x
+console.log(x) // undefined
+
+function test() {}
+console.log(test()) // undefined
+```
+
+5. **Null（空值）**
+```javascript
+const empty = null
+```
+
+6. **Symbol（符号）- ES6**
+```javascript
+const sym1 = Symbol('description')
+const sym2 = Symbol('description')
+console.log(sym1 === sym2) // false，每个 Symbol 都是唯一的
+```
+
+7. **BigInt（大整数）- ES2020**
+```javascript
+const bigNum = 9007199254740991n
+const bigNum2 = BigInt(9007199254740991)
+```
+
+**引用类型（Reference Types）- 1 种：**
+
+**Object（对象）**
+```javascript
+// 普通对象
+const obj = { name: 'John', age: 30 }
+
+// 数组
+const arr = [1, 2, 3]
+
+// 函数
+const func = function() {}
+
+// 日期
+const date = new Date()
+
+// 正则
+const regex = /pattern/
+
+// Map
+const map = new Map()
+
+// Set
+const set = new Set()
+```
+
+**基本类型 vs 引用类型：**
+
+| 特性 | 基本类型 | 引用类型 |
+|------|---------|---------|
+| 存储位置 | 栈内存 | 堆内存（栈中存引用） |
+| 赋值方式 | 值拷贝 | 引用拷贝 |
+| 比较方式 | 值比较 | 引用比较 |
+| 可变性 | 不可变 | 可变 |
+
+```javascript
+// 基本类型：值拷贝
+let a = 10
+let b = a
+b = 20
+console.log(a) // 10（a 不受影响）
+
+// 引用类型：引用拷贝
+let obj1 = { name: 'John' }
+let obj2 = obj1
+obj2.name = 'Jane'
+console.log(obj1.name) // 'Jane'（obj1 受影响）
+```
+
+---
+
+### 2.2 如何判断数据类型？
+
+**面试回答思路：**
+
+JavaScript 有多种判断数据类型的方法，每种方法都有其适用场景和局限性。
+
+**1. typeof 操作符**
+
+**适用场景：**判断基本类型（除了 null）
+
+```javascript
+typeof 42 // 'number'
+typeof 'hello' // 'string'
+typeof true // 'boolean'
+typeof undefined // 'undefined'
+typeof Symbol() // 'symbol'
+typeof 123n // 'bigint'
+
+// 函数
+typeof function() {} // 'function'
+
+// 对象和数组
+typeof {} // 'object'
+typeof [] // 'object'
+typeof null // 'object'（历史遗留问题）
+```
+
+**局限性：**
+- null 返回 'object'（这是一个历史遗留的 bug）
+- 无法区分数组、对象、null
+
+**2. instanceof 操作符**
+
+**适用场景：**判断对象的具体类型
+
+```javascript
+[] instanceof Array // true
+{} instanceof Object // true
+function() {} instanceof Function // true
+
+// 继承关系
+class Animal {}
+class Dog extends Animal {}
+const dog = new Dog()
+
+dog instanceof Dog // true
+dog instanceof Animal // true
+dog instanceof Object // true
+```
+
+**局限性：**
+- 只能判断对象类型
+- 无法判断基本类型
+- 跨 iframe 可能失效
+
+**3. Object.prototype.toString.call()**
+
+**适用场景：**最准确的类型判断（推荐）
+
+```javascript
+Object.prototype.toString.call(42) // '[object Number]'
+Object.prototype.toString.call('hello') // '[object String]'
+Object.prototype.toString.call(true) // '[object Boolean]'
+Object.prototype.toString.call(undefined) // '[object Undefined]'
+Object.prototype.toString.call(null) // '[object Null]'
+Object.prototype.toString.call({}) // '[object Object]'
+Object.prototype.toString.call([]) // '[object Array]'
+Object.prototype.toString.call(function() {}) // '[object Function]'
+Object.prototype.toString.call(new Date()) // '[object Date]'
+Object.prototype.toString.call(/regex/) // '[object RegExp]'
+Object.prototype.toString.call(Symbol()) // '[object Symbol]'
+Object.prototype.toString.call(123n) // '[object BigInt]'
+
+// 封装成工具函数
+function getType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1).toLowerCase()
+}
+
+getType(42) // 'number'
+getType([]) // 'array'
+getType({}) // 'object'
+getType(null) // 'null'
+```
+
+**4. Array.isArray()**
+
+**适用场景：**专门判断数组
+
+```javascript
+Array.isArray([]) // true
+Array.isArray({}) // false
+Array.isArray('array') // false
+```
+
+**5. 其他特定判断**
+
+```javascript
+// 判断 NaN
+Number.isNaN(NaN) // true
+Number.isNaN('hello') // false（推荐）
+
+isNaN(NaN) // true
+isNaN('hello') // true（不推荐，会先转换）
+
+// 判断有限数字
+Number.isFinite(42) // true
+Number.isFinite(Infinity) // false
+
+// 判断整数
+Number.isInteger(42) // true
+Number.isInteger(3.14) // false
+```
+
+**完整的类型判断工具：**
+
+```javascript
+const TypeChecker = {
+  // 基础类型判断
+  isNumber: (val) => typeof val === 'number' && !isNaN(val),
+  isString: (val) => typeof val === 'string',
+  isBoolean: (val) => typeof val === 'boolean',
+  isUndefined: (val) => typeof val === 'undefined',
+  isNull: (val) => val === null,
+  isSymbol: (val) => typeof val === 'symbol',
+  isBigInt: (val) => typeof val === 'bigint',
+  
+  // 引用类型判断
+  isObject: (val) => val !== null && typeof val === 'object',
+  isArray: (val) => Array.isArray(val),
+  isFunction: (val) => typeof val === 'function',
+  isDate: (val) => val instanceof Date,
+  isRegExp: (val) => val instanceof RegExp,
+  
+  // 特殊判断
+  isNaN: (val) => Number.isNaN(val),
+  isFinite: (val) => Number.isFinite(val),
+  isInteger: (val) => Number.isInteger(val),
+  
+  // 空值判断
+  isEmpty: (val) => {
+    if (val === null || val === undefined) return true
+    if (typeof val === 'string') return val.length === 0
+    if (Array.isArray(val)) return val.length === 0
+    if (typeof val === 'object') return Object.keys(val).length === 0
+    return false
+  },
+  
+  // 获取精确类型
+  getType: (val) => {
+    return Object.prototype.toString.call(val).slice(8, -1).toLowerCase()
+  }
+}
+
+// 使用示例
+console.log(TypeChecker.isNumber(42)) // true
+console.log(TypeChecker.isArray([])) // true
+console.log(TypeChecker.isEmpty('')) // true
+console.log(TypeChecker.getType(new Date())) // 'date'
+```
+
+**选择建议：**
+
+1. **判断基本类型**：使用 typeof（注意 null）
+2. **判断数组**：使用 Array.isArray()
+3. **判断对象类型**：使用 instanceof 或 Object.prototype.toString.call()
+4. **通用判断**：使用 Object.prototype.toString.call()（最可靠）
+
+---
+
+## 三、总结
+
+这份 JavaScript 面试题库目前涵盖了：
+
+1. ✅ 变量声明（let、const、var 的详细对比）
+2. ✅ 数据类型（8 种数据类型详解）
+3. ✅ 类型判断（多种判断方法和最佳实践）
+
+后续会继续补充更多内容，包括：
+- 作用域和闭包
+- this 指向
+- 原型和继承
+- 异步编程
+- ES6+ 新特性
+- 等等...
+
+建议结合实际代码练习，深入理解每个知识点。

@@ -1,0 +1,1651 @@
+---
+sidebar_position: 12
+title: Angular 面试题库
+description: Angular 框架常见面试题及详细解答
+tags: [Angular, 面试, 前端框架]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Angular 面试题库
+
+## 一、Angular 基础
+
+### 1.1 什么是 Angular？它的核心特性是什么？
+
+**面试回答思路：**
+
+Angular 是由 Google 开发和维护的一个完整的前端应用框架。我可以从以下几个方面介绍它的核心特性：
+
+**1. 完整的框架**
+- Angular 是一个完整的解决方案，不仅仅是一个库
+- 内置了路由、HTTP 客户端、表单处理、动画等功能
+- 提供了完整的开发工具链（CLI、测试工具等）
+- 开箱即用，不需要选择和集成各种第三方库
+
+**2. TypeScript**
+- Angular 使用 TypeScript 编写
+- 提供了强类型检查和更好的 IDE 支持
+- 代码更易维护，错误更容易在编译时发现
+- 支持最新的 JavaScript 特性
+
+**3. 组件化架构**
+- 应用由组件树构成
+- 每个组件包含模板、样式和逻辑
+- 组件可以嵌套和复用
+- 清晰的组件层次结构
+
+**4. 依赖注入（DI）**
+- Angular 有强大的依赖注入系统
+- 提高了代码的可测试性和可维护性
+- 便于管理组件之间的依赖关系
+- 支持多级注入器
+
+**5. 双向数据绑定**
+- 通过 [(ngModel)] 实现双向绑定
+- 视图和模型自动同步
+- 简化了表单处理
+
+**6. 指令系统**
+- 结构型指令：*ngIf、*ngFor、*ngSwitch
+- 属性型指令：ngClass、ngStyle
+- 可以自定义指令扩展功能
+
+**7. RxJS 集成**
+- 深度集成了 RxJS
+- 使用 Observable 处理异步操作
+- 强大的数据流管理能力
+
+**8. 模块化**
+- 使用 NgModule 组织代码
+- 支持懒加载
+- 便于代码分割和优化
+
+**补充说明：**
+Angular 适合构建大型企业级应用，它的学习曲线相对陡峭，但提供了完整的解决方案和最佳实践。Angular 的版本更新较快，但向后兼容性做得很好。
+
+
+```typescript
+// Angular 组件示例
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <div>
+      <p>Count: {{ count }}</p>
+      <button (click)="increment()">Increment</button>
+    </div>
+  `,
+  styles: [`
+    div {
+      padding: 20px;
+    }
+  `]
+})
+export class CounterComponent {
+  count = 0;
+  
+  increment() {
+    this.count++;
+  }
+}
+```
+
+---
+
+### 1.2 Angular、AngularJS 和 Angular 2+ 的区别
+
+**面试回答思路：**
+
+这是一个常见的面试题，需要区分 AngularJS（Angular 1.x）和现代 Angular（Angular 2+）。
+
+**AngularJS（Angular 1.x）：**
+
+**特点：**
+- 使用 JavaScript 编写
+- 基于 MVC 架构
+- 使用 $scope 和脏检查机制
+- 双向数据绑定通过 ng-model
+- 使用 Controller 和 $scope
+
+**问题：**
+- 性能问题（脏检查）
+- 代码组织混乱
+- 学习曲线陡峭
+- 移动端性能差
+
+**Angular 2+（现代 Angular）：**
+
+**改进：**
+- 使用 TypeScript 编写
+- 基于组件的架构
+- 使用 Zone.js 和变更检测
+- 性能大幅提升
+- 更好的移动端支持
+- 模块化设计
+- 更好的工具链
+
+**主要区别：**
+
+| 特性 | AngularJS | Angular 2+ |
+|------|-----------|------------|
+| 语言 | JavaScript | TypeScript |
+| 架构 | MVC | 组件化 |
+| 数据绑定 | 脏检查 | Zone.js |
+| 性能 | 较差 | 优秀 |
+| 移动端 | 不友好 | 友好 |
+| 学习曲线 | 陡峭 | 中等 |
+| CLI | 无 | 强大的 CLI |
+
+**版本说明：**
+- Angular 2 是完全重写，与 AngularJS 不兼容
+- Angular 2+ 指的是 Angular 2 及以后的版本
+- 从 Angular 2 开始，版本号直接叫 Angular，不再叫 Angular 2、3、4
+- 现在最新版本是 Angular 17（2023年）
+
+**迁移建议：**
+- AngularJS 已经停止维护
+- 新项目应该使用 Angular 2+
+- 老项目可以考虑逐步迁移或重写
+
+---
+
+### 1.3 Angular 的架构和核心概念
+
+**面试回答思路：**
+
+Angular 的架构是理解整个框架的基础，我会从几个核心概念来介绍：
+
+**1. 模块（NgModule）**
+
+Angular 应用是模块化的，每个应用至少有一个根模块（AppModule）。
+
+**作用：**
+- 组织代码结构
+- 管理依赖关系
+- 配置编译器
+- 支持懒加载
+
+**组成部分：**
+- declarations：声明组件、指令、管道
+- imports：导入其他模块
+- providers：提供服务
+- bootstrap：启动组件
+- exports：导出组件供其他模块使用
+
+**2. 组件（Component）**
+
+组件是 Angular 应用的基本构建块。
+
+**组成部分：**
+- 模板（Template）：定义视图
+- 样式（Styles）：定义外观
+- 类（Class）：定义逻辑
+- 元数据（Metadata）：通过装饰器配置
+
+**特点：**
+- 每个组件都有一个选择器
+- 组件可以嵌套
+- 组件之间通过 @Input 和 @Output 通信
+
+**3. 服务（Service）**
+
+服务用于封装可复用的业务逻辑。
+
+**特点：**
+- 通过依赖注入使用
+- 单例模式（默认）
+- 可以注入到组件或其他服务中
+- 用于数据共享、HTTP 请求等
+
+**4. 依赖注入（DI）**
+
+Angular 的核心特性之一。
+
+**优点：**
+- 解耦代码
+- 提高可测试性
+- 便于维护
+- 支持多级注入器
+
+**5. 指令（Directive）**
+
+扩展 HTML 功能的特殊标记。
+
+**类型：**
+- 组件指令：带模板的指令
+- 结构型指令：改变 DOM 结构（*ngIf、*ngFor）
+- 属性型指令：改变元素外观或行为（ngClass、ngStyle）
+
+**6. 管道（Pipe）**
+
+用于转换模板中的数据。
+
+**内置管道：**
+- DatePipe：日期格式化
+- UpperCasePipe：转大写
+- LowerCasePipe：转小写
+- CurrencyPipe：货币格式化
+- PercentPipe：百分比格式化
+
+**7. 路由（Router）**
+
+管理应用的导航。
+
+**功能：**
+- 路由配置
+- 路由守卫
+- 懒加载
+- 路由参数
+- 子路由
+
+**架构图：**
+
+```
+应用
+├── 模块（NgModule）
+│   ├── 组件（Component）
+│   │   ├── 模板（Template）
+│   │   ├── 样式（Styles）
+│   │   └── 类（Class）
+│   ├── 服务（Service）
+│   ├── 指令（Directive）
+│   ├── 管道（Pipe）
+│   └── 路由（Router）
+└── 依赖注入（DI）
+```
+
+**实际应用：**
+理解 Angular 的架构对于构建大型应用至关重要。模块化的设计让代码组织更清晰，依赖注入让代码更易测试，这些都是 Angular 的优势。
+
+---
+
+## 二、组件通信
+
+### 2.1 Angular 组件间通信的方式
+
+**面试回答思路：**
+
+Angular 提供了多种组件间通信的方式，根据组件关系的不同，可以选择不同的方案：
+
+**1. @Input 和 @Output（父子组件）**
+
+这是最基本也是最常用的通信方式。
+
+**@Input：父传子**
+- 父组件通过属性绑定传递数据给子组件
+- 子组件使用 @Input 装饰器接收数据
+- 支持数据变化检测
+
+**@Output：子传父**
+- 子组件使用 @Output 装饰器定义事件
+- 通过 EventEmitter 发射事件
+- 父组件监听事件并处理
+
+**特点：**
+- 单向数据流，数据流向清晰
+- 类型安全
+- 易于理解和维护
+
+**2. ViewChild 和 ContentChild（父访问子）**
+
+父组件可以直接访问子组件的实例。
+
+**ViewChild：**
+- 访问模板中的子组件
+- 可以调用子组件的方法
+- 可以访问子组件的属性
+
+**ContentChild：**
+- 访问通过内容投影传入的组件
+- 用于组件封装
+
+**注意：**
+- 只能在 ngAfterViewInit 之后访问
+- 破坏了组件的封装性，谨慎使用
+
+**3. 服务（Service）+ 依赖注入**
+
+通过共享服务实现组件间通信。
+
+**适用场景：**
+- 兄弟组件通信
+- 跨层级组件通信
+- 全局状态管理
+
+**实现方式：**
+- 创建一个服务
+- 在服务中定义共享数据和方法
+- 使用 RxJS Subject 或 BehaviorSubject
+- 组件注入服务并订阅数据
+
+**优点：**
+- 解耦组件
+- 支持多对多通信
+- 便于状态管理
+
+**4. RxJS Subject**
+
+使用 RxJS 的 Subject 实现发布-订阅模式。
+
+**类型：**
+- Subject：普通主题
+- BehaviorSubject：有初始值，会发送最新值
+- ReplaySubject：会重放历史值
+- AsyncSubject：只发送最后一个值
+
+**特点：**
+- 强大的数据流管理
+- 支持多播
+- 可以组合多个数据流
+
+**5. 路由参数**
+
+通过路由传递数据。
+
+**方式：**
+- 路径参数：/user/:id
+- 查询参数：/user?id=123
+- 状态参数：通过 state 传递对象
+
+**适用场景：**
+- 页面间传递数据
+- 深度链接
+- 书签支持
+
+**6. LocalStorage / SessionStorage**
+
+通过浏览器存储传递数据。
+
+**适用场景：**
+- 跨页面数据持久化
+- 用户偏好设置
+- 临时数据存储
+
+**注意：**
+- 只能存储字符串
+- 有大小限制
+- 注意安全性
+
+**选择建议：**
+- 父子组件：优先使用 @Input/@Output
+- 兄弟组件：使用共享服务
+- 跨层级：使用服务或状态管理库
+- 页面间：使用路由参数
+- 全局状态：使用 NgRx 或 Akita
+
+在实际项目中，我会根据组件关系和数据流向选择合适的通信方式，保持代码的清晰和可维护性。
+
+
+```typescript
+// 1. @Input 和 @Output 示例
+// 父组件
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-child 
+      [message]="parentMessage" 
+      (notify)="onNotify($event)">
+    </app-child>
+  `
+})
+export class ParentComponent {
+  parentMessage = 'Hello from parent';
+  
+  onNotify(data: string) {
+    console.log('Received from child:', data);
+  }
+}
+
+// 子组件
+@Component({
+  selector: 'app-child',
+  template: `
+    <p>{{ message }}</p>
+    <button (click)="sendToParent()">Send</button>
+  `
+})
+export class ChildComponent {
+  @Input() message: string;
+  @Output() notify = new EventEmitter<string>();
+  
+  sendToParent() {
+    this.notify.emit('Data from child');
+  }
+}
+
+// 2. 服务通信示例
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  private dataSubject = new BehaviorSubject<string>('initial');
+  data$ = this.dataSubject.asObservable();
+  
+  updateData(data: string) {
+    this.dataSubject.next(data);
+  }
+}
+
+// 组件 A
+export class ComponentA {
+  constructor(private dataService: DataService) {}
+  
+  sendData() {
+    this.dataService.updateData('Hello from A');
+  }
+}
+
+// 组件 B
+export class ComponentB {
+  data$: Observable<string>;
+  
+  constructor(private dataService: DataService) {
+    this.data$ = this.dataService.data$;
+  }
+}
+```
+
+---
+
+## 三、生命周期
+
+### 3.1 Angular 组件的生命周期钩子
+
+**面试回答思路：**
+
+Angular 组件有完整的生命周期，从创建到销毁的每个阶段都有对应的钩子函数。
+
+**生命周期顺序：**
+
+**1. ngOnChanges()**
+- 在 ngOnInit 之前调用
+- 当输入属性（@Input）变化时调用
+- 接收 SimpleChanges 对象，包含变化的详细信息
+- 首次调用发生在 ngOnInit 之前
+
+**使用场景：**
+- 响应输入属性的变化
+- 对比新旧值
+- 执行相应的逻辑
+
+**2. ngOnInit()**
+- 组件初始化时调用一次
+- 在第一次 ngOnChanges 之后调用
+- 此时输入属性已经设置完成
+
+**使用场景：**
+- 初始化组件
+- 获取初始数据
+- 设置订阅
+
+**3. ngDoCheck()**
+- 在每次变更检测时调用
+- 可以实现自定义的变更检测逻辑
+- 调用频率很高，注意性能
+
+**使用场景：**
+- 检测 Angular 无法自动检测的变化
+- 实现自定义的脏检查
+
+**4. ngAfterContentInit()**
+- 内容投影（ng-content）初始化后调用一次
+- 在第一次 ngDoCheck 之后调用
+
+**使用场景：**
+- 访问投影内容
+- 初始化投影内容相关的逻辑
+
+**5. ngAfterContentChecked()**
+- 每次检查投影内容后调用
+- 在 ngAfterContentInit 和每次 ngDoCheck 之后调用
+
+**使用场景：**
+- 响应投影内容的变化
+
+**6. ngAfterViewInit()**
+- 视图初始化完成后调用一次
+- 此时可以访问 ViewChild 和 ViewChildren
+
+**使用场景：**
+- 访问子组件
+- 操作 DOM
+- 初始化第三方库
+
+**7. ngAfterViewChecked()**
+- 每次检查视图后调用
+- 在 ngAfterViewInit 和每次 ngAfterContentChecked 之后调用
+
+**使用场景：**
+- 响应视图的变化
+
+**8. ngOnDestroy()**
+- 组件销毁前调用
+- 用于清理工作
+
+**使用场景：**
+- 取消订阅
+- 清除定时器
+- 解绑事件监听器
+- 释放资源
+
+```typescript
+import { Component, OnInit, OnDestroy, OnChanges, 
+         AfterViewInit, SimpleChanges } from '@angular/core';
+
+@Component({
+  selector: 'app-lifecycle',
+  template: `<div>Lifecycle Demo</div>`
+})
+export class LifecycleComponent implements OnInit, OnDestroy, 
+                                           OnChanges, AfterViewInit {
+  @Input() data: string;
+  
+  // 1. 输入属性变化
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges', changes);
+  }
+  
+  // 2. 组件初始化
+  ngOnInit() {
+    console.log('ngOnInit');
+    // 初始化数据、订阅等
+  }
+  
+  // 3. 视图初始化完成
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit');
+    // 访问 ViewChild、操作 DOM
+  }
+  
+  // 4. 组件销毁
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
+    // 清理工作：取消订阅、清除定时器
+  }
+}
+```
+
+**执行顺序总结：**
+
+```
+constructor
+↓
+ngOnChanges (如果有 @Input)
+↓
+ngOnInit
+↓
+ngDoCheck
+↓
+ngAfterContentInit
+↓
+ngAfterContentChecked
+↓
+ngAfterViewInit
+↓
+ngAfterViewChecked
+↓
+(更新时重复 ngDoCheck 到 ngAfterViewChecked)
+↓
+ngOnDestroy
+```
+
+**注意事项：**
+
+1. **不要在 ngAfterViewInit 中修改视图**：会导致 ExpressionChangedAfterItHasBeenCheckedError
+2. **ngDoCheck 性能问题**：调用频率很高，避免复杂操作
+3. **记得取消订阅**：在 ngOnDestroy 中取消所有订阅，防止内存泄漏
+
+---
+
+## 四、依赖注入
+
+### 4.1 什么是依赖注入？Angular 如何实现？
+
+**面试回答思路：**
+
+依赖注入（Dependency Injection，DI）是 Angular 的核心特性之一，也是其与其他框架的重要区别。
+
+**什么是依赖注入：**
+
+依赖注入是一种设计模式，用于实现控制反转（IoC）。简单来说，就是不在组件内部创建依赖对象，而是由外部注入。
+
+**为什么需要依赖注入：**
+
+**1. 解耦代码**
+- 组件不需要知道依赖的具体实现
+- 便于替换依赖
+- 提高代码的灵活性
+
+**2. 提高可测试性**
+- 可以轻松注入 mock 对象
+- 便于单元测试
+- 隔离测试环境
+
+**3. 便于维护**
+- 依赖关系清晰
+- 修改依赖不影响使用方
+- 符合开闭原则
+
+**4. 单例模式**
+- 服务默认是单例的
+- 避免重复创建实例
+- 便于状态共享
+
+**Angular 的依赖注入系统：**
+
+**1. 注入器（Injector）**
+
+Angular 有多级注入器：
+- 根注入器（Root Injector）
+- 模块注入器（Module Injector）
+- 组件注入器（Component Injector）
+
+**2. 提供者（Provider）**
+
+定义如何创建依赖对象。
+
+**提供者类型：**
+
+```typescript
+// 1. 类提供者（最常用）
+providers: [UserService]
+// 等价于
+providers: [{ provide: UserService, useClass: UserService }]
+
+// 2. 值提供者
+providers: [{ provide: API_URL, useValue: 'https://api.example.com' }]
+
+// 3. 工厂提供者
+providers: [{
+  provide: Logger,
+  useFactory: (config: Config) => {
+    return config.debug ? new DebugLogger() : new ProductionLogger();
+  },
+  deps: [Config]
+}]
+
+// 4. 别名提供者
+providers: [
+  NewService,
+  { provide: OldService, useExisting: NewService }
+]
+```
+
+**3. 注入令牌（Injection Token）**
+
+用于注入非类类型的依赖。
+
+```typescript
+import { InjectionToken } from '@angular/core';
+
+export const API_URL = new InjectionToken<string>('api.url');
+
+// 提供值
+providers: [
+  { provide: API_URL, useValue: 'https://api.example.com' }
+]
+
+// 注入使用
+constructor(@Inject(API_URL) private apiUrl: string) {}
+```
+
+**4. 注入范围**
+
+```typescript
+// 1. 根级别（推荐）
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {}
+
+// 2. 模块级别
+@NgModule({
+  providers: [UserService]
+})
+
+// 3. 组件级别
+@Component({
+  providers: [UserService]
+})
+```
+
+**5. 可选依赖和多个依赖**
+
+```typescript
+import { Optional, SkipSelf, Self, Host } from '@angular/core';
+
+constructor(
+  // 可选依赖
+  @Optional() private logger: Logger,
+  
+  // 跳过当前注入器
+  @SkipSelf() private parentService: ParentService,
+  
+  // 只在当前注入器查找
+  @Self() private localService: LocalService,
+  
+  // 在宿主组件查找
+  @Host() private hostService: HostService
+) {}
+```
+
+**实际应用示例：**
+
+```typescript
+// 服务定义
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  private data: string[] = [];
+  
+  getData() {
+    return this.data;
+  }
+  
+  addData(item: string) {
+    this.data.push(item);
+  }
+}
+
+// 组件使用
+@Component({
+  selector: 'app-data-list',
+  template: `
+    <ul>
+      <li *ngFor="let item of data">{{ item }}</li>
+    </ul>
+  `
+})
+export class DataListComponent implements OnInit {
+  data: string[];
+  
+  constructor(private dataService: DataService) {}
+  
+  ngOnInit() {
+    this.data = this.dataService.getData();
+  }
+}
+```
+
+**依赖注入的优势：**
+
+1. 代码更清晰，依赖关系一目了然
+2. 便于单元测试，可以轻松 mock 依赖
+3. 提高代码复用性
+4. 便于维护和扩展
+
+
+---
+
+## 五、RxJS 和响应式编程
+
+### 5.1 什么是 RxJS？为什么 Angular 使用 RxJS？
+
+**面试回答思路：**
+
+RxJS 是 Angular 的核心依赖之一，理解 RxJS 对于掌握 Angular 至关重要。
+
+**什么是 RxJS：**
+
+RxJS（Reactive Extensions for JavaScript）是一个使用 Observable 序列来编写异步和基于事件的程序的库。
+
+**核心概念：**
+
+**1. Observable（可观察对象）**
+- 表示一个可调用的未来值或事件的集合
+- 是数据流的生产者
+- 可以发出多个值
+- 支持同步和异步
+
+**2. Observer（观察者）**
+- 消费 Observable 发出的值
+- 包含三个回调函数：next、error、complete
+
+**3. Subscription（订阅）**
+- 表示 Observable 的执行
+- 用于取消执行
+
+**4. Operators（操作符）**
+- 用于处理数据流的纯函数
+- 可以组合使用
+- 分为创建、转换、过滤、组合等类型
+
+**5. Subject**
+- 既是 Observable 又是 Observer
+- 可以多播（multicast）
+
+**为什么 Angular 使用 RxJS：**
+
+**1. 统一的异步处理**
+- HTTP 请求
+- 用户输入事件
+- 定时器
+- WebSocket
+
+**2. 强大的数据流管理**
+- 可以轻松组合多个数据流
+- 丰富的操作符
+- 声明式编程
+
+**3. 更好的错误处理**
+- 统一的错误处理机制
+- 可以重试、降级
+
+**4. 取消和清理**
+- 通过 unsubscribe 取消订阅
+- 防止内存泄漏
+
+**基本使用示例：**
+
+```typescript
+import { Observable, of, from, interval } from 'rxjs';
+import { map, filter, take } from 'rxjs/operators';
+
+// 1. 创建 Observable
+const observable = new Observable(subscriber => {
+  subscriber.next(1);
+  subscriber.next(2);
+  subscriber.next(3);
+  subscriber.complete();
+});
+
+// 2. 订阅 Observable
+observable.subscribe({
+  next: value => console.log(value),
+  error: err => console.error(err),
+  complete: () => console.log('Complete')
+});
+
+// 3. 使用操作符
+const numbers$ = of(1, 2, 3, 4, 5);
+
+numbers$.pipe(
+  filter(n => n % 2 === 0),  // 过滤偶数
+  map(n => n * 2)             // 乘以 2
+).subscribe(value => console.log(value)); // 输出: 4, 8
+
+// 4. 定时器
+const timer$ = interval(1000).pipe(
+  take(5)  // 只取前 5 个值
+);
+
+timer$.subscribe(value => console.log(value)); // 0, 1, 2, 3, 4
+```
+
+**在 Angular 中的应用：**
+
+**1. HTTP 请求**
+
+```typescript
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  constructor(private http: HttpClient) {}
+  
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('/api/users').pipe(
+      map(users => users.filter(u => u.active)),
+      catchError(error => {
+        console.error('Error:', error);
+        return of([]);
+      })
+    );
+  }
+}
+
+// 组件中使用
+export class UserListComponent implements OnInit {
+  users$: Observable<User[]>;
+  
+  constructor(private userService: UserService) {}
+  
+  ngOnInit() {
+    this.users$ = this.userService.getUsers();
+  }
+}
+
+// 模板中使用 async 管道
+<div *ngFor="let user of users$ | async">
+  {{ user.name }}
+</div>
+```
+
+**2. 表单处理**
+
+```typescript
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+export class SearchComponent implements OnInit {
+  searchControl = new FormControl();
+  results$: Observable<any[]>;
+  
+  constructor(private searchService: SearchService) {}
+  
+  ngOnInit() {
+    this.results$ = this.searchControl.valueChanges.pipe(
+      debounceTime(300),           // 防抖
+      distinctUntilChanged(),      // 去重
+      switchMap(term => 
+        this.searchService.search(term)
+      )
+    );
+  }
+}
+```
+
+**3. 组件通信**
+
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class MessageService {
+  private messageSubject = new Subject<string>();
+  message$ = this.messageSubject.asObservable();
+  
+  sendMessage(message: string) {
+    this.messageSubject.next(message);
+  }
+}
+
+// 发送消息
+export class SenderComponent {
+  constructor(private messageService: MessageService) {}
+  
+  send() {
+    this.messageService.sendMessage('Hello');
+  }
+}
+
+// 接收消息
+export class ReceiverComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  
+  constructor(private messageService: MessageService) {}
+  
+  ngOnInit() {
+    this.subscription = this.messageService.message$.subscribe(
+      message => console.log(message)
+    );
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+}
+```
+
+**常用操作符：**
+
+**创建操作符：**
+- of：创建发出指定值的 Observable
+- from：从数组、Promise 等创建 Observable
+- interval：定时发出递增的数字
+- timer：延迟后发出值
+
+**转换操作符：**
+- map：转换每个值
+- mergeMap/flatMap：映射并合并
+- switchMap：映射并切换到最新的
+- concatMap：映射并按顺序连接
+
+**过滤操作符：**
+- filter：过滤值
+- take：取前 n 个值
+- takeUntil：直到另一个 Observable 发出值
+- debounceTime：防抖
+- distinctUntilChanged：去重
+
+**组合操作符：**
+- combineLatest：组合最新值
+- merge：合并多个 Observable
+- concat：按顺序连接
+- forkJoin：等待所有完成
+
+**错误处理：**
+- catchError：捕获错误
+- retry：重试
+- retryWhen：条件重试
+
+**最佳实践：**
+
+1. **总是取消订阅**
+```typescript
+export class MyComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  
+  ngOnInit() {
+    this.subscription = this.dataService.getData().subscribe();
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+}
+
+// 或使用 takeUntil
+private destroy$ = new Subject<void>();
+
+ngOnInit() {
+  this.dataService.getData()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe();
+}
+
+ngOnDestroy() {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
+```
+
+2. **使用 async 管道**
+```html
+<!-- 自动订阅和取消订阅 -->
+<div *ngIf="data$ | async as data">
+  {{ data.name }}
+</div>
+```
+
+3. **避免嵌套订阅**
+```typescript
+// ❌ 不好
+this.service1.getData().subscribe(data1 => {
+  this.service2.getData(data1).subscribe(data2 => {
+    // ...
+  });
+});
+
+// ✅ 好
+this.service1.getData().pipe(
+  switchMap(data1 => this.service2.getData(data1))
+).subscribe(data2 => {
+  // ...
+});
+```
+
+---
+
+## 六、表单处理
+
+### 6.1 Angular 的表单类型和使用
+
+**面试回答思路：**
+
+Angular 提供了两种处理表单的方式：模板驱动表单和响应式表单。
+
+**1. 模板驱动表单（Template-Driven Forms）**
+
+**特点：**
+- 逻辑主要在模板中
+- 使用 ngModel 双向绑定
+- 适合简单表单
+- 类似 AngularJS 的方式
+
+**基本使用：**
+
+```typescript
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-template-form',
+  template: `
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <input 
+        name="username" 
+        [(ngModel)]="user.username"
+        required
+        minlength="3"
+        #username="ngModel"
+      />
+      
+      <div *ngIf="username.invalid && username.touched">
+        <div *ngIf="username.errors?.['required']">
+          Username is required
+        </div>
+        <div *ngIf="username.errors?.['minlength']">
+          Username must be at least 3 characters
+        </div>
+      </div>
+      
+      <input 
+        name="email" 
+        [(ngModel)]="user.email"
+        required
+        email
+      />
+      
+      <button type="submit" [disabled]="form.invalid">
+        Submit
+      </button>
+    </form>
+  `
+})
+export class TemplateFormComponent {
+  user = {
+    username: '',
+    email: ''
+  };
+  
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log(this.user);
+    }
+  }
+}
+```
+
+**2. 响应式表单（Reactive Forms）**
+
+**特点：**
+- 逻辑主要在组件类中
+- 更灵活、更强大
+- 适合复杂表单
+- 更易于测试
+- 推荐使用
+
+**基本使用：**
+
+```typescript
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-reactive-form',
+  template: `
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <input formControlName="username" />
+      
+      <div *ngIf="username.invalid && username.touched">
+        <div *ngIf="username.errors?.['required']">
+          Username is required
+        </div>
+        <div *ngIf="username.errors?.['minlength']">
+          Username must be at least 3 characters
+        </div>
+      </div>
+      
+      <input formControlName="email" />
+      
+      <div formGroupName="address">
+        <input formControlName="street" />
+        <input formControlName="city" />
+      </div>
+      
+      <button type="submit" [disabled]="userForm.invalid">
+        Submit
+      </button>
+    </form>
+  `
+})
+export class ReactiveFormComponent implements OnInit {
+  userForm: FormGroup;
+  
+  constructor(private fb: FormBuilder) {}
+  
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      address: this.fb.group({
+        street: [''],
+        city: ['']
+      })
+    });
+    
+    // 监听值变化
+    this.userForm.valueChanges.subscribe(value => {
+      console.log('Form value:', value);
+    });
+    
+    // 监听特定字段
+    this.username.valueChanges.subscribe(value => {
+      console.log('Username:', value);
+    });
+  }
+  
+  get username() {
+    return this.userForm.get('username');
+  }
+  
+  onSubmit() {
+    if (this.userForm.valid) {
+      console.log(this.userForm.value);
+    }
+  }
+}
+```
+
+**3. 自定义验证器**
+
+```typescript
+// 同步验证器
+function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const forbidden = nameRe.test(control.value);
+    return forbidden ? { forbiddenName: { value: control.value } } : null;
+  };
+}
+
+// 异步验证器
+function uniqueUsernameValidator(userService: UserService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return userService.checkUsername(control.value).pipe(
+      map(exists => exists ? { usernameTaken: true } : null),
+      catchError(() => of(null))
+    );
+  };
+}
+
+// 使用
+this.userForm = this.fb.group({
+  username: ['', 
+    [Validators.required, forbiddenNameValidator(/admin/i)],
+    [uniqueUsernameValidator(this.userService)]
+  ]
+});
+```
+
+**4. 动态表单**
+
+```typescript
+export class DynamicFormComponent {
+  form: FormGroup;
+  
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      items: this.fb.array([])
+    });
+  }
+  
+  get items() {
+    return this.form.get('items') as FormArray;
+  }
+  
+  addItem() {
+    this.items.push(this.fb.group({
+      name: ['', Validators.required],
+      quantity: [1, [Validators.required, Validators.min(1)]]
+    }));
+  }
+  
+  removeItem(index: number) {
+    this.items.removeAt(index);
+  }
+}
+```
+
+**选择建议：**
+- 简单表单：模板驱动表单
+- 复杂表单：响应式表单
+- 需要动态添加字段：响应式表单
+- 需要复杂验证：响应式表单
+
+---
+
+## 七、路由和导航
+
+### 7.1 Angular Router 的使用和路由守卫
+
+**面试回答思路：**
+
+Angular Router 是 Angular 的官方路由库，功能强大且完善。
+
+**基本路由配置：**
+
+```typescript
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'users/:id', component: UserDetailComponent },
+  { path: '**', component: NotFoundComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
+
+**路由导航：**
+
+```typescript
+// 1. 模板中导航
+<a routerLink="/home">Home</a>
+<a [routerLink]="['/users', userId]">User</a>
+
+// 2. 编程式导航
+export class MyComponent {
+  constructor(private router: Router) {}
+  
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+  
+  goToUser(id: number) {
+    this.router.navigate(['/users', id]);
+  }
+  
+  goToUserWithQuery() {
+    this.router.navigate(['/users'], {
+      queryParams: { page: 1, size: 10 }
+    });
+  }
+}
+```
+
+**获取路由参数：**
+
+```typescript
+import { ActivatedRoute } from '@angular/router';
+
+export class UserDetailComponent implements OnInit {
+  userId: string;
+  
+  constructor(private route: ActivatedRoute) {}
+  
+  ngOnInit() {
+    // 1. 快照方式（适用于参数不会变化的情况）
+    this.userId = this.route.snapshot.paramMap.get('id');
+    
+    // 2. Observable 方式（适用于参数可能变化的情况）
+    this.route.paramMap.subscribe(params => {
+      this.userId = params.get('id');
+    });
+    
+    // 3. 查询参数
+    this.route.queryParamMap.subscribe(params => {
+      const page = params.get('page');
+      const size = params.get('size');
+    });
+  }
+}
+```
+
+**路由守卫（Route Guards）：**
+
+**1. CanActivate（进入守卫）**
+
+```typescript
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+  
+  canActivate(): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    }
+    
+    this.router.navigate(['/login']);
+    return false;
+  }
+}
+
+// 使用
+const routes: Routes = [
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard]
+  }
+];
+```
+
+**2. CanDeactivate（离开守卫）**
+
+```typescript
+export interface CanComponentDeactivate {
+  canDeactivate: () => boolean | Observable<boolean>;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CanDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
+  canDeactivate(component: CanComponentDeactivate): boolean | Observable<boolean> {
+    return component.canDeactivate ? component.canDeactivate() : true;
+  }
+}
+
+// 组件实现
+export class EditComponent implements CanComponentDeactivate {
+  hasUnsavedChanges = false;
+  
+  canDeactivate(): boolean {
+    if (this.hasUnsavedChanges) {
+      return confirm('You have unsaved changes. Do you really want to leave?');
+    }
+    return true;
+  }
+}
+```
+
+**3. Resolve（预加载数据）**
+
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class UserResolver implements Resolve<User> {
+  constructor(private userService: UserService) {}
+  
+  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+    const id = route.paramMap.get('id');
+    return this.userService.getUser(id);
+  }
+}
+
+// 路由配置
+{
+  path: 'users/:id',
+  component: UserDetailComponent,
+  resolve: { user: UserResolver }
+}
+
+// 组件中使用
+ngOnInit() {
+  this.route.data.subscribe(data => {
+    this.user = data['user'];
+  });
+}
+```
+
+**懒加载：**
+
+```typescript
+const routes: Routes = [
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  }
+];
+```
+
+---
+
+## 八、性能优化
+
+### 8.1 Angular 性能优化的方法
+
+**面试回答思路：**
+
+Angular 性能优化涉及多个方面，我会从几个关键点来介绍：
+
+**1. 变更检测优化**
+
+**使用 OnPush 策略：**
+
+```typescript
+@Component({
+  selector: 'app-user',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<div>{{ user.name }}</div>`
+})
+export class UserComponent {
+  @Input() user: User;
+}
+```
+
+**手动触发变更检测：**
+
+```typescript
+constructor(private cdr: ChangeDetectorRef) {}
+
+updateData() {
+  // 更新数据
+  this.data = newData;
+  // 手动触发检测
+  this.cdr.markForCheck();
+}
+```
+
+**2. TrackBy 函数**
+
+```typescript
+@Component({
+  template: `
+    <div *ngFor="let item of items; trackBy: trackByFn">
+      {{ item.name }}
+    </div>
+  `
+})
+export class ListComponent {
+  items: Item[];
+  
+  trackByFn(index: number, item: Item) {
+    return item.id; // 使用唯一标识
+  }
+}
+```
+
+**3. 懒加载模块**
+
+```typescript
+const routes: Routes = [
+  {
+    path: 'feature',
+    loadChildren: () => import('./feature/feature.module')
+      .then(m => m.FeatureModule)
+  }
+];
+```
+
+**4. 使用 Pure Pipes**
+
+```typescript
+@Pipe({
+  name: 'filter',
+  pure: true  // 默认就是 true
+})
+export class FilterPipe implements PipeTransform {
+  transform(items: any[], searchText: string): any[] {
+    if (!items || !searchText) {
+      return items;
+    }
+    return items.filter(item => 
+      item.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+  }
+}
+```
+
+**5. 虚拟滚动**
+
+```typescript
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
+@Component({
+  template: `
+    <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+      <div *cdkVirtualFor="let item of items">
+        {{ item.name }}
+      </div>
+    </cdk-virtual-scroll-viewport>
+  `
+})
+export class VirtualScrollComponent {
+  items = Array.from({length: 10000}).map((_, i) => ({
+    id: i,
+    name: `Item ${i}`
+  }));
+}
+```
+
+**6. AOT 编译**
+
+```bash
+# 生产构建默认使用 AOT
+ng build --prod
+```
+
+**7. 预加载策略**
+
+```typescript
+import { PreloadAllModules } from '@angular/router';
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    })
+  ]
+})
+export class AppRoutingModule {}
+```
+
+**8. 取消订阅**
+
+```typescript
+export class MyComponent implements OnDestroy {
+  private destroy$ = new Subject<void>();
+  
+  ngOnInit() {
+    this.dataService.getData()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+  }
+  
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+}
+```
+
+---
+
+## 九、总结
+
+这份 Angular 面试题库涵盖了：
+
+1. ✅ Angular 基础概念和核心特性
+2. ✅ 架构和核心概念
+3. ✅ 组件通信
+4. ✅ 生命周期
+5. ✅ 依赖注入
+6. ✅ RxJS 和响应式编程
+7. ✅ 表单处理
+8. ✅ 路由和导航
+9. ✅ 性能优化
+
+建议结合实际项目经验，深入理解每个知识点的应用场景和最佳实践。

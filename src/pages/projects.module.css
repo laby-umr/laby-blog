@@ -161,6 +161,22 @@
   z-index: -1;
 }
 
+.projectCard:nth-child(4n+1) .cardShadow {
+  background-color: var(--dm-primary-container);
+}
+
+.projectCard:nth-child(4n+2) .cardShadow {
+  background-color: var(--dm-tertiary-container);
+}
+
+.projectCard:nth-child(4n+3) .cardShadow {
+  background-color: var(--dm-secondary-container);
+}
+
+.projectCard:nth-child(4n+4) .cardShadow {
+  background-color: var(--dm-error-container);
+}
+
 .projectCard:hover .cardShadow {
   transform: translate(12px, 12px);
 }

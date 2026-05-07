@@ -1,0 +1,894 @@
+/**
+ * Video Player Page - DevManga Comic Style
+ * 参考 blogupdate 的漫画风格设计
+ * 字体: Space Grotesk (标题) + Plus Jakarta Sans (正文)
+ * 边框: 3-4px solid black
+ * 阴影: 6px 6px 0px 0px black
+ */
+
+.videoPage {
+  background-color: #fefcf4;
+  min-height: calc(100vh - 60px);
+  padding: 24px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme='dark'] .videoPage {
+  background-color: transparent;
+}
+
+.container {
+  max-width: 1680px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+}
+
+/* ========== 左侧列 - 播放器 ========== */
+.leftColumn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.playerSection {
+  /* 播放器容器 */
+}
+
+/* 视频信息卡片 - DevManga风格 */
+.videoInfoCard {
+  position: relative;
+  background: #ffffff;
+  border: 4px solid #000000;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 8px 8px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme='dark'] .videoInfoCard {
+  background: #1a1a1a;
+  border-color: #444444;
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.videoInfoCard:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+  box-shadow: 12px 12px 0px 0px #000000;
+}
+
+[data-theme='dark'] .videoInfoCard:hover {
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 0.7);
+}
+
+.categoryBadge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  display: inline-block;
+  padding: 6px 16px;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transform: rotate(-2deg);
+}
+
+.videoTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #383833;
+  line-height: 1.3;
+  margin: 8px 0 16px 0;
+  letter-spacing: -0.5px;
+}
+
+[data-theme='dark'] .videoTitle {
+  color: #ffffff;
+}
+
+.videoMeta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #65655f;
+}
+
+[data-theme='dark'] .videoMeta {
+  color: #999;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f5f4eb;
+  border: 2px solid #000000;
+  border-radius: 0;
+  transition: all 0.2s;
+}
+
+[data-theme='dark'] .metaItem {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #444444;
+}
+
+.metaItem:hover {
+  background: #fae500;
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+[data-theme='dark'] .metaItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.metaItem .material-symbols-outlined {
+  font-size: 18px;
+  color: #314ff4;
+}
+
+[data-theme='dark'] .metaItem .material-symbols-outlined {
+  color: #fae500;
+}
+
+.videoDesc {
+  font-size: 16px;
+  font-weight: 500;
+  color: #383833;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+[data-theme='dark'] .videoDesc {
+  color: #ccc;
+}
+
+.videoTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.authorInfo {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f5f4eb;
+  border: 3px solid #000;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+[data-theme='dark'] .authorInfo {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #444444;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.authorInfo:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .authorInfo:hover {
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+}
+
+.authorAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .authorAvatar {
+  border-color: #444444;
+}
+
+.authorName {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #383833;
+}
+
+[data-theme='dark'] .authorName {
+  color: #ffffff;
+}
+
+.authorRole {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+[data-theme='dark'] .authorRole {
+  color: #999;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.625rem 0.875rem;
+  background: #8999ff;
+  color: #001470;
+  border: 2px solid #000000;
+  border-radius: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+.tag:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.tag:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.tag:hover {
+  background: #314ff4;
+  color: #ffffff;
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.tag:nth-child(2n) {
+  background: #fae500;
+  color: #383833;
+}
+
+.tag:nth-child(2n):hover {
+  background: #f5d000;
+  color: #000000;
+}
+
+.tag:nth-child(3n) {
+  background: #ff9a8b;
+  color: #5c0000;
+}
+
+.tag:nth-child(3n):hover {
+  background: #ff7a5e;
+  color: #ffffff;
+}
+
+/* ========== 右侧列 - 弹幕库 + 视频列表 ========== */
+.rightColumn {
+  width: 420px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 面板通用样式 - DevManga风格 - 支持暗色/亮色主题 */
+.danmakuPanel,
+.videoListPanel {
+  background: #ffffff;
+  border: 4px solid #000000;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 6px 6px 0px 0px #000000;
+  transition: all 0.3s;
+}
+
+[data-theme='dark'] .danmakuPanel,
+[data-theme='dark'] .videoListPanel {
+  background: #1a1a1a;
+  border-color: #444444;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.danmakuPanel:hover,
+.videoListPanel:hover {
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+
+[data-theme='dark'] .danmakuPanel:hover,
+[data-theme='dark'] .videoListPanel:hover {
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.7);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #f5f4eb;
+  border-bottom: 3px solid #000000;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+}
+
+[data-theme='dark'] .panelHeader {
+  background: #2a2a2a;
+  border-bottom-color: #444444;
+}
+
+.panelHeader:hover {
+  background: #fae500;
+}
+
+[data-theme='dark'] .panelHeader:hover {
+  background: #333333;
+}
+
+.panelHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panelHeaderLeft .material-symbols-outlined {
+  font-size: 24px;
+  color: #314ff4;
+  font-weight: 700;
+}
+
+[data-theme='dark'] .panelHeaderLeft .material-symbols-outlined {
+  color: #fae500;
+}
+
+.panelTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #383833;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+[data-theme='dark'] .panelTitle {
+  color: #ffffff;
+}
+
+.videoCount,
+.danmakuCount {
+  padding: 4px 10px;
+  background: #314ff4;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+[data-theme='dark'] .videoCount,
+[data-theme='dark'] .danmakuCount {
+  border-color: #444444;
+}
+
+.expandIcon {
+  color: #383833;
+  font-size: 24px;
+  transition: transform 0.3s;
+}
+
+[data-theme='dark'] .expandIcon {
+  color: #ffffff;
+}
+
+/* ========== 弹幕库 - 支持暗色/亮色主题 ========== */
+.danmakuList {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+  background: #ffffff;
+}
+
+[data-theme='dark'] .danmakuList {
+  background: #1a1a1a;
+}
+
+.danmakuItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 12px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+
+.danmakuItem:hover {
+  background: #f5f4eb;
+  border-left-color: #314ff4;
+}
+
+[data-theme='dark'] .danmakuItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: #fae500;
+}
+
+.danmakuTime {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #314ff4;
+  padding: 3px 8px;
+  border: 2px solid #000000;
+  border-radius: 3px;
+  flex-shrink: 0;
+  min-width: 48px;
+  text-align: center;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .danmakuTime {
+  background: #fae500;
+  color: #000000;
+  border-color: #444444;
+}
+
+.danmakuContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.danmakuText {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  word-wrap: break-word;
+  word-break: break-word;
+  /* 亮色主题：白色弹幕显示为深灰色，彩色弹幕保持原色 */
+}
+
+[data-theme='dark'] .danmakuText {
+  /* 暗色主题：所有弹幕保持原色 */
+}
+
+.danmakuMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #999;
+}
+
+.danmakuMode {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 5px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .danmakuMode {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.danmakuMode .material-symbols-outlined {
+  font-size: 12px;
+}
+
+.danmakuGradient {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 5px;
+  background: linear-gradient(90deg, #f093fb, #f5576c);
+  color: #ffffff;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 9px;
+}
+
+.danmakuGradient .material-symbols-outlined {
+  font-size: 11px;
+}
+
+/* ========== 视频列表 - 支持暗色/亮色主题 ========== */
+.videoList {
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+[data-theme='dark'] .videoList {
+  background: #1a1a1a;
+}
+
+.videoItem {
+  display: flex;
+  gap: 14px;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.videoItem:hover {
+  background: #f5f4eb;
+}
+
+[data-theme='dark'] .videoItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.videoItem.active {
+  background: #e7f7ff;
+  border-left-color: #314ff4;
+}
+
+[data-theme='dark'] .videoItem.active {
+  background: rgba(49, 79, 244, 0.2);
+  border-left-color: #314ff4;
+}
+
+.videoItem.active:hover {
+  background: #d0edff;
+}
+
+[data-theme='dark'] .videoItem.active:hover {
+  background: rgba(49, 79, 244, 0.3);
+}
+
+.videoItemThumb {
+  position: relative;
+  width: 140px;
+  height: 85px;
+  flex-shrink: 0;
+  border: 3px solid #000000;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: all 0.2s;
+}
+
+[data-theme='dark'] .videoItemThumb {
+  border-color: #444444;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.videoItem:hover .videoItemThumb {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+[data-theme='dark'] .videoItem:hover .videoItemThumb {
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.7);
+}
+
+.thumbPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #314ff4 0%, #8999ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbPlaceholder .material-symbols-outlined {
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-variation-settings: 'FILL' 1;
+}
+
+.videoDuration {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #ffffff;
+  border-radius: 0;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+[data-theme='dark'] .videoDuration {
+  border-color: #444444;
+}
+
+.videoItemInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.videoItemTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #383833;
+  line-height: 1.4;
+  margin: 0 0 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .videoItemTitle {
+  color: #ffffff;
+}
+
+.videoItem.active .videoItemTitle {
+  color: #314ff4;
+  font-weight: 900;
+}
+
+[data-theme='dark'] .videoItem.active .videoItemTitle {
+  color: #fae500;
+  font-weight: 900;
+}
+
+.videoItemMeta {
+  font-size: 12px;
+  font-weight: 600;
+  color: #65655f;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-theme='dark'] .videoItemMeta {
+  color: #999;
+}
+
+/* ========== 滚动条样式 - DevManga风格 - 支持暗色/亮色主题 ========== */
+.videoList::-webkit-scrollbar,
+.danmakuList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.videoList::-webkit-scrollbar-track,
+.danmakuList::-webkit-scrollbar-track {
+  background: #f5f4eb;
+  border-left: 2px solid #000000;
+}
+
+[data-theme='dark'] .videoList::-webkit-scrollbar-track,
+[data-theme='dark'] .danmakuList::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.videoList::-webkit-scrollbar-thumb,
+.danmakuList::-webkit-scrollbar-thumb {
+  background: #314ff4;
+  border: 2px solid #000000;
+  border-radius: 4px;
+}
+
+[data-theme='dark'] .videoList::-webkit-scrollbar-thumb,
+[data-theme='dark'] .danmakuList::-webkit-scrollbar-thumb {
+  background: #fae500;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.videoList::-webkit-scrollbar-thumb:hover,
+.danmakuList::-webkit-scrollbar-thumb:hover {
+  background: #1e40e8;
+}
+
+[data-theme='dark'] .videoList::-webkit-scrollbar-thumb:hover,
+[data-theme='dark'] .danmakuList::-webkit-scrollbar-thumb:hover {
+  background: #f5d000;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 1200px) {
+  .rightColumn {
+    width: 380px;
+  }
+
+  .videoItemThumb {
+    width: 120px;
+    height: 72px;
+  }
+
+  .videoTitle {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .rightColumn {
+    width: 100%;
+  }
+
+  .videoList {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoPage {
+    padding: 16px;
+  }
+
+  .container {
+    gap: 16px;
+  }
+
+  .videoInfoCard {
+    padding: 20px;
+  }
+
+  .videoTitle {
+    font-size: 24px;
+  }
+
+  .videoMeta {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .videoItemThumb {
+    width: 100px;
+    height: 60px;
+  }
+
+  .videoItemTitle {
+    font-size: 13px;
+  }
+
+  .videoItemMeta {
+    font-size: 11px;
+  }
+
+  .rightColumn {
+    gap: 16px;
+  }
+}
+
+/* ========== CTA Section - DevManga风格 - 支持暗色/亮色主题 ========== */
+.ctaSection {
+  margin-top: 3rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #ff9a8b 0%, #fae500 100%);
+  border: 4px solid #000000;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+
+[data-theme='dark'] .ctaSection {
+  background: linear-gradient(135deg, #314ff4 0%, #8999ff 100%);
+  border-color: #444444;
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, #000000 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.05;
+}
+
+[data-theme='dark'] .ctaSection::before {
+  background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+}
+
+.ctaContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+[data-theme='dark'] .ctaTitle {
+  color: #ffffff;
+}
+
+.ctaDesc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  color: #383833;
+  opacity: 0.9;
+}
+
+[data-theme='dark'] .ctaDesc {
+  color: #ffffff;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background-color: #314ff4;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 4px solid #000000;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+[data-theme='dark'] .ctaButton {
+  background-color: #fae500;
+  color: #000000;
+  border-color: #444444;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.ctaButton:hover {
+  transform: translateY(-4px) rotate(-2deg);
+  box-shadow: 10px 10px 0px 0px #000000;
+}
+
+[data-theme='dark'] .ctaButton:hover {
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.7);
+}
+
+.ctaButton:active {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+[data-theme='dark'] .ctaButton:active {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.ctaButton .material-symbols-outlined {
+  font-size: 1.5rem;
+}

@@ -1,0 +1,256 @@
+/* Pagination Component */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+/* Page Button */
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--dm-surface);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  cursor: pointer;
+  transition: all 200ms ease;
+  color: var(--dm-on-surface);
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px 0px var(--dm-on-surface);
+}
+
+.pageButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pageButton .material-symbols-outlined {
+  font-size: 1.25rem;
+}
+
+/* Page Numbers */
+.pageNumbers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pageNumber {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  font-family: var(--dm-font-headline);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  background-color: var(--dm-surface);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  cursor: pointer;
+  transition: all 200ms ease;
+  color: var(--dm-on-surface);
+}
+
+.pageNumber:hover {
+  background-color: var(--dm-primary-container);
+  transform: translateY(-2px);
+}
+
+.pageNumber.active {
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+  box-shadow: 3px 3px 0px 0px var(--dm-on-surface);
+  font-weight: 900;
+}
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  font-family: var(--dm-font-headline);
+  font-weight: 700;
+  color: var(--dm-on-surface-variant);
+}
+
+/* Size Changer */
+.sizeChanger {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-family: var(--dm-font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: var(--dm-surface);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  color: var(--dm-on-surface);
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.sizeChanger:hover {
+  background-color: var(--dm-surface-container);
+}
+
+.sizeChanger:focus {
+  outline: none;
+  border-color: var(--dm-primary);
+}
+
+/* Quick Jumper */
+.quickJumper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--dm-font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dm-on-surface-variant);
+}
+
+.jumpInput {
+  width: 3.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  font-family: var(--dm-font-body);
+  font-size: 0.875rem;
+  text-align: center;
+  background-color: var(--dm-surface);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  color: var(--dm-on-surface);
+  transition: all 200ms ease;
+}
+
+.jumpInput:focus {
+  outline: none;
+  border-color: var(--dm-primary);
+  box-shadow: 0 0 0 3px var(--dm-primary-container);
+}
+
+.jumpButton {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-family: var(--dm-font-headline);
+  font-size: 0.875rem;
+  font-weight: 900;
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.jumpButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px 0px var(--dm-on-surface);
+}
+
+/* Page Info */
+.pageInfo {
+  font-family: var(--dm-font-body);
+  font-size: 0.875rem;
+  color: var(--dm-on-surface-variant);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Minimal Variant */
+.minimal .pageButton,
+.minimal .pageNumber,
+.minimal .sizeChanger,
+.minimal .jumpInput,
+.minimal .jumpButton {
+  border-width: 1px;
+}
+
+.minimal .pageButton:hover:not(:disabled),
+.minimal .pageNumber.active,
+.minimal .jumpButton:hover {
+  box-shadow: 2px 2px 0px 0px var(--dm-on-surface);
+}
+
+/* Comic Variant */
+.comic .pageButton,
+.comic .pageNumber,
+.comic .sizeChanger,
+.comic .jumpInput,
+.comic .jumpButton {
+  border-width: 3px;
+  transform: rotate(-2deg);
+}
+
+.comic .pageButton:hover:not(:disabled),
+.comic .pageNumber:hover {
+  transform: rotate(-2deg) translateY(-2px);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+}
+
+.comic .pageNumber.active {
+  transform: rotate(-2deg);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+}
+
+.comic .jumpButton:hover {
+  transform: rotate(-2deg) translateY(-2px);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 0.5rem;
+  }
+
+  .pageButton,
+  .pageNumber {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+
+  .pageButton .material-symbols-outlined {
+    font-size: 1rem;
+  }
+
+  .sizeChanger,
+  .jumpInput,
+  .jumpButton {
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+
+  .jumpInput {
+    width: 3rem;
+  }
+
+  .pageInfo {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .comic .pageButton,
+  .comic .pageNumber,
+  .comic .jumpButton {
+    transform: rotate(0deg);
+  }
+
+  .comic .pageButton:hover:not(:disabled),
+  .comic .pageNumber:hover,
+  .comic .jumpButton:hover {
+    transform: translateY(-2px);
+  }
+}

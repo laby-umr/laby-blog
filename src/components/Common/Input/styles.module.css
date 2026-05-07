@@ -1,0 +1,113 @@
+/* Input Component - 漫画风格输入框 */
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  font-family: var(--dm-font-headline);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--dm-on-surface);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.required {
+  color: var(--dm-error);
+  margin-left: 0.25rem;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--dm-surface-container-low);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-lg);
+  transition: all 0.2s;
+}
+
+.inputContainer:focus-within {
+  border-color: var(--dm-primary);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+  transform: translate(-2px, -2px);
+}
+
+/* Variants */
+.default {
+  background-color: var(--dm-surface);
+}
+
+.filled {
+  background-color: var(--dm-surface-container);
+}
+
+.outlined {
+  background-color: transparent;
+}
+
+/* Sizes */
+.sm {
+  padding: 0.5rem 0.75rem;
+}
+
+.md {
+  padding: 0.75rem 1rem;
+}
+
+.lg {
+  padding: 1rem 1.25rem;
+}
+
+.icon {
+  color: var(--dm-on-surface-variant);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--dm-font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dm-on-surface);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--dm-outline);
+  font-weight: 500;
+}
+
+.error {
+  border-color: var(--dm-error);
+}
+
+.errorText {
+  font-family: var(--dm-font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--dm-error);
+}
+
+.helperText {
+  font-family: var(--dm-font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--dm-on-surface-variant);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input {
+    font-size: 0.9375rem;
+  }
+}

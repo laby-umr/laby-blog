@@ -15,6 +15,10 @@
     "message": "Projects",
     "description": "Navbar item with label 项目"
   },
+  "item.label.视频": {
+    "message": "Videos",
+    "description": "Navbar item with label 视频"
+  },
   "item.label.音乐": {
     "message": "Music",
     "description": "Navbar item with label 音乐"

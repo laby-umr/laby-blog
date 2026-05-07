@@ -1,0 +1,142 @@
+/* Divider Component */
+.divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Horizontal */
+.horizontal {
+  width: 100%;
+  height: 2px;
+  margin: 1.5rem 0;
+}
+
+.horizontal::before {
+  content: '';
+  flex: 1;
+  height: 100%;
+}
+
+.horizontal::after {
+  content: '';
+  flex: 1;
+  height: 100%;
+}
+
+/* Vertical */
+.vertical {
+  width: 2px;
+  height: 100%;
+  margin: 0 1.5rem;
+  flex-direction: column;
+}
+
+/* Solid Variant */
+.solid.horizontal::before,
+.solid.horizontal::after {
+  background-color: var(--dm-outline-variant);
+}
+
+.solid.vertical {
+  background-color: var(--dm-outline-variant);
+}
+
+/* Dashed Variant */
+.dashed.horizontal::before,
+.dashed.horizontal::after {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--dm-outline-variant) 0,
+    var(--dm-outline-variant) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.dashed.vertical {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--dm-outline-variant) 0,
+    var(--dm-outline-variant) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+/* Dotted Variant */
+.dotted.horizontal::before,
+.dotted.horizontal::after {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--dm-outline-variant) 0,
+    var(--dm-outline-variant) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.dotted.vertical {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--dm-outline-variant) 0,
+    var(--dm-outline-variant) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+/* Gradient Variant */
+.gradient.horizontal::before {
+  background: linear-gradient(to right, transparent, var(--dm-outline-variant));
+}
+
+.gradient.horizontal::after {
+  background: linear-gradient(to left, transparent, var(--dm-outline-variant));
+}
+
+.gradient.vertical {
+  background: linear-gradient(to bottom, transparent, var(--dm-outline-variant), transparent);
+}
+
+/* Comic Variant */
+.comic.horizontal {
+  height: 3px;
+}
+
+.comic.horizontal::before,
+.comic.horizontal::after {
+  background-color: var(--dm-on-surface);
+  border-top: 2px solid var(--dm-on-surface);
+  border-bottom: 2px solid var(--dm-on-surface);
+}
+
+.comic.vertical {
+  width: 3px;
+  background-color: var(--dm-on-surface);
+  border-left: 2px solid var(--dm-on-surface);
+  border-right: 2px solid var(--dm-on-surface);
+}
+
+/* Label */
+.label {
+  padding: 0 1rem;
+  font-family: var(--dm-font-headline);
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dm-on-surface-variant);
+  background-color: var(--dm-surface);
+  white-space: nowrap;
+}
+
+.comic .label {
+  background-color: var(--dm-secondary-container);
+  color: var(--dm-on-secondary-container);
+  padding: 0.25rem 1rem;
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-md);
+  transform: rotate(-2deg);
+}

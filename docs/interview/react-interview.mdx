@@ -1,0 +1,1623 @@
+---
+sidebar_position: 11
+title: React 面试题库
+description: React 框架常见面试题及详细解答
+tags: [React, 面试, 前端框架]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# React 面试题库
+
+## 一、React 基础
+
+### 1.1 什么是 React？它的核心特性是什么？
+
+**面试回答思路：**
+
+React 是由 Facebook 开发的一个用于构建用户界面的 JavaScript 库。我可以从以下几个方面介绍它的核心特性：
+
+**1. 组件化**
+- React 采用组件化的开发模式，将 UI 拆分成独立、可复用的组件
+- 每个组件都有自己的状态和生命周期
+- 组件可以嵌套、组合，构建复杂的用户界面
+- 这种模式提高了代码的可维护性和复用性
+
+**2. 虚拟 DOM（Virtual DOM）**
+- React 使用虚拟 DOM 来提高性能
+- 当状态改变时，React 会创建新的虚拟 DOM 树
+- 通过 Diff 算法比较新旧虚拟 DOM 的差异
+- 只更新真正需要改变的部分，减少了 DOM 操作
+
+**3. 单向数据流**
+- 数据从父组件流向子组件（通过 props）
+- 子组件不能直接修改父组件的数据
+- 这种设计让数据流向更加清晰，便于调试和维护
+- 通过回调函数实现子组件向父组件通信
+
+**4. JSX 语法**
+- JSX 是 JavaScript 的语法扩展
+- 可以在 JavaScript 中直接编写类似 HTML 的代码
+- 提高了代码的可读性和开发效率
+- 最终会被编译成 React.createElement 调用
+
+**5. 声明式编程**
+- 只需要描述 UI 应该是什么样子
+- React 会自动处理 DOM 更新
+- 相比命令式编程，代码更简洁、更易理解
+
+**补充说明：**
+React 的生态系统非常丰富，有 React Router（路由）、Redux/MobX（状态管理）、Next.js（SSR 框架）等配套工具。React 的学习曲线相对平缓，但要精通需要理解其底层原理。
+
+
+```jsx
+// React 组件示例
+import React, { useState } from 'react'
+
+function Counter() {
+  const [count, setCount] = useState(0)
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+---
+
+### 1.2 React 类组件和函数组件的区别
+
+**面试回答思路：**
+
+React 有两种定义组件的方式：类组件和函数组件。随着 Hooks 的引入，函数组件已经成为主流。
+
+**类组件（Class Component）：**
+
+**特点：**
+- 使用 ES6 class 语法定义
+- 必须继承 React.Component
+- 有完整的生命周期方法
+- 有 this 关键字，需要注意 this 绑定问题
+- 有 state 和 setState
+
+**优点：**
+- 生命周期方法清晰明确
+- 可以使用 shouldComponentUpdate 优化性能
+
+**缺点：**
+- 代码相对冗长
+- this 绑定容易出错
+- 逻辑复用困难（需要 HOC 或 Render Props）
+
+**函数组件（Function Component）：**
+
+**特点：**
+- 使用普通函数定义
+- 没有 this
+- 通过 Hooks 管理状态和副作用
+- 代码更简洁
+
+**优点：**
+- 代码简洁，易于理解
+- 没有 this 绑定问题
+- 通过 Hooks 实现逻辑复用
+- 更容易进行代码分割和优化
+- 更符合函数式编程思想
+
+**缺点：**
+- 需要理解 Hooks 的规则和闭包陷阱
+- 某些场景下性能优化需要额外处理
+
+
+<Tabs>
+<TabItem value="class" label="类组件">
+
+```jsx
+import React, { Component } from 'react'
+
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0
+    }
+    // 需要绑定 this
+    this.handleClick = this.handleClick.bind(this)
+  }
+  
+  componentDidMount() {
+    console.log('Component mounted')
+  }
+  
+  handleClick() {
+    this.setState({ count: this.state.count + 1 })
+  }
+  
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.handleClick}>Increment</button>
+      </div>
+    )
+  }
+}
+
+export default Counter
+```
+
+</TabItem>
+<TabItem value="function" label="函数组件">
+
+```jsx
+import React, { useState, useEffect } from 'react'
+
+function Counter() {
+  const [count, setCount] = useState(0)
+  
+  useEffect(() => {
+    console.log('Component mounted')
+  }, [])
+  
+  const handleClick = () => {
+    setCount(count + 1)
+  }
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+</TabItem>
+</Tabs>
+
+**选择建议：**
+- 新项目推荐使用函数组件 + Hooks
+- 老项目可以逐步迁移，两种方式可以共存
+- 理解两种方式的差异有助于维护老代码
+
+---
+
+### 1.3 什么是 JSX？为什么使用 JSX？
+
+**面试回答思路：**
+
+JSX 是 JavaScript XML 的缩写，是 React 的核心语法特性之一。
+
+**JSX 的本质：**
+
+JSX 不是一种新的语言，而是 JavaScript 的语法扩展。它允许我们在 JavaScript 中编写类似 HTML 的代码，最终会被 Babel 编译成 React.createElement 调用。
+
+**为什么使用 JSX：**
+
+**1. 提高可读性**
+- JSX 的语法更接近 HTML，更直观
+- 开发者可以快速理解组件的结构
+- 降低了学习成本
+
+**2. 更好的开发体验**
+- IDE 可以提供更好的代码提示和错误检查
+- 可以使用 HTML 的标签和属性
+- 支持 JavaScript 表达式
+
+**3. 防止注入攻击**
+- React DOM 会自动转义 JSX 中的值
+- 防止 XSS（跨站脚本）攻击
+- 提高了应用的安全性
+
+**4. 优化编译**
+- Babel 可以在编译时进行优化
+- 生成更高效的代码
+
+```jsx
+// JSX 语法
+const element = (
+  <div className="container">
+    <h1>Hello, {name}!</h1>
+    <p>Welcome to React</p>
+  </div>
+)
+
+// 编译后的 JavaScript
+const element = React.createElement(
+  'div',
+  { className: 'container' },
+  React.createElement('h1', null, 'Hello, ', name, '!'),
+  React.createElement('p', null, 'Welcome to React')
+)
+```
+
+**JSX 的规则：**
+
+1. 必须有一个根元素（或使用 Fragment）
+2. 标签必须闭合
+3. 使用 className 代替 class
+4. 使用 htmlFor 代替 for
+5. 样式属性使用对象形式
+6. 注释使用 {/* */}
+
+**实际应用：**
+虽然 JSX 不是必须的，但它已经成为 React 开发的标准。理解 JSX 的编译过程有助于理解 React 的工作原理和性能优化。
+
+---
+
+## 二、React Hooks
+
+### 2.1 什么是 Hooks？为什么引入 Hooks？
+
+**面试回答思路：**
+
+Hooks 是 React 16.8 引入的新特性，它让函数组件也能使用状态和其他 React 特性。
+
+**为什么引入 Hooks：**
+
+**1. 解决类组件的问题**
+- 类组件中的 this 绑定容易出错
+- 生命周期方法中经常包含不相关的逻辑
+- 相关的逻辑被拆分到不同的生命周期方法中
+- 代码复用困难，需要 HOC 或 Render Props
+
+**2. 更好的逻辑复用**
+- 通过自定义 Hooks 可以轻松复用状态逻辑
+- 不需要改变组件结构
+- 避免了 HOC 和 Render Props 的嵌套地狱
+
+**3. 更简洁的代码**
+- 函数组件比类组件更简洁
+- 没有 this，代码更容易理解
+- 更符合函数式编程思想
+
+**4. 更好的代码组织**
+- 可以按照功能组织代码，而不是按照生命周期
+- 相关的逻辑可以放在一起
+- 提高了代码的可维护性
+
+**Hooks 的规则：**
+
+1. **只在顶层调用 Hooks**：不要在循环、条件或嵌套函数中调用
+2. **只在 React 函数中调用 Hooks**：在函数组件或自定义 Hooks 中调用
+
+**常用的 Hooks：**
+
+- useState：管理状态
+- useEffect：处理副作用
+- useContext：使用 Context
+- useReducer：复杂状态管理
+- useCallback：缓存函数
+- useMemo：缓存计算结果
+- useRef：访问 DOM 或保存可变值
+- useImperativeHandle：自定义暴露给父组件的实例值
+- useLayoutEffect：同步执行副作用
+- useDebugValue：自定义 Hook 的调试标签
+
+**实际应用：**
+Hooks 已经成为 React 开发的主流方式。理解 Hooks 的原理和使用规则，对于编写高质量的 React 代码至关重要。
+
+---
+
+### 2.2 useState 的使用和原理
+
+**面试回答思路：**
+
+useState 是最基础也是最常用的 Hook，用于在函数组件中添加状态。
+
+**基本用法：**
+
+```jsx
+const [state, setState] = useState(initialState)
+```
+
+- state：当前状态值
+- setState：更新状态的函数
+- initialState：初始状态值
+
+**特点和注意事项：**
+
+**1. 状态更新是异步的**
+- setState 不会立即更新状态
+- React 会批量处理状态更新
+- 如果需要基于前一个状态更新，使用函数式更新
+
+**2. 状态更新会触发重新渲染**
+- 当状态改变时，组件会重新渲染
+- React 使用 Object.is 比较新旧状态
+- 如果状态没有变化，不会触发重新渲染
+
+**3. 初始状态只在首次渲染时使用**
+- 后续渲染会忽略初始状态参数
+- 如果初始状态计算复杂，可以传入函数（惰性初始化）
+
+
+```jsx
+// 基本用法
+function Counter() {
+  const [count, setCount] = useState(0)
+  
+  // 直接更新
+  const increment = () => {
+    setCount(count + 1)
+  }
+  
+  // 函数式更新（推荐）
+  const incrementFunc = () => {
+    setCount(prevCount => prevCount + 1)
+  }
+  
+  // 惰性初始化
+  const [data, setData] = useState(() => {
+    return expensiveComputation()
+  })
+  
+  return <button onClick={increment}>Count: {count}</button>
+}
+```
+
+**原理简述：**
+
+useState 内部维护了一个状态队列，每次调用 useState 都会按顺序返回对应的状态。这就是为什么 Hooks 必须在顶层调用，不能在条件语句中使用。
+
+---
+
+### 2.3 useEffect 的使用和原理
+
+**面试回答思路：**
+
+useEffect 用于处理副作用，相当于类组件中的生命周期方法。
+
+**基本概念：**
+
+副作用是指那些与渲染无关的操作，比如：
+- 数据获取
+- 订阅事件
+- 手动修改 DOM
+- 定时器
+- 日志记录
+
+**useEffect 的特点：**
+
+**1. 默认在每次渲染后执行**
+- 包括首次渲染和每次更新
+- 可以通过依赖数组控制执行时机
+
+**2. 支持清理函数**
+- 返回一个函数用于清理副作用
+- 在组件卸载或下次 effect 执行前调用
+- 用于取消订阅、清除定时器等
+
+**3. 依赖数组**
+- 空数组 []：只在挂载时执行一次
+- 不传：每次渲染都执行
+- [dep1, dep2]：依赖变化时执行
+
+```jsx
+function Example() {
+  const [count, setCount] = useState(0)
+  
+  // 每次渲染都执行
+  useEffect(() => {
+    document.title = `Count: ${count}`
+  })
+  
+  // 只在挂载时执行
+  useEffect(() => {
+    console.log('Component mounted')
+  }, [])
+  
+  // 依赖变化时执行
+  useEffect(() => {
+    console.log('Count changed:', count)
+  }, [count])
+  
+  // 带清理函数
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log('Tick')
+    }, 1000)
+    
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
+  
+  return <div>{count}</div>
+}
+```
+
+**与生命周期的对应关系：**
+
+- componentDidMount：useEffect(() => {}, [])
+- componentDidUpdate：useEffect(() => {})
+- componentWillUnmount：useEffect 的返回函数
+
+**常见问题和解决方案：**
+
+**1. 无限循环**
+```jsx
+// ❌ 错误：会导致无限循环
+useEffect(() => {
+  setCount(count + 1)
+})
+
+// ✅ 正确：添加依赖数组
+useEffect(() => {
+  setCount(count + 1)
+}, [])
+```
+
+**2. 闭包陷阱**
+```jsx
+// ❌ 问题：count 永远是初始值
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount(count + 1)
+  }, 1000)
+  return () => clearInterval(timer)
+}, [])
+
+// ✅ 解决：使用函数式更新
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount(c => c + 1)
+  }, 1000)
+  return () => clearInterval(timer)
+}, [])
+```
+
+---
+
+## 三、组件通信
+
+### 3.1 React 组件间通信的方式
+
+**面试回答思路：**
+
+React 组件间通信根据组件关系的不同，有多种实现方式：
+
+**1. Props（父传子）**
+
+最基本的通信方式，通过 props 传递数据。
+
+**特点：**
+- 单向数据流
+- 类型安全（配合 TypeScript 或 PropTypes）
+- 简单直观
+
+**2. 回调函数（子传父）**
+
+父组件传递回调函数给子组件，子组件调用回调函数传递数据。
+
+**3. Context API（跨层级）**
+
+用于跨越多层组件传递数据，避免 props 逐层传递。
+
+**适用场景：**
+- 主题配置
+- 用户信息
+- 语言设置
+- 全局状态
+
+**优点：**
+- 避免 props drilling
+- 组件解耦
+
+**缺点：**
+- 过度使用会导致组件难以复用
+- 性能问题（所有消费者都会重新渲染）
+
+
+```jsx
+// Context 使用示例
+import { createContext, useContext, useState } from 'react'
+
+// 创建 Context
+const ThemeContext = createContext()
+
+// Provider 组件
+function App() {
+  const [theme, setTheme] = useState('light')
+  
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Header />
+      <Content />
+    </ThemeContext.Provider>
+  )
+}
+
+// 消费 Context
+function Header() {
+  const { theme, setTheme } = useContext(ThemeContext)
+  
+  return (
+    <header className={theme}>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle Theme
+      </button>
+    </header>
+  )
+}
+```
+
+**4. Redux / Zustand / MobX（全局状态管理）**
+
+用于管理复杂的应用状态。
+
+**Redux 特点：**
+- 单一数据源
+- 状态只读
+- 使用纯函数修改状态
+- 可预测的状态管理
+- 强大的调试工具
+
+**Zustand 特点：**
+- 更简单的 API
+- 更小的包体积
+- 不需要 Provider
+- 支持 TypeScript
+
+**5. 自定义 Hooks**
+
+封装可复用的状态逻辑。
+
+**6. Event Bus（不推荐）**
+
+通过事件总线实现组件通信，但不符合 React 的设计理念。
+
+**选择建议：**
+- 父子组件：Props 和回调函数
+- 跨层级：Context API
+- 全局状态：Redux/Zustand
+- 逻辑复用：自定义 Hooks
+
+---
+
+## 四、生命周期
+
+### 4.1 React 生命周期方法（类组件）
+
+**面试回答思路：**
+
+虽然现在主要使用函数组件和 Hooks，但理解类组件的生命周期仍然很重要。
+
+**挂载阶段（Mounting）：**
+
+1. **constructor()**
+   - 初始化 state
+   - 绑定事件处理函数
+   - 不要在这里调用 setState
+
+2. **static getDerivedStateFromProps()**
+   - 根据 props 更新 state
+   - 返回对象更新 state，返回 null 不更新
+   - 很少使用
+
+3. **render()**
+   - 必须实现的方法
+   - 返回 JSX
+   - 应该是纯函数
+
+4. **componentDidMount()**
+   - 组件挂载后调用
+   - 适合进行 DOM 操作、数据获取、订阅事件
+   - 可以调用 setState
+
+**更新阶段（Updating）：**
+
+1. **static getDerivedStateFromProps()**
+   - 同挂载阶段
+
+2. **shouldComponentUpdate()**
+   - 返回 true/false 决定是否更新
+   - 用于性能优化
+   - PureComponent 自动实现浅比较
+
+3. **render()**
+   - 重新渲染
+
+4. **getSnapshotBeforeUpdate()**
+   - 在 DOM 更新前调用
+   - 返回值传给 componentDidUpdate
+   - 用于获取更新前的 DOM 信息
+
+5. **componentDidUpdate()**
+   - 组件更新后调用
+   - 可以进行 DOM 操作
+   - 可以调用 setState（需要条件判断）
+
+**卸载阶段（Unmounting）：**
+
+1. **componentWillUnmount()**
+   - 组件卸载前调用
+   - 清理定时器、取消订阅、取消网络请求
+   - 不能调用 setState
+
+**错误处理：**
+
+1. **static getDerivedStateFromError()**
+   - 捕获子组件错误
+   - 返回新的 state
+
+2. **componentDidCatch()**
+   - 记录错误信息
+   - 用于错误边界
+
+---
+
+### 4.2 Hooks 与生命周期的对应关系
+
+**面试回答思路：**
+
+函数组件使用 Hooks 来实现类组件的生命周期功能。
+
+**对应关系：**
+
+```jsx
+// componentDidMount
+useEffect(() => {
+  console.log('mounted')
+}, [])
+
+// componentDidUpdate
+useEffect(() => {
+  console.log('updated')
+})
+
+// componentWillUnmount
+useEffect(() => {
+  return () => {
+    console.log('unmounted')
+  }
+}, [])
+
+// componentDidMount + componentDidUpdate
+useEffect(() => {
+  console.log('mounted or updated')
+  
+  return () => {
+    console.log('cleanup before update or unmount')
+  }
+}, [dependency])
+```
+
+**特殊情况：**
+
+```jsx
+// 模拟 componentDidUpdate（跳过首次渲染）
+const isFirstRender = useRef(true)
+
+useEffect(() => {
+  if (isFirstRender.current) {
+    isFirstRender.current = false
+    return
+  }
+  
+  console.log('updated only')
+}, [dependency])
+```
+
+---
+
+## 五、性能优化
+
+### 5.1 React 性能优化的方法
+
+**面试回答思路：**
+
+React 性能优化是面试的重点，我会从多个方面介绍优化方法：
+
+**1. 使用 React.memo**
+
+防止不必要的重新渲染。
+
+```jsx
+const MyComponent = React.memo(function MyComponent(props) {
+  return <div>{props.value}</div>
+})
+
+// 自定义比较函数
+const MyComponent = React.memo(
+  function MyComponent(props) {
+    return <div>{props.value}</div>
+  },
+  (prevProps, nextProps) => {
+    return prevProps.value === nextProps.value
+  }
+)
+```
+
+**2. 使用 useMemo**
+
+缓存计算结果。
+
+```jsx
+const expensiveValue = useMemo(() => {
+  return computeExpensiveValue(a, b)
+}, [a, b])
+```
+
+**3. 使用 useCallback**
+
+缓存函数引用。
+
+```jsx
+const handleClick = useCallback(() => {
+  doSomething(a, b)
+}, [a, b])
+```
+
+**4. 代码分割和懒加载**
+
+```jsx
+const LazyComponent = React.lazy(() => import('./LazyComponent'))
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  )
+}
+```
+
+**5. 虚拟列表**
+
+使用 react-window 或 react-virtualized 渲染大列表。
+
+**6. 避免内联对象和函数**
+
+```jsx
+// ❌ 每次渲染都创建新对象
+<Component style={{ color: 'red' }} />
+
+// ✅ 提取到外部
+const style = { color: 'red' }
+<Component style={style} />
+```
+
+**7. 使用 key 优化列表渲染**
+
+```jsx
+// ✅ 使用稳定的 key
+{items.map(item => (
+  <Item key={item.id} data={item} />
+))}
+
+// ❌ 使用索引作为 key（可能导致问题）
+{items.map((item, index) => (
+  <Item key={index} data={item} />
+))}
+```
+
+**8. 使用 Fragment 避免额外的 DOM 节点**
+
+```jsx
+return (
+  <>
+    <ChildA />
+    <ChildB />
+  </>
+)
+```
+
+**9. 使用 Production 构建**
+
+确保生产环境使用压缩和优化的代码。
+
+**10. 使用 React DevTools Profiler**
+
+分析组件渲染性能，找出性能瓶颈。
+
+
+---
+
+## 六、虚拟 DOM 与 Diff 算法
+
+### 6.1 什么是虚拟 DOM？为什么需要虚拟 DOM？
+
+**面试回答思路：**
+
+虚拟 DOM 是 React 的核心概念之一，理解它对于理解 React 的工作原理至关重要。
+
+**什么是虚拟 DOM：**
+
+虚拟 DOM（Virtual DOM）是真实 DOM 的 JavaScript 对象表示。它是一个轻量级的 JavaScript 对象树，用来描述真实 DOM 的结构。
+
+**为什么需要虚拟 DOM：**
+
+**1. 性能优化**
+- 直接操作 DOM 很慢，因为 DOM 操作会触发浏览器的重排和重绘
+- 虚拟 DOM 可以批量更新，减少 DOM 操作次数
+- 通过 Diff 算法找出最小变化，只更新必要的部分
+
+**2. 跨平台能力**
+- 虚拟 DOM 是平台无关的
+- 可以渲染到不同的平台（Web、Native、Canvas 等）
+- React Native 就是基于这个特性实现的
+
+**3. 声明式编程**
+- 开发者只需要描述 UI 应该是什么样子
+- React 负责将虚拟 DOM 转换为真实 DOM
+- 提高了开发效率和代码可维护性
+
+**4. 更好的开发体验**
+- 不需要手动操作 DOM
+- 代码更简洁、更易理解
+- 便于实现时间旅行、撤销重做等功能
+
+**虚拟 DOM 的结构：**
+
+```javascript
+// JSX
+<div className="container">
+  <h1>Hello</h1>
+  <p>World</p>
+</div>
+
+// 虚拟 DOM 对象
+{
+  type: 'div',
+  props: {
+    className: 'container',
+    children: [
+      {
+        type: 'h1',
+        props: {
+          children: 'Hello'
+        }
+      },
+      {
+        type: 'p',
+        props: {
+          children: 'World'
+        }
+      }
+    ]
+  }
+}
+```
+
+**虚拟 DOM 的工作流程：**
+
+1. 初始渲染时，创建虚拟 DOM 树
+2. 将虚拟 DOM 转换为真实 DOM
+3. 当状态改变时，创建新的虚拟 DOM 树
+4. 通过 Diff 算法比较新旧虚拟 DOM
+5. 计算出最小的变化
+6. 只更新变化的部分到真实 DOM
+
+**常见误解：**
+
+虚拟 DOM 并不总是比直接操作 DOM 快。在某些场景下（如大量简单的 DOM 操作），直接操作 DOM 可能更快。虚拟 DOM 的优势在于：
+- 提供了更好的开发体验
+- 在大多数场景下性能足够好
+- 避免了手动优化的复杂性
+
+---
+
+### 6.2 React 的 Diff 算法原理
+
+**面试回答思路：**
+
+React 的 Diff 算法是其性能优化的核心，理解它有助于写出更高效的代码。
+
+**传统 Diff 算法的问题：**
+
+传统的树形结构 Diff 算法的时间复杂度是 O(n³)，对于大型应用来说性能无法接受。
+
+**React Diff 算法的优化策略：**
+
+React 通过三个假设将复杂度降低到 O(n)：
+
+**1. 同层比较**
+- 只比较同一层级的节点
+- 不会跨层级比较
+- 如果节点跨层级移动，会被视为删除和新建
+
+**2. 不同类型的元素会产生不同的树**
+- 如果元素类型改变（如 div 变成 span），会销毁旧树，创建新树
+- 不会尝试复用
+
+**3. 通过 key 标识元素**
+- 开发者可以通过 key 提示哪些元素是稳定的
+- 相同 key 的元素会被复用
+- 提高列表渲染的效率
+
+**Diff 算法的具体过程：**
+
+**1. 元素类型不同**
+```jsx
+// 旧
+<div>
+  <Counter />
+</div>
+
+// 新
+<span>
+  <Counter />
+</span>
+
+// 结果：销毁 div 和 Counter，创建新的 span 和 Counter
+```
+
+**2. 元素类型相同**
+```jsx
+// 旧
+<div className="before" title="old" />
+
+// 新
+<div className="after" title="new" />
+
+// 结果：保留 DOM 节点，只更新属性
+```
+
+**3. 组件类型相同**
+```jsx
+// 旧
+<Counter count={1} />
+
+// 新
+<Counter count={2} />
+
+// 结果：保留组件实例，更新 props，触发 componentWillReceiveProps
+```
+
+**4. 列表 Diff（最复杂）**
+
+**没有 key 的情况：**
+```jsx
+// 旧
+<ul>
+  <li>A</li>
+  <li>B</li>
+</ul>
+
+// 新（在开头插入 C）
+<ul>
+  <li>C</li>
+  <li>A</li>
+  <li>B</li>
+</ul>
+
+// 结果：React 会依次比较，认为所有元素都变了
+// 更新 A→C, B→A, 新建 B（效率低）
+```
+
+**有 key 的情况：**
+```jsx
+// 旧
+<ul>
+  <li key="a">A</li>
+  <li key="b">B</li>
+</ul>
+
+// 新
+<ul>
+  <li key="c">C</li>
+  <li key="a">A</li>
+  <li key="b">B</li>
+</ul>
+
+// 结果：React 通过 key 识别出 A 和 B 没变，只需要新建 C（效率高）
+```
+
+**key 的最佳实践：**
+
+**✅ 好的做法：**
+```jsx
+// 使用稳定的唯一标识
+{items.map(item => (
+  <Item key={item.id} data={item} />
+))}
+```
+
+**❌ 不好的做法：**
+```jsx
+// 使用索引作为 key（列表顺序可能变化时）
+{items.map((item, index) => (
+  <Item key={index} data={item} />
+))}
+
+// 使用随机数作为 key
+{items.map(item => (
+  <Item key={Math.random()} data={item} />
+))}
+```
+
+**为什么不推荐用索引作为 key：**
+
+当列表顺序改变时，索引会导致：
+- 组件状态错乱
+- 性能问题
+- 不必要的重新渲染
+
+**Diff 算法的局限性：**
+
+1. 跨层级移动节点效率低
+2. 需要开发者正确使用 key
+3. 某些场景下可能不如手动优化
+
+**实际应用建议：**
+
+1. 保持 DOM 结构稳定
+2. 避免跨层级移动节点
+3. 为列表项提供稳定的 key
+4. 避免在渲染方法中创建新的组件类型
+
+---
+
+## 七、状态管理
+
+### 7.1 Redux 的核心概念和工作原理
+
+**面试回答思路：**
+
+Redux 是 React 生态中最流行的状态管理库，虽然现在有很多替代方案，但理解 Redux 仍然很重要。
+
+**Redux 的三大原则：**
+
+**1. 单一数据源（Single Source of Truth）**
+- 整个应用的状态存储在一个对象树中
+- 这个对象树只存在于唯一的 store 中
+- 便于调试和状态追踪
+
+**2. 状态是只读的（State is Read-Only）**
+- 唯一改变状态的方法是触发 action
+- 不能直接修改状态
+- 确保状态的可预测性
+
+**3. 使用纯函数进行修改（Changes are Made with Pure Functions）**
+- 使用 reducer 来描述状态如何改变
+- reducer 是纯函数，相同的输入总是产生相同的输出
+- 不能有副作用
+
+**Redux 的核心概念：**
+
+**1. Store**
+- 保存应用状态的容器
+- 提供 getState() 获取状态
+- 提供 dispatch(action) 触发状态更新
+- 提供 subscribe(listener) 注册监听器
+
+**2. Action**
+- 描述发生了什么的普通对象
+- 必须有 type 属性
+- 可以携带数据（payload）
+
+```javascript
+// Action 示例
+{
+  type: 'ADD_TODO',
+  payload: {
+    id: 1,
+    text: 'Learn Redux'
+  }
+}
+
+// Action Creator
+function addTodo(text) {
+  return {
+    type: 'ADD_TODO',
+    payload: {
+      id: Date.now(),
+      text
+    }
+  }
+}
+```
+
+**3. Reducer**
+- 纯函数，接收旧状态和 action，返回新状态
+- 不能修改原状态，必须返回新对象
+- 处理不同的 action type
+
+```javascript
+function todoReducer(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, action.payload]
+    
+    case 'REMOVE_TODO':
+      return state.filter(todo => todo.id !== action.payload.id)
+    
+    case 'TOGGLE_TODO':
+      return state.map(todo =>
+        todo.id === action.payload.id
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+    
+    default:
+      return state
+  }
+}
+```
+
+**4. Middleware**
+- 扩展 Redux 功能的方式
+- 在 action 到达 reducer 之前进行拦截
+- 常用于异步操作、日志记录等
+
+```javascript
+// Redux Thunk 中间件示例
+function fetchTodos() {
+  return async (dispatch) => {
+    dispatch({ type: 'FETCH_TODOS_REQUEST' })
+    
+    try {
+      const response = await api.getTodos()
+      dispatch({
+        type: 'FETCH_TODOS_SUCCESS',
+        payload: response.data
+      })
+    } catch (error) {
+      dispatch({
+        type: 'FETCH_TODOS_FAILURE',
+        payload: error.message
+      })
+    }
+  }
+}
+```
+
+**Redux 的数据流：**
+
+```
+用户交互
+  ↓
+dispatch(action)
+  ↓
+Middleware（可选）
+  ↓
+Reducer
+  ↓
+新的 State
+  ↓
+Store 更新
+  ↓
+组件重新渲染
+```
+
+**在 React 中使用 Redux：**
+
+```jsx
+import { createStore } from 'redux'
+import { Provider, useSelector, useDispatch } from 'react-redux'
+
+// 1. 创建 Store
+const store = createStore(rootReducer)
+
+// 2. 提供 Store
+function App() {
+  return (
+    <Provider store={store}>
+      <TodoList />
+    </Provider>
+  )
+}
+
+// 3. 使用 Store
+function TodoList() {
+  // 读取状态
+  const todos = useSelector(state => state.todos)
+  
+  // 获取 dispatch
+  const dispatch = useDispatch()
+  
+  // 触发 action
+  const handleAdd = (text) => {
+    dispatch(addTodo(text))
+  }
+  
+  return (
+    <div>
+      {todos.map(todo => (
+        <div key={todo.id}>{todo.text}</div>
+      ))}
+      <button onClick={() => handleAdd('New Todo')}>Add</button>
+    </div>
+  )
+}
+```
+
+**Redux 的优缺点：**
+
+**优点：**
+- 状态可预测
+- 易于调试（Redux DevTools）
+- 支持时间旅行
+- 中间件系统强大
+- 社区成熟
+
+**缺点：**
+- 样板代码多
+- 学习曲线陡峭
+- 对于简单应用过于复杂
+- 异步处理需要额外的中间件
+
+**现代替代方案：**
+
+- Redux Toolkit：简化 Redux 使用
+- Zustand：更简单的状态管理
+- Jotai：原子化状态管理
+- Recoil：Facebook 的状态管理库
+
+---
+
+## 八、React Router
+
+### 8.1 React Router 的基本使用和原理
+
+**面试回答思路：**
+
+React Router 是 React 应用中最常用的路由库，理解它的工作原理对于构建单页应用很重要。
+
+**React Router 的核心概念：**
+
+**1. 路由模式**
+
+**BrowserRouter（History 模式）：**
+- 使用 HTML5 History API
+- URL 格式：/user/123
+- 需要服务器配置支持
+- SEO 友好
+
+**HashRouter（Hash 模式）：**
+- 使用 URL 的 hash 部分
+- URL 格式：/#/user/123
+- 不需要服务器配置
+- 兼容性好
+
+```jsx
+import { BrowserRouter, HashRouter } from 'react-router-dom'
+
+// History 模式
+<BrowserRouter>
+  <App />
+</BrowserRouter>
+
+// Hash 模式
+<HashRouter>
+  <App />
+</HashRouter>
+```
+
+**2. 路由配置**
+
+```jsx
+import { Routes, Route, Link } from 'react-router-dom'
+
+function App() {
+  return (
+    <div>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/users">Users</Link>
+      </nav>
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<UserDetail />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  )
+}
+```
+
+**3. 嵌套路由**
+
+```jsx
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="users" element={<Users />}>
+          <Route path=":id" element={<UserDetail />} />
+        </Route>
+      </Route>
+    </Routes>
+  )
+}
+
+function Layout() {
+  return (
+    <div>
+      <nav>...</nav>
+      <Outlet /> {/* 子路由渲染位置 */}
+    </div>
+  )
+}
+```
+
+**4. 路由参数**
+
+```jsx
+import { useParams, useSearchParams } from 'react-router-dom'
+
+// 路径参数
+function UserDetail() {
+  const { id } = useParams()
+  return <div>User ID: {id}</div>
+}
+
+// 查询参数
+function SearchPage() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const query = searchParams.get('q')
+  
+  return (
+    <div>
+      <p>Search: {query}</p>
+      <button onClick={() => setSearchParams({ q: 'new query' })}>
+        Update Query
+      </button>
+    </div>
+  )
+}
+```
+
+**5. 编程式导航**
+
+```jsx
+import { useNavigate } from 'react-router-dom'
+
+function LoginPage() {
+  const navigate = useNavigate()
+  
+  const handleLogin = () => {
+    // 登录成功后跳转
+    navigate('/dashboard')
+    
+    // 替换当前历史记录
+    navigate('/dashboard', { replace: true })
+    
+    // 返回上一页
+    navigate(-1)
+    
+    // 传递状态
+    navigate('/dashboard', { state: { from: 'login' } })
+  }
+  
+  return <button onClick={handleLogin}>Login</button>
+}
+```
+
+**6. 路由守卫**
+
+```jsx
+import { Navigate } from 'react-router-dom'
+
+// 受保护的路由
+function ProtectedRoute({ children }) {
+  const isAuthenticated = useAuth()
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
+  }
+  
+  return children
+}
+
+// 使用
+<Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
+```
+
+**7. 懒加载**
+
+```jsx
+import { lazy, Suspense } from 'react'
+
+const About = lazy(() => import('./pages/About'))
+const Users = lazy(() => import('./pages/Users'))
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
+      </Routes>
+    </Suspense>
+  )
+}
+```
+
+**React Router 的工作原理：**
+
+1. 监听 URL 变化（History API 或 hashchange 事件）
+2. 匹配当前 URL 与路由配置
+3. 渲染对应的组件
+4. 提供导航 API
+
+**最佳实践：**
+
+1. 使用 BrowserRouter（需要服务器配置）
+2. 合理使用嵌套路由
+3. 使用懒加载优化性能
+4. 实现路由守卫保护敏感页面
+5. 使用 Link 而不是 a 标签
+
+---
+
+## 九、常见问题
+
+### 9.1 React 中的 key 为什么重要？
+
+**面试回答思路：**
+
+key 是 React 中一个非常重要但容易被忽视的概念。
+
+**key 的作用：**
+
+key 帮助 React 识别哪些元素改变了（添加、删除、修改）。它给予元素一个稳定的标识。
+
+**为什么需要 key：**
+
+1. **提高 Diff 效率**：React 可以快速找到对应的元素
+2. **保持组件状态**：避免状态错乱
+3. **优化性能**：减少不必要的 DOM 操作
+
+**key 的使用规则：**
+
+1. key 在兄弟节点中必须唯一
+2. key 应该稳定、可预测
+3. 不要使用索引作为 key（列表顺序可能变化时）
+4. 不要使用随机数作为 key
+
+**错误示例和后果：**
+
+```jsx
+// ❌ 使用索引作为 key
+{items.map((item, index) => (
+  <Item key={index} data={item} />
+))}
+
+// 问题：当列表顺序改变时
+// 原来的 key=0 可能对应不同的数据
+// 导致组件状态错乱
+```
+
+**正确示例：**
+
+```jsx
+// ✅ 使用唯一标识作为 key
+{items.map(item => (
+  <Item key={item.id} data={item} />
+))}
+```
+
+---
+
+### 9.2 React 中如何处理表单？
+
+**面试回答思路：**
+
+React 中处理表单有两种方式：受控组件和非受控组件。
+
+**受控组件（Controlled Components）：**
+
+表单数据由 React 组件管理。
+
+**特点：**
+- 表单元素的值由 state 控制
+- 每次输入都会触发状态更新
+- 可以实时验证
+- 符合 React 的数据流
+
+```jsx
+function Form() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: ''
+  })
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(formData)
+  }
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+      />
+      <input
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
+```
+
+**非受控组件（Uncontrolled Components）：**
+
+表单数据由 DOM 管理，通过 ref 获取。
+
+```jsx
+function Form() {
+  const usernameRef = useRef()
+  const emailRef = useRef()
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log({
+      username: usernameRef.current.value,
+      email: emailRef.current.value
+    })
+  }
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      <input ref={usernameRef} />
+      <input ref={emailRef} type="email" />
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
+```
+
+**选择建议：**
+- 大多数情况使用受控组件
+- 文件上传等特殊场景使用非受控组件
+- 需要实时验证时使用受控组件
+
+---
+
+## 十、总结
+
+这份 React 面试题库涵盖了：
+
+1. ✅ React 基础概念和核心特性
+2. ✅ 类组件 vs 函数组件
+3. ✅ JSX 语法
+4. ✅ Hooks 详解
+5. ✅ 组件通信
+6. ✅ 生命周期
+7. ✅ 性能优化
+8. ✅ 虚拟 DOM 和 Diff 算法
+9. ✅ Redux 状态管理
+10. ✅ React Router 路由
+11. ✅ 常见问题和最佳实践
+
+建议结合实际项目经验，深入理解每个知识点的应用场景和最佳实践。

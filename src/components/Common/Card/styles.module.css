@@ -1,0 +1,478 @@
+/* Card Component - 多种变体 */
+.card {
+  position: relative;
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Default Variant - 漫画风格 */
+.default {
+  transform: skewX(-4deg);
+}
+
+.default:hover {
+  transform: skewX(-4deg) translateY(-8px);
+}
+
+/* Comic Variant - 更夸张的漫画效果 */
+.comic {
+  transform: rotate(-2deg);
+}
+
+.comic:hover {
+  transform: rotate(0deg) translateY(-12px) scale(1.02);
+}
+
+/* Monitor Variant - 显示器风格 */
+.monitor {
+  transform: none;
+}
+
+.monitor:hover {
+  transform: translateY(-8px);
+}
+
+/* Float Variant - 浮动效果 */
+.float {
+  transform: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.float:hover {
+  animation-play-state: paused;
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* Minimal Variant - 简约风格 */
+.minimal {
+  transform: none;
+}
+
+.minimal:hover {
+  transform: translateY(-4px);
+}
+
+/* Sizes */
+.sm .cardContent {
+  padding: 1rem;
+}
+
+.sm .cardImage {
+  height: 10rem;
+}
+
+.md .cardContent {
+  padding: 1.5rem;
+}
+
+.md .cardImage {
+  height: 14rem;
+}
+
+.lg .cardContent {
+  padding: 2rem;
+}
+
+.lg .cardImage {
+  height: 18rem;
+}
+
+/* Card Shadow Layer - 4色循环 */
+.cardShadow {
+  position: absolute;
+  inset: 0;
+  background-color: var(--dm-secondary-container);
+  border-radius: var(--dm-radius-xl);
+  transform: translate(8px, 8px);
+  border: 3px solid var(--dm-on-surface);
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: -1;
+}
+
+
+.card:nth-child(4n+1) .cardShadow {
+  background-color: var(--dm-primary-container);
+}
+
+.card:nth-child(4n+2) .cardShadow {
+  background-color: var(--dm-tertiary-container);
+}
+
+.card:nth-child(4n+3) .cardShadow {
+  background-color: var(--dm-secondary-container);
+}
+
+.card:nth-child(4n+4) .cardShadow {
+  background-color: var(--dm-error-container);
+}
+
+.card:hover .cardShadow {
+  transform: translate(12px, 12px);
+}
+
+.minimal .cardShadow {
+  transform: translate(4px, 4px);
+  opacity: 0.5;
+}
+
+/* Card Link */
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Card Content */
+.cardContent {
+  position: relative;
+  height: 100%;
+  background-color: var(--dm-surface-container-lowest);
+  border: 3px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.default .cardContent {
+  transform: skewX(4deg);
+}
+
+/* Monitor Header */
+.monitorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: var(--dm-surface-dim);
+  border-bottom: 2px solid var(--dm-on-surface);
+}
+
+.monitorDots {
+  display: flex;
+  gap: 6px;
+}
+
+.monitorDots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--dm-on-surface);
+}
+
+.dotRed {
+  background-color: #f74b6d;
+}
+
+.dotYellow {
+  background-color: #fae500;
+}
+
+.dotGreen {
+  background-color: #314ff4;
+}
+
+.monitorBadge {
+  font-family: var(--dm-font-headline);
+  font-size: 0.625rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--dm-on-surface);
+  color: var(--dm-surface);
+  border-radius: var(--dm-radius-sm);
+}
+
+/* Card Image */
+.cardImage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--dm-surface-dim);
+  border-bottom: 3px solid var(--dm-on-surface);
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card:hover .cardImage img {
+  transform: scale(1.1);
+}
+
+.imageBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--dm-font-headline);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  background-color: var(--dm-on-surface);
+  color: var(--dm-surface);
+  border-radius: var(--dm-radius-md);
+  border: 2px solid var(--dm-on-surface);
+  transform: rotate(3deg);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.floatIcon {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+  border-radius: 50%;
+  border: 3px solid var(--dm-on-surface);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.floatIcon .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+/* Card Info */
+.cardInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cardIcon {
+  font-size: 2rem;
+  color: var(--dm-primary);
+}
+
+.cardTitle {
+  font-family: var(--dm-font-headline);
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--dm-on-surface);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.sm .cardTitle {
+  font-size: 1.25rem;
+}
+
+.lg .cardTitle {
+  font-size: 1.75rem;
+}
+
+.cardDescription {
+  font-family: var(--dm-font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--dm-on-surface-variant);
+  flex: 1;
+}
+
+.sm .cardDescription {
+  font-size: 0.875rem;
+}
+
+.lg .cardDescription {
+  font-size: 1.125rem;
+}
+
+/* Card Tags */
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-top: auto;
+  border-top: 2px solid var(--dm-outline-variant);
+}
+
+.cardDate {
+  font-family: var(--dm-font-body);
+  font-size: 0.875rem;
+  color: var(--dm-on-surface-variant);
+  font-weight: 600;
+}
+
+.readMore {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--dm-font-headline);
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dm-primary);
+  transition: gap 200ms ease;
+}
+
+.card:hover .readMore {
+  gap: 0.75rem;
+}
+
+.readMore .material-symbols-outlined {
+  font-size: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    transform: none !important;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px) !important;
+  }
+  
+  .default .cardContent {
+    transform: none;
+  }
+  
+  .cardShadow {
+    transform: translate(4px, 4px);
+  }
+  
+  .card:hover .cardShadow {
+    transform: translate(6px, 6px);
+  }
+  
+  .sm .cardImage,
+  .md .cardImage,
+  .lg .cardImage {
+    height: 12rem;
+  }
+}
+
+
+/* Square Variant - 方角卡片 */
+.square {
+  transform: none;
+}
+
+.square .cardContent {
+  border-radius: 0;
+}
+
+.square .cardShadow {
+  border-radius: 0;
+}
+
+.square:hover {
+  transform: translateY(-6px);
+}
+
+/* Rounded Variant - 圆角卡片 */
+.rounded {
+  transform: none;
+}
+
+.rounded .cardContent {
+  border-radius: 2rem;
+}
+
+.rounded .cardShadow {
+  border-radius: 2rem;
+}
+
+.rounded:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Skewed Variant - 倾斜卡片 */
+.skewed {
+  transform: skewY(-3deg);
+}
+
+.skewed .cardContent {
+  transform: skewY(3deg);
+}
+
+.skewed:hover {
+  transform: skewY(-3deg) translateX(8px);
+}
+
+.skewed .cardShadow {
+  transform: translate(12px, 8px);
+}
+
+.skewed:hover .cardShadow {
+  transform: translate(16px, 12px);
+}
+
+/* Gradient Variant - 渐变卡片 */
+.gradient {
+  transform: none;
+}
+
+.gradient .cardContent {
+  background: linear-gradient(135deg, var(--dm-primary-container) 0%, var(--dm-tertiary-container) 100%);
+  border-width: 4px;
+}
+
+.gradient .cardTitle {
+  background: linear-gradient(135deg, var(--dm-primary) 0%, var(--dm-tertiary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+.gradient .cardShadow {
+  background: linear-gradient(135deg, var(--dm-secondary) 0%, var(--dm-primary) 100%);
+  opacity: 0.6;
+}
+
+/* 响应式调整 - 新变体 */
+@media (max-width: 768px) {
+  .square:hover,
+  .rounded:hover,
+  .skewed:hover,
+  .gradient:hover {
+    transform: translateY(-4px) !important;
+  }
+  
+  .skewed {
+    transform: skewY(-2deg);
+  }
+  
+  .skewed .cardContent {
+    transform: skewY(2deg);
+  }
+}

@@ -1,0 +1,50 @@
+.tag {
+  display: inline-block;
+  font-family: var(--dm-font-headline);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background-color: var(--dm-primary-container);
+  color: var(--dm-on-primary-container);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: 0;
+  text-decoration: none;
+  transition: all var(--dm-transition-bounce);
+  box-shadow: 3px 3px 0px 0px var(--dm-on-surface);
+  cursor: pointer;
+}
+
+.tag:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.tag:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.tag:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 4px 4px 0px 0px var(--dm-on-surface);
+  background-color: var(--dm-primary);
+  color: var(--dm-on-primary);
+}
+
+.tag:nth-child(2n) {
+  background-color: var(--dm-secondary-container);
+  color: var(--dm-on-secondary-container);
+}
+
+.tag:nth-child(2n):hover {
+  background-color: var(--dm-secondary);
+  color: var(--dm-on-secondary);
+}
+
+.tag:nth-child(3n) {
+  background-color: var(--dm-tertiary-container);
+  color: var(--dm-on-tertiary-container);
+}
+
+.tag:nth-child(3n):hover {
+  background-color: var(--dm-tertiary);
+  color: var(--dm-on-tertiary);
+}

@@ -1,0 +1,724 @@
+/**
+ * Bangumi Player Styles
+ * 完全1:1复刻 laby-player 的样式
+ */
+
+/* ========== 播放器容器 ========== */
+.bangumi-player-wrapper {
+  width: 100%;
+  background: #000;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+}
+
+.bangumi-player-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(135deg, #ff7a5e 0%, #ff9a8b 100%);
+  z-index: -1;
+  border-radius: 0;
+}
+
+.player-main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  cursor: none;
+}
+
+.player-main.show-controls {
+  cursor: default;
+}
+
+.art-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 隐藏 ArtPlayer 默认控制 */
+.art-video-player .art-bottom,
+.art-video-player .art-controls,
+.art-video-player .art-control-progress,
+.art-video-player .art-layers,
+.art-video-player .art-contextmenus,
+.art-video-player .art-info,
+.art-video-player .art-notice,
+.art-video-player .art-mask {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.art-video-player {
+  background: #000 !important;
+}
+
+.art-video-player .art-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 保留中央播放按钮 */
+.art-video-player .art-state {
+  display: flex !important;
+}
+
+/* 保留弹幕层 */
+.art-video-player .artplayer-plugin-danmuku {
+  display: block !important;
+}
+
+/* ========== 迷你进度条 ========== */
+.art-video-player.show-mini-progress::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 50;
+}
+
+.art-video-player.show-mini-progress::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: #ff7a5e;
+  z-index: 51;
+  width: var(--mini-progress, 0%);
+  transition: width 0.1s linear;
+}
+
+/* ========== 隐藏边框 ========== */
+.art-video-player.hide-border {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.art-video-player.hide-border .art-video {
+  border-radius: 0 !important;
+}
+
+/* ========== 视频标题 ========== */
+.video-title {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  z-index: 30;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-main.show-controls .video-title {
+  opacity: 1;
+}
+
+/* ========== 中央播放图标 ========== */
+.center-play-icon {
+  position: absolute;
+  bottom: 80px;
+  right: 60px;
+  width: 140px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30;
+  pointer-events: auto;
+  transition: opacity 0.3s;
+}
+
+.center-play-icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.center-play-icon:hover svg path {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+/* ========== 弹幕发送栏 ========== */
+.danmaku-bar {
+  background: #fff;
+  box-sizing: border-box;
+  position: relative;
+  /* 移除黑色边框，避免出现黑线 */
+}
+
+.main-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #fff;
+  min-height: 52px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.stat-text {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+}
+
+.icon-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #000;
+  cursor: pointer;
+  color: #000;
+  padding: 6px;
+  transition: all 0.2s;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.icon-btn:hover {
+  color: #ff7a5e;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.icon-btn.active {
+  color: #fff;
+  background: #ff7a5e;
+  border-color: #000;
+}
+
+.icon-btn .material-symbols-outlined {
+  font-size: 24px;
+}
+
+/* ========== 面板样式 ========== */
+.panel-wrapper {
+  position: absolute;
+  bottom: calc(100% - 5px);
+  left: 0;
+  padding-bottom: 20px;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+
+.panel-wrapper::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  right: -20px;
+  height: 25px;
+  background: transparent;
+}
+
+.has-panel:hover > .panel-wrapper {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-content {
+  background: rgba(28, 28, 28, 0.95);
+  color: #fff;
+  font-size: 13px;
+  border-radius: 0;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ========== 弹幕设置面板 ========== */
+.danmaku-settings {
+  width: 240px;
+  padding: 8px 10px;
+}
+
+.section {
+  margin-bottom: 8px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section-label {
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.slider-section {
+  margin-bottom: 10px;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+}
+
+.slider-label {
+  flex-shrink: 0;
+  width: 48px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.slider-container {
+  flex: 1;
+  margin: 0 6px;
+}
+
+.slider-container input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+.slider-container input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #ff7a5e;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-container input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #ff7a5e;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.slider-value {
+  flex-shrink: 0;
+  width: 36px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ========== 样式面板 ========== */
+.style-panel {
+  padding: 8px 10px;
+  width: 220px;
+}
+
+.panel-section {
+  margin-top: 10px;
+}
+
+.panel-section:first-child {
+  margin-top: 0;
+}
+
+.panel-label {
+  font-size: 11px;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.size-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.size-btns a {
+  flex: 1;
+  text-align: center;
+  padding: 4px 0;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.size-btns a.active {
+  background: #ff7a5e;
+}
+
+.mode-btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mode-btns a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.mode-btns a:hover,
+.mode-btns a.active {
+  color: #ff7a5e;
+}
+
+.mode-btns a .material-symbols-outlined {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.mode-btns a span:last-child {
+  font-size: 10px;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.color-preview-text {
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 60px;
+}
+
+.gradient-check {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 11px;
+  color: #ccc;
+}
+
+.gradient-check input[type='checkbox'] {
+  width: 13px;
+  height: 13px;
+  margin-right: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.gradient-check input[type='checkbox']:checked {
+  background: #ff7a5e;
+  border-color: #ff7a5e;
+}
+
+.gradient-check input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.gradient-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.angle-input {
+  width: 36px;
+  padding: 3px 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 11px;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.angle-input::-webkit-outer-spin-button,
+.angle-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.angle-input:focus {
+  outline: none;
+  border-color: #ff7a5e;
+}
+
+.gradient-colors-input {
+  flex: 1;
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 11px;
+}
+
+.gradient-colors-input:focus {
+  outline: none;
+  border-color: #ff7a5e;
+}
+
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.color-item {
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.color-item.active {
+  border-color: #fff;
+}
+
+.color-item em {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* ========== 输入框 ========== */
+.danmaku-input {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  border: 3px solid #000;
+  background: #fff;
+  font-size: 14px;
+  color: #000;
+  outline: none;
+  padding: 0 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.danmaku-input:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.danmaku-input::placeholder {
+  color: #999;
+}
+
+/* ========== 发送按钮 ========== */
+.send-btn {
+  height: 36px;
+  padding: 0 24px;
+  background: #ff7a5e;
+  color: #fff;
+  border: 3px solid #000;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.send-btn:hover {
+  background: #ff8d75;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
+}
+
+.send-btn:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* ========== 弹幕设置面板 - 完整样式 ========== */
+
+/* 类型屏蔽网格 */
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.type-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 2px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+
+.type-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.type-btn.active {
+  color: #ff7a5e;
+}
+
+.type-btn .material-symbols-outlined {
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.type-btn span:last-child {
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* 字体行 */
+.font-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.font-row select {
+  flex: 1;
+  height: 22px;
+  padding: 0 20px 0 6px;
+  background: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23ffffff' opacity='0.7' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.font-row select:focus {
+  border-color: rgba(255, 255, 255, 0.25);
+  outline: none;
+  box-shadow: none;
+}
+
+.font-row select option {
+  background: #333;
+  color: #fff;
+}
+
+/* 复选框 */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.checkbox-box {
+  width: 14px;
+  height: 14px;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.checkbox-box.checked {
+  background: #ff7a5e;
+  border-color: #ff7a5e;
+}
+
+.checkbox-box.checked::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 3px;
+  height: 7px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* 描边按钮 */
+.stroke-row {
+  display: flex;
+  gap: 8px;
+}
+
+.stroke-btn {
+  flex: 1;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.stroke-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.stroke-btn.active {
+  background: #ff7a5e;
+  color: #fff;
+}

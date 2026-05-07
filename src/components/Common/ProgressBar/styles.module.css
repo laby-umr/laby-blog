@@ -1,0 +1,161 @@
+/* Progress Bar Component */
+.progressWrapper {
+  width: 100%;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progressLabel {
+  font-family: var(--dm-font-headline);
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dm-on-surface);
+}
+
+.progressValue {
+  font-family: var(--dm-font-headline);
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: var(--dm-on-surface-variant);
+}
+
+/* Progress Bar Container */
+.progressBar {
+  position: relative;
+  width: 100%;
+  background-color: var(--dm-surface-variant);
+  border: 2px solid var(--dm-on-surface);
+  border-radius: var(--dm-radius-full);
+  overflow: hidden;
+}
+
+/* Sizes */
+.sm {
+  height: 0.75rem;
+}
+
+.md {
+  height: 1.5rem;
+}
+
+.lg {
+  height: 2rem;
+}
+
+/* Progress Fill */
+.progressFill {
+  height: 100%;
+  transition: width 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-right: 2px solid var(--dm-on-surface);
+  position: relative;
+}
+
+/* Colors */
+.primary {
+  background-color: var(--dm-primary);
+}
+
+.secondary {
+  background-color: var(--dm-secondary);
+}
+
+.tertiary {
+  background-color: var(--dm-tertiary);
+}
+
+.error {
+  background-color: var(--dm-error);
+}
+
+.success {
+  background-color: #4caf50;
+}
+
+/* Variants */
+.striped .progressFill {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.animated .progressFill {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progressStripes 1s linear infinite;
+}
+
+@keyframes progressStripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1rem 0;
+  }
+}
+
+.gradient .progressFill {
+  background: linear-gradient(90deg, var(--dm-primary-dim), var(--dm-primary), var(--dm-primary-container));
+}
+
+.gradient.secondary .progressFill {
+  background: linear-gradient(90deg, var(--dm-secondary-dim), var(--dm-secondary), var(--dm-secondary-container));
+}
+
+.gradient.tertiary .progressFill {
+  background: linear-gradient(90deg, var(--dm-tertiary-dim), var(--dm-tertiary), var(--dm-tertiary-container));
+}
+
+.glow .progressFill {
+  animation: progressGrow 1.5s ease-out forwards;
+}
+
+@keyframes progressGrow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}
+
+.glowEffect {
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0.6;
+  animation: pulseShadow 2s infinite;
+}
+
+@keyframes pulseShadow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px 10px transparent;
+  }
+}
