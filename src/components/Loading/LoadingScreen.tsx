@@ -139,39 +139,11 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps): JSX.E
 
       {/* Background Grid */}
       <div className={styles.bgLayer}>
-        <div className={styles.kineticGrid} />
         <div className={styles.bgGradient} />
         
-        {/* 杂志风格装饰元素 */}
-        <div className={styles.magazineDecor}>
-          {/* 漂浮的几何图形 */}
-          <div className={`${styles.floatingShape} ${styles.shape1}`} />
-          <div className={`${styles.floatingShape} ${styles.shape2}`} />
-          <div className={`${styles.floatingShape} ${styles.shape3}`} />
-          <div className={`${styles.floatingShape} ${styles.shape4}`} />
-          
-          {/* 代码片段装饰 */}
-          <div className={`${styles.codeSnippet} ${styles.snippet1}`}>
-            <span>{'{ code: "斩妖" }'}</span>
-          </div>
-          <div className={`${styles.codeSnippet} ${styles.snippet2}`}>
-            <span>{'console.log("LABY")'}</span>
-          </div>
-          <div className={`${styles.codeSnippet} ${styles.snippet3}`}>
-            <span>{'// 全栈开发'}</span>
-          </div>
-          
-          {/* 装饰线条 */}
-          <div className={`${styles.decorLine} ${styles.line1}`} />
-          <div className={`${styles.decorLine} ${styles.line2}`} />
-          <div className={`${styles.decorLine} ${styles.line3}`} />
-          
-          {/* 圆点装饰 */}
-          <div className={`${styles.decorDot} ${styles.dot1}`} />
-          <div className={`${styles.decorDot} ${styles.dot2}`} />
-          <div className={`${styles.decorDot} ${styles.dot3}`} />
-          <div className={`${styles.decorDot} ${styles.dot4}`} />
-        </div>
+        {/* 鬼滅之刃背景英文 - 简化版 */}
+        <div className={`${styles.bgKanji} ${styles.kanji1}`}>DEMON</div>
+        <div className={`${styles.bgKanji} ${styles.kanji2}`}>SLAYER</div>
       </div>
 
       <main className={`${styles.canvas} ${canvasShake ? styles.canvasShake : ''}`}>

@@ -28,6 +28,11 @@
   color: var(--dm-on-surface);
 }
 
+.secondary *,
+.secondary span {
+  color: var(--dm-on-surface);
+}
+
 .tertiary {
   background-color: var(--dm-tertiary);
   color: var(--dm-on-tertiary);
@@ -54,7 +59,54 @@
 .button:hover {
   transform: translateY(-4px);
   box-shadow: 10px 10px 0px 0px var(--dm-on-surface);
-  color: inherit;
+}
+
+.secondary:hover,
+.secondary:hover *,
+.secondary:hover span {
+  color: var(--dm-on-surface) !important;
+}
+
+.button:focus,
+.button:focus-visible {
+  outline: none;
+}
+
+.primary:focus,
+.primary:focus-visible {
+  background-color: var(--dm-primary) !important;
+  color: var(--dm-on-primary) !important;
+  box-shadow: 0 0 0 4px var(--dm-primary-container);
+}
+
+.secondary:focus,
+.secondary:focus-visible {
+  background-color: var(--dm-surface-container-lowest) !important;
+  color: var(--dm-on-surface) !important;
+  box-shadow: 0 0 0 4px var(--dm-primary) !important;
+}
+
+.secondary:focus span,
+.secondary:focus-visible span {
+  color: var(--dm-on-surface) !important;
+}
+
+.secondary:focus *,
+.secondary:focus-visible * {
+  color: var(--dm-on-surface) !important;
+}
+
+/* Ensure Material Icons are visible in focus state */
+.secondary:focus .icon,
+.secondary:focus-visible .icon {
+  color: var(--dm-on-surface) !important;
+}
+
+.tertiary:focus,
+.tertiary:focus-visible {
+  background-color: var(--dm-tertiary) !important;
+  color: var(--dm-on-tertiary) !important;
+  box-shadow: 0 0 0 4px var(--dm-tertiary-container);
 }
 
 .button:active {

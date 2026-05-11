@@ -8,6 +8,7 @@ export interface ContactCardProps {
   label: string;
   value: string;
   variant?: ContactCardVariant;
+  iconColor?: string;
   className?: string;
 }
 
@@ -16,11 +17,12 @@ export default function ContactCard({
   label, 
   value,
   variant = 'default',
+  iconColor,
   className 
 }: ContactCardProps): JSX.Element {
   return (
     <div className={`${styles.contactCard} ${styles[variant]} ${className || ''}`}>
-      <span className="material-symbols-outlined">{icon}</span>
+      <span className="material-symbols-outlined" style={iconColor ? { color: iconColor } : undefined}>{icon}</span>
       <div>
         <p className={styles.contactLabel}>{label}</p>
         <p className={styles.contactValue}>{value}</p>

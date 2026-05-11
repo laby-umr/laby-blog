@@ -229,12 +229,16 @@ export default function About(): JSX.Element {
       title={translate({ id: 'about.title', message: '关于我' })}
       description={translate({ id: 'about.description', message: '猎鬼人档案 - 我的故事' })}>
       <main className={styles.aboutMain}>
+        {/* 背景英文装饰 */}
+        <div style={{ fontSize: '24rem', top: '10%', right: '5%', transform: 'rotate(12deg)', opacity: 0.06, fontWeight: 900, fontStyle: 'italic', position: 'absolute', pointerEvents: 'none', zIndex: 0, userSelect: 'none', letterSpacing: '-0.05em', fontFamily: 'var(--dm-font-headline)', color: 'var(--dm-on-surface)' }}>ABOUT</div>
+        <div style={{ fontSize: '20rem', bottom: '12%', left: '8%', transform: 'rotate(-15deg)', opacity: 0.06, fontWeight: 900, fontStyle: 'italic', position: 'absolute', pointerEvents: 'none', zIndex: 0, userSelect: 'none', letterSpacing: '-0.05em', fontFamily: 'var(--dm-font-headline)', color: 'var(--dm-on-surface)' }}>ME</div>
+        
         {/* Hero Section */}
         <section className={styles.hero}>
           <div className={styles.heroContainer}>
             <div className={styles.heroLeft}>
               <div className={styles.heroBadge}>
-                <Translate id="about.hero.badge">全栈工程师</Translate>
+                <Translate id="about.hero.badge">全栈工程师 · AI编程专家</Translate>
               </div>
 
               <h1 className={styles.heroName}>
@@ -245,8 +249,9 @@ export default function About(): JSX.Element {
                 {aboutData?.personalInfo?.intro || (
                   <Translate id="about.hero.intro">
                     9年全栈开发经验，精通前后端技术栈。擅长从0到1搭建系统架构，
-                    熟练使用Spring Cloud微服务、Vue3/React前端框架，
-                    有丰富的大数据平台、CRM系统、智慧仓储等项目经验。
+                    熟练使用Spring Cloud微服务、Vue3/React前端框架。
+                    深度使用Cursor、Windsurf、Kiro等AI编程工具，
+                    精通AI辅助开发，大幅提升开发效率和代码质量。
                   </Translate>
                 )}
               </p>
@@ -301,18 +306,22 @@ export default function About(): JSX.Element {
             <StatsCard
               number={aboutData?.personalInfo?.stats?.experience || '9年+'}
               label={translate({id: 'about.stats.experienceLabel', message: '工作经验'})}
+              numberColor="#314ff4"
             />
             <StatsCard
               number={aboutData?.personalInfo?.stats?.projects || '10+'}
               label={translate({id: 'about.stats.projectsLabel', message: '核心项目'})}
+              numberColor="#c60159"
             />
             <StatsCard
               number={aboutData?.personalInfo?.stats?.skills || '20+'}
               label={translate({id: 'about.stats.skillsLabel', message: '技术栈'})}
+              numberColor="#6f6600"
             />
             <StatsCard
               number={aboutData?.personalInfo?.stats?.companies || '6家'}
               label={translate({id: 'about.stats.companiesLabel', message: '知名企业'})}
+              numberColor="#2e7d32"
             />
           </div>
         </section>
@@ -324,21 +333,25 @@ export default function About(): JSX.Element {
               icon="phone"
               label={translate({id: 'about.contact.phone', message: '电话'})}
               value={aboutData?.personalInfo?.contact?.phone || '13261915710'}
+              iconColor="#314ff4"
             />
             <ContactCard
               icon="email"
               label={translate({id: 'about.contact.email', message: '邮箱'})}
               value={aboutData?.personalInfo?.contact?.email || '1521170425@qq.com'}
+              iconColor="#c60159"
             />
             <ContactCard
               icon="location_on"
               label={translate({id: 'about.contact.location', message: '位置'})}
               value={`${aboutData?.personalInfo?.contact?.location || '北京'} · ${aboutData?.personalInfo?.contact?.age || '32岁'}`}
+              iconColor="#6f6600"
             />
             <ContactCard
               icon="payments"
               label={translate({id: 'about.contact.salary', message: '期望薪资'})}
               value={aboutData?.personalInfo?.contact?.salary || '20-25K'}
+              iconColor="#2e7d32"
             />
           </div>
         </section>

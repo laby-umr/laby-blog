@@ -3,109 +3,9 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.backend": {
-    "message": "backend",
-    "description": "The label for category 'backend' in sidebar 'tutorialSidebar'"
-  },
   "sidebar.tutorialSidebar.category.大数据技术文档": {
     "message": "大数据技术文档",
     "description": "The label for category '大数据技术文档' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.concurrency": {
-    "message": "concurrency",
-    "description": "The label for category 'concurrency' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.database-orm": {
-    "message": "database-orm",
-    "description": "The label for category 'database-orm' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.design-patterns": {
-    "message": "design-patterns",
-    "description": "The label for category 'design-patterns' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.distributed-systems": {
-    "message": "distributed-systems",
-    "description": "The label for category 'distributed-systems' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.java-basics": {
-    "message": "java-basics",
-    "description": "The label for category 'java-basics' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.java-collections": {
-    "message": "java-collections",
-    "description": "The label for category 'java-collections' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.jvm": {
-    "message": "jvm",
-    "description": "The label for category 'jvm' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.message-queues": {
-    "message": "message-queues",
-    "description": "The label for category 'message-queues' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.microservices": {
-    "message": "microservices",
-    "description": "The label for category 'microservices' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.network-programming": {
-    "message": "network-programming",
-    "description": "The label for category 'network-programming' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.spring": {
-    "message": "spring",
-    "description": "The label for category 'spring' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.system-design": {
-    "message": "system-design",
-    "description": "The label for category 'system-design' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.document-template": {
-    "message": "document-template",
-    "description": "The label for category 'document-template' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.frontend": {
-    "message": "frontend",
-    "description": "The label for category 'frontend' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.angular": {
-    "message": "angular",
-    "description": "The label for category 'angular' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.html-css": {
-    "message": "html-css",
-    "description": "The label for category 'html-css' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.javascript": {
-    "message": "javascript",
-    "description": "The label for category 'javascript' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.mobile-dev": {
-    "message": "mobile-dev",
-    "description": "The label for category 'mobile-dev' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.performance": {
-    "message": "performance",
-    "description": "The label for category 'performance' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.react": {
-    "message": "react",
-    "description": "The label for category 'react' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.testing": {
-    "message": "testing",
-    "description": "The label for category 'testing' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.tools": {
-    "message": "tools",
-    "description": "The label for category 'tools' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.typescript": {
-    "message": "typescript",
-    "description": "The label for category 'typescript' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.vue": {
-    "message": "vue",
-    "description": "The label for category 'vue' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.文档模板": {
     "message": "文档模板",
@@ -139,29 +39,17 @@
     "message": "Angular框架",
     "description": "The label for category 'Angular框架' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.HTML-CSS": {
-    "message": "HTML-CSS",
-    "description": "The label for category 'HTML-CSS' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.JavaScript": {
-    "message": "JavaScript",
-    "description": "The label for category 'JavaScript' in sidebar 'tutorialSidebar'"
-  },
   "sidebar.tutorialSidebar.category.React框架": {
     "message": "React框架",
     "description": "The label for category 'React框架' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.TypeScript": {
-    "message": "TypeScript",
-    "description": "The label for category 'TypeScript' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.Vue框架": {
     "message": "Vue框架",
     "description": "The label for category 'Vue框架' in sidebar 'tutorialSidebar'"
   },
-  "sidebar.tutorialSidebar.category.工具链": {
-    "message": "工具链",
-    "description": "The label for category '工具链' in sidebar 'tutorialSidebar'"
+  "sidebar.tutorialSidebar.category.工具": {
+    "message": "工具",
+    "description": "The label for category '工具' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.性能优化": {
     "message": "性能优化",
@@ -222,5 +110,21 @@
   "sidebar.tutorialSidebar.category.设计模式": {
     "message": "设计模式",
     "description": "The label for category '设计模式' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.大数据": {
+    "message": "大数据",
+    "description": "The label for category '大数据' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.html-css": {
+    "message": "html-css",
+    "description": "The label for category 'html-css' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.javascript": {
+    "message": "javascript",
+    "description": "The label for category 'javascript' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.typescript": {
+    "message": "typescript",
+    "description": "The label for category 'typescript' in sidebar 'tutorialSidebar'"
   }
 }

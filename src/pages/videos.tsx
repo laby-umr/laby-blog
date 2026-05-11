@@ -80,6 +80,10 @@ export default function Videos(): JSX.Element {
       title={translate({ id: 'videos.title', message: '视频教程' })}
       description={translate({ id: 'videos.description', message: 'DevManga 视频教程 - 技术学习' })}>
       <main className={styles.videosMain}>
+        {/* 背景英文装饰 */}
+        <div style={{ fontSize: '22rem', top: '5%', right: '2%', transform: 'rotate(10deg)', opacity: 0.06, fontWeight: 900, fontStyle: 'italic', position: 'absolute', pointerEvents: 'none', zIndex: 0, userSelect: 'none', letterSpacing: '-0.05em', fontFamily: 'var(--dm-font-headline)', color: 'var(--dm-on-surface)' }}>LEARN</div>
+        <div style={{ fontSize: '20rem', bottom: '8%', left: '3%', transform: 'rotate(-12deg)', opacity: 0.06, fontWeight: 900, fontStyle: 'italic', position: 'absolute', pointerEvents: 'none', zIndex: 0, userSelect: 'none', letterSpacing: '-0.05em', fontFamily: 'var(--dm-font-headline)', color: 'var(--dm-on-surface)' }}>TECH</div>
+        
         {/* Hero Section */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
@@ -126,7 +130,7 @@ export default function Videos(): JSX.Element {
                   }}
                   onClick={() => handleCategoryChange(category.id)}
                 >
-                  <Translate id={`videos.category.${category.id.toLowerCase()}`}>{category.name}</Translate>
+                  {category.name}
                 </div>
               ))}
             </div>

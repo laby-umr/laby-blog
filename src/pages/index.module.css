@@ -7,6 +7,26 @@
   justify-content: center;
   padding: 5rem 2rem;
   background-color: transparent;
+  overflow: hidden;
+}
+
+/* 背景英文装饰 */
+.bgText {
+  position: absolute;
+  font-family: var(--dm-font-headline);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--dm-on-surface);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  letter-spacing: -0.05em;
+  animation: textFloat 20s ease-in-out infinite;
+}
+
+@keyframes textFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.06; }
+  50% { transform: translateY(-20px); opacity: 0.08; }
 }
 
 .heroContainer {
@@ -410,8 +430,6 @@
 }
 
 .characterSelectCard.activeCard {
-  border-color: var(--dm-primary);
-  box-shadow: 4px 4px 0px 0px var(--dm-primary);
   transform: skew(-6deg) translateY(-8px) scale(1.1);
 }
 

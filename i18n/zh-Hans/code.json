@@ -55,10 +55,6 @@
     "message": "页面路径",
     "description": "The ARIA label for the breadcrumbs"
   },
-  "theme.docs.DocCard.categoryDescription": {
-    "message": "{count} 个项目",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
-  },
   "theme.docs.paginator.navAriaLabel": {
     "message": "文档分页导航",
     "description": "The ARIA label for the docs pagination"
@@ -628,9 +624,6 @@
   "about.skills.title": {
     "message": "技术栈"
   },
-  "projects.viewDetails": {
-    "message": "查看详情"
-  },
   "projects.quote": {
     "message": "代码不仅是工具，更是创造价值的艺术"
   },
@@ -719,19 +712,16 @@
     "message": "工作环境"
   },
   "about.hero.badge": {
-    "message": "全栈工程师"
+    "message": "全栈工程师 · AI编程专家"
   },
   "about.hero.intro": {
-    "message": "9年全栈开发经验，精通前后端技术栈。擅长从0到1搭建系统架构，熟练使用Spring Cloud微服务、Vue3/React前端框架，有丰富的大数据平台、CRM系统、智慧仓储等项目经验。"
+    "message": "9年全栈开发经验，精通前后端技术栈。擅长从0到1搭建系统架构，熟练使用Spring Cloud微服务、Vue3/React前端框架。深度使用Cursor、Windsurf、Kiro等AI编程工具，精通AI辅助开发，大幅提升开发效率和代码质量。"
   },
   "about.hero.contactBtn": {
     "message": "联系我"
   },
   "about.hero.contactBadge": {
     "message": "可远程"
-  },
-  "about.hero.projectsBtn": {
-    "message": "查看项目"
   },
   "about.hero.sticker": {
     "message": "9年经验 · 全栈开发"
@@ -847,18 +837,6 @@
   "videos.filter.title": {
     "message": "选择技术分类"
   },
-  "videos.category.all": {
-    "message": "全部"
-  },
-  "videos.category.frontend": {
-    "message": "前端"
-  },
-  "videos.category.backend": {
-    "message": "后端"
-  },
-  "videos.category.devops": {
-    "message": "运维"
-  },
   "videos.pagination.perPage": {
     "message": "每页显示"
   },
@@ -879,9 +857,6 @@
   },
   "videos.loadingData": {
     "message": "正在加载视频数据"
-  },
-  "video.title": {
-    "message": "视频播放"
   },
   "video.description": {
     "message": "观看视频教程"
@@ -933,5 +908,14 @@
   },
   "projects.readMore": {
     "message": "查看详情"
+  },
+  "projects.cta.about": {
+    "message": "关于我"
+  },
+  "projects.cta.contact": {
+    "message": "联系我"
+  },
+  "projects.pagination.perPage": {
+    "message": "每页显示"
   }
 }

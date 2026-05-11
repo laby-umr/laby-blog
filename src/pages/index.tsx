@@ -461,6 +461,10 @@ export default function Home(): JSX.Element {
       })}>
       {/* Hero Section */}
       <section className={styles.hero}>
+        {/* 背景英文装饰 */}
+        <div className={styles.bgText} style={{ fontSize: '18rem', top: '5%', right: '5%', transform: 'rotate(12deg)', opacity: 0.06 }}>CODE</div>
+        <div className={styles.bgText} style={{ fontSize: '16rem', bottom: '10%', left: '8%', transform: 'rotate(-15deg)', opacity: 0.06 }}>DEV</div>
+        
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
@@ -580,19 +584,22 @@ export default function Home(): JSX.Element {
           
           <div className={styles.techGrid}>
             {[
-              { icon: 'data_object', name: 'TypeScript' },
-              { icon: 'layers', name: 'React/Next' },
-              { icon: 'database', name: 'PostgreSQL' },
-              { icon: 'cloud_done', name: 'Cloudflare' },
-              { icon: 'terminal', name: 'Rust-Lang' },
-              { icon: 'shield_with_heart', name: 'Zod/Security' },
-              { icon: 'code', name: 'Node.js' },
-              { icon: 'api', name: 'REST API' },
-              { icon: 'storage', name: 'Redis' },
-              { icon: 'deployed_code', name: 'Docker' },
+              { icon: 'data_object', name: 'TypeScript', color: '#3178C6' },
+              { icon: 'layers', name: 'React/Next', color: '#61DAFB' },
+              { icon: 'database', name: 'PostgreSQL', color: '#336791' },
+              { icon: 'cloud_done', name: 'Cloudflare', color: '#F38020' },
+              { icon: 'terminal', name: 'Rust-Lang', color: '#CE422B' },
+              { icon: 'shield_with_heart', name: 'Zod/Security', color: '#3E67B1' },
+              { icon: 'code', name: 'Node.js', color: '#339933' },
+              { icon: 'api', name: 'REST API', color: '#009688' },
+              { icon: 'storage', name: 'Redis', color: '#DC382D' },
+              { icon: 'deployed_code', name: 'Docker', color: '#2496ED' },
             ].map((tech, index) => (
               <div key={tech.name} className={`${styles.techCard} ${styles[`techCard${index % 3}`]}`}>
-                <span className={`material-symbols-outlined ${styles.techIcon}`}>
+                <span 
+                  className={`material-symbols-outlined ${styles.techIcon}`}
+                  style={{ color: tech.color }}
+                >
                   {tech.icon}
                 </span>
                 <span className={styles.techName}>{tech.name}</span>

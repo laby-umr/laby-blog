@@ -5,9 +5,41 @@ import styles from './contact.module.css';
 
 export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    objective: '鎹鸦聊天',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleObjectiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, objective: e.target.value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // 构建邮件内容
+    const subject = `【${formData.objective}】来自 ${formData.name} 的消息`;
+    const body = `
+姓名: ${formData.name}
+邮箱: ${formData.email}
+任务目标: ${formData.objective}
+
+消息内容:
+${formData.message}
+    `.trim();
+    
+    // 使用 mailto 打开邮件客户端
+    const mailtoLink = `mailto:1521170425@qq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    
+    // 显示成功提示
     setFormSubmitted(true);
     setTimeout(() => setFormSubmitted(false), 3000);
   };
@@ -114,8 +146,11 @@ export default function Contact() {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     className={styles.input}
                     placeholder={translate({id: 'contact.form.namePlaceholder2', message: '例如：炭治郎_K'})}
+                    value={formData.name}
+                    onChange={handleInputChange}
                     required
                   />
                 </div>
@@ -126,8 +161,11 @@ export default function Contact() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     className={styles.input}
                     placeholder={translate({id: 'contact.form.emailPlaceholder2', message: '用户@星云.网络'})}
+                    value={formData.email}
+                    onChange={handleInputChange}
                     required
                   />
                 </div>
@@ -139,7 +177,14 @@ export default function Contact() {
                 </label>
                 <div className={styles.radioGroup}>
                   <label className={styles.radioLabel}>
-                    <input type="radio" name="objective" className={styles.radioInput} />
+                    <input 
+                      type="radio" 
+                      name="objective" 
+                      value="请求帮助"
+                      className={styles.radioInput}
+                      checked={formData.objective === '请求帮助'}
+                      onChange={handleObjectiveChange}
+                    />
                     <span className={styles.radioButton}>
                       <span className="material-symbols-outlined">history_edu</span>
                       <Translate id="contact.form.objective.help">请求帮助</Translate>
@@ -147,7 +192,14 @@ export default function Contact() {
                   </label>
                   
                   <label className={styles.radioLabel}>
-                    <input type="radio" name="objective" className={styles.radioInput} />
+                    <input 
+                      type="radio" 
+                      name="objective" 
+                      value="恶魔BUG"
+                      className={styles.radioInput}
+                      checked={formData.objective === '恶魔BUG'}
+                      onChange={handleObjectiveChange}
+                    />
                     <span className={`${styles.radioButton} ${styles.radioButtonSecondary}`}>
                       <span className="material-symbols-outlined">bug_report</span>
                       <Translate id="contact.form.objective.bug">恶魔BUG</Translate>
@@ -155,7 +207,14 @@ export default function Contact() {
                   </label>
                   
                   <label className={styles.radioLabel}>
-                    <input type="radio" name="objective" className={styles.radioInput} defaultChecked />
+                    <input 
+                      type="radio" 
+                      name="objective" 
+                      value="鎹鸦聊天"
+                      className={styles.radioInput}
+                      checked={formData.objective === '鎹鸦聊天'}
+                      onChange={handleObjectiveChange}
+                    />
                     <span className={`${styles.radioButton} ${styles.radioButtonTertiary}`}>
                       <span className="material-symbols-outlined">forum</span>
                       <Translate id="contact.form.objective.chat">鎹鸦聊天</Translate>
@@ -169,9 +228,12 @@ export default function Contact() {
                   <Translate id="contact.form.messageLabel">卷轴内容</Translate>
                 </label>
                 <textarea
+                  name="message"
                   className={styles.textarea}
                   placeholder={translate({id: 'contact.form.messagePlaceholder2', message: '在此展开您的消息...'})}
                   rows={5}
+                  value={formData.message}
+                  onChange={handleInputChange}
                   required
                 />
               </div>

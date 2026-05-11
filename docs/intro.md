@@ -160,14 +160,14 @@ docs/
 ### 3.2 使用标准模板
 
 :::tip 模板位置
-[文档标准模板](template/template.md) 包含 18 个章节的完整示例
+[文档标准模板](文档模板/template.md) 包含 18 个章节的完整示例
 :::
 
 ### 3.3 编写步骤
 
 **步骤 1：复制模板**
 
-从 [template.md](template/template.md) 复制内容作为起点。
+从 [template.md](文档模板/template.md) 复制内容作为起点。
 
 **步骤 2：填写 Front Matter**
 
@@ -187,7 +187,7 @@ last_update:
 
 **步骤 3：编写内容**
 
-参考 [template.md](template/template.md) 中的所有组件和格式示例。
+参考 [template.md](文档模板/template.md) 中的所有组件和格式示例。
 
 **步骤 4：本地预览**
 
@@ -233,24 +233,24 @@ npm start
 
 | 组件 | 用途 | 查看示例 |
 |------|------|----------|
-| Front Matter | 文档元数据配置 | [第一章](template/template.md#一文档元数据front-matter) |
-| 标题层级 | 文档结构组织 | [第二章](template/template.md#二标题层级) |
-| 文本格式 | 基本文本样式 | [第三章](template/template.md#三文本格式) |
-| 提示框 | 突出重点信息 | [第四章](template/template.md#四admonition提示框) |
-| 代码块 | 展示代码 | [第五章](template/template.md#五代码块) |
-| 表格 | 结构化数据 | [第六章](template/template.md#六表格) |
-| 图片媒体 | 插入图片视频 | [第七章](template/template.md#七图片和媒体) |
-| 链接引用 | 文档链接 | [第八章](template/template.md#八链接和引用) |
-| 分隔线 | 章节分隔 | [第九章](template/template.md#九分隔线) |
-| Emoji | 图标使用 | [第十章](template/template.md#十常用-emoji-图标) |
-| 嵌套内容 | 复杂结构 | [第十一章](template/template.md#十一嵌套内容示例) |
-| 实际应用 | 真实案例 | [第十二章](template/template.md#十二实际应用示例) |
-| 最佳实践 | 编写建议 | [第十三章](template/template.md#十三最佳实践) |
-| Tabs | 多选项展示 | [第十四章](template/template.md#十四tabs-组件标签页) |
-| 高级嵌套 | 复杂嵌套 | [第十五章](template/template.md#十五高级嵌套示例) |
-| 快速模板 | 复制使用 | [第十六章](template/template.md#十六快速复制模板) |
-| 折叠面板 | 隐藏详情 | [第十七章](template/template.md#十七折叠面板details) |
-| 卡片 | 内容分组 | [第十八章](template/template.md#十八卡片组件) |
+| Front Matter | 文档元数据配置 | [第一章](文档模板/template.md#一文档元数据front-matter) |
+| 标题层级 | 文档结构组织 | [第二章](文档模板/template.md#二标题层级) |
+| 文本格式 | 基本文本样式 | [第三章](文档模板/template.md#三文本格式) |
+| 提示框 | 突出重点信息 | [第四章](文档模板/template.md#四admonition提示框) |
+| 代码块 | 展示代码 | [第五章](文档模板/template.md#五代码块) |
+| 表格 | 结构化数据 | [第六章](文档模板/template.md#六表格) |
+| 图片媒体 | 插入图片视频 | [第七章](文档模板/template.md#七图片和媒体) |
+| 链接引用 | 文档链接 | [第八章](文档模板/template.md#八链接和引用) |
+| 分隔线 | 章节分隔 | [第九章](文档模板/template.md#九分隔线) |
+| Emoji | 图标使用 | [第十章](文档模板/template.md#十常用-emoji-图标) |
+| 嵌套内容 | 复杂结构 | [第十一章](文档模板/template.md#十一嵌套内容示例) |
+| 实际应用 | 真实案例 | [第十二章](文档模板/template.md#十二实际应用示例) |
+| 最佳实践 | 编写建议 | [第十三章](文档模板/template.md#十三最佳实践) |
+| Tabs | 多选项展示 | [第十四章](文档模板/template.md#十四tabs-组件标签页) |
+| 高级嵌套 | 复杂嵌套 | [第十五章](文档模板/template.md#十五高级嵌套示例) |
+| 快速模板 | 复制使用 | [第十六章](文档模板/template.md#十六快速复制模板) |
+| 折叠面板 | 隐藏详情 | [第十七章](文档模板/template.md#十七折叠面板details) |
+| 卡片 | 内容分组 | [第十八章](文档模板/template.md#十八卡片组件) |
 
 ### 4.2 提示框类型
 
@@ -311,7 +311,7 @@ npm start
 
 ### 5.3 规范检查
 
-- [ ] 样式符合 [template.md](template/template.md) 规范
+- [ ] 样式符合 [template.md](文档模板/template.md) 规范
 - [ ] 文件命名规范（小写字母和连字符）
 - [ ] 标注了最后更新时间
 - [ ] 遵循 DevManga 主题风格
@@ -344,7 +344,7 @@ npm start
 
 **解决方法：**
 
-查看 [代码块示例](template/template.md#五代码块)，确保指定了语言类型。
+查看 [代码块示例](文档模板/template.md#五代码块)，确保指定了语言类型。
 
 </details>
 
@@ -357,7 +357,7 @@ npm start
 
 **解决方法：**
 
-查看 [提示框示例](template/template.md#四admonition提示框)，确保语法正确。
+查看 [提示框示例](文档模板/template.md#四admonition提示框)，确保语法正确。
 
 </details>
 
@@ -387,7 +387,7 @@ npm start
 
 ### 标准模板
 
-[文档标准模板](template/template.md)
+[文档标准模板](文档模板/template.md)
 
 包含 18 个章节的完整示例，涵盖所有组件和格式。
 
@@ -397,7 +397,7 @@ npm start
 
 ### 编写规范
 
-[文档编写规范](./.kiro/steering/document-writing-standards.md)
+查看项目根目录 `.kiro/steering/document-writing-standards.md`
 
 详细的编写规范、检查清单、最佳实践。
 
@@ -407,8 +407,8 @@ npm start
 
 ### 报告模板
 
-- [日报模板](template/daily-report-template.md)
-- [周报模板](template/weekly-report-template.md)
+- [日报模板](文档模板/daily-report-template.md)
+- [周报模板](文档模板/weekly-report-template.md)
 
 </div>
 
@@ -430,8 +430,8 @@ npm start
 
 如果遇到问题，按以下顺序寻求帮助：
 
-1. 查看 [文档标准模板](template/template.md) 寻找示例
-2. 查看 [文档编写规范](./.kiro/steering/document-writing-standards.md)
+1. 查看 [文档标准模板](文档模板/template.md) 寻找示例
+2. 查看项目根目录 `.kiro/steering/document-writing-standards.md` 文档编写规范
 3. 查看本手册的常见问题部分
 4. 使用搜索功能查找相关文档
 5. 访问 [联系我](/contact) 页面反馈问题
