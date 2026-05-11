@@ -130,5 +130,97 @@
   "sidebar.tutorialSidebar.category.面试题.link.generated-index.description": {
     "message": "涵盖 Java、Spring、前端、数据库等技术栈的面试题集合",
     "description": "The generated-index page description for category '面试题' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.AI智能体": {
+    "message": "AI智能体",
+    "description": "The label for category 'AI智能体' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Angular框架": {
+    "message": "Angular框架",
+    "description": "The label for category 'Angular框架' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.HTML-CSS": {
+    "message": "HTML-CSS",
+    "description": "The label for category 'HTML-CSS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category 'JavaScript' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.React框架": {
+    "message": "React框架",
+    "description": "The label for category 'React框架' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category 'TypeScript' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Vue框架": {
+    "message": "Vue框架",
+    "description": "The label for category 'Vue框架' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.工具链": {
+    "message": "工具链",
+    "description": "The label for category '工具链' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.性能优化": {
+    "message": "性能优化",
+    "description": "The label for category '性能优化' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.测试": {
+    "message": "测试",
+    "description": "The label for category '测试' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.移动开发": {
+    "message": "移动开发",
+    "description": "The label for category '移动开发' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.JVM虚拟机": {
+    "message": "JVM虚拟机",
+    "description": "The label for category 'JVM虚拟机' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Java基础": {
+    "message": "Java基础",
+    "description": "The label for category 'Java基础' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Java集合": {
+    "message": "Java集合",
+    "description": "The label for category 'Java集合' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Spring框架": {
+    "message": "Spring框架",
+    "description": "The label for category 'Spring框架' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.分布式系统": {
+    "message": "分布式系统",
+    "description": "The label for category '分布式系统' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.并发编程": {
+    "message": "并发编程",
+    "description": "The label for category '并发编程' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.微服务": {
+    "message": "微服务",
+    "description": "The label for category '微服务' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.数据库-ORM": {
+    "message": "数据库-ORM",
+    "description": "The label for category '数据库-ORM' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.消息队列": {
+    "message": "消息队列",
+    "description": "The label for category '消息队列' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.系统设计": {
+    "message": "系统设计",
+    "description": "The label for category '系统设计' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.网络编程": {
+    "message": "网络编程",
+    "description": "The label for category '网络编程' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.设计模式": {
+    "message": "设计模式",
+    "description": "The label for category '设计模式' in sidebar 'tutorialSidebar'"
   }
 }

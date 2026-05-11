@@ -269,11 +269,13 @@ const pillarWarriorsData: PillarWarrior[] = [
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   const [showLoading, setShowLoading] = useState(() => {
-    // 初始化时立即检查 sessionStorage
+    // 临时修改：每次都显示 Loading（测试用）
     if (typeof window !== 'undefined') {
-      const visited = sessionStorage.getItem('hasVisitedSite');
-      console.log('初始化检查 sessionStorage:', visited);
-      return visited !== 'true';
+      // 注释掉缓存检查，每次都显示
+      // const visited = sessionStorage.getItem('hasVisitedSite');
+      // console.log('初始化检查 sessionStorage:', visited);
+      // return visited !== 'true';
+      return true; // 强制每次都显示
     }
     return true;
   });
