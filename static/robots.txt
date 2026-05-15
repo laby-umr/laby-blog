@@ -11,4 +11,4 @@ Allow: /img/
 Allow: /css/
 Allow: /js/
 
-Sitemap: https://laby-umr.github.io/sitemap.xml
+Sitemap: https://laby.top/sitemap.xml

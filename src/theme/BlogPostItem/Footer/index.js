@@ -13,7 +13,7 @@ export default function FooterWrapper(props) {
   
   const url = typeof window !== 'undefined'
     ? window.location.href
-    : `https://laby-umr.github.io${location.pathname}`;
+    : `https://laby.top${location.pathname}`;
 
   return (
     <>

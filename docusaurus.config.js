@@ -20,7 +20,7 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://laby-umr.github.io',
+  url: 'https://laby.top',
   baseUrl: '/',
 
   // 性能优化：预连接和 DNS 预解析
@@ -51,7 +51,7 @@ const config = {
 
   // GitHub pages deployment config.
   organizationName: 'laby-umr', // GitHub username
-  projectName: 'laby-umr.github.io', // 用户级 GitHub Pages 仓库名
+  projectName: 'laby-blog', // GitHub 仓库名
 
   onBrokenLinks: 'warn',
 
@@ -192,7 +192,7 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl:
-            'https://github.com/laby-umr/laby-umr.github.io/tree/main/',
+            'https://github.com/laby-umr/laby-blog/tree/main/',
           routeBasePath: 'docs',
           path: 'docs',
           showLastUpdateAuthor: true,
@@ -201,7 +201,7 @@ const config = {
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/laby-umr/laby-umr.github.io/tree/main/',
+            'https://github.com/laby-umr/laby-blog/tree/main/',
           postsPerPage: 10,
           blogSidebarCount: 'ALL',
           blogSidebarTitle: '全部博客文章',
@@ -287,7 +287,7 @@ const config = {
       */
       // 添加Giscus评论系统
       giscus: {
-        repo: 'laby-umr/laby-umr.github.io',
+        repo: 'laby-umr/laby-blog',
         repoId: 'R_kgDOQkvCIQ',
         category: 'Announcements',
         categoryId: 'DIC_kwDOQkvCIc4Czr7V',
@@ -303,7 +303,7 @@ const config = {
       announcementBar: {
         id: 'support_star',
         content:
-          '⭐️ 如果觉得这个项目对你有帮助，请给个 <a target="_blank" rel="noopener noreferrer" href="https://github.com/laby-umr/laby-umr.github.io">Star</a> 支持一下！',
+          '⭐️ 如果觉得这个项目对你有帮助，请给个 <a target="_blank" rel="noopener noreferrer" href="https://github.com/laby-umr/laby-blog">Star</a> 支持一下！',
         backgroundColor: '#667eea',
         textColor: '#ffffff',
         isCloseable: true,

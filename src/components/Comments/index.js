@@ -14,7 +14,7 @@ export default function Comments() {
       </div>
       <div className={styles.commentsContainer}>
         <Giscus
-          repo="laby-umr/laby-umr.github.io"
+          repo="laby-umr/laby-blog"
           repoId="R_kgDOQkvCIQ"
           category="Announcements"
           categoryId="DIC_kwDOQkvCIc4Czr7V"

@@ -4,11 +4,10 @@
 ![React](https://img.shields.io/badge/React-19.0-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-20.x-success)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
-![Deploy](https://github.com/laby-umr/laby-umr.github.io/actions/workflows/deploy.yml/badge.svg)
 
 > 一个基于 [Docusaurus 3.9](https://docusaurus.io/) 构建的现代化技术博客和知识库，涵盖前后端开发、系统设计、面试题库等内容。
 
-**🌐 在线访问**: [https://laby-umr.github.io](https://laby-umr.github.io)
+**🌐 在线访问**: [https://laby.top](https://laby.top)
 
 ## 🎯 项目特色
 
@@ -74,8 +73,8 @@
 - **[Ant Design](https://ant.design/)**: UI 组件库
 
 ### CI/CD
-- **GitHub Actions**: 自动化部署工作流
-- **GitHub Pages**: 静态网站托管
+- **Netlify**: 自动化部署平台
+- **GitHub**: 代码托管和版本控制
 
 ## 🚀 快速开始
 
@@ -88,8 +87,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/laby-umr/laby-umr.github.io.git
-cd laby-umr.github.io
+git clone https://github.com/laby-umr/laby-blog.git
+cd laby-blog
 
 # 安装依赖
 npm install
@@ -126,9 +125,15 @@ npm run serve
 
 ## 🚀 自动部署
 
-### 工作流程
+### 部署方式
 
-本项目已配置 **GitHub Actions 自动部署**，工作流程如下：
+项目使用 **Netlify** 自动部署：
+- 推送到 `main` 分支自动触发部署
+- 构建命令：`npm run build`
+- 发布目录：`build/`
+- 部署地址：[https://laby.top](https://laby.top)
+
+### 工作流程
 
 ```bash
 # 1. 修改代码或写文章
@@ -141,35 +146,21 @@ git commit -m "你的提交信息"
 git push origin main
 
 # 4. ✨ 自动部署！
-# GitHub Actions 自动构建并部署到 GitHub Pages
-# 等待 3-6 分钟后网站自动更新
+# Netlify 自动检测推送并构建部署
+# 等待 2-3 分钟后网站自动更新
 ```
 
 ### 查看部署状态
 
-- **Actions 页面**: [github.com/laby-umr/laby-umr.github.io/actions](https://github.com/laby-umr/laby-umr.github.io/actions)
+登录 [Netlify Dashboard](https://app.netlify.com/) 查看：
 - 🟡 黄色 = 部署中
 - ✅ 绿色 = 部署成功
 - ❌ 红色 = 部署失败
 
-### 部署配置
-
-部署工作流配置文件：`.github/workflows/deploy.yml`
-
-```yaml
-# 自动触发条件
-on:
-  push:
-    branches: [main, master]  # 推送到 main 分支时触发
-  workflow_dispatch:           # 也可手动触发
-```
-
-更多详情请查看文档：[部署指南](https://laby-umr.github.io/docs/deployment-guide)
-
 ## 📁 项目结构
 
 ```
-laby-umr.github.io/
+laby-blog/
 ├── blog/                         # 📰 博客文章
 │   ├── 2024-12-24-*.md          # 数字孪生系列
 │   └── 2025-08-17-*.md          # AI 实施系列
@@ -395,14 +386,14 @@ import MyComponent from '@site/src/components/MyComponent';
 
 编辑 `docusaurus.config.js` 文件中的 `themeConfig.navbar` 部分。
 
-### 如何部署到 GitHub Pages？
+### 如何部署网站？
 
-本项目已配置 **GitHub Actions 自动部署**，无需手动操作！
+本项目使用 **Netlify 自动部署**，无需手动操作！
 
 只需：
 1. 提交代码：`git commit -m "你的更改"`
 2. 推送代码：`git push origin main`
-3. 等待 3-6 分钟，网站自动更新
+3. 等待 2-3 分钟，Netlify 自动构建并部署
 
 详见：[自动部署](#-自动部署)章节
 
@@ -477,8 +468,8 @@ import MyComponent from '@site/src/components/MyComponent';
 ## 📞 联系方式
 
 - 📧 **邮箱**: 1521170425@qq.com
-- 🐛 **Issues**: [github.com/laby-umr/laby-umr.github.io/issues](https://github.com/laby-umr/laby-umr.github.io/issues)
-- 🌐 **网站**: [laby-umr.github.io](https://laby-umr.github.io)
+- 🐛 **Issues**: [github.com/laby-umr/laby-blog/issues](https://github.com/laby-umr/laby-blog/issues)
+- 🌐 **网站**: [laby.top](https://laby.top)
 
 ## 🙏 致谢
 
@@ -487,14 +478,14 @@ import MyComponent from '@site/src/components/MyComponent';
 - [Docusaurus 3.9](https://docusaurus.io/) - 强大的文档生成框架
 - [Mermaid](https://mermaid.js.org/) - 图表绘制工具
 - [React 19](https://reactjs.org/) - 现代前端框架
-- [GitHub Pages](https://pages.github.com/) - 免费静态网站托管
-- [GitHub Actions](https://github.com/features/actions) - CI/CD 自动化
+- [Netlify](https://www.netlify.com/) - 自动化部署平台
+- [Supabase](https://supabase.com/) - 开源 Firebase 替代方案
 
 ## 📊 项目状态
 
-![GitHub last commit](https://img.shields.io/github/last-commit/laby-umr/laby-umr.github.io)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/laby-umr/laby-umr.github.io)
-![Website](https://img.shields.io/website?url=https%3A%2F%2Flaby-umr.github.io)
+![GitHub last commit](https://img.shields.io/github/last-commit/laby-umr/laby-blog)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/laby-umr/laby-blog)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Flaby.top)
 
 ---
 
@@ -504,6 +495,6 @@ import MyComponent from '@site/src/components/MyComponent';
 
 Made with ❤️ by [Laby](https://github.com/laby-umr)
 
-Built with [Docusaurus 3.9.2](https://docusaurus.io/) | Deployed by [GitHub Actions](https://github.com/features/actions)
+Built with [Docusaurus 3.9.2](https://docusaurus.io/) | Deployed by [Netlify](https://www.netlify.com/)
 
 </div>
