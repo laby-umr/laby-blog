@@ -93,7 +93,7 @@
 .newsletterCard {
   background-color: var(--dm-surface-container);
   border: 4px solid var(--dm-on-surface);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: var(--dm-radius-2xl);
   box-shadow: var(--dm-shadow-md);
   transform: rotate(1deg);

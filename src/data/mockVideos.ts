@@ -78,7 +78,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly2.MP4',
+    videoUrl: '/videos/sintel-trailer.mp4',
     subtitles: [],
   },
   {
@@ -100,7 +100,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly3.MP4',
+    videoUrl: '/videos/butter-fly.MP4',
     subtitles: [],
   },
   {
@@ -210,7 +210,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly2.MP4',
+    videoUrl: '/videos/sintel-trailer.mp4',
     subtitles: [],
   },
   {
@@ -232,7 +232,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly3.MP4',
+    videoUrl: '/videos/butter-fly.MP4',
     subtitles: [],
   },
   {
@@ -298,7 +298,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly2.MP4',
+    videoUrl: '/videos/sintel-trailer.mp4',
     subtitles: [],
   },
   {
@@ -320,7 +320,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly3.MP4',
+    videoUrl: '/videos/butter-fly.MP4',
     subtitles: [],
   },
   {
@@ -386,7 +386,7 @@ export const mockVideos: MockVideo[] = [
       avatar: '/img/blog/blog-2.jpg',
       mid: 123456,
     },
-    videoUrl: '/videos/butter-fly2.MP4',
+    videoUrl: '/videos/butter-fly.MP4',
     subtitles: [],
   },
 ];

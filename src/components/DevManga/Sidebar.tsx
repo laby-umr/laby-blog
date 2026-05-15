@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import Translate, {translate} from '@docusaurus/Translate';
+import NewsletterSubscribe from '../NewsletterSubscribe';
 import styles from './Sidebar.module.css';
 
 interface SidebarProps {
@@ -50,20 +51,7 @@ export default function Sidebar({ tags = [] }: SidebarProps): JSX.Element {
             Get the latest chapters of code delivered to your mailbox.
           </Translate>
         </p>
-        <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="email"
-            placeholder={translate({id: 'sidebar.newsletter.placeholder', message: 'email@devmanga.com'})}
-            className={styles.emailInput}
-            required
-          />
-          <button type="submit" className={styles.subscribeButton}>
-            <span>
-              <Translate id="sidebar.newsletter.subscribe">Subscribe</Translate>
-            </span>
-            <div className={styles.buttonShimmer}></div>
-          </button>
-        </form>
+        <NewsletterSubscribe source="sidebar" compact />
       </div>
     </aside>
   );

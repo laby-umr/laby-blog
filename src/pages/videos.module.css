@@ -879,3 +879,20 @@
     justify-content: space-between;
   }
 }
+
+/* Subscribe Form in CTA */
+.subscribeFormInline {
+  max-width: 500px;
+  margin: 2rem auto 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

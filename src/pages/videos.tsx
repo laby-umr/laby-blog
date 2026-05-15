@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Pagination from '@site/src/components/Common/Pagination';
+import NewsletterSubscribe from '@site/src/components/NewsletterSubscribe';
 import { getAllVideos, formatViews, formatDuration } from '@site/src/api/bilibiliApi';
 import type { MockVideo } from '@site/src/data/mockVideos';
 import { categories, getCategoryConfig } from '@site/src/data/categories';
@@ -266,10 +267,9 @@ export default function Videos(): JSX.Element {
             <p className={styles.ctaDesc}>
               <Translate id="videos.cta.description">订阅频道，获取最新的技术教程和编程分享</Translate>
             </p>
-            <button className={styles.ctaButton}>
-              <span className="material-symbols-outlined">notifications</span>
-              <Translate id="videos.cta.button">订阅更新</Translate>
-            </button>
+            <div className={styles.subscribeFormInline}>
+              <NewsletterSubscribe source="videos" compact />
+            </div>
           </div>
         </section>
       </main>

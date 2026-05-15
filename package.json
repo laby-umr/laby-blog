@@ -35,6 +35,7 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
     "@react-three/postprocessing": "^3.0.4",
+    "@supabase/supabase-js": "^2.105.4",
     "@use-gesture/react": "^10.3.1",
     "antd": "^5.29.1",
     "aplayer": "^1.10.1",
@@ -55,6 +56,7 @@
     "react-aplayer": "^1.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "resend": "^6.12.3",
     "search-insights": "^2.17.3",
     "three": "^0.181.2"
   },

@@ -17,19 +17,23 @@ export default function BlogLayout(props) {
     <Layout {...layoutProps}>
       <div className="container margin-vert--lg">
         <div className="row">
-          {/* 修改左侧边栏宽度 col--3 保持不变 */}
+          {/* 左侧边栏 */}
           <BlogSidebar sidebar={sidebar} />
           
-          {/* 修改中间内容区域宽度从 col--7 改为 col--6 */}
+          {/* 中间内容区域 - 添加内边距 */}
           <main
             className={clsx('col', {
               'col--6': hasSidebar,
-              'col--12 ': !hasSidebar,
-            })}>
+              'col--12': !hasSidebar,
+            })}
+            style={{
+              paddingLeft: hasSidebar ? '2rem' : '0',
+              paddingRight: toc ? '2rem' : '0',
+            }}>
             {children}
           </main>
           
-          {/* 修改右侧目录宽度从 col--2 改为 col--3 */}
+          {/* 右侧目录 */}
           {toc && <div className="col col--3">{toc}</div>}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useThemeConfig } from '@docusaurus/theme-common';
 import Translate from '@docusaurus/Translate';
+import NewsletterSubscribe from '@site/src/components/NewsletterSubscribe';
 import styles from './styles.module.css';
 
 export default function FooterWrapper() {
@@ -75,7 +76,7 @@ export default function FooterWrapper() {
           </ul>
         </div>
 
-        {/* Right Section - QR Code */}
+        {/* Third Section - QR Code */}
         <div className={styles.footerSection}>
           <div className={styles.sectionHeader}>
             <span className="material-symbols-outlined">qr_code_2</span>
@@ -102,6 +103,22 @@ export default function FooterWrapper() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Fourth Section - Newsletter */}
+        <div className={styles.footerSection}>
+          <div className={styles.sectionHeader}>
+            <span className="material-symbols-outlined">mail</span>
+            <h3 className={styles.sectionTitle}>
+              <Translate id="footer.newsletter.title">订阅 Newsletter</Translate>
+            </h3>
+          </div>
+          <p className={styles.newsletterDesc}>
+            <Translate id="footer.newsletter.description">
+              获取最新技术文章和编程教程
+            </Translate>
+          </p>
+          <NewsletterSubscribe source="footer" compact />
         </div>
       </div>
 

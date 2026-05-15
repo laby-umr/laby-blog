@@ -271,3 +271,11 @@
     justify-content: center;
   }
 }
+
+/* Newsletter Section */
+.newsletterDesc {
+  font-size: 0.875rem;
+  color: var(--dm-on-surface-variant);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}

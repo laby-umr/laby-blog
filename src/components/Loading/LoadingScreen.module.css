@@ -506,6 +506,15 @@
   box-shadow: 6px 6px 0px 0px #383833;
 }
 
+.mashButton:focus {
+  outline: none;
+}
+
+.mashButton:focus-visible {
+  outline: 2px solid var(--dm-on-surface, #383833);
+  outline-offset: 2px;
+}
+
 .mashButton::before {
   content: '';
   position: absolute;

@@ -744,3 +744,34 @@
   opacity: 1;
   transform: scale(1) translateY(0);
 }
+
+/* Error Message */
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: rgba(220, 38, 38, 0.1);
+  border: 2px solid var(--dm-error, #dc2626);
+  border-radius: 8px;
+  color: var(--dm-error, #dc2626);
+  font-weight: 500;
+  animation: slideIn 0.3s ease-out;
+}
+
+.errorMessage span.material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+/* Submit Button Disabled State */
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.submitButton:disabled:hover {
+  background-color: var(--dm-primary);
+  transform: none !important;
+}

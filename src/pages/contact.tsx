@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
 import styles from './contact.module.css';
+import { submitContactForm } from '../lib/supabase';
 
 export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,27 +24,45 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, objective: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // 构建邮件内容
-    const subject = `【${formData.objective}】来自 ${formData.name} 的消息`;
-    const body = `
-姓名: ${formData.name}
-邮箱: ${formData.email}
-任务目标: ${formData.objective}
-
-消息内容:
-${formData.message}
-    `.trim();
+    setIsSubmitting(true);
+    setSubmitError(null);
     
-    // 使用 mailto 打开邮件客户端
-    const mailtoLink = `mailto:1521170425@qq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-    
-    // 显示成功提示
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 3000);
+    try {
+      console.log('提交表单数据:', formData);
+      
+      // 提交到 Supabase
+      const result = await submitContactForm(formData);
+      
+      console.log('提交结果:', result);
+      
+      if (result.success) {
+        // 显示成功提示
+        setFormSubmitted(true);
+        
+        // 清空表单
+        setFormData({
+          name: '',
+          email: '',
+          objective: '鎹鸦聊天',
+          message: ''
+        });
+        
+        // 3秒后隐藏成功提示
+        setTimeout(() => setFormSubmitted(false), 3000);
+      } else {
+        const errorMsg = result.error?.message || '提交失败，请稍后重试';
+        console.error('提交错误:', result.error);
+        setSubmitError(errorMsg);
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      setSubmitError(`提交失败: ${error.message || '请稍后重试'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // 滚动入场动画
@@ -238,10 +259,24 @@ ${formData.message}
                 />
               </div>
               
-              <button type="submit" className={styles.submitButton}>
-                <span><Translate id="contact.form.submit">释放信使</Translate></span>
+              <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+                <span>
+                  {isSubmitting ? (
+                    <Translate id="contact.form.submitting">发送中...</Translate>
+                  ) : (
+                    <Translate id="contact.form.submit">释放信使</Translate>
+                  )}
+                </span>
                 <span className="material-symbols-outlined">send</span>
               </button>
+              
+              {/* Error Message */}
+              {submitError && (
+                <div className={styles.errorMessage}>
+                  <span className="material-symbols-outlined">error</span>
+                  <span>{submitError}</span>
+                </div>
+              )}
             </form>
             
             {/* Success Message */}
