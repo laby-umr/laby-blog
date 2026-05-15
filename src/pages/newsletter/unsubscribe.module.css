@@ -1,0 +1,250 @@
+.container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fefcf4 0%, #f5f4eb 100%);
+}
+
+.card {
+  background: white;
+  border: 4px solid #383833;
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 8px 8px 0 rgba(56, 56, 51, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 3px solid #f5f4eb;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #383833;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header p {
+  font-size: 1rem;
+  color: #65655f;
+  margin: 0;
+}
+
+.form {
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #383833;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 3px solid #383833;
+  border-radius: 8px;
+  background: #fefcf4;
+  color: #383833;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #314ff4;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(49, 79, 244, 0.1);
+}
+
+.formGroup input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  background: #ff4444;
+  color: white;
+  border: 3px solid #383833;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 #383833;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #dd3333;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #383833;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.errorMessage {
+  background: #ffe5e5;
+  border: 2px solid #ff4444;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  color: #cc0000;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.info {
+  background: #f5f4eb;
+  border: 2px dashed #bab9b2;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.info p {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #383833;
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.info li {
+  font-size: 0.9rem;
+  color: #65655f;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.info li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #314ff4;
+  font-weight: 900;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: #ff4444;
+  color: white;
+  border: 4px solid #383833;
+}
+
+.success h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #383833;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.success p {
+  font-size: 1.1rem;
+  color: #65655f;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.subtext {
+  font-size: 0.95rem !important;
+  color: #8a8a85 !important;
+  font-style: italic;
+  margin-top: 0.5rem !important;
+}
+
+.button {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #314ff4;
+  color: white;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid #383833;
+  border-radius: 8px;
+  margin-top: 2rem;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 #383833;
+}
+
+.button:hover {
+  background: #2840d4;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #383833;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    font-size: 36px;
+  }
+
+  .success h2 {
+    font-size: 1.5rem;
+  }
+}

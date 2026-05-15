@@ -299,6 +299,8 @@ async function sendVerificationEmail(email: string, token: string, name?: string
 // 发送欢迎邮件
 async function sendWelcomeEmail(email: string, name?: string) {
   try {
+    const unsubscribeUrl = `${window.location.origin}/newsletter/unsubscribe?email=${encodeURIComponent(email)}`;
+    
     const response = await fetch(EDGE_FUNCTION_URL, {
       method: 'POST',
       headers: {
@@ -308,7 +310,8 @@ async function sendWelcomeEmail(email: string, name?: string) {
       body: JSON.stringify({
         type: 'welcome',
         to: email,
-        name
+        name,
+        unsubscribeUrl
       })
     });
 

@@ -1,5 +1,5 @@
 // 欢迎邮件模板
-export function getWelcomeEmailHTML(name: string): string {
+export function getWelcomeEmailHTML(name: string, email: string = '', unsubscribeUrl: string = ''): string {
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -74,7 +74,7 @@ export function getWelcomeEmailHTML(name: string): string {
 
       <p style="margin:30px 0 0;font-size:12px;color:#65655f;text-align:center">
         不想再收到邮件？
-        <a href="https://laby.top/newsletter/unsubscribe" style="color:#314ff4;text-decoration:underline">取消订阅</a>
+        <a href="${unsubscribeUrl || 'https://laby.top/newsletter/unsubscribe'}" style="color:#314ff4;text-decoration:underline">取消订阅</a>
       </p>
     </div>
 

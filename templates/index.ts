@@ -4,9 +4,9 @@
 // ============================================
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { getVerificationEmailHTML } from './templates/email/verification.ts'
-import { getWelcomeEmailHTML } from './templates/email/welcome.ts'
-import { getContactEmailHTML } from './templates/email/contact.ts'
+import { getVerificationEmailHTML } from './email-verification.ts'
+import { getWelcomeEmailHTML } from './email-welcome.ts'
+import { getContactEmailHTML } from './email-contact.ts'
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') || 're_TYJN9QgP_fNV5Mjb1Jo2RM7MoJewpkx4z'
 const CONTACT_EMAIL = Deno.env.get('CONTACT_EMAIL') || 'oilcake93@gmail.com'
@@ -28,7 +28,7 @@ serve(async (req) => {
   }
 
   try {
-    const { type, to, name, verifyUrl, email, objective, message } = await req.json()
+    const { type, to, name, verifyUrl, email, objective, message, unsubscribeUrl } = await req.json()
 
     let subject = ''
     let html = ''
@@ -40,7 +40,7 @@ serve(async (req) => {
       html = getVerificationEmailHTML(name || '', verifyUrl || '')
     } else if (type === 'welcome') {
       subject = '欢迎加入 Laby Blog'
-      html = getWelcomeEmailHTML(name || '')
+      html = getWelcomeEmailHTML(name || '', to || '', unsubscribeUrl || '')
     } else if (type === 'contact') {
       // 联系表单邮件发送到配置的邮箱地址
       subject = `【${objective}】来自 ${name} 的消息 - Laby Blog`
